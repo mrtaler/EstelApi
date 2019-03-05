@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("EstelApi.CrossCutting.IoC")]
+[assembly: AssemblyProduct("EstelApi.CrossCutting.Bus")]
 [assembly: AssemblyTrademark("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible
@@ -15,4 +15,4 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("9330566c-4093-4fc7-af61-14850dd15793")]
+[assembly: Guid("7c9495ce-aec5-44cb-9d9c-1150df99f817")]

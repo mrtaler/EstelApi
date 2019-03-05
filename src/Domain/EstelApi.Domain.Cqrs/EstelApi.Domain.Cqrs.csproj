@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AssemblyName>EstelApi.Domain.Cqrs</AssemblyName>
+    <PackageId>EstelApi.Domain.Cqrs</PackageId>
+
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="MediatR.Extensions.Autofac.DependencyInjection" Version="2.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\core\EstelApi.Core.Cqrs\EstelApi.Core.Cqrs.csproj" />
+    <ProjectReference Include="..\EstelApi.Domain.DataAccessLayer.Context\EstelApi.Domain.DataAccessLayer.Context.csproj" />
+  </ItemGroup>
+
+</Project>

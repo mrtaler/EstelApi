@@ -7,17 +7,33 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Core", "1 - Core", "{99
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - CrossCutting", "0 - CrossCutting", "{152588AB-F2E8-439D-9D17-694C5B8EBD02}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NewFolder3", "NewFolder3", "{B225D63F-D5BE-42B7-9386-171A3CD46F7E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Domain", "2 - Domain", "{B225D63F-D5BE-42B7-9386-171A3CD46F7E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NewFolder4", "NewFolder4", "{741A7FF2-BEA5-4D85-A40E-510C9D53066D}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Application", "3 - Application", "{741A7FF2-BEA5-4D85-A40E-510C9D53066D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NewFolder5", "NewFolder5", "{2E790C43-946C-4BAB-89DE-D1C454D537C8}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Services", "4 - Services", "{2E790C43-946C-4BAB-89DE-D1C454D537C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EstelApi.CrossCutting.Bus", "src\CrossCutting\EstelApi.CrossCutting.Bus\EstelApi.CrossCutting.Bus.csproj", "{46C207BE-DA41-4500-9CB9-AC2D0E395B82}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EstelApi.CrossCutting.Bus", "src\CrossCutting\EstelApi.CrossCutting.Bus\EstelApi.CrossCutting.Bus.csproj", "{46C207BE-DA41-4500-9CB9-AC2D0E395B82}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EstelApi.CrossCutting.Identity", "src\CrossCutting\EstelApi.CrossCutting.Identity\EstelApi.CrossCutting.Identity.csproj", "{88F27851-BD69-4457-940A-BE5A4766E63D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EstelApi.CrossCutting.Identity", "src\CrossCutting\EstelApi.CrossCutting.Identity\EstelApi.CrossCutting.Identity.csproj", "{88F27851-BD69-4457-940A-BE5A4766E63D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EstelApi.CrossCutting.IoC", "src\CrossCutting\EstelApi.CrossCutting.IoC\EstelApi.CrossCutting.IoC.csproj", "{1342F9F6-5A71-4CB8-84E1-6A115799ED43}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EstelApi.CrossCutting.IoC", "src\CrossCutting\EstelApi.CrossCutting.IoC\EstelApi.CrossCutting.IoC.csproj", "{1342F9F6-5A71-4CB8-84E1-6A115799ED43}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EstelApi.Core.Entities", "src\core\EstelApi.Core.Entities\EstelApi.Core.Entities.csproj", "{8E29C9EA-640E-4469-9E0F-7C6D8A0345E4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EstelApi.Core.Seedwork", "src\core\EstelApi.Core.Seedwork\EstelApi.Core.Seedwork.csproj", "{4D627BA0-8EA2-4951-9C8C-93DF336D5447}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EstelApi.Domain.DataAccessLayer.Interfaces", "src\Domain\EstelApi.Domain.DataAccessLayer.Interfaces\EstelApi.Domain.DataAccessLayer.Interfaces.csproj", "{A613135B-ABB2-4954-992F-00E3433CDAA4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EstelApi.Domain.DataAccessLayer.Context", "src\Domain\EstelApi.Domain.DataAccessLayer.Context\EstelApi.Domain.DataAccessLayer.Context.csproj", "{C079C5F4-C962-4F06-A8D6-86813B98F220}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EstelApi.Core.Cqrs", "src\core\EstelApi.Core.Cqrs\EstelApi.Core.Cqrs.csproj", "{6C128A3E-CBAB-4307-A491-518FAB066837}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EstelApi.Domain.Cqrs", "src\Domain\EstelApi.Domain.Cqrs\EstelApi.Domain.Cqrs.csproj", "{49D3988D-77A2-4B78-964F-33A1A6EBBCF3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EstelApi.Application", "src\Application\EstelApi.Application\EstelApi.Application.csproj", "{B8E76800-A4ED-45BD-BBEF-ED76B8523967}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Estel.Services.Api", "src\Services\Estel.Services.Api\Estel.Services.Api.csproj", "{169AC7D7-D22F-4C16-8438-8EC4ABFB3BF4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +53,38 @@ Global
 		{1342F9F6-5A71-4CB8-84E1-6A115799ED43}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1342F9F6-5A71-4CB8-84E1-6A115799ED43}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1342F9F6-5A71-4CB8-84E1-6A115799ED43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E29C9EA-640E-4469-9E0F-7C6D8A0345E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E29C9EA-640E-4469-9E0F-7C6D8A0345E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E29C9EA-640E-4469-9E0F-7C6D8A0345E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E29C9EA-640E-4469-9E0F-7C6D8A0345E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D627BA0-8EA2-4951-9C8C-93DF336D5447}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D627BA0-8EA2-4951-9C8C-93DF336D5447}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D627BA0-8EA2-4951-9C8C-93DF336D5447}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D627BA0-8EA2-4951-9C8C-93DF336D5447}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A613135B-ABB2-4954-992F-00E3433CDAA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A613135B-ABB2-4954-992F-00E3433CDAA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A613135B-ABB2-4954-992F-00E3433CDAA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A613135B-ABB2-4954-992F-00E3433CDAA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C079C5F4-C962-4F06-A8D6-86813B98F220}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C079C5F4-C962-4F06-A8D6-86813B98F220}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C079C5F4-C962-4F06-A8D6-86813B98F220}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C079C5F4-C962-4F06-A8D6-86813B98F220}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C128A3E-CBAB-4307-A491-518FAB066837}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C128A3E-CBAB-4307-A491-518FAB066837}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C128A3E-CBAB-4307-A491-518FAB066837}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C128A3E-CBAB-4307-A491-518FAB066837}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49D3988D-77A2-4B78-964F-33A1A6EBBCF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49D3988D-77A2-4B78-964F-33A1A6EBBCF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49D3988D-77A2-4B78-964F-33A1A6EBBCF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49D3988D-77A2-4B78-964F-33A1A6EBBCF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8E76800-A4ED-45BD-BBEF-ED76B8523967}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8E76800-A4ED-45BD-BBEF-ED76B8523967}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8E76800-A4ED-45BD-BBEF-ED76B8523967}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8E76800-A4ED-45BD-BBEF-ED76B8523967}.Release|Any CPU.Build.0 = Release|Any CPU
+		{169AC7D7-D22F-4C16-8438-8EC4ABFB3BF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{169AC7D7-D22F-4C16-8438-8EC4ABFB3BF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{169AC7D7-D22F-4C16-8438-8EC4ABFB3BF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{169AC7D7-D22F-4C16-8438-8EC4ABFB3BF4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -45,6 +93,14 @@ Global
 		{46C207BE-DA41-4500-9CB9-AC2D0E395B82} = {152588AB-F2E8-439D-9D17-694C5B8EBD02}
 		{88F27851-BD69-4457-940A-BE5A4766E63D} = {152588AB-F2E8-439D-9D17-694C5B8EBD02}
 		{1342F9F6-5A71-4CB8-84E1-6A115799ED43} = {152588AB-F2E8-439D-9D17-694C5B8EBD02}
+		{8E29C9EA-640E-4469-9E0F-7C6D8A0345E4} = {99AA4558-EBE6-454C-A2A0-191170DA9C19}
+		{4D627BA0-8EA2-4951-9C8C-93DF336D5447} = {99AA4558-EBE6-454C-A2A0-191170DA9C19}
+		{A613135B-ABB2-4954-992F-00E3433CDAA4} = {B225D63F-D5BE-42B7-9386-171A3CD46F7E}
+		{C079C5F4-C962-4F06-A8D6-86813B98F220} = {B225D63F-D5BE-42B7-9386-171A3CD46F7E}
+		{6C128A3E-CBAB-4307-A491-518FAB066837} = {99AA4558-EBE6-454C-A2A0-191170DA9C19}
+		{49D3988D-77A2-4B78-964F-33A1A6EBBCF3} = {B225D63F-D5BE-42B7-9386-171A3CD46F7E}
+		{B8E76800-A4ED-45BD-BBEF-ED76B8523967} = {741A7FF2-BEA5-4D85-A40E-510C9D53066D}
+		{169AC7D7-D22F-4C16-8438-8EC4ABFB3BF4} = {2E790C43-946C-4BAB-89DE-D1C454D537C8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {515E7096-E89D-432E-B14F-D21258C99F57}

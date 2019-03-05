@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AssemblyName>EstelApi.Domain.DataAccessLayer.Interfaces</AssemblyName>
+    <PackageId>EstelApi.Domain.DataAccessLayer.Interfaces</PackageId>
+
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\core\EstelApi.Core.Entities\EstelApi.Core.Entities.csproj" />
+    <ProjectReference Include="..\..\core\EstelApi.Core.Seedwork\EstelApi.Core.Seedwork.csproj" />
+  </ItemGroup>
+
+</Project>

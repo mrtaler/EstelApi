@@ -15,6 +15,13 @@
     <PackageReference Include="JetBrains.Annotations" Version="2018.3.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.2.0" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Application\EstelApi.Application\EstelApi.Application.csproj" />
+    <ProjectReference Include="..\..\Domain\EstelApi.Domain.Cqrs\EstelApi.Domain.Cqrs.csproj" />
+    <ProjectReference Include="..\..\Domain\EstelApi.Domain.DataAccessLayer.Context\EstelApi.Domain.DataAccessLayer.Context.csproj" />
+    <ProjectReference Include="..\EstelApi.CrossCutting.Bus\EstelApi.CrossCutting.Bus.csproj" />
+    <ProjectReference Include="..\EstelApi.CrossCutting.Identity\EstelApi.CrossCutting.Identity.csproj" />
+  </ItemGroup>
 
 
 </Project>
