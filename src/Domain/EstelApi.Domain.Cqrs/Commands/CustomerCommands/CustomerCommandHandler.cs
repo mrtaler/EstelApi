@@ -1,8 +1,4 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using EstelApi.Core.Cqrs.Bus;
-using EstelApi.Core.Cqrs.Notifications;
+﻿using EstelApi.Core.Cqrs.Notifications;
 using EstelApi.Core.Entities;
 using EstelApi.Domain.Cqrs.Base;
 using EstelApi.Domain.Cqrs.Commands.CustomerCommands.Commands;
@@ -10,52 +6,74 @@ using EstelApi.Domain.Cqrs.Commands.CustomerCommands.Events;
 using EstelApi.Domain.DataAccessLayer.Context.Interfaces;
 using EstelApi.Domain.DataAccessLayer.Interfaces;
 using MediatR;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace EstelApi.Domain.Cqrs.Commands.CustomerCommands
 {
     public class CustomerCommandHandler : CommandHandler,
-        IRequestHandler<RegisterNewCustomerCommand, bool>,
-        IRequestHandler<UpdateCustomerCommand, bool>,
-        IRequestHandler<RemoveCustomerCommand, bool>
+        IRequestHandler<RegisterNewCustomerCommand, CommandResponse<CustomerDto>>//,
+                                                                                 // IRequestHandler<UpdateCustomerCommand, bool>,
+                                                                                 // IRequestHandler<RemoveCustomerCommand, bool>
     {
         private readonly ICustomerRepository _customerRepository;
-        private readonly IMediatorHandler _bus;
+        private readonly IMediator _bus;
 
         public CustomerCommandHandler(ICustomerRepository customerRepository,
             IQueryableUnitOfWork uow,
-            IMediatorHandler bus,
-            INotificationHandler<DomainNotification> notifications) : base(uow, bus, notifications)
+            IMediator bus,
+            INotificationHandler<DomainNotification> notifications) : base(uow, bus ,notifications)
         {
             _customerRepository = customerRepository;
             _bus = bus;
         }
 
-        public Task<bool> Handle(RegisterNewCustomerCommand message, CancellationToken cancellationToken)
+        public Task<CommandResponse<CustomerDto>> Handle(RegisterNewCustomerCommand message, CancellationToken cancellationToken)
         {
-            if (!message.IsValid())
+            // todo transfer to mediatr validationPipeline
+            /*if (!message.IsValid())
             {
                 NotifyValidationErrors(message);
                 return Task.FromResult(false);
             }
+            */
 
             var customer = new Customer(Guid.NewGuid(), message.Name, message.Email, message.BirthDate);
 
             if (_customerRepository.GetByEmail(customer.Email) != null)
             {
-                _bus.RaiseEvent(new DomainNotification(message.MessageType, "The customer e-mail has already been taken."));
-                return Task.FromResult(false);
+                _bus.Publish(new DomainNotification(message.GetType().Name, "The customer e-mail has already been taken."));
+                return Task.FromResult(new CommandResponse<CustomerDto>
+                {
+                    IsSuccess = false,
+                    Message = "The customer e-mail has already been taken.",
+                    Object = new CustomerDto()
+                });
             }
 
             _customerRepository.Add(customer);
             if (Commit())
             {
-                _bus.RaiseEvent(new CustomerRegisteredEvent(customer.Id, customer.Name, customer.Email, customer.BirthDate));
+                _bus.Publish(new CustomerRegisteredEvent(customer.Id, customer.Name, customer.Email, customer.BirthDate));
             }
 
-            return Task.FromResult(true);
+            return Task.FromResult(new CommandResponse<CustomerDto>
+            {
+                IsSuccess = true,
+                Message = "New Entity was added",
+                Object = new CustomerDto
+                {
+                    Id = customer.Id,
+                    Name = customer.Name,
+                    Email = customer.Email,
+                    BirthDate = customer.BirthDate
+                }
+            });
+
         }
 
-        public Task<bool> Handle(UpdateCustomerCommand message, CancellationToken cancellationToken)
+     /*   public Task<bool> Handle(UpdateCustomerCommand message, CancellationToken cancellationToken)
         {
             if (!message.IsValid())
             {
@@ -100,7 +118,7 @@ namespace EstelApi.Domain.Cqrs.Commands.CustomerCommands
             }
 
             return Task.FromResult(true);
-        }
+        }*/
 
         public void Dispose()
         {

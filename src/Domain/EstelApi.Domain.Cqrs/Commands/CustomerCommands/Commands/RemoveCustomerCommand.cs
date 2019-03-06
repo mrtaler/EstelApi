@@ -8,13 +8,13 @@ namespace EstelApi.Domain.Cqrs.Commands.CustomerCommands.Commands
         public RemoveCustomerCommand(Guid id)
         {
             Id = id;
-            AggregateId = id;
+         //   AggregateId = id;
         }
 
-        public override bool IsValid()
+       /* public override bool IsValid()
         {
             ValidationResult = new RemoveCustomerCommandValidation().Validate(this);
             return ValidationResult.IsValid;
-        }
+        }*/
     }
 }

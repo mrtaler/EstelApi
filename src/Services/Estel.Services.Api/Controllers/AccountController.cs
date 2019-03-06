@@ -1,6 +1,5 @@
 ﻿using System.Security.Claims;
 using System.Threading.Tasks;
-using EstelApi.Core.Cqrs.Bus;
 using EstelApi.Core.Cqrs.Notifications;
 using EstelApi.CrossCutting.Identity.IdentityModels;
 using EstelApi.CrossCutting.Identity.IdentityViewModels.AccountViewModels;
@@ -25,7 +24,7 @@ namespace Estel.Services.Api.Controllers
             SignInManager<ApplicationUser> signInManager,
             INotificationHandler<DomainNotification> notifications,
             ILoggerFactory loggerFactory,
-            IMediatorHandler mediator) : base(notifications, mediator)
+            IMediator mediator) : base(notifications, mediator)
         {
             _userManager = userManager;
             _signInManager = signInManager;

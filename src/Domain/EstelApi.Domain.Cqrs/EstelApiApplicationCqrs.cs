@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using Autofac;
+using EstelApi.Core.Cqrs.Events;
 using EstelApi.Core.Cqrs.Notifications;
 using EstelApi.Domain.Cqrs.Base;
 using EstelApi.Domain.Cqrs.Commands.CustomerCommands;
@@ -15,15 +16,21 @@ namespace EstelApi.Domain.Cqrs
     {
         protected override void Load(ContainerBuilder builder)
         {
-            ContainerBuilderExtensions.AddMediatR(builder, IntrospectionExtensions.GetTypeInfo(typeof(CommandHandler)).Assembly);
+            //builder.RegisterType<Mediator>().As<IMediator>().InstancePerLifetimeScope(); 
+            builder.AddMediatR(
+                typeof(CustomerCommandHandler).GetTypeInfo().Assembly//,
+              //  typeof(GetAreaAsIEnumerableQuery).GetTypeInfo().Assembly,
+              /*  typeof(Area).GetTypeInfo().Assembly*/);
+
+            //ContainerBuilderExtensions.AddMediatR(builder, IntrospectionExtensions.GetTypeInfo(typeof(CustomerCommandHandler)).Assembly);
             builder.RegisterType<DomainNotificationHandler>().As<INotificationHandler<DomainNotification>>().InstancePerLifetimeScope();
             builder.RegisterType<CustomerEventHandler>().As<INotificationHandler<CustomerRegisteredEvent>>().InstancePerLifetimeScope();
             builder.RegisterType<CustomerEventHandler>().As<INotificationHandler<CustomerUpdatedEvent>>().InstancePerLifetimeScope();
             builder.RegisterType<CustomerEventHandler>().As<INotificationHandler<CustomerRemovedEvent>>().InstancePerLifetimeScope();
 
-            builder.RegisterType<CustomerCommandHandler>().As<IRequestHandler<RegisterNewCustomerCommand, bool>>().InstancePerLifetimeScope();
-            builder.RegisterType<CustomerCommandHandler>().As<IRequestHandler<UpdateCustomerCommand, bool>>().InstancePerLifetimeScope();
-            builder.RegisterType<CustomerCommandHandler>().As<IRequestHandler<RemoveCustomerCommand, bool>>().InstancePerLifetimeScope();
+            builder.RegisterType<CustomerCommandHandler>().As<IRequestHandler<RegisterNewCustomerCommand, CommandResponse<CustomerDto>>>().InstancePerLifetimeScope();
+          //  builder.RegisterType<CustomerCommandHandler>().As<IRequestHandler<UpdateCustomerCommand, CommandResponse>>().InstancePerLifetimeScope();
+          //  builder.RegisterType<CustomerCommandHandler>().As<IRequestHandler<RemoveCustomerCommand, CommandResponse>>().InstancePerLifetimeScope();
 
         }
     }

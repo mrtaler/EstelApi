@@ -1,5 +1,5 @@
 ﻿using Autofac;
-using EstelApi.Core.Cqrs.Bus;
+//using EstelApi.Core.Cqrs.Bus;
 
 namespace EstelApi.CrossCutting.Bus
 {
@@ -7,10 +7,10 @@ namespace EstelApi.CrossCutting.Bus
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder
-                .RegisterType<InMemoryBus>()
-                .As<IMediatorHandler>()
-                .InstancePerLifetimeScope();
+            //builder
+            //    .RegisterType<InMemoryBus>()
+            //    .As<IMediatorHandler>()
+            //    .InstancePerLifetimeScope();
         }
     }
 }

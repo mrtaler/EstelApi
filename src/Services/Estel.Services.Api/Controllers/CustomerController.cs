@@ -1,6 +1,5 @@
 ﻿using EstelApi.Application.Interfaces;
 using EstelApi.Application.ViewModels.Customer;
-using EstelApi.Core.Cqrs.Bus;
 using EstelApi.Core.Cqrs.Notifications;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -18,7 +17,7 @@ namespace Estel.Services.Api.Controllers
         public CustomerController(
             ICustomerAppService customerAppService,
             INotificationHandler<DomainNotification> notifications,
-            IMediatorHandler mediator) : base(notifications, mediator)
+            IMediator mediator) : base(notifications, mediator)
         {
             _customerAppService = customerAppService;
         }
@@ -52,9 +51,8 @@ namespace Estel.Services.Api.Controllers
                 return Response(createCustomerViewModel);
             }
 
-            var response =await _customerAppService.Register(createCustomerViewModel);
-
-            return Response(response);
+            var resp= await  _customerAppService.Register(createCustomerViewModel);
+            return Response(resp);
         }
 
         [HttpPut]
@@ -68,9 +66,9 @@ namespace Estel.Services.Api.Controllers
                 return Response(UpdateCustomerViewModel);
             }
 
-            var response = _customerAppService.Update(UpdateCustomerViewModel);
+             _customerAppService.Update(UpdateCustomerViewModel);
 
-            return Response(response);
+            return Response(UpdateCustomerViewModel);
         }
 
         [HttpDelete]

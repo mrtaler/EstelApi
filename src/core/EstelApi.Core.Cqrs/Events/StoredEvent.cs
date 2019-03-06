@@ -2,9 +2,9 @@
 
 namespace EstelApi.Core.Cqrs.Events
 {
-    public class StoredEvent : Event
+    public class StoredEvent : VersionedEvent
     {
-        public StoredEvent(Event theEvent, string data, string user)
+        public StoredEvent(IVersionedEvent theEvent, string data, string user)
         {
             Id = Guid.NewGuid();
             AggregateId = theEvent.AggregateId;

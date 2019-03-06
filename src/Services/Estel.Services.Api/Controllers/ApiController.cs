@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using EstelApi.Core.Cqrs.Bus;
 using EstelApi.Core.Cqrs.Notifications;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
@@ -12,10 +11,10 @@ namespace Estel.Services.Api.Controllers
     public abstract class ApiController : ControllerBase
     {
         private readonly DomainNotificationHandler _notifications;
-        private readonly IMediatorHandler _mediator;
+        private readonly IMediator _mediator;
 
         protected ApiController(INotificationHandler<DomainNotification> notifications,
-            IMediatorHandler mediator)
+            IMediator mediator)
         {
             _notifications = (DomainNotificationHandler)notifications;
             _mediator = mediator;
@@ -58,7 +57,7 @@ namespace Estel.Services.Api.Controllers
 
         protected void NotifyError(string code, string message)
         {
-            _mediator.RaiseEvent(new DomainNotification(code, message));
+            _mediator.Publish(new DomainNotification(code, message));
         }
 
         protected void AddIdentityErrors(IdentityResult result)

@@ -2,7 +2,7 @@
 
 namespace EstelApi.Domain.Cqrs.Commands.CustomerCommands.Validations
 {
-    public class UpdateCustomerCommandValidation : CustomerValidation<UpdateCustomerCommand>
+   /* public class UpdateCustomerCommandValidation : CustomerValidation<UpdateCustomerCommand>
     {
         public UpdateCustomerCommandValidation()
         {
@@ -11,5 +11,5 @@ namespace EstelApi.Domain.Cqrs.Commands.CustomerCommands.Validations
             ValidateBirthDate();
             ValidateEmail();
         }
-    }
+    }*/
 }

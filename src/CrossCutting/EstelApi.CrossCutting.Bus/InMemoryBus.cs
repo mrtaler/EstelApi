@@ -1,36 +1,36 @@
-﻿using System.Threading.Tasks;
-using EstelApi.Core.Cqrs.Bus;
-using EstelApi.Core.Cqrs.Commands;
-using EstelApi.Core.Cqrs.Events;
-using MediatR;
+﻿//using System.Threading.Tasks;
+//using EstelApi.Core.Cqrs.Bus;
+//using EstelApi.Core.Cqrs.Commands;
+//using EstelApi.Core.Cqrs.Events;
+//using MediatR;
 
-namespace EstelApi.CrossCutting.Bus
-{
-    public sealed class InMemoryBus : IMediatorHandler
-    {
-        private readonly IMediator _mediator;
-        private readonly IEventStore _eventStore;
+//namespace EstelApi.CrossCutting.Bus
+//{
+//    public sealed class InMemoryBus : IMediatorHandler
+//    {
+//        private readonly IMediator _mediator;
+//        private readonly IEventStore _eventStore;
 
-        public InMemoryBus(IEventStore eventStore, IMediator mediator)
-        {
-            _eventStore = eventStore;
-            _mediator = mediator;
-        }
+//        public InMemoryBus(IEventStore eventStore, IMediator mediator)
+//        {
+//            _eventStore = eventStore;
+//            _mediator = mediator;
+//        }
 
-        public Task SendCommand<TEntity>(TEntity command) where TEntity : Command
-        {
-            return _mediator.Send(command);
-        }
+//        public Task<> SendCommand<TEntity>(TEntity command) where TEntity : ICommand
+//        {
+//            return _mediator.Send(command);
+//        }
 
-        public Task RaiseEvent<T>(T @event) where T : IVersionedEvent
-        {
-            if (!@event.MessageType.Equals("DomainNotification"))
-                _eventStore?.Save(@event);
+//        public Task RaiseEvent<T>(T @event) where T : IVersionedEvent
+//        {
+//            if (!@event.MessageType.Equals("DomainNotification"))
+//                _eventStore?.Save(@event);
 
-            return _mediator.Publish(@event);
-        }
+//            return _mediator.Publish(@event);
+//        }
 
       
-    }
+//    }
 
-}
+//}

@@ -87,7 +87,7 @@ namespace Estel.Services.Api
                 options.AddPolicy("CanRemoveCustomerData", policy => policy.Requirements.Add(new ClaimRequirement("Customers", "Remove")));
             });
 
-
+            
             builder.Populate(services);
             builder.Register<ILogger>((c, p) =>
             {

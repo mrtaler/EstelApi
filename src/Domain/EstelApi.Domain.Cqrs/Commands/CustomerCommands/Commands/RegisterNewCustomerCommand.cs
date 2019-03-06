@@ -12,10 +12,10 @@ namespace EstelApi.Domain.Cqrs.Commands.CustomerCommands.Commands
             BirthDate = birthDate;
         }
 
-        public override bool IsValid()
+      /*  public override bool IsValid()
         {
             ValidationResult = new RegisterNewCustomerCommandValidation().Validate(this);
             return ValidationResult.IsValid;
-        }
+        }*/
     }
 }
