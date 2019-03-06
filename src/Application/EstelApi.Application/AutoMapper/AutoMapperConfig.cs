@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-
-namespace EstelApi.Application.AutoMapper
+﻿namespace EstelApi.Application.AutoMapper
 {
    /* public class AutoMapperConfig
     {

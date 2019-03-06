@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using EstelApi.Application.EventSourcedNormalizers;
-using EstelApi.Application.ViewModels;
 using EstelApi.Application.ViewModels.Customer;
 
 namespace EstelApi.Application.Interfaces

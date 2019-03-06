@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using EstelApi.Application.ViewModels.Customer;
-using EstelApi.Domain.Cqrs.Dto;
+using EstelApi.Core.Seedwork.CoreEntities;
 
 namespace EstelApi.Application.AutoMapper
 {
@@ -8,7 +8,7 @@ namespace EstelApi.Application.AutoMapper
     {
         public DomainToViewModelMappingProfile()
         {
-            CreateMap<CustomerDto, CustomerViewModelApp>();
+            CreateMap<Customer, CustomerViewModelApp>();
         }
     }
 }

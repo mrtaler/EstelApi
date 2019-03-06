@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
+using EstelApi.Application.Cqrs.Commands.Commands.CustomerCommands.Commands;
 using EstelApi.Application.ViewModels.Customer;
-using EstelApi.Domain.Cqrs.Commands.CustomerCommands.Commands;
 
 namespace EstelApi.Application.AutoMapper
 {

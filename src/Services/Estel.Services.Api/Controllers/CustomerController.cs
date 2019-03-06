@@ -22,6 +22,10 @@ namespace Estel.Services.Api.Controllers
             _customerAppService = customerAppService;
         }
 
+        /// <summary>
+        /// work
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         //  [AllowAnonymous]
         [Route("customer-management")]
@@ -55,6 +59,11 @@ namespace Estel.Services.Api.Controllers
             return Response(resp);
         }
 
+        /// <summary>
+        /// work
+        /// </summary>
+        /// <param name="UpdateCustomerViewModel"></param>
+        /// <returns></returns>
         [HttpPut]
         //    [Authorize(Policy = "CanWriteCustomerData")]
         [Route("customer-management")]
@@ -81,6 +90,11 @@ namespace Estel.Services.Api.Controllers
             return Response();
         }
 
+        /// <summary>
+        /// work
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         //   [AllowAnonymous]
         [Route("customer-management/history/{id:guid}")]

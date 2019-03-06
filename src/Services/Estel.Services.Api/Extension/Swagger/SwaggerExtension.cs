@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc.ApiExplorer;
+﻿using System.IO;
+using System.Reflection;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.PlatformAbstractions;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace Estel.Services.Api.Extension.Swagger
@@ -51,7 +54,7 @@ namespace Estel.Services.Api.Extension.Swagger
                     //  options.DocumentFilter<SecurityRequirementsDocumentFilter>();
                     options.DocumentFilter<VersionFilter>();
                     options.DescribeAllParametersInCamelCase();
-
+                    options.IncludeXmlComments(XmlCommentsFilePath);
                     /*    options.AddSecurityDefinition(
                              "ApiSecurity",
                              new ApiKeyScheme
@@ -74,6 +77,17 @@ namespace Estel.Services.Api.Extension.Swagger
 
                     // options.DescribeAllParametersInCamelCase();
                 });
+
+        }
+
+        private static string XmlCommentsFilePath
+        {
+            get
+            {
+                var basePath = PlatformServices.Default.Application.ApplicationBasePath;
+                var fileName = typeof(Startup).GetTypeInfo().Assembly.GetName().Name + ".xml";
+                return Path.Combine(basePath, fileName);
+            }
         }
 
         /*   /// <summary>

@@ -1,18 +1,16 @@
 ﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using EstelApi.Application.EventSourcedNormalizers;
 using EstelApi.Application.Interfaces;
 using EstelApi.Application.ViewModels.Customer;
-using EstelApi.Domain.Cqrs.Commands.CustomerCommands.Commands;
-using EstelApi.Domain.Cqrs.Queries.CustomerQueries;
 using MediatR;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using EstelApi.Core.Seedwork.Adapter;
+using EstelApi.Application.Cqrs.Commands.Commands.CustomerCommands.Commands;
 using EstelApi.Core.Seedwork.CoreCqrs.Events;
 using EstelApi.Domain.DataAccessLayer.Context.Interfaces;
+using EstelApi.Application.Cqrs.Queries.Queries.CustomerQueries;
+using EstelApi.Core.Seedwork.Adapter;
 
 namespace EstelApi.Application.Services
 {
@@ -51,7 +49,7 @@ namespace EstelApi.Application.Services
 
         public async Task<CustomerViewModelApp> Register(CreateCustomerViewModel customerViewModel)
         {
-            var registerCommand = _mapper.Map<RegisterNewCustomerCommand>(customerViewModel);
+            var registerCommand = customerViewModel.ProjectedAs<RegisterNewCustomerCommand>();// _mapper.Map<>(customerViewModel);
             var result = await _bus.Send(registerCommand);
             if ( result .IsSuccess)
             {
@@ -68,9 +66,10 @@ namespace EstelApi.Application.Services
             return new CustomerViewModelApp();
         }
 
+
         public void Update(UpdateCustomerViewModel customerViewModel)
         {
-            var updateCommand = _mapper.Map<UpdateCustomerCommand>(customerViewModel);
+            var updateCommand = customerViewModel.ProjectedAs<UpdateCustomerCommand>();//_mapper.Map<>(customerViewModel);
             _bus.Send(updateCommand);
         }
 

@@ -1,6 +1,5 @@
 ﻿using System;
 using AutoMapper;
-using EstelApi.Application.AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Estel.Services.Api.Configurations

@@ -4,7 +4,6 @@ using EstelApi.Domain.DataAccessLayer.Context.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EstelApi.Domain.DataAccessLayer.Context.Migrations.EventStore
 {

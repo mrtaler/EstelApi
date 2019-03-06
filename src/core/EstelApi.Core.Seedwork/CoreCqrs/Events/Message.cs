@@ -1,4 +1,5 @@
 ﻿using System;
+using MediatR;
 
 namespace EstelApi.Core.Seedwork.CoreCqrs.Events
 {

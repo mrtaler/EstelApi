@@ -7,6 +7,10 @@
     <UserSecretsId>bc0926f5-34bb-4ac5-8cdd-bb264c6e34c0</UserSecretsId>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\Users\siarhei_linkevich\source\repos\EstelApi\src\Services\Estel.Services.Api\Estel.Services.Api.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Autofac" Version="4.9.1" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.4.0" />

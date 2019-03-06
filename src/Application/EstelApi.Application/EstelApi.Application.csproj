@@ -10,14 +10,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Domain\EstelApi.Domain.Cqrs\EstelApi.Domain.Cqrs.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Autofac" Version="4.9.1" />
     <PackageReference Include="AutoMapper" Version="8.0.0" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
     <PackageReference Include="System.ComponentModel.Primitives" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\core\EstelApi.Core.Seedwork\EstelApi.Core.Seedwork.csproj" />
+    <ProjectReference Include="..\EstelApi.Application.Cqrs.Commands\EstelApi.Application.Cqrs.Commands.csproj" />
+    <ProjectReference Include="..\EstelApi.Application.Cqrs.Queries\EstelApi.Application.Cqrs.Queries.csproj" />
   </ItemGroup>
 
 

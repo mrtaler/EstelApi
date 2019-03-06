@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Estel.Services.Api</name>
+    </assembly>
+    <members>
+        <member name="M:Estel.Services.Api.Controllers.CustomerController.Get">
+            <summary>
+            work
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.CustomerController.Put(EstelApi.Application.ViewModels.Customer.UpdateCustomerViewModel)">
+            <summary>
+            work
+            </summary>
+            <param name="UpdateCustomerViewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.CustomerController.History(System.Guid)">
+            <summary>
+            work
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Estel.Services.Api.Extension.Exception.ApiError.#ctor(System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Estel.Services.Api.Extension.Exception.ApiError"/> class. The error does not have a specific description.
+            </summary>
+        </member>
+        <member name="M:Estel.Services.Api.Extension.Exception.ApiError.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Estel.Services.Api.Extension.Exception.ApiError"/> class. The error does not have an exception that is associated with it.
+            </summary>
+        </member>
+        <member name="M:Estel.Services.Api.Extension.Exception.ApiError.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Estel.Services.Api.Extension.Exception.ApiError"/> class.
+            </summary>
+            <param name="description">Overall description of error explaining which part of system in general is broken</param>
+            <param name="exception">The exception that caused the error</param>
+        </member>
+        <member name="P:Estel.Services.Api.Extension.Exception.ApiError.Description">
+            <summary>
+            Overall description of error explaining which part of system in general is broken
+            </summary>
+        </member>
+        <member name="P:Estel.Services.Api.Extension.Exception.ApiError.Id">
+            <summary>
+            Unique error ID for tracking purposes
+            </summary>
+        </member>
+        <member name="M:Estel.Services.Api.Extension.Exception.ApiError.ToString">
+            <summary>
+            Returns a string representation of ApiError
+            </summary>
+        </member>
+        <member name="M:Estel.Services.Api.Extension.Exception.ApiError.GetException">
+            <summary>
+            Returns the exception that caused the error, if any
+            </summary>
+        </member>
+        <member name="M:Estel.Services.Api.Extension.Exception.ApiErrorException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Estel.Services.Api.Extension.Exception.ApiErrorException"/> class.
+            </summary>
+        </member>
+        <member name="M:Estel.Services.Api.Extension.Exception.ApiErrorException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Estel.Services.Api.Extension.Exception.ApiErrorException"/> class.
+            </summary>
+        </member>
+        <member name="M:Estel.Services.Api.Extension.Exception.ApiErrorException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Estel.Services.Api.Extension.Exception.ApiErrorException"/> class.
+            </summary>
+        </member>
+        <member name="M:Estel.Services.Api.Extension.Exception.ApiErrorException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Estel.Services.Api.Extension.Exception.ApiErrorException"/> class.
+            </summary>
+        </member>
+        <member name="P:Estel.Services.Api.Extension.Exception.ApiErrorException.Description">
+            <summary>
+            A user-visible description of the error.
+            </summary>
+        </member>
+        <member name="T:Estel.Services.Api.Extension.Exception.ApiExceptionFilterAttribute">
+            <summary>
+            Exception filter for handling unexpected and expected exceptions that passes through to the framework.
+            </summary>
+        </member>
+        <member name="M:Estel.Services.Api.Extension.Exception.ApiExceptionFilterAttribute.#ctor(Serilog.ILogger)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Estel.Services.Api.Extension.Exception.ApiExceptionFilterAttribute"/> class.
+            </summary>
+        </member>
+        <member name="M:Estel.Services.Api.Extension.Exception.ApiExceptionFilterAttribute.OnException(Microsoft.AspNetCore.Mvc.Filters.ExceptionContext)">
+            <inheritdoc />
+        </member>
+        <member name="T:Estel.Services.Api.Extension.Exception.ErrorLoggingExtensions">
+            <summary>
+            Extensions for logging errors.
+            </summary>
+        </member>
+        <member name="M:Estel.Services.Api.Extension.Exception.ErrorLoggingExtensions.ApiError(Serilog.ILogger,Estel.Services.Api.Extension.Exception.ApiError,Serilog.Events.LogEventLevel)">
+            <summary>
+            Log an <see cref="M:Estel.Services.Api.Extension.Exception.ErrorLoggingExtensions.ApiError(Serilog.ILogger,Estel.Services.Api.Extension.Exception.ApiError,Serilog.Events.LogEventLevel)" /> using Serilog.
+            </summary>
+        </member>
+        <member name="M:Estel.Services.Api.Extension.Swagger.SecurityRequirementsDocumentFilter.Apply(Swashbuckle.AspNetCore.Swagger.SwaggerDocument,Swashbuckle.AspNetCore.SwaggerGen.DocumentFilterContext)">
+            <inheritdoc />
+        </member>
+        <member name="M:Estel.Services.Api.Extension.Swagger.SwaggerDefaultValues.Apply(Swashbuckle.AspNetCore.Swagger.Operation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)">
+            <summary>
+            Applies the filter to the specified operation using the given context.
+            </summary>
+            <param name="operation">The operation to apply the filter to.</param>
+            <param name="context">The current operation filter context.</param>
+        </member>
+        <member name="M:Estel.Services.Api.Extension.Swagger.VersionFilter.Apply(Swashbuckle.AspNetCore.Swagger.SwaggerDocument,Swashbuckle.AspNetCore.SwaggerGen.DocumentFilterContext)">
+            <inheritdoc />
+        </member>
+        <member name="M:Estel.Services.Api.Extension.Swagger.VersionFilter.Apply(Swashbuckle.AspNetCore.Swagger.Operation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

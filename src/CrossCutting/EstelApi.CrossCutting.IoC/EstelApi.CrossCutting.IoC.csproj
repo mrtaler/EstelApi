@@ -16,8 +16,9 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.2.0" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Application\EstelApi.Application.Cqrs.Commands\EstelApi.Application.Cqrs.Commands.csproj" />
+    <ProjectReference Include="..\..\Application\EstelApi.Application.Cqrs.Queries\EstelApi.Application.Cqrs.Queries.csproj" />
     <ProjectReference Include="..\..\Application\EstelApi.Application\EstelApi.Application.csproj" />
-    <ProjectReference Include="..\..\Domain\EstelApi.Domain.Cqrs\EstelApi.Domain.Cqrs.csproj" />
     <ProjectReference Include="..\..\Domain\EstelApi.Domain.DataAccessLayer.Context\EstelApi.Domain.DataAccessLayer.Context.csproj" />
     <ProjectReference Include="..\EstelApi.CrossCutting.Bus\EstelApi.CrossCutting.Bus.csproj" />
     <ProjectReference Include="..\EstelApi.CrossCutting.Identity\EstelApi.CrossCutting.Identity.csproj" />
