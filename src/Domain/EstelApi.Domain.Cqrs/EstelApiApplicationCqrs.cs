@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using Autofac;
-using EstelApi.Core.Cqrs.Events;
-using EstelApi.Core.Cqrs.Notifications;
+using AutoMapper;
+using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
 using EstelApi.Domain.Cqrs.Base;
 using EstelApi.Domain.Cqrs.Commands.CustomerCommands;
 using EstelApi.Domain.Cqrs.Commands.CustomerCommands.Commands;
@@ -28,9 +28,20 @@ namespace EstelApi.Domain.Cqrs
             builder.RegisterType<CustomerEventHandler>().As<INotificationHandler<CustomerUpdatedEvent>>().InstancePerLifetimeScope();
             builder.RegisterType<CustomerEventHandler>().As<INotificationHandler<CustomerRemovedEvent>>().InstancePerLifetimeScope();
 
-            builder.RegisterType<CustomerCommandHandler>().As<IRequestHandler<RegisterNewCustomerCommand, CommandResponse<CustomerDto>>>().InstancePerLifetimeScope();
-          //  builder.RegisterType<CustomerCommandHandler>().As<IRequestHandler<UpdateCustomerCommand, CommandResponse>>().InstancePerLifetimeScope();
-          //  builder.RegisterType<CustomerCommandHandler>().As<IRequestHandler<RemoveCustomerCommand, CommandResponse>>().InstancePerLifetimeScope();
+           /* builder.Register(
+                    ctx =>
+                    {
+                        var scope = ctx.Resolve<ILifetimeScope>();
+                        return new Mapper(
+                            ctx.Resolve<IConfigurationProvider>(),
+                            scope.Resolve);
+                    })
+                .As<IMapper>()
+                .InstancePerLifetimeScope();*/
+
+            // builder.RegisterType<CustomerQueriesHandler>().As<IRequestHandler<RegisterNewCustomerCommand, CommandResponse<CustomerDto>>>().InstancePerLifetimeScope();
+            //  builder.RegisterType<CustomerCommandHandler>().As<IRequestHandler<UpdateCustomerCommand, CommandResponse>>().InstancePerLifetimeScope();
+            //  builder.RegisterType<CustomerCommandHandler>().As<IRequestHandler<RemoveCustomerCommand, CommandResponse>>().InstancePerLifetimeScope();
 
         }
     }

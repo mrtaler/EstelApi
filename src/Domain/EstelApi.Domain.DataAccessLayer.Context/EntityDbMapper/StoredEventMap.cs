@@ -1,4 +1,4 @@
-﻿using EstelApi.Core.Cqrs.Events;
+﻿using EstelApi.Core.Seedwork.CoreCqrs.Events;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

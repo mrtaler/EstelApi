@@ -1,4 +1,4 @@
-﻿using EstelApi.Core.Entities;
+﻿using EstelApi.Core.Seedwork.CoreEntities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

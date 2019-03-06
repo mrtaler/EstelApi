@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using EstelApi.Core.Cqrs.Events;
+using EstelApi.Core.Seedwork.CoreCqrs.Events;
 using EstelApi.Domain.DataAccessLayer.Context.Context;
 
 namespace EstelApi.Domain.DataAccessLayer.Context.Repository.EventSourcing

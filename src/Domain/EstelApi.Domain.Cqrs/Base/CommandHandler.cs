@@ -1,4 +1,4 @@
-﻿using EstelApi.Core.Cqrs.Notifications;
+﻿using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
 using EstelApi.Domain.DataAccessLayer.Context.Interfaces;
 using MediatR;
 

@@ -15,7 +15,7 @@ namespace Estel.Services.Api.Configurations
 
             // Registering Mappings automatically only works if the 
             // Automapper Profile classes are in ASP.NET project
-            AutoMapperConfig.RegisterMappings();
+         //   AutoMapperConfig.RegisterMappings();
 
             /*
              services.AddScoped<ITypeAdapterFactory, AutomapperTypeAdapterFactory>();

@@ -1,4 +1,4 @@
-﻿using EstelApi.Core.Entities;
+﻿using EstelApi.Core.Seedwork.CoreEntities;
 using EstelApi.Domain.DataAccessLayer.Context.Context.Base;
 using EstelApi.Domain.DataAccessLayer.Context.EntityDbMapper;
 using Microsoft.EntityFrameworkCore;

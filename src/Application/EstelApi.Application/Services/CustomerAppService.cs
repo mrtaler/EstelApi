@@ -3,14 +3,16 @@ using AutoMapper.QueryableExtensions;
 using EstelApi.Application.EventSourcedNormalizers;
 using EstelApi.Application.Interfaces;
 using EstelApi.Application.ViewModels.Customer;
-using EstelApi.Core.Cqrs.Events;
 using EstelApi.Domain.Cqrs.Commands.CustomerCommands.Commands;
-using EstelApi.Domain.DataAccessLayer.Interfaces;
+using EstelApi.Domain.Cqrs.Queries.CustomerQueries;
 using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EstelApi.Core.Seedwork.Adapter;
+using EstelApi.Core.Seedwork.CoreCqrs.Events;
+using EstelApi.Domain.DataAccessLayer.Context.Interfaces;
 
 namespace EstelApi.Application.Services
 {
@@ -34,7 +36,12 @@ namespace EstelApi.Application.Services
 
         public IEnumerable<CustomerViewModelApp> GetAll()
         {
-            return _customerRepository.GetAll().AsQueryable().ProjectTo<CustomerViewModelApp>(_mapper.ConfigurationProvider);
+            var result = _bus.Send(new AllCustomersQuery()).Result;
+
+            var ret = result.ProjectedAsCollection<CustomerViewModelApp>();
+
+            return
+                ret; //_customerRepository.GetAll().AsQueryable().ProjectTo<CustomerViewModelApp>(_mapper.ConfigurationProvider);
         }
 
         public CustomerViewModelApp GetById(Guid id)

@@ -16,8 +16,4 @@
     <PackageReference Include="MediatR" Version="6.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\core\EstelApi.Core.Cqrs\EstelApi.Core.Cqrs.csproj" />
-  </ItemGroup>
-
 </Project>

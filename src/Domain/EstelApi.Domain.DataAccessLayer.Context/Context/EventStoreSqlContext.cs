@@ -1,4 +1,4 @@
-﻿using EstelApi.Core.Cqrs.Events;
+﻿using EstelApi.Core.Seedwork.CoreCqrs.Events;
 using EstelApi.Domain.DataAccessLayer.Context.EntityDbMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

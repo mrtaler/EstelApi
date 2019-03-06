@@ -19,6 +19,8 @@ using System;
 using System.IO;
 using System.Linq;
 using Autofac.Extensions.DependencyInjection;
+using AutoMapper;
+using EstelApi.Core.Seedwork.Adapter;
 using EstelApi.CrossCutting.Identity.Authorization;
 using Serilog;
 using EstelApi.CrossCutting.IoC;
@@ -86,8 +88,8 @@ namespace Estel.Services.Api
                 options.AddPolicy("CanWriteCustomerData", policy => policy.Requirements.Add(new ClaimRequirement("Customers", "Write")));
                 options.AddPolicy("CanRemoveCustomerData", policy => policy.Requirements.Add(new ClaimRequirement("Customers", "Remove")));
             });
+            services.AddAutoMapper();
 
-            
             builder.Populate(services);
             builder.Register<ILogger>((c, p) =>
             {
@@ -103,6 +105,8 @@ namespace Estel.Services.Api
 
             builder.RegisterModule(new EstelApiCrossCuttingIoC());
             var container = builder.Build();
+            TypeAdapterFactory.SetCurrent(container.Resolve<ITypeAdapterFactory>());
+
             return new AutofacServiceProvider(container);
 
         }

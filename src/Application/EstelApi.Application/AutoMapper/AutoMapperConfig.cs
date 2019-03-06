@@ -2,7 +2,7 @@
 
 namespace EstelApi.Application.AutoMapper
 {
-    public class AutoMapperConfig
+   /* public class AutoMapperConfig
     {
         public static MapperConfiguration RegisterMappings()
         {
@@ -12,5 +12,5 @@ namespace EstelApi.Application.AutoMapper
                 cfg.AddProfile(new ViewModelToDomainMappingProfile());
             });
         }
-    }
+    }*/
 }

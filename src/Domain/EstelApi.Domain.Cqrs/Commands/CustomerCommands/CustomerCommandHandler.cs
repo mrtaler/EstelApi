@@ -1,14 +1,14 @@
-﻿using EstelApi.Core.Cqrs.Notifications;
-using EstelApi.Core.Entities;
-using EstelApi.Domain.Cqrs.Base;
+﻿using EstelApi.Domain.Cqrs.Base;
 using EstelApi.Domain.Cqrs.Commands.CustomerCommands.Commands;
 using EstelApi.Domain.Cqrs.Commands.CustomerCommands.Events;
 using EstelApi.Domain.DataAccessLayer.Context.Interfaces;
-using EstelApi.Domain.DataAccessLayer.Interfaces;
 using MediatR;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
+using EstelApi.Core.Seedwork.CoreEntities;
+using EstelApi.Domain.Cqrs.Dto;
 
 namespace EstelApi.Domain.Cqrs.Commands.CustomerCommands
 {

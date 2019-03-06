@@ -1,11 +1,10 @@
 ﻿using Autofac;
-using EstelApi.Core.Cqrs.Events;
+using EstelApi.Core.Seedwork.CoreCqrs.Events;
 using EstelApi.Domain.DataAccessLayer.Context.Context;
 using EstelApi.Domain.DataAccessLayer.Context.EventSourcing;
 using EstelApi.Domain.DataAccessLayer.Context.Interfaces;
 using EstelApi.Domain.DataAccessLayer.Context.Repository;
 using EstelApi.Domain.DataAccessLayer.Context.Repository.EventSourcing;
-using EstelApi.Domain.DataAccessLayer.Interfaces;
 
 namespace EstelApi.Domain.DataAccessLayer.Context
 {

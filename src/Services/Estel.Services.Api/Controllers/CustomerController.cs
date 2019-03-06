@@ -1,10 +1,10 @@
 ﻿using EstelApi.Application.Interfaces;
 using EstelApi.Application.ViewModels.Customer;
-using EstelApi.Core.Cqrs.Notifications;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
+using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
 
 namespace Estel.Services.Api.Controllers
 {

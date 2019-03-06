@@ -1,7 +1,7 @@
-﻿using EstelApi.Core.Cqrs.Events;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using EstelApi.Core.Seedwork.CoreCqrs.Events;
 using Newtonsoft.Json;
 
 namespace EstelApi.Application.EventSourcedNormalizers

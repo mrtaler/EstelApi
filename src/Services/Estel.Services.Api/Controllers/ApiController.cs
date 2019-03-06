@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using EstelApi.Core.Cqrs.Notifications;
+using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

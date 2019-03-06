@@ -26,10 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\core\EstelApi.Core.Cqrs\EstelApi.Core.Cqrs.csproj" />
-    <ProjectReference Include="..\..\core\EstelApi.Core.Entities\EstelApi.Core.Entities.csproj" />
     <ProjectReference Include="..\..\core\EstelApi.Core.Seedwork\EstelApi.Core.Seedwork.csproj" />
-    <ProjectReference Include="..\EstelApi.Domain.DataAccessLayer.Interfaces\EstelApi.Domain.DataAccessLayer.Interfaces.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="appsettings.json">

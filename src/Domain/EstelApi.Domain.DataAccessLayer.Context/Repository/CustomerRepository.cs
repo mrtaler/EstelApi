@@ -1,8 +1,7 @@
 ﻿using System.Linq;
-using EstelApi.Core.Entities;
+using EstelApi.Core.Seedwork.CoreEntities;
 using EstelApi.Domain.DataAccessLayer.Context.Interfaces;
 using EstelApi.Domain.DataAccessLayer.Context.Repository.Base;
-using EstelApi.Domain.DataAccessLayer.Interfaces;
 
 namespace EstelApi.Domain.DataAccessLayer.Context.Repository
 {

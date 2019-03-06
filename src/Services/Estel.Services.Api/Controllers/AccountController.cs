@@ -1,6 +1,6 @@
 ﻿using System.Security.Claims;
 using System.Threading.Tasks;
-using EstelApi.Core.Cqrs.Notifications;
+using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
 using EstelApi.CrossCutting.Identity.IdentityModels;
 using EstelApi.CrossCutting.Identity.IdentityViewModels.AccountViewModels;
 using MediatR;
