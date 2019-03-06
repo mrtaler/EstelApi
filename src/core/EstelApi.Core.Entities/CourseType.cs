@@ -10,7 +10,7 @@ namespace EstelApi.Core.Entities
             Courses = new HashSet<Course>();
         }
 
-        public int Id { get; set; }
+     //   public int Id { get; set; }
         public string CourseTypeName { get; set; }
         public string Logo { get; set; }
         public string Description { get; set; }

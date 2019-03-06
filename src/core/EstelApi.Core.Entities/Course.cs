@@ -1,4 +1,5 @@
-﻿using EstelApi.Core.Seedwork;
+﻿using System;
+using EstelApi.Core.Seedwork;
 
 namespace EstelApi.Core.Entities
 {
@@ -8,10 +9,10 @@ namespace EstelApi.Core.Entities
         {
         }
 
-        public int Id { get; set; }
+       // public int Id { get; set; }
         public string CourseName { get; set; }
 
         public virtual CourseType CourseType { get; set; }
-        public int CourseTypeId { get; set; }
+        public Guid CourseTypeId { get; set; }
     }
 }

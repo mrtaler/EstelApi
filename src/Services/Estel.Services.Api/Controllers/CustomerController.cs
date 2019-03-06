@@ -1,15 +1,15 @@
-﻿using System;
-using EstelApi.Application.Interfaces;
-using EstelApi.Application.ViewModels;
+﻿using EstelApi.Application.Interfaces;
+using EstelApi.Application.ViewModels.Customer;
 using EstelApi.Core.Cqrs.Bus;
 using EstelApi.Core.Cqrs.Notifications;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Threading.Tasks;
 
 namespace Estel.Services.Api.Controllers
 {
-    [Authorize]
+    // [Authorize]
     [ApiVersion("1.0")]
     public class CustomerController : ApiController
     {
@@ -24,7 +24,7 @@ namespace Estel.Services.Api.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
+        //  [AllowAnonymous]
         [Route("customer-management")]
         public IActionResult Get()
         {
@@ -32,7 +32,7 @@ namespace Estel.Services.Api.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
+        //   [AllowAnonymous]
         [Route("customer-management/{id:guid}")]
         public IActionResult Get(Guid id)
         {
@@ -42,49 +42,49 @@ namespace Estel.Services.Api.Controllers
         }
 
         [HttpPost]
-        [Authorize(Policy = "CanWriteCustomerData")]
+        //  [Authorize(Policy = "CanWriteCustomerData")]
         [Route("customer-management")]
-        public IActionResult Post([FromBody]CustomerViewModel customerViewModel)
+        public async Task<IActionResult> Post([FromBody]CreateCustomerViewModel createCustomerViewModel)
         {
             if (!ModelState.IsValid)
             {
                 NotifyModelStateErrors();
-                return Response(customerViewModel);
+                return Response(createCustomerViewModel);
             }
 
-            _customerAppService.Register(customerViewModel);
+            var response =await _customerAppService.Register(createCustomerViewModel);
 
-            return Response(customerViewModel);
+            return Response(response);
         }
 
         [HttpPut]
-        [Authorize(Policy = "CanWriteCustomerData")]
+        //    [Authorize(Policy = "CanWriteCustomerData")]
         [Route("customer-management")]
-        public IActionResult Put([FromBody]CustomerViewModel customerViewModel)
+        public IActionResult Put([FromBody]UpdateCustomerViewModel UpdateCustomerViewModel)
         {
             if (!ModelState.IsValid)
             {
                 NotifyModelStateErrors();
-                return Response(customerViewModel);
+                return Response(UpdateCustomerViewModel);
             }
 
-            _customerAppService.Update(customerViewModel);
+            var response = _customerAppService.Update(UpdateCustomerViewModel);
 
-            return Response(customerViewModel);
+            return Response(response);
         }
 
         [HttpDelete]
-        [Authorize(Policy = "CanRemoveCustomerData")]
+        //  [Authorize(Policy = "CanRemoveCustomerData")]
         [Route("customer-management")]
-        public IActionResult Delete(Guid id)
+        public IActionResult Delete([FromBody]DeleteCustomerViewModel deleteCustomerViewModel)
         {
-            _customerAppService.Remove(id);
+            _customerAppService.Remove(deleteCustomerViewModel.Id);
 
             return Response();
         }
 
         [HttpGet]
-        [AllowAnonymous]
+        //   [AllowAnonymous]
         [Route("customer-management/history/{id:guid}")]
         public IActionResult History(Guid id)
         {

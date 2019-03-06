@@ -7,8 +7,8 @@ using Microsoft.Extensions.Hosting;
 
 namespace EstelApi.Domain.DataAccessLayer.Context.Context
 {
-    // Add-Migration Init -Context GomelEstel.Infra.Data.Context.EstelContext -OutputDir Migrations -project GomelEstel.Infra.Data
-    // update-database -Project GomelEstel.Infra.Data -Context GomelEstel.Infra.Data.Context.EstelContext
+    // Add-Migration Init_EstelContext -Context EstelContext  -project EstelApi.Domain.DataAccessLayer.Context -OutputDir Migrations
+    // update-database                 -Context EstelContext  -project EstelApi.Domain.DataAccessLayer.Context
     internal class EstelContext : BaseContext
     {
         private readonly IHostingEnvironment _env;

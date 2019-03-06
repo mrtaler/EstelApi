@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
-namespace EstelApi.Application.ViewModels
+namespace EstelApi.Application.ViewModels.Customer
 {
-    public class CustomerViewModel
+    public class CreateCustomerViewModel
     {
-        [Key]
-        public Guid Id { get; set; }
-
         [Required(ErrorMessage = "The Name is Required")]
         [MinLength(2)]
         [MaxLength(100)]

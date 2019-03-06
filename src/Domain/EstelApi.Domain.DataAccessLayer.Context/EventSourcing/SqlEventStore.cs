@@ -15,7 +15,7 @@ namespace EstelApi.Domain.DataAccessLayer.Context.EventSourcing
             _user = user;
         }
 
-        public void Save<T>(T theEvent) where T : Event
+        public void Save<T>(T theEvent) where T : IVersionedEvent
         {
             var serializedData = JsonConvert.SerializeObject(theEvent);
 

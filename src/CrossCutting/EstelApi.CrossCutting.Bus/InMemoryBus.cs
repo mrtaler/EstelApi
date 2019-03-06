@@ -17,12 +17,12 @@ namespace EstelApi.CrossCutting.Bus
             _mediator = mediator;
         }
 
-        public Task SendCommand<T>(T command) where T : Command
+        public Task SendCommand<TEntity>(TEntity command) where TEntity : Command
         {
             return _mediator.Send(command);
         }
 
-        public Task RaiseEvent<T>(T @event) where T : Event
+        public Task RaiseEvent<T>(T @event) where T : IVersionedEvent
         {
             if (!@event.MessageType.Equals("DomainNotification"))
                 _eventStore?.Save(@event);

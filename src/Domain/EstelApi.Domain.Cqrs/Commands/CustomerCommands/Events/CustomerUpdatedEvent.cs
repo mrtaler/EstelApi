@@ -3,7 +3,7 @@ using EstelApi.Core.Cqrs.Events;
 
 namespace EstelApi.Domain.Cqrs.Commands.CustomerCommands.Events
 {
-    public class CustomerUpdatedEvent : Event
+    public class CustomerUpdatedEvent : VersionedEvent
     {
         public CustomerUpdatedEvent(Guid id, string name, string email, DateTime birthDate)
         {

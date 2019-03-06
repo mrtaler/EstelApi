@@ -6,9 +6,9 @@ using Microsoft.Extensions.Configuration;
 
 namespace EstelApi.CrossCutting.Identity.IdentityContext
 {
-    // Add-Migration Init -Context ApplicationDbContext -OutputDir Migrations -project GomelEstel.Infra.CrossCutting.Identity
-    // update-database -Project GomelEstel.Infra.CrossCutting.Identity
-   public class IdentityEstelContext : IdentityDbContext<
+    // Add-Migration Init_IdentityEstelContext -Context IdentityEstelContext -OutputDir Migrations -project EstelApi.CrossCutting.Identity
+    // update-database -Project EstelApi.CrossCutting.Identity
+    public class IdentityEstelContext : IdentityDbContext<
         ApplicationUser,
         ApplicationRole,
         int,

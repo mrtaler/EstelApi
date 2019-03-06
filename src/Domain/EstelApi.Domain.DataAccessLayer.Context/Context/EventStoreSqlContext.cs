@@ -6,8 +6,8 @@ using Microsoft.Extensions.Hosting;
 
 namespace EstelApi.Domain.DataAccessLayer.Context.Context
 {
-    // Add-Migration Init -Context GomelEstel.Infra.Data.Context.EventStoreSQLContext -OutputDir Migrations\EventStore -project GomelEstel.Infra.Data
-    // update-database -Project GomelEstel.Infra.Data -Context GomelEstel.Infra.Data.Context.EventStoreSQLContext
+    // Add-Migration Init_EventStoreSQLContext -Context EventStoreSQLContext -project EstelApi.Domain.DataAccessLayer.Context -OutputDir Migrations\EventStore
+    // update-database                         -Context EventStoreSQLContext -project EstelApi.Domain.DataAccessLayer.Context
     public class EventStoreSqlContext : DbContext
     {
         public DbSet<StoredEvent> StoredEvent { get; set; }
@@ -34,13 +34,16 @@ namespace EstelApi.Domain.DataAccessLayer.Context.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var config = new ConfigurationBuilder()
-                .SetBasePath(_env.ContentRootPath)
-                .AddJsonFile("appsettings.json")
-                .Build();
+            if (!optionsBuilder.IsConfigured)
+            {
+                var config = new ConfigurationBuilder()
+                    .SetBasePath(_env.ContentRootPath)
+                    .AddJsonFile("appsettings.json")
+                    .Build();
 
-            // define the database to use
-            optionsBuilder.UseSqlServer(config.GetConnectionString("DefaultConnection"));
+                // define the database to use
+                optionsBuilder.UseSqlServer(config.GetConnectionString("DefaultConnection"));
+            }
         }
     }
 }
