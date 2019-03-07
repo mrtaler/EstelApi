@@ -1,8 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
-
-namespace EstelApi.Core.Seedwork.Interfaces
+﻿namespace EstelApi.Core.Seedwork.Interfaces
 {
+    using System;
+    using System.Threading.Tasks;
+
     /// <summary>
     /// Contract for ‘UnitOfWork pattern’. For more
     /// related info see http://martinfowler.com/eaaCatalog/unitOfWork.html or
@@ -18,37 +18,46 @@ namespace EstelApi.Core.Seedwork.Interfaces
         /// <summary>
         /// Commit all changes made in a container.
         /// </summary>
-        ///<remarks>
+        /// <remarks>
         /// If the entity have fixed properties and any optimistic concurrency problem exists,  
         /// then an exception is thrown
-        ///</remarks>
+        /// </remarks>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
         bool Commit();
 
         /// <summary>
         /// Commit all changes made in a container. Async
         /// </summary>
-        ///<remarks>
+        /// <remarks>
         /// If the entity have fixed properties and any optimistic concurrency problem exists,  
         /// then an exception is thrown
-        ///</remarks>
+        /// </remarks>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         Task<int> CommitAsync();
 
         /// <summary>
         /// Commit all changes made in  a container.
         /// </summary>
-        ///<remarks>
+        /// <remarks>
         /// If the entity have fixed properties and any optimistic concurrency problem exists,
         /// then 'client changes' are refreshed - Client wins
-        ///</remarks>
+        /// </remarks>
         void CommitAndRefreshChanges();
 
         /// <summary>
         /// Commit all changes made in  a container. Async
         /// </summary>
-        ///<remarks>
+        /// <remarks>
         /// If the entity have fixed properties and any optimistic concurrency problem exists,
         /// then 'client changes' are refreshed - Client wins
-        ///</remarks>
+        /// </remarks>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         Task<int> CommitAndRefreshChangesAsync();
 
         /// <summary>
@@ -59,7 +68,9 @@ namespace EstelApi.Core.Seedwork.Interfaces
         /// <summary>
         /// Reload an entity with refresh option (Note. This generates adhoc querys)
         /// </summary>
-        /// <param name="entity"></param>
+        /// <param name="entity">
+        /// The entity.
+        /// </param>
         void Refresh(object entity);
 
     }

@@ -4,25 +4,124 @@
         <name>Estel.Services.Api</name>
     </assembly>
     <members>
+        <member name="T:Estel.Services.Api.Configurations.AutoMapperSetup">
+            <summary>
+            The auto mapper setup.
+            </summary>
+        </member>
+        <member name="M:Estel.Services.Api.Configurations.AutoMapperSetup.AddAutoMapperSetup(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            The add auto mapper setup.
+            </summary>
+            <param name="services">
+            The services.
+            </param>
+            <exception cref="T:System.ArgumentNullException">if services is null
+            </exception>
+        </member>
+        <member name="T:Estel.Services.Api.Configurations.MvcOptionsExtensions">
+            <summary>
+            The mvc options extensions.
+            </summary>
+        </member>
+        <member name="M:Estel.Services.Api.Configurations.MvcOptionsExtensions.UseCentralRoutePrefix(Microsoft.AspNetCore.Mvc.MvcOptions,Microsoft.AspNetCore.Mvc.Routing.IRouteTemplateProvider)">
+            <summary>
+            The use central route prefix.
+            </summary>
+            <param name="opts">
+            The opts.
+            </param>
+            <param name="routeAttribute">
+            The route attribute.
+            </param>
+        </member>
+        <member name="T:Estel.Services.Api.Controllers.CustomerController">
+            <summary>
+            The customer controller.
+            </summary>
+        </member>
+        <member name="F:Estel.Services.Api.Controllers.CustomerController.customerAppService">
+            <summary>
+            The customer app service.
+            </summary>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.CustomerController.#ctor(EstelApi.Application.Interfaces.ICustomerAppService,MediatR.INotificationHandler{EstelApi.Core.Seedwork.CoreCqrs.Notifications.DomainNotification},MediatR.IMediator)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Estel.Services.Api.Controllers.CustomerController"/> class.
+            </summary>
+            <param name="customerAppService">
+            The customer app service.
+            </param>
+            <param name="notifications">
+            The notifications.
+            </param>
+            <param name="mediator">
+            The mediator.
+            </param>
+        </member>
         <member name="M:Estel.Services.Api.Controllers.CustomerController.Get">
             <summary>
-            work
+            Work The getAll.
             </summary>
-            <returns></returns>
+            <returns>
+            The <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/>.
+            </returns>
+            [AllowAnonymous]
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.CustomerController.Get(System.Guid)">
+            <summary>
+            The get.
+            </summary>
+            <param name="id">
+            The id.
+            </param>
+            <returns>
+            The <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.CustomerController.Post(EstelApi.Application.ViewModels.Customer.CreateCustomerViewModel)">
+            <summary>
+            The post.
+            </summary>
+            <param name="createCustomerViewModel">
+            The create customer view model.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
         </member>
         <member name="M:Estel.Services.Api.Controllers.CustomerController.Put(EstelApi.Application.ViewModels.Customer.UpdateCustomerViewModel)">
             <summary>
-            work
+            The put.
             </summary>
-            <param name="UpdateCustomerViewModel"></param>
-            <returns></returns>
+            <param name="updateCustomerViewModel">
+            The update customer view model.
+            </param>
+            <returns>
+            The <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.CustomerController.Delete(EstelApi.Application.ViewModels.Customer.DeleteCustomerViewModel)">
+            <summary>
+            The delete.
+            </summary>
+            <param name="deleteCustomerViewModel">
+            The delete customer view model.
+            </param>
+            <returns>
+            The <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/>.
+            </returns>
         </member>
         <member name="M:Estel.Services.Api.Controllers.CustomerController.History(System.Guid)">
             <summary>
-            work
+            The history.
             </summary>
-            <param name="id"></param>
-            <returns></returns>
+            <param name="id">
+            The id.
+            </param>
+            <returns>
+            The <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/>.
+            </returns>
         </member>
         <member name="M:Estel.Services.Api.Extension.Exception.ApiError.#ctor(System.Exception)">
             <summary>

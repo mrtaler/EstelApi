@@ -1,14 +1,15 @@
-﻿using System.Security.Claims;
-using EstelApi.CrossCutting.Identity.IdentityContext;
-using EstelApi.CrossCutting.Identity.IdentityModels;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-
-namespace EstelApi.CrossCutting.Identity.IdentityServices
+﻿namespace EstelApi.CrossCutting.Identity.IdentityServices
 {
-    public class ApplicationUserStore : UserStore<
-        ApplicationUser,
-        ApplicationRole,
+    using System.Security.Claims;
+
+    using EstelApi.CrossCutting.Identity.IdentityContext;
+    using EstelApi.CrossCutting.Identity.IdentityModels;
+
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+
+    /// <inheritdoc />
+    public class ApplicationUserStore : UserStore<ApplicationUser, ApplicationRole,
         IdentityEstelContext,
         int,
         ApplicationUserClaim,
@@ -17,11 +18,13 @@ namespace EstelApi.CrossCutting.Identity.IdentityServices
         ApplicationUserToken,
         ApplicationRoleClaim>
     {
+        /// <inheritdoc />
         public ApplicationUserStore(IdentityEstelContext context, IdentityErrorDescriber describer = null)
             : base(context, describer)
         {
         }
 
+        /// <inheritdoc />
         protected override ApplicationUserRole CreateUserRole(ApplicationUser user, ApplicationRole role)
         {
             return new ApplicationUserRole()
@@ -31,6 +34,7 @@ namespace EstelApi.CrossCutting.Identity.IdentityServices
             };
         }
 
+        /// <inheritdoc />
         protected override ApplicationUserClaim CreateUserClaim(ApplicationUser user, Claim claim)
         {
             var userClaim = new ApplicationUserClaim() { UserId = user.Id };
@@ -38,6 +42,7 @@ namespace EstelApi.CrossCutting.Identity.IdentityServices
             return userClaim;
         }
 
+        /// <inheritdoc />
         protected override ApplicationUserLogin CreateUserLogin(ApplicationUser user, UserLoginInfo login)
         {
             return new ApplicationUserLogin()
@@ -49,6 +54,7 @@ namespace EstelApi.CrossCutting.Identity.IdentityServices
             };
         }
 
+        /// <inheritdoc />
         protected override ApplicationUserToken CreateUserToken(ApplicationUser user, string loginProvider, string name, string value)
         {
             return new ApplicationUserToken()

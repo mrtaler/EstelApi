@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace EstelApi.Core.Seedwork.CoreEntities
+﻿namespace EstelApi.Domain.DataAccessLayer.Context.CoreEntities
 {
+    using System.Collections.Generic;
+
     public class SearchResult<T> where T : class
     {
         public int TotalRecords { get; set; }

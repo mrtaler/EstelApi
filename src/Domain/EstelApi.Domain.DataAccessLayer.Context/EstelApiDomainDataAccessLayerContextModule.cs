@@ -8,6 +8,9 @@ using EstelApi.Domain.DataAccessLayer.Context.Repository.EventSourcing;
 
 namespace EstelApi.Domain.DataAccessLayer.Context
 {
+    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CountryAgg;
+    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
+
     public class EstelApiDomainDataAccessLayerContextModule : Module
     {
         protected override void Load(ContainerBuilder builder)
@@ -45,6 +48,15 @@ namespace EstelApi.Domain.DataAccessLayer.Context
                 .RegisterType<CustomerRepository>()
                 .As<ICustomerRepository>()
                 .InstancePerLifetimeScope();
+
+            builder
+                .RegisterType<CountryRepository>()
+                .As<ICountryRepository>()
+                .InstancePerLifetimeScope();
+
+
+
+
             builder
                 .RegisterType<CourseRepository>()
                 .As<ICourseRepository>()

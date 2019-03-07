@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
-using EstelApi.Core.Seedwork.CoreEntities;
 
 namespace EstelApi.Domain.DataAccessLayer.Context.Interfaces
 {
+    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities;
+
     public interface IFileSystemService
     {
         Task<DownloadedFile> Download(string remoteFileUrl, string localFileFullPath);

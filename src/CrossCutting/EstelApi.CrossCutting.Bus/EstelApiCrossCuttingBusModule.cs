@@ -1,9 +1,11 @@
-﻿using Autofac;
-//using EstelApi.Core.Cqrs.Bus;
-namespace EstelApi.CrossCutting.Bus
+﻿namespace EstelApi.CrossCutting.Bus
 {
+    using Autofac;
+
+    /// <inheritdoc />
     public class EstelApiCrossCuttingBusModule : Module
     {
+        /// <inheritdoc />
         protected override void Load(ContainerBuilder builder)
         {
             // builder

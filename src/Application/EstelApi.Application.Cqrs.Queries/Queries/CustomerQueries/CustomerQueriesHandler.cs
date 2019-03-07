@@ -3,12 +3,13 @@ using System.Threading;
 using System.Threading.Tasks;
 using EstelApi.Application.Cqrs.Queries.Base;
 using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
-using EstelApi.Core.Seedwork.CoreEntities;
 using EstelApi.Domain.DataAccessLayer.Context.Interfaces;
 using MediatR;
 
 namespace EstelApi.Application.Cqrs.Queries.Queries.CustomerQueries
 {
+    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
+
     public class CustomerQueriesHandler : QueryHandler,
             IRequestHandler<AllCustomersQuery, IEnumerable<Customer>>,
             IRequestHandler<CustomerByIdQuery, Customer>// ,

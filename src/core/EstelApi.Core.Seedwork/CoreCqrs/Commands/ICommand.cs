@@ -5,11 +5,6 @@
     {
     }
 
-    public interface IValidated
-    {
-        bool AlreadyValidated { get; set; }
-    }
-  
     /* public abstract class Command : Message
      {
          public DateTime Timestamp { get; private set; }

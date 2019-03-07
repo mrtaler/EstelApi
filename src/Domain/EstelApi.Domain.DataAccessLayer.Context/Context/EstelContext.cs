@@ -1,5 +1,4 @@
-﻿using EstelApi.Core.Seedwork.CoreEntities;
-using EstelApi.Domain.DataAccessLayer.Context.Context.Base;
+﻿using EstelApi.Domain.DataAccessLayer.Context.Context.Base;
 using EstelApi.Domain.DataAccessLayer.Context.EntityDbMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -7,6 +6,10 @@ using Microsoft.Extensions.Hosting;
 
 namespace EstelApi.Domain.DataAccessLayer.Context.Context
 {
+    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities;
+    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CountryAgg;
+    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
+
     // Add-Migration Init_EstelContext -Context EstelContext  -project EstelApi.Domain.DataAccessLayer.Context -OutputDir Migrations
     // update-database                 -Context EstelContext  -project EstelApi.Domain.DataAccessLayer.Context
     internal class EstelContext : BaseContext
@@ -23,7 +26,9 @@ namespace EstelApi.Domain.DataAccessLayer.Context.Context
         {
         }
 
-        public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<Customer> Customers { get; }
+       
+        public virtual DbSet<Country> Countries { get; }
 
         public virtual DbSet<CourseType> CourseTypes { get; set; }
 

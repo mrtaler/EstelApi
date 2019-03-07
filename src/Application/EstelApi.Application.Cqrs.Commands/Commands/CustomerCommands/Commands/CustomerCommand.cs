@@ -1,7 +1,7 @@
 ﻿using System;
 using EstelApi.Application.Cqrs.Commands.Base;
 using EstelApi.Core.Seedwork.CoreCqrs.Commands;
-using EstelApi.Core.Seedwork.CoreEntities;
+
 using MediatR;
 
 namespace EstelApi.Application.Cqrs.Commands.Commands.CustomerCommands.Commands

@@ -1,17 +1,20 @@
-﻿using Autofac;
-using EstelApi.Application;
-using EstelApi.Application.Cqrs.Commands;
-using EstelApi.Application.Cqrs.Queries;
-using EstelApi.Core.Seedwork.Adapter;
-using EstelApi.Core.Seedwork.Adapter.Implementation;
-using EstelApi.CrossCutting.Bus;
-using EstelApi.CrossCutting.Identity;
-using EstelApi.Domain.DataAccessLayer.Context;
-
-namespace EstelApi.CrossCutting.IoC
+﻿namespace EstelApi.CrossCutting.IoC
 {
+    using Autofac;
+
+    using EstelApi.Application;
+    using EstelApi.Application.Cqrs.Commands;
+    using EstelApi.Application.Cqrs.Queries;
+    using EstelApi.Core.Seedwork.Adapter;
+    using EstelApi.Core.Seedwork.Adapter.Implementation;
+    using EstelApi.CrossCutting.Bus;
+    using EstelApi.CrossCutting.Identity;
+    using EstelApi.Domain.DataAccessLayer.Context;
+
+    /// <inheritdoc />
     public class EstelApiCrossCuttingIoC : Module
     {
+        /// <inheritdoc />
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterModule(new EstelApiCrossCuttingBusModule());

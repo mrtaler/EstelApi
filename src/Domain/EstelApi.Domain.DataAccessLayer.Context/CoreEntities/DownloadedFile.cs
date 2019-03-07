@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace EstelApi.Core.Seedwork.CoreEntities
+﻿namespace EstelApi.Domain.DataAccessLayer.Context.CoreEntities
 {
+    using System;
+
     public class DownloadedFile
     {
         public Uri Source { get; set; }

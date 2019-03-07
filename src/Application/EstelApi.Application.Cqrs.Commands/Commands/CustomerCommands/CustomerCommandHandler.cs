@@ -1,17 +1,16 @@
 ﻿namespace EstelApi.Application.Cqrs.Commands.Commands.CustomerCommands
 {
-    using System;
-    using System.Threading;
-    using System.Threading.Tasks;
-
     using EstelApi.Application.Cqrs.Commands.Base;
     using EstelApi.Application.Cqrs.Commands.Commands.CustomerCommands.Commands;
     using EstelApi.Application.Cqrs.Commands.Commands.CustomerCommands.Events;
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
-    using EstelApi.Core.Seedwork.CoreEntities;
     using EstelApi.Domain.DataAccessLayer.Context.Interfaces;
-
     using MediatR;
+    using System;
+    using System.Threading;
+    using System.Threading.Tasks;
+
+    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
 
     /// <summary>
     /// The customer command handler.
@@ -81,15 +80,17 @@
             */
             var customer = new Customer(Guid.NewGuid(), message.Name, message.Email, message.BirthDate);
 
-            if (this.customerRepository.GetByEmail(customer.Email) != null)
+            if (this.customerRepository.GetByFirstName(customer.Email) != null)
             {
                 await this.bus.Publish(
                     new DomainNotification(message.GetType().Name, "The customer e-mail has already been taken."),
                     cancellationToken);
                 return new CommandResponse<Customer>
-                           {
-                               IsSuccess = false, Message = "The customer e-mail has already been taken.", Object = null
-                           };
+                {
+                    IsSuccess = false,
+                    Message = "The customer e-mail has already been taken.",
+                    Object = null
+                };
             }
 
             this.customerRepository.Add(customer);
@@ -101,15 +102,15 @@
             }
 
             return new CommandResponse<Customer>
-                       {
-                           IsSuccess = true,
-                           Message = "New Entity was added",
-                           Object = new Customer(
+            {
+                IsSuccess = true,
+                Message = "New Entity was added",
+                Object = new Customer(
                                id: customer.Id,
                                name: customer.Name,
                                email: customer.Email,
                                birthDate: customer.BirthDate)
-                       };
+            };
         }
 
         /// <summary>
@@ -135,7 +136,7 @@
               }
               */
             var customer = new Customer(message.Id, message.Name, message.Email, message.BirthDate);
-            var existingCustomer = this.customerRepository.GetByEmail(customer.Email);
+            var existingCustomer = this.customerRepository.GetByFirstName(customer.Email);
 
             if (existingCustomer != null && existingCustomer.Id != customer.Id)
             {
@@ -145,11 +146,11 @@
                         new DomainNotification(message.GetType().Name, "The customer e-mail has already been taken."),
                         cancellationToken);
                     return new CommandResponse<Customer>
-                               {
-                                   IsSuccess = false,
-                                   Message = "The customer e-mail has already been taken.",
-                                   Object = null
-                               };
+                    {
+                        IsSuccess = false,
+                        Message = "The customer e-mail has already been taken.",
+                        Object = null
+                    };
                 }
             }
 
@@ -163,15 +164,15 @@
             }
 
             return new CommandResponse<Customer>
-                       {
-                           IsSuccess = true,
-                           Message = "New Entity was added",
-                           Object = new Customer(
+            {
+                IsSuccess = true,
+                Message = "New Entity was added",
+                Object = new Customer(
                                id: customer.Id,
                                name: customer.Name,
                                email: customer.Email,
                                birthDate: customer.BirthDate)
-                       };
+            };
         }
 
         /*

@@ -1,5 +1,5 @@
 ﻿using System;
-using EstelApi.Core.Seedwork.CoreEntities;
+
 using MediatR;
 
 namespace EstelApi.Application.Cqrs.Queries.Queries.CustomerQueries

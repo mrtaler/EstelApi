@@ -11,12 +11,13 @@ using EstelApi.Application.Interfaces;
 using EstelApi.Application.ViewModels.Customer;
 using EstelApi.Core.Seedwork.Adapter;
 using EstelApi.Core.Seedwork.CoreCqrs.Events;
-using EstelApi.Domain.DataAccessLayer.Context.Interfaces;
 
 using MediatR;
 
 namespace EstelApi.Application.Services
 {
+    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
+
     public class CustomerAppService : ICustomerAppService
     {
         private readonly IMapper mapper;

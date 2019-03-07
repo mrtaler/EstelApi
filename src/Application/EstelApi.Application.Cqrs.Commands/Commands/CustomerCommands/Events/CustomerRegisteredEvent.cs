@@ -3,6 +3,9 @@ using EstelApi.Core.Seedwork.CoreCqrs.Events;
 
 namespace EstelApi.Application.Cqrs.Commands.Commands.CustomerCommands.Events
 {
+    /// <summary>
+    /// The customer registered event.
+    /// </summary>
     public class CustomerRegisteredEvent : Event
     {
         public CustomerRegisteredEvent(Guid id, string name, string email, DateTime birthDate)

@@ -160,9 +160,9 @@
 
         // [AllowAnonymous]
         [Route("customer-management/history/{id:guid}")]
-        public IActionResult History(Guid id)
+        public async Task<IActionResult> History(Guid id)
         {
-            var customerHistoryData = this.customerAppService.GetAllHistory(id);
+            var customerHistoryData = await this.customerAppService.GetAllHistory(id);
             return this.Response(customerHistoryData);
         }
     }

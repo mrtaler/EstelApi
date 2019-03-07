@@ -1,0 +1,29 @@
+﻿namespace EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg
+{
+    using System.Collections.Generic;
+
+    using EstelApi.Core.Seedwork.Interfaces;
+
+    /// <inheritdoc />
+    public interface ICustomerRepository : IRepository<Customer>
+    {
+        /// <summary>
+        /// The get by email.
+        /// </summary>
+        /// <param name="email">
+        /// The email.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Customer"/>.
+        /// </returns>
+        Customer GetByFirstName(string email);
+
+        /// <summary>
+        /// The get enabled.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="IEnumerable"/>.
+        /// </returns>
+        IEnumerable<Customer> GetEnabled();
+    }
+}
