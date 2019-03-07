@@ -13,6 +13,6 @@ namespace EstelApi.Application.Interfaces
         CustomerViewModelApp GetById(Guid id);
         void Update(UpdateCustomerViewModel customerViewModel);
         void Remove(Guid id);
-        IList<CustomerHistoryData> GetAllHistory(Guid id);
+        Task<IList<CustomerHistoryData>> GetAllHistory(Guid id);
     }
 }

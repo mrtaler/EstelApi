@@ -1,107 +1,169 @@
-﻿using EstelApi.Application.Interfaces;
-using EstelApi.Application.ViewModels.Customer;
-using MediatR;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Threading.Tasks;
-using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
-
-namespace Estel.Services.Api.Controllers
+﻿namespace Estel.Services.Api.Controllers
 {
+    using EstelApi.Application.Interfaces;
+    using EstelApi.Application.ViewModels.Customer;
+    using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
+    using MediatR;
+    using Microsoft.AspNetCore.Mvc;
+    using System;
+    using System.Threading.Tasks;
+
     // [Authorize]
+
+    /// <summary>
+    /// The customer controller.
+    /// </summary>
     [ApiVersion("1.0")]
     public class CustomerController : ApiController
     {
-        private readonly ICustomerAppService _customerAppService;
+        /// <summary>
+        /// The customer app service.
+        /// </summary>
+        private readonly ICustomerAppService customerAppService;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CustomerController"/> class.
+        /// </summary>
+        /// <param name="customerAppService">
+        /// The customer app service.
+        /// </param>
+        /// <param name="notifications">
+        /// The notifications.
+        /// </param>
+        /// <param name="mediator">
+        /// The mediator.
+        /// </param>
         public CustomerController(
             ICustomerAppService customerAppService,
             INotificationHandler<DomainNotification> notifications,
-            IMediator mediator) : base(notifications, mediator)
+            IMediator mediator)
+            : base(notifications, mediator)
         {
-            _customerAppService = customerAppService;
+            this.customerAppService = customerAppService;
         }
 
         /// <summary>
-        /// work
+        /// Work The getAll.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        /// The <see cref="IActionResult"/>.
+        /// </returns>
+        /// [AllowAnonymous]
         [HttpGet]
-        //  [AllowAnonymous]
         [Route("customer-management")]
         public IActionResult Get()
         {
-            return Response(_customerAppService.GetAll());
+            return this.Response(this.customerAppService.GetAll());
         }
 
+        /// <summary>
+        /// The get.
+        /// </summary>
+        /// <param name="id">
+        /// The id.
+        /// </param>
+        /// <returns>
+        /// The <see cref="IActionResult"/>.
+        /// </returns>
         [HttpGet]
-        //   [AllowAnonymous]
+
+        // [AllowAnonymous]
         [Route("customer-management/{id:guid}")]
         public IActionResult Get(Guid id)
         {
-            var customerViewModel = _customerAppService.GetById(id);
+            var customerViewModel = this.customerAppService.GetById(id);
 
-            return Response(customerViewModel);
+            return this.Response(customerViewModel);
         }
 
+        /// <summary>
+        /// The post.
+        /// </summary>
+        /// <param name="createCustomerViewModel">
+        /// The create customer view model.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         [HttpPost]
-        //  [Authorize(Policy = "CanWriteCustomerData")]
+
+        // [Authorize(Policy = "CanWriteCustomerData")]
         [Route("customer-management")]
-        public async Task<IActionResult> Post([FromBody]CreateCustomerViewModel createCustomerViewModel)
+        public async Task<IActionResult> Post([FromBody] CreateCustomerViewModel createCustomerViewModel)
         {
-            if (!ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
-                NotifyModelStateErrors();
-                return Response(createCustomerViewModel);
+                this.NotifyModelStateErrors();
+                return this.Response(createCustomerViewModel);
             }
 
-            var resp= await  _customerAppService.Register(createCustomerViewModel);
-            return Response(resp);
+            var resp = await this.customerAppService.Register(createCustomerViewModel);
+            return this.Response(resp);
         }
 
         /// <summary>
-        /// work
+        /// The put.
         /// </summary>
-        /// <param name="UpdateCustomerViewModel"></param>
-        /// <returns></returns>
+        /// <param name="updateCustomerViewModel">
+        /// The update customer view model.
+        /// </param>
+        /// <returns>
+        /// The <see cref="IActionResult"/>.
+        /// </returns>
         [HttpPut]
-        //    [Authorize(Policy = "CanWriteCustomerData")]
+
+        // [Authorize(Policy = "CanWriteCustomerData")]
         [Route("customer-management")]
-        public IActionResult Put([FromBody]UpdateCustomerViewModel UpdateCustomerViewModel)
+        public IActionResult Put([FromBody] UpdateCustomerViewModel updateCustomerViewModel)
         {
-            if (!ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
-                NotifyModelStateErrors();
-                return Response(UpdateCustomerViewModel);
+                this.NotifyModelStateErrors();
+                return this.Response(updateCustomerViewModel);
             }
 
-             _customerAppService.Update(UpdateCustomerViewModel);
+            this.customerAppService.Update(updateCustomerViewModel);
 
-            return Response(UpdateCustomerViewModel);
-        }
-
-        [HttpDelete]
-        //  [Authorize(Policy = "CanRemoveCustomerData")]
-        [Route("customer-management")]
-        public IActionResult Delete([FromBody]DeleteCustomerViewModel deleteCustomerViewModel)
-        {
-            _customerAppService.Remove(deleteCustomerViewModel.Id);
-
-            return Response();
+            return this.Response(updateCustomerViewModel);
         }
 
         /// <summary>
-        /// work
+        /// The delete.
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="deleteCustomerViewModel">
+        /// The delete customer view model.
+        /// </param>
+        /// <returns>
+        /// The <see cref="IActionResult"/>.
+        /// </returns>
+        [HttpDelete]
+
+        // [Authorize(Policy = "CanRemoveCustomerData")]
+        [Route("customer-management")]
+        public IActionResult Delete([FromBody] DeleteCustomerViewModel deleteCustomerViewModel)
+        {
+            this.customerAppService.Remove(deleteCustomerViewModel.Id);
+
+            return this.Response();
+        }
+
+        /// <summary>
+        /// The history.
+        /// </summary>
+        /// <param name="id">
+        /// The id.
+        /// </param>
+        /// <returns>
+        /// The <see cref="IActionResult"/>.
+        /// </returns>
         [HttpGet]
-        //   [AllowAnonymous]
+
+        // [AllowAnonymous]
         [Route("customer-management/history/{id:guid}")]
         public IActionResult History(Guid id)
         {
-            var customerHistoryData = _customerAppService.GetAllHistory(id);
-            return Response(customerHistoryData);
+            var customerHistoryData = this.customerAppService.GetAllHistory(id);
+            return this.Response(customerHistoryData);
         }
     }
 }

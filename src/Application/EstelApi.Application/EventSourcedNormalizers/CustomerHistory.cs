@@ -24,18 +24,18 @@ namespace EstelApi.Application.EventSourcedNormalizers
                 var jsSlot = new CustomerHistoryData
                 {
                     Id = change.Id == Guid.Empty.ToString() || change.Id == last.Id
-                        ? ""
+                        ? string.Empty
                         : change.Id,
                     Name = string.IsNullOrWhiteSpace(change.Name) || change.Name == last.Name
-                        ? ""
+                        ? string.Empty
                         : change.Name,
                     Email = string.IsNullOrWhiteSpace(change.Email) || change.Email == last.Email
-                        ? ""
+                        ? string.Empty
                         : change.Email,
                     BirthDate = string.IsNullOrWhiteSpace(change.BirthDate) || change.BirthDate == last.BirthDate
-                        ? ""
+                        ? string.Empty
                         : change.BirthDate.Substring(0, 10),
-                    Action = string.IsNullOrWhiteSpace(change.Action) ? "" : change.Action,
+                    Action = string.IsNullOrWhiteSpace(change.Action) ? string.Empty : change.Action,
                     When = change.When,
                     Who = change.Who
                 };
@@ -43,6 +43,7 @@ namespace EstelApi.Application.EventSourcedNormalizers
                 list.Add(jsSlot);
                 last = change;
             }
+
             return list;
         }
 

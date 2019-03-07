@@ -6,11 +6,11 @@ namespace Estel.Services.Api.Configurations
 {
     public class RouteConvention : IApplicationModelConvention
     {
-        private readonly AttributeRouteModel _centralPrefix;
+        private readonly AttributeRouteModel centralPrefix;
 
         public RouteConvention(IRouteTemplateProvider routeTemplateProvider)
         {
-            _centralPrefix = new AttributeRouteModel(routeTemplateProvider);
+            this.centralPrefix = new AttributeRouteModel(routeTemplateProvider);
         }
 
         public void Apply(ApplicationModel application)
@@ -22,7 +22,8 @@ namespace Estel.Services.Api.Configurations
                 {
                     foreach (var selectorModel in matchedSelectors)
                     {
-                        selectorModel.AttributeRouteModel = AttributeRouteModel.CombineAttributeRouteModel(_centralPrefix,
+                        selectorModel.AttributeRouteModel = AttributeRouteModel.CombineAttributeRouteModel(
+                            this.centralPrefix,
                             selectorModel.AttributeRouteModel);
                     }
                 }
@@ -33,7 +34,7 @@ namespace Estel.Services.Api.Configurations
                 {
                     foreach (var selectorModel in unmatchedSelectors)
                     {
-                        selectorModel.AttributeRouteModel = _centralPrefix;
+                        selectorModel.AttributeRouteModel = this.centralPrefix;
                     }
                 }
             }

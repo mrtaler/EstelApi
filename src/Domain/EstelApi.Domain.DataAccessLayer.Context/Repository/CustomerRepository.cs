@@ -14,7 +14,7 @@ namespace EstelApi.Domain.DataAccessLayer.Context.Repository
 
         public Customer GetByEmail(string email)
         {
-            var ret = GetAll().FirstOrDefault(c => c.Email == email);
+            var ret = this.GetAll().FirstOrDefault(c => c.Email == email);
             return ret;
         }
     }

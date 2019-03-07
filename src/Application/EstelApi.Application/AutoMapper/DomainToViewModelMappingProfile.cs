@@ -8,7 +8,7 @@ namespace EstelApi.Application.AutoMapper
     {
         public DomainToViewModelMappingProfile()
         {
-            CreateMap<Customer, CustomerViewModelApp>();
+            this.CreateMap<Customer, CustomerViewModelApp>();
         }
     }
 }

@@ -6,8 +6,8 @@ namespace EstelApi.CrossCutting.Identity.Authorization
     {
         public ClaimRequirement(string claimName, string claimValue)
         {
-            ClaimName = claimName;
-            ClaimValue = claimValue;
+            this.ClaimName = claimName;
+            this.ClaimValue = claimValue;
         }
 
         public string ClaimName { get; set; }

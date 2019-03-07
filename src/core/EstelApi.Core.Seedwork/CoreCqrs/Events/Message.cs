@@ -10,7 +10,7 @@ namespace EstelApi.Core.Seedwork.CoreCqrs.Events
 
         protected Message()
         {
-            MessageType = GetType().Name;
+            this.MessageType = this.GetType().Name;
         }
     }
 }

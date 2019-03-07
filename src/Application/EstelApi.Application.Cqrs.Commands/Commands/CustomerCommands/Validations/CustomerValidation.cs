@@ -8,14 +8,14 @@ namespace EstelApi.Application.Cqrs.Commands.Commands.CustomerCommands.Validatio
     {
         protected void ValidateName()
         {
-            RuleFor(c => c.Name)
+            this.RuleFor(c => c.Name)
                 .NotEmpty().WithMessage("Please ensure you have entered the Name")
                 .Length(2, 150).WithMessage("The Name must have between 2 and 150 characters");
         }
 
         protected void ValidateBirthDate()
         {
-            RuleFor(c => c.BirthDate)
+            this.RuleFor(c => c.BirthDate)
                 .NotEmpty()
                 .Must(HaveMinimumAge)
                 .WithMessage("The customer must have 18 years or more");
@@ -23,14 +23,14 @@ namespace EstelApi.Application.Cqrs.Commands.Commands.CustomerCommands.Validatio
 
         protected void ValidateEmail()
         {
-            RuleFor(c => c.Email)
+            this.RuleFor(c => c.Email)
                 .NotEmpty()
                 .EmailAddress();
         }
 
         protected void ValidateId()
         {
-            RuleFor(c => c.Id)
+            this.RuleFor(c => c.Id)
                 .NotEqual(Guid.Empty);
         }
 

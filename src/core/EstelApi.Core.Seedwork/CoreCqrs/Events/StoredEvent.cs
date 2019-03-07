@@ -2,15 +2,15 @@
 
 namespace EstelApi.Core.Seedwork.CoreCqrs.Events
 {
-    public class StoredEvent : VersionedEvent
+    public class StoredEvent : Event
     {
-        public StoredEvent(IVersionedEvent theEvent, string data, string user)
+        public StoredEvent(Event theEvent, string data, string user)
         {
-            Id = Guid.NewGuid();
-            AggregateId = theEvent.AggregateId;
-            MessageType = theEvent.MessageType;
-            Data = data;
-            User = user;
+            this.Id = Guid.NewGuid();
+            this.AggregateId = theEvent.AggregateId;
+            this.MessageType = theEvent.MessageType;
+            this.Data = data;
+            this.User = user;
         }
 
         // EF Constructor

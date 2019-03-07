@@ -1,56 +1,59 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+using AutoMapper;
+
+using EstelApi.Application.Cqrs.Commands.Commands.CustomerCommands.Commands;
+using EstelApi.Application.Cqrs.Queries.Queries.CustomerQueries;
 using EstelApi.Application.EventSourcedNormalizers;
 using EstelApi.Application.Interfaces;
 using EstelApi.Application.ViewModels.Customer;
-using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using EstelApi.Application.Cqrs.Commands.Commands.CustomerCommands.Commands;
+using EstelApi.Core.Seedwork.Adapter;
 using EstelApi.Core.Seedwork.CoreCqrs.Events;
 using EstelApi.Domain.DataAccessLayer.Context.Interfaces;
-using EstelApi.Application.Cqrs.Queries.Queries.CustomerQueries;
-using EstelApi.Core.Seedwork.Adapter;
+
+using MediatR;
 
 namespace EstelApi.Application.Services
 {
     public class CustomerAppService : ICustomerAppService
     {
-        private readonly IMapper _mapper;
-        private readonly ICustomerRepository _customerRepository;
-        private readonly IEventStoreRepository _eventStoreRepository;
-        private readonly IMediator _bus;
+        private readonly IMapper mapper;
+        private readonly ICustomerRepository customerRepository;
+        private readonly IEventStoreRepository eventStoreRepository;
+        private readonly IMediator bus;
 
         public CustomerAppService(IMapper mapper,
                                   ICustomerRepository customerRepository,
                                   IMediator bus,
                                   IEventStoreRepository eventStoreRepository)
         {
-            _mapper = mapper;
-            _customerRepository = customerRepository;
-            _bus = bus;
-            _eventStoreRepository = eventStoreRepository;
+            this.mapper = mapper;
+            this.customerRepository = customerRepository;
+            this.bus = bus;
+            this.eventStoreRepository = eventStoreRepository;
         }
 
         public IEnumerable<CustomerViewModelApp> GetAll()
         {
-            var result = _bus.Send(new AllCustomersQuery()).Result;
+            var result = this.bus.Send(new AllCustomersQuery()).Result;
 
             var ret = result.ProjectedAsCollection<CustomerViewModelApp>();
 
             return
-                ret; //_customerRepository.GetAll().AsQueryable().ProjectTo<CustomerViewModelApp>(_mapper.ConfigurationProvider);
+                ret; // _customerRepository.GetAll().AsQueryable().ProjectTo<CustomerViewModelApp>(_mapper.ConfigurationProvider);
         }
 
         public CustomerViewModelApp GetById(Guid id)
         {
-            return _mapper.Map<CustomerViewModelApp>(_customerRepository.GetById(id));
+            return this.mapper.Map<CustomerViewModelApp>(this.customerRepository.GetById(id));
         }
 
         public async Task<CustomerViewModelApp> Register(CreateCustomerViewModel customerViewModel)
         {
             var registerCommand = customerViewModel.ProjectedAs<RegisterNewCustomerCommand>();// _mapper.Map<>(customerViewModel);
-            var result = await _bus.Send(registerCommand);
+            var result = await this.bus.Send(registerCommand);
             if ( result .IsSuccess)
             {
                 var retVal = new CustomerViewModelApp
@@ -63,25 +66,26 @@ namespace EstelApi.Application.Services
 
                 return retVal;
             }
+
             return new CustomerViewModelApp();
         }
 
 
         public void Update(UpdateCustomerViewModel customerViewModel)
         {
-            var updateCommand = customerViewModel.ProjectedAs<UpdateCustomerCommand>();//_mapper.Map<>(customerViewModel);
-            _bus.Send(updateCommand);
+            var updateCommand = customerViewModel.ProjectedAs<UpdateCustomerCommand>();// _mapper.Map<>(customerViewModel);
+            this.bus.Send(updateCommand);
         }
 
         public void Remove(Guid id)
         {
             var removeCommand = new RemoveCustomerCommand(id);
-            _bus.Send(removeCommand);
+            this.bus.Send(removeCommand);
         }
 
-        public IList<CustomerHistoryData> GetAllHistory(Guid id)
+        public async Task<IList<CustomerHistoryData>> GetAllHistory(Guid id)
         {
-            return CustomerHistory.ToJavaScriptCustomerHistory(_eventStoreRepository.All(id));
+            return CustomerHistory.ToJavaScriptCustomerHistory(await this.eventStoreRepository.All(id));
         }
 
         public void Dispose()

@@ -16,22 +16,18 @@ namespace EstelApi.CrossCutting.IoC
         {
             builder.RegisterModule(new EstelApiCrossCuttingBusModule());
             builder.RegisterModule(new EstelApiCrossCuttingIdentity());
-            //2
+
+            // 2
             builder.RegisterModule(new EstelApiDomainDataAccessLayerContextModule());
 
-
-            //3
+            // 3
             builder.RegisterModule(new EstelApiApplicationModule());
             builder.RegisterModule(new EstelApiApplicationCommandsModule());
             builder.RegisterModule(new EstelApiApplicationQueriesModule());
 
-            builder
-                .RegisterType<AutoMapperTypeAdapterFactory>()
-                .As<ITypeAdapterFactory>()
-                .InstancePerLifetimeScope();
-            // services.AddScoped<ITypeAdapterFactory, AutomapperTypeAdapterFactory>();
+            builder.RegisterType<AutoMapperTypeAdapterFactory>().As<ITypeAdapterFactory>().InstancePerLifetimeScope();
 
-          
+            // services.AddScoped<ITypeAdapterFactory, AutomapperTypeAdapterFactory>();
         }
     }
 }

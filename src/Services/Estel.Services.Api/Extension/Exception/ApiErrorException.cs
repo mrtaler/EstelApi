@@ -2,6 +2,8 @@
 
 namespace Estel.Services.Api.Extension.Exception
 {
+    using System;
+
     public abstract class ApiErrorException : System.Exception
     {
         /// <summary>
@@ -15,7 +17,7 @@ namespace Estel.Services.Api.Extension.Exception
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiErrorException"/> class.
         /// </summary>
-        protected ApiErrorException(string message, System.Exception innerException)
+        protected ApiErrorException(string message, Exception innerException)
             : base(message, innerException)
         {
         }

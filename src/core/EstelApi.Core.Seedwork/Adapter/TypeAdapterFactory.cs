@@ -10,7 +10,7 @@
         /// <summary>
         /// The _current type adapter factory.
         /// </summary>
-        private static ITypeAdapterFactory _currentTypeAdapterFactory;
+        private static ITypeAdapterFactory currentTypeAdapterFactory;
 
         #endregion
 
@@ -22,7 +22,7 @@
         /// <param name="adapterFactory">The adapter factory to set</param>
         public static void SetCurrent(ITypeAdapterFactory adapterFactory)
         {
-            _currentTypeAdapterFactory = adapterFactory;
+            currentTypeAdapterFactory = adapterFactory;
         }
 
         /// <summary>
@@ -31,7 +31,7 @@
         /// <returns>Created type adapter</returns>
         public static ITypeAdapter CreateAdapter()
         {
-            return _currentTypeAdapterFactory.Create();
+            return currentTypeAdapterFactory.Create();
         }
 
         #endregion

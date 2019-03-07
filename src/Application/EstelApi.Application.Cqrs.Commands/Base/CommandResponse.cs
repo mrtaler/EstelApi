@@ -7,7 +7,7 @@ namespace EstelApi.Application.Cqrs.Commands.Base
     {
         public CommandResponse()
         {
-            IsSuccess = false;
+            this.IsSuccess = false;
         }
 
         /// <inheritdoc />

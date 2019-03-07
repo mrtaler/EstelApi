@@ -10,61 +10,61 @@ namespace Estel.Services.Api.Controllers
     [ApiController]
     public abstract class ApiController : ControllerBase
     {
-        private readonly DomainNotificationHandler _notifications;
-        private readonly IMediator _mediator;
+        private readonly DomainNotificationHandler notifications;
+        private readonly IMediator mediator;
 
         protected ApiController(INotificationHandler<DomainNotification> notifications,
             IMediator mediator)
         {
-            _notifications = (DomainNotificationHandler)notifications;
-            _mediator = mediator;
+            this.notifications = (DomainNotificationHandler)notifications;
+            this.mediator = mediator;
         }
 
-        protected IEnumerable<DomainNotification> Notifications => _notifications.GetNotifications();
+        protected IEnumerable<DomainNotification> Notifications => this.notifications.GetNotifications();
 
         protected bool IsValidOperation()
         {
-            return (!_notifications.HasNotifications());
+            return (!this.notifications.HasNotifications());
         }
 
         protected new IActionResult Response(object result = null)
         {
-            if (IsValidOperation())
+            if (this.IsValidOperation())
             {
-                return Ok(new
+                return this.Ok(new
                 {
                     success = true,
                     data = result
                 });
             }
 
-            return BadRequest(new
+            return this.BadRequest(new
             {
                 success = false,
-                errors = _notifications.GetNotifications().Select(n => n.Value)
+                errors = this.notifications.GetNotifications().Select(n => n.Value)
             });
         }
 
         protected void NotifyModelStateErrors()
         {
-            var erros = ModelState.Values.SelectMany(v => v.Errors);
+            var erros = this.ModelState.Values.SelectMany(v => v.Errors);
             foreach (var erro in erros)
             {
                 var erroMsg = erro.Exception == null ? erro.ErrorMessage : erro.Exception.Message;
-                NotifyError(string.Empty, erroMsg);
+                this.NotifyError(string.Empty, erroMsg);
             }
         }
 
         protected void NotifyError(string code, string message)
         {
-            _mediator.Publish(new DomainNotification(code, message));
+            this.mediator.Publish(new DomainNotification(code, message));
         }
 
         protected void AddIdentityErrors(IdentityResult result)
         {
             foreach (var error in result.Errors)
             {
-                NotifyError(result.ToString(), error.Description);
+                this.NotifyError(result.ToString(), error.Description);
             }
         }
     }

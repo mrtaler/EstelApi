@@ -13,14 +13,14 @@ namespace Estel.Services.Api.Extension.Exception
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public sealed class ApiExceptionFilterAttribute : ExceptionFilterAttribute
     {
-        private readonly ILogger _log;
+        private readonly ILogger log;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiExceptionFilterAttribute"/> class.
         /// </summary>
         public ApiExceptionFilterAttribute(ILogger log)
         {
-            _log = log;
+            this.log = log;
         }
 
         /// <inheritdoc />
@@ -30,12 +30,12 @@ namespace Estel.Services.Api.Extension.Exception
             if (context.Exception is ApiErrorException ex)
             {
                 error = new ApiError(ex.Description, ex.GetBaseException());
-                _log.ApiError(error);
+                this.log.ApiError(error);
             }
             else
             {
                 error = new ApiError("Unknown error", context.Exception);
-                _log.ApiError(error, LogEventLevel.Error);
+                this.log.ApiError(error, LogEventLevel.Error);
             }
 
             context.HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;

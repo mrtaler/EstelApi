@@ -11,11 +11,11 @@ namespace EstelApi.Domain.DataAccessLayer.Context.Context
     // update-database                 -Context EstelContext  -project EstelApi.Domain.DataAccessLayer.Context
     internal class EstelContext : BaseContext
     {
-        private readonly IHostingEnvironment _env;
+        private readonly IHostingEnvironment env;
 
         public EstelContext(IHostingEnvironment env)
         {
-            _env = env;
+            this.env = env;
         }
 
         public EstelContext(DbContextOptions<EstelContext> options)
@@ -24,7 +24,9 @@ namespace EstelApi.Domain.DataAccessLayer.Context.Context
         }
 
         public virtual DbSet<Customer> Customers { get; set; }
+
         public virtual DbSet<CourseType> CourseTypes { get; set; }
+
         public virtual DbSet<Course> Courses { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -40,16 +42,14 @@ namespace EstelApi.Domain.DataAccessLayer.Context.Context
         {
             if (!optionsBuilder.IsConfigured)
             {
-                var config = new ConfigurationBuilder()
-                    .SetBasePath(_env.ContentRootPath)
-                    .AddJsonFile("appsettings.json")
-                    .Build();
+                var config = new ConfigurationBuilder().SetBasePath(this.env.ContentRootPath)
+                    .AddJsonFile("appsettings.json").Build();
 
                 // define the database to use
                 optionsBuilder.UseSqlServer(config.GetConnectionString("DefaultConnection"))
-                    .EnableSensitiveDataLogging(true)
-                    .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
-                //,x => x.MigrationsAssembly("GomelEstel.Infra.Data"));}
+                    .EnableSensitiveDataLogging(true).UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+
+                // ,x => x.MigrationsAssembly("GomelEstel.Infra.Data"));}
             }
         }
     }

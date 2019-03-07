@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace EstelApi.Domain.DataAccessLayer.Context.Migrations.EventStore
 {
-    public partial class Init_EventStoreSQLContext : Migration
+    public partial class InitEventStoreSqlContext : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace EstelApi.CrossCutting.Identity.Migrations
 {
-    public partial class Init_IdentityEstelContext : Migration
+    public partial class InitIdentityEstelContext : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

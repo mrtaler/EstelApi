@@ -11,25 +11,24 @@ namespace EstelApi.Domain.DataAccessLayer.Context.Repository.Base
     public class Repository<TEntity> : IRepository<TEntity>
         where TEntity : class
     {
-        private IQueryableUnitOfWork _unitOfWork;
+        private IQueryableUnitOfWork unitOfWork;
 
         public Repository(IQueryableUnitOfWork unitOfWork)
         {
             if (unitOfWork == (IUnitOfWork) null)
                 throw new ArgumentNullException("unitOfWork");
 
-            _unitOfWork = unitOfWork;
+            this.unitOfWork = unitOfWork;
         }
 
         public IUnitOfWork UnitOfWork
         {
-            get { return _unitOfWork; }
+            get { return this.unitOfWork; }
         }
 
         public virtual void Add(TEntity item)
         {
-            if (item != (TEntity) null)
-                GetSet().Add(item); // add new item in this set
+            if (item != (TEntity) null) this.GetSet().Add(item); // add new item in this set
             else
             {
                 Log.Information("error in add method");
@@ -54,11 +53,11 @@ namespace EstelApi.Domain.DataAccessLayer.Context.Repository.Base
         {
             if (item != (TEntity) null)
             {
-                //attach item if not exist
-                _unitOfWork.Attach(item);
+                // attach item if not exist
+                this.unitOfWork.Attach(item);
 
-                //set as "removed"
-                GetSet().Remove(item);
+                // set as "removed"
+                this.GetSet().Remove(item);
             }
             else
             {
@@ -82,14 +81,13 @@ namespace EstelApi.Domain.DataAccessLayer.Context.Repository.Base
 
         public void Remove(object id)
         {
-            var item = GetSet().Find(id);
-            Remove(item);
+            var item = this.GetSet().Find(id);
+            this.Remove(item);
         }
 
         public virtual void TrackItem(TEntity item)
         {
-            if (item != (TEntity) null)
-                _unitOfWork.Attach<TEntity>(item);
+            if (item != (TEntity) null) this.unitOfWork.Attach<TEntity>(item);
             else
             {
                 Log.Information(
@@ -112,8 +110,7 @@ namespace EstelApi.Domain.DataAccessLayer.Context.Repository.Base
 
         public virtual void Update(TEntity item)
         {
-            if (item != (TEntity) null)
-                _unitOfWork.SetModified(item);
+            if (item != (TEntity) null) this.unitOfWork.SetModified(item);
             else
             {
                 Log.Information(
@@ -136,23 +133,23 @@ namespace EstelApi.Domain.DataAccessLayer.Context.Repository.Base
 
         public virtual void Merge(TEntity persisted, TEntity current)
         {
-            _unitOfWork.ApplyCurrentValues(persisted, current);
+            this.unitOfWork.ApplyCurrentValues(persisted, current);
         }
 
         public virtual void Refresh(TEntity entity)
         {
-            _unitOfWork.Refresh(entity);
+            this.unitOfWork.Refresh(entity);
         }
 
         public IEnumerable<TEntity> GetAll()
         {
-            //var ret = GetQueryable(null, null, null).ToList();
-            return GetSet().ToList();
+            // var ret = GetQueryable(null, null, null).ToList();
+            return this.GetSet().ToList();
         }
 
         public TEntity GetById(object id)
         {
-            var ret = GetSet().Find(id);
+            var ret = this.GetSet().Find(id);
             return ret;
         }
 
@@ -169,12 +166,12 @@ namespace EstelApi.Domain.DataAccessLayer.Context.Repository.Base
            }*/
         public void Dispose()
         {
-            _unitOfWork?.Dispose();
+            this.unitOfWork?.Dispose();
         }
 
         DbSet<TEntity> GetSet()
         {
-            return _unitOfWork.CreateSet<TEntity>();
+            return this.unitOfWork.CreateSet<TEntity>();
         }
 
         /*  /// <summary>

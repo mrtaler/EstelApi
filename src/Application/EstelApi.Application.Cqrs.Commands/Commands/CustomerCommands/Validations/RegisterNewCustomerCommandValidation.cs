@@ -6,9 +6,9 @@ namespace EstelApi.Application.Cqrs.Commands.Commands.CustomerCommands.Validatio
     {
         public RegisterNewCustomerCommandValidation()
         {
-            ValidateName();
-            ValidateBirthDate();
-            ValidateEmail();
+            this.ValidateName();
+            this.ValidateBirthDate();
+            this.ValidateEmail();
         }
     }
 }

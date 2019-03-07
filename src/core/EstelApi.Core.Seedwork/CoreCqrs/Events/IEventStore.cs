@@ -2,6 +2,6 @@
 {
     public interface IEventStore
     {
-        void Save<TEntity>(TEntity theEvent) where TEntity : IVersionedEvent;
+        void Save<T>(T theEvent) where T : Event;
     }
 }

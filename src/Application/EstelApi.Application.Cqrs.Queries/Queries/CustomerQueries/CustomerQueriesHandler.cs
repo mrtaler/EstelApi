@@ -11,30 +11,30 @@ namespace EstelApi.Application.Cqrs.Queries.Queries.CustomerQueries
 {
     public class CustomerQueriesHandler : QueryHandler,
             IRequestHandler<AllCustomersQuery, IEnumerable<Customer>>,
-            IRequestHandler<CustomerByIdQuery, Customer>//,
+            IRequestHandler<CustomerByIdQuery, Customer>// ,
                                                            // IRequestHandler<UpdateCustomerCommand, bool>,
-                                                           // IRequestHandler<RemoveCustomerCommand, bool>
     {
-        private readonly ICustomerRepository _customerRepository;
-        private readonly IMediator _bus;
+        // IRequestHandler<RemoveCustomerCommand, bool>
+        private readonly ICustomerRepository customerRepository;
+        private readonly IMediator bus;
 
         public CustomerQueriesHandler(ICustomerRepository customerRepository,
             IQueryableUnitOfWork uow,
             IMediator bus,
             INotificationHandler<DomainNotification> notifications) : base(uow, bus, notifications)
         {
-            _customerRepository = customerRepository;
-            _bus = bus;
+            this.customerRepository = customerRepository;
+            this.bus = bus;
         }
 
         public void Dispose()
         {
-            _customerRepository.Dispose();
+            this.customerRepository.Dispose();
         }
 
         public async Task<IEnumerable<Customer>> Handle(AllCustomersQuery request, CancellationToken cancellationToken)
         {
-            var ret = _customerRepository.GetAll();
+            var ret = this.customerRepository.GetAll();
             return await Task.FromResult(ret);
         }
 

@@ -13,7 +13,7 @@ namespace EstelApi.Core.Seedwork
             if (ReferenceEquals(this, compareTo)) return true;
             if (ReferenceEquals(null, compareTo)) return false;
 
-            return Id.Equals(compareTo.Id);
+            return this.Id.Equals(compareTo.Id);
         }
 
         public static bool operator ==(Entity a, Entity b)
@@ -34,12 +34,12 @@ namespace EstelApi.Core.Seedwork
 
         public override int GetHashCode()
         {
-            return (GetType().GetHashCode() * 907) + Id.GetHashCode();
+            return (this.GetType().GetHashCode() * 907) + this.Id.GetHashCode();
         }
 
         public override string ToString()
         {
-            return GetType().Name + " [Id=" + Id + "]";
+            return this.GetType().Name + " [Id=" + this.Id + "]";
         }
     }
 }

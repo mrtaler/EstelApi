@@ -11,7 +11,7 @@ namespace EstelApi.CrossCutting.Identity.Migrations
 {
     [DbContext(typeof(IdentityEstelContext))]
     [Migration("20190306061948_Init_IdentityEstelContext")]
-    partial class Init_IdentityEstelContext
+    partial class InitIdentityEstelContext
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

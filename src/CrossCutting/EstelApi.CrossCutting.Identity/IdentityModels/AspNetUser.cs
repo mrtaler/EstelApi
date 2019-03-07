@@ -7,23 +7,23 @@ namespace EstelApi.CrossCutting.Identity.IdentityModels
 {
     public class AspNetUser : IUser
     {
-        private readonly IHttpContextAccessor _accessor;
+        private readonly IHttpContextAccessor accessor;
 
         public AspNetUser(IHttpContextAccessor accessor)
         {
-            _accessor = accessor;
+            this.accessor = accessor;
         }
 
-        public string Name => _accessor.HttpContext.User.Identity.Name;
+        public string Name => this.accessor.HttpContext.User.Identity.Name;
 
         public bool IsAuthenticated()
         {
-            return _accessor.HttpContext.User.Identity.IsAuthenticated;
+            return this.accessor.HttpContext.User.Identity.IsAuthenticated;
         }
 
         public IEnumerable<Claim> GetClaimsIdentity()
         {
-            return _accessor.HttpContext.User.Claims;
+            return this.accessor.HttpContext.User.Claims;
         }
 
 

@@ -12,18 +12,17 @@ namespace EstelApi.Domain.DataAccessLayer.Context.Context
     {
         public DbSet<StoredEvent> StoredEvent { get; set; }
 
-        private readonly IHostingEnvironment _env;
+        private readonly IHostingEnvironment env;
 
         public EventStoreSqlContext(IHostingEnvironment env)
         {
-            _env = env;
+            this.env = env;
         }
 
         public EventStoreSqlContext(DbContextOptions<EventStoreSqlContext> options)
             : base(options)
         {
         }
-
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -36,10 +35,8 @@ namespace EstelApi.Domain.DataAccessLayer.Context.Context
         {
             if (!optionsBuilder.IsConfigured)
             {
-                var config = new ConfigurationBuilder()
-                    .SetBasePath(_env.ContentRootPath)
-                    .AddJsonFile("appsettings.json")
-                    .Build();
+                var config = new ConfigurationBuilder().SetBasePath(this.env.ContentRootPath)
+                    .AddJsonFile("appsettings.json").Build();
 
                 // define the database to use
                 optionsBuilder.UseSqlServer(config.GetConnectionString("DefaultConnection"));

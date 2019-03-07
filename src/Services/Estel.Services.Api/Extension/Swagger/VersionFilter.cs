@@ -19,6 +19,7 @@ namespace Estel.Services.Api.Extension.Swagger
                         path = path.Replace("{api-version}", swaggerDoc.Info.Version, StringComparison.Ordinal);
                         return (path, pathItem);
                     }
+
                 )
                 .ToDictionary();
         }

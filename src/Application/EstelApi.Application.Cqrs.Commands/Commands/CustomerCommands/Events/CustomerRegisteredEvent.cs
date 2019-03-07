@@ -3,16 +3,17 @@ using EstelApi.Core.Seedwork.CoreCqrs.Events;
 
 namespace EstelApi.Application.Cqrs.Commands.Commands.CustomerCommands.Events
 {
-    public class CustomerRegisteredEvent : VersionedEvent
+    public class CustomerRegisteredEvent : Event
     {
         public CustomerRegisteredEvent(Guid id, string name, string email, DateTime birthDate)
         {
-            Id = id;
-            Name = name;
-            Email = email;
-            BirthDate = birthDate;
-            AggregateId = id;
+            this.Id = id;
+            this.Name = name;
+            this.Email = email;
+            this.BirthDate = birthDate;
+            this.AggregateId = id;
         }
+
         public Guid Id { get; set; }
 
         public string Name { get; private set; }

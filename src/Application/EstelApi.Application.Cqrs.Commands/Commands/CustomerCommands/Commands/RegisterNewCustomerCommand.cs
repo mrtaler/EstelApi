@@ -6,9 +6,9 @@ namespace EstelApi.Application.Cqrs.Commands.Commands.CustomerCommands.Commands
     {
         public RegisterNewCustomerCommand(string name, string email, DateTime birthDate)
         {
-            Name = name;
-            Email = email;
-            BirthDate = birthDate;
+            this.Name = name;
+            this.Email = email;
+            this.BirthDate = birthDate;
         }
 
         public RegisterNewCustomerCommand()

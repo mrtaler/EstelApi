@@ -11,7 +11,7 @@ namespace EstelApi.Domain.DataAccessLayer.Context.Migrations
 {
     [DbContext(typeof(EstelContext))]
     [Migration("20190306062709_Init_EstelContext")]
-    partial class Init_EstelContext
+    partial class InitEstelContext
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

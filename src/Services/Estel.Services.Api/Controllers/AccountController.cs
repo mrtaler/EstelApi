@@ -15,9 +15,9 @@ namespace Estel.Services.Api.Controllers
     [ApiVersion("1.0")]
     public class AccountController : ApiController
     {
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly ILogger _logger;
+        private readonly UserManager<ApplicationUser> userManager;
+        private readonly SignInManager<ApplicationUser> signInManager;
+        private readonly ILogger logger;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
@@ -26,9 +26,9 @@ namespace Estel.Services.Api.Controllers
             ILoggerFactory loggerFactory,
             IMediator mediator) : base(notifications, mediator)
         {
-            _userManager = userManager;
-            _signInManager = signInManager;
-            _logger = loggerFactory.CreateLogger<AccountController>();
+            this.userManager = userManager;
+            this.signInManager = signInManager;
+            this.logger = loggerFactory.CreateLogger<AccountController>();
         }
 
         [HttpPost]
@@ -36,18 +36,17 @@ namespace Estel.Services.Api.Controllers
         [Route("account")]
         public async Task<IActionResult> Login([FromBody] LoginViewModel model)
         {
-            if (!ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
-                NotifyModelStateErrors();
-                return Response(model);
+                this.NotifyModelStateErrors();
+                return this.Response(model);
             }
 
-            var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, false, true);
-            if (!result.Succeeded)
-                NotifyError(result.ToString(), "Login failure");
+            var result = await this.signInManager.PasswordSignInAsync(model.Email, model.Password, false, true);
+            if (!result.Succeeded) this.NotifyError(result.ToString(), "Login failure");
 
-            _logger.LogInformation(1, "User logged in.");
-            return Response(model);
+            this.logger.LogInformation(1, "User logged in.");
+            return this.Response(model);
         }
 
         [HttpPost]
@@ -55,28 +54,28 @@ namespace Estel.Services.Api.Controllers
         [Route("account/register")]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
-            if (!ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
-                NotifyModelStateErrors();
-                return Response(model);
+                this.NotifyModelStateErrors();
+                return this.Response(model);
             }
 
             var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
 
-            var result = await _userManager.CreateAsync(user, model.Password);
+            var result = await this.userManager.CreateAsync(user, model.Password);
 
             if (result.Succeeded)
             {
                 // User claim for write customers data
-                await _userManager.AddClaimAsync(user, new Claim("Customers", "Write"));
+                await this.userManager.AddClaimAsync(user, new Claim("Customers", "Write"));
 
-                await _signInManager.SignInAsync(user, false);
-                _logger.LogInformation(3, "User created a new account with password.");
-                return Response(model);
+                await this.signInManager.SignInAsync(user, false);
+                this.logger.LogInformation(3, "User created a new account with password.");
+                return this.Response(model);
             }
 
-            AddIdentityErrors(result);
-            return Response(model);
+            this.AddIdentityErrors(result);
+            return this.Response(model);
         }
     }
 }

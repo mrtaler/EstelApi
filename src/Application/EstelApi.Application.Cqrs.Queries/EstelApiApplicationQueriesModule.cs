@@ -9,10 +9,10 @@ namespace EstelApi.Application.Cqrs.Queries
     {
         protected override void Load(ContainerBuilder builder)
         {
-            //builder.RegisterType<Mediator>().As<IMediator>().InstancePerLifetimeScope(); 
+            // builder.RegisterType<Mediator>().As<IMediator>().InstancePerLifetimeScope(); 
             builder.AddMediatR(
-                typeof(CustomerQueriesHandler).GetTypeInfo().Assembly//,
-                                                                     //  typeof(GetAreaAsIEnumerableQuery).GetTypeInfo().Assembly,
+                typeof(CustomerQueriesHandler).GetTypeInfo().Assembly// ,
+                                                                     // typeof(GetAreaAsIEnumerableQuery).GetTypeInfo().Assembly,
                                                                      /*  typeof(Area).GetTypeInfo().Assembly*/);
 
            // ContainerBuilderExtensions.AddMediatR(builder, IntrospectionExtensions.GetTypeInfo(typeof(CustomerCommandHandler)).Assembly);
@@ -33,9 +33,8 @@ namespace EstelApi.Application.Cqrs.Queries
                  .InstancePerLifetimeScope();*/
 
             // builder.RegisterType<CustomerQueriesHandler>().As<IRequestHandler<RegisterNewCustomerCommand, CommandResponse<CustomerDto>>>().InstancePerLifetimeScope();
-            //  builder.RegisterType<CustomerCommandHandler>().As<IRequestHandler<UpdateCustomerCommand, CommandResponse>>().InstancePerLifetimeScope();
-            //  builder.RegisterType<CustomerCommandHandler>().As<IRequestHandler<RemoveCustomerCommand, CommandResponse>>().InstancePerLifetimeScope();
-
+            // builder.RegisterType<CustomerCommandHandler>().As<IRequestHandler<UpdateCustomerCommand, CommandResponse>>().InstancePerLifetimeScope();
+            // builder.RegisterType<CustomerCommandHandler>().As<IRequestHandler<RemoveCustomerCommand, CommandResponse>>().InstancePerLifetimeScope();
         }
     }
 }

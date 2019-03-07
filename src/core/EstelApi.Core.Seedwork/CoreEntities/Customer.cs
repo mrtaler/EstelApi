@@ -6,10 +6,10 @@ namespace EstelApi.Core.Seedwork.CoreEntities
     {
         public Customer(Guid id, string name, string email, DateTime birthDate)
         {
-            Id = id;
-            Name = name;
-            Email = email;
-            BirthDate = birthDate;
+            this.Id = id;
+            this.Name = name;
+            this.Email = email;
+            this.BirthDate = birthDate;
         }
 
         // Empty constructor for EF

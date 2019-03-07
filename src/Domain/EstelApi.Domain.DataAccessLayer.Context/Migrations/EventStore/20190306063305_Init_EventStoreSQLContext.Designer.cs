@@ -11,7 +11,7 @@ namespace EstelApi.Domain.DataAccessLayer.Context.Migrations.EventStore
 {
     [DbContext(typeof(EventStoreSqlContext))]
     [Migration("20190306063305_Init_EventStoreSQLContext")]
-    partial class Init_EventStoreSQLContext
+    partial class InitEventStoreSqlContext
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

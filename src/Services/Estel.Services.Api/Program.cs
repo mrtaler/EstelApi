@@ -11,9 +11,9 @@ namespace Estel.Services.Api
     {
         public static int Main(string[] args)
         {
-            Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Debug()
-                //.MinimumLevel.Override("Microsoft", LogEventLevel.Information)
+            Log.Logger = new LoggerConfiguration().MinimumLevel.Debug()
+
+                // .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
                 .Enrich.FromLogContext()
                 .WriteTo.Console(
                     theme: Serilog.Sinks.SystemConsole.Themes.AnsiConsoleTheme.Code,

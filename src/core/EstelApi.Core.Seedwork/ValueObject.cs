@@ -5,14 +5,14 @@
         public override bool Equals(object obj)
         {
             var valueObject = obj as T;
-            return !ReferenceEquals(valueObject, null) && EqualsCore(valueObject);
+            return !ReferenceEquals(valueObject, null) && this.EqualsCore(valueObject);
         }
 
         protected abstract bool EqualsCore(T other);
 
         public override int GetHashCode()
         {
-            return GetHashCodeCore();
+            return this.GetHashCodeCore();
         }
 
         protected abstract int GetHashCodeCore();

@@ -6,7 +6,7 @@ namespace EstelApi.Application.Cqrs.Commands.Commands.CustomerCommands.Validatio
     {
         public RemoveCustomerCommandValidation()
         {
-            ValidateId();
+            this.ValidateId();
         }
     }
 }

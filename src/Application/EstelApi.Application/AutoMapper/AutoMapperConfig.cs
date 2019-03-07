@@ -1,14 +1,14 @@
 ﻿namespace EstelApi.Application.AutoMapper
 {
-   /* public class AutoMapperConfig
-    {
-        public static MapperConfiguration RegisterMappings()
+    /* public class AutoMapperConfig
         {
-            return new MapperConfiguration(cfg =>
+            public static MapperConfiguration RegisterMappings()
             {
-                cfg.AddProfile(new DomainToViewModelMappingProfile());
-                cfg.AddProfile(new ViewModelToDomainMappingProfile());
-            });
-        }
-    }*/
+                return new MapperConfiguration(cfg =>
+                {
+                    cfg.AddProfile(new DomainToViewModelMappingProfile());
+                    cfg.AddProfile(new ViewModelToDomainMappingProfile());
+                });
+            }
+        }*/
 }
