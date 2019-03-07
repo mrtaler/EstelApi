@@ -1,9 +1,9 @@
-﻿using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
-using EstelApi.Domain.DataAccessLayer.Context.Interfaces;
-using MediatR;
-
-namespace EstelApi.Application.Cqrs.Queries.Base
+﻿namespace EstelApi.Application.ApplicationCqrs.Base
 {
+    using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
+
+    using MediatR;
+
     public class QueryHandler
     {
         private readonly IQueryableUnitOfWork uow;

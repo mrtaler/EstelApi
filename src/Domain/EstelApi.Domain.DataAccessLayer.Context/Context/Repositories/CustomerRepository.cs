@@ -1,4 +1,4 @@
-﻿namespace EstelApi.Domain.DataAccessLayer.Context.Repository
+﻿namespace EstelApi.Domain.DataAccessLayer.Context.Context.Repositories
 {
     using System.Collections.Generic;
     using System.Linq;

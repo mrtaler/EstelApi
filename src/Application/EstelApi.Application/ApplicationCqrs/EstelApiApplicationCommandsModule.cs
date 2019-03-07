@@ -1,13 +1,15 @@
-﻿using System.Reflection;
-using Autofac;
-using EstelApi.Application.Cqrs.Commands.Commands.CustomerCommands;
-using EstelApi.Application.Cqrs.Commands.Commands.CustomerCommands.Events;
-using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
-using MediatR;
-using MediatR.Extensions.Autofac.DependencyInjection;
-
-namespace EstelApi.Application.Cqrs.Commands
+﻿namespace EstelApi.Application.ApplicationCqrs
 {
+    using System.Reflection;
+
+    using Autofac;
+
+    using EstelApi.Application.ApplicationCqrs.Commands.CustomerCommands;
+    using EstelApi.Application.ApplicationCqrs.Commands.CustomerCommands.Events;
+    using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
+
+    using MediatR;
+
     public class EstelApiApplicationCommandsModule :Autofac.Module
     {
         protected override void Load(ContainerBuilder builder)

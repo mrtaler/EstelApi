@@ -1,8 +1,9 @@
-﻿using System;
-using EstelApi.Core.Seedwork.CoreCqrs.Events;
-
-namespace EstelApi.Application.Cqrs.Commands.Commands.CustomerCommands.Events
+﻿namespace EstelApi.Application.ApplicationCqrs.Commands.CustomerCommands.Events
 {
+    using System;
+
+    using EstelApi.Core.Seedwork.CoreCqrs.Events;
+
     public class CustomerUpdatedEvent : Event
     {
         public CustomerUpdatedEvent(Guid id, string name, string email, DateTime birthDate)

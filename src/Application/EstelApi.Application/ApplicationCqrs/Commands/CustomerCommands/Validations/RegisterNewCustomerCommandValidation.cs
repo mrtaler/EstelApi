@@ -1,7 +1,7 @@
-﻿using EstelApi.Application.Cqrs.Commands.Commands.CustomerCommands.Commands;
-
-namespace EstelApi.Application.Cqrs.Commands.Commands.CustomerCommands.Validations
+﻿namespace EstelApi.Application.ApplicationCqrs.Commands.CustomerCommands.Validations
 {
+    using EstelApi.Application.ApplicationCqrs.Commands.CustomerCommands.Commands;
+
     public class RegisterNewCustomerCommandValidation : CustomerValidation<RegisterNewCustomerCommand>
     {
         public RegisterNewCustomerCommandValidation()

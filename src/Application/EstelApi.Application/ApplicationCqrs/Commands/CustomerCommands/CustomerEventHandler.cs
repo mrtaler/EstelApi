@@ -1,9 +1,9 @@
-﻿namespace EstelApi.Application.Cqrs.Commands.Commands.CustomerCommands
+﻿namespace EstelApi.Application.ApplicationCqrs.Commands.CustomerCommands
 {
     using System.Threading;
     using System.Threading.Tasks;
 
-    using EstelApi.Application.Cqrs.Commands.Commands.CustomerCommands.Events;
+    using EstelApi.Application.ApplicationCqrs.Commands.CustomerCommands.Events;
     using EstelApi.Core.Seedwork.CoreCqrs.Events;
 
     using MediatR;

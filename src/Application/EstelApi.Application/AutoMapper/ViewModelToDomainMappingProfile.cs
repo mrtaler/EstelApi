@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
-using EstelApi.Application.Cqrs.Commands.Commands.CustomerCommands.Commands;
+
 using EstelApi.Application.ViewModels.Customer;
 
 namespace EstelApi.Application.AutoMapper
 {
+    using EstelApi.Application.ApplicationCqrs.Commands.CustomerCommands.Commands;
+
     public class ViewModelToDomainMappingProfile : Profile
     {
         public ViewModelToDomainMappingProfile()

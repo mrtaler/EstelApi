@@ -1,4 +1,4 @@
-﻿namespace EstelApi.Application.Cqrs.Commands.Commands.CustomerCommands.Validations
+﻿namespace EstelApi.Application.ApplicationCqrs.Commands.CustomerCommands.Validations
 {
     /* public class UpdateCustomerCommandValidation : CustomerValidation<UpdateCustomerCommand>
         {

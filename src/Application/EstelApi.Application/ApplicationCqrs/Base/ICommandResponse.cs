@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using FluentValidation.Results;
-
-namespace EstelApi.Application.Cqrs.Commands.Base
+﻿namespace EstelApi.Application.ApplicationCqrs.Base
 {
+    using System.Collections.Generic;
+
     public interface ICommandResponse
     {
         bool IsSuccess { get; set; }

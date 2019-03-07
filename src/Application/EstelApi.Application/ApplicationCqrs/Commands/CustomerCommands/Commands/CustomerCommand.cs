@@ -1,13 +1,19 @@
-﻿using System;
-using EstelApi.Application.Cqrs.Commands.Base;
-using EstelApi.Core.Seedwork.CoreCqrs.Commands;
-using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
-using MediatR;
-
-namespace EstelApi.Application.Cqrs.Commands.Commands.CustomerCommands.Commands
+﻿namespace EstelApi.Application.ApplicationCqrs.Commands.CustomerCommands.Commands
 {
-    public abstract class CustomerCommand : Customer,ICommand, IValidated, IRequest<CommandResponse<Customer>>
+    using EstelApi.Application.ApplicationCqrs.Base;
+    using EstelApi.Application.Dto;
+    using EstelApi.Core.Seedwork.CoreCqrs.Commands;
+
+    using MediatR;
+
+    /// <summary>
+    /// The customer command.
+    /// </summary>
+    public abstract class CustomerCommand : CustomerDTO, ICommand, IValidated, IRequest<CommandResponse<CustomerDTO>>
     {
+        /// <summary>
+        /// Gets or sets a value indicating whether already validated.
+        /// </summary>
         public bool AlreadyValidated { get; set; }
     }
 }

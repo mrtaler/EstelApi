@@ -1,10 +1,11 @@
-﻿using System.Reflection;
-using Autofac;
-using EstelApi.Application.Cqrs.Queries.Queries.CustomerQueries;
-using MediatR.Extensions.Autofac.DependencyInjection;
-
-namespace EstelApi.Application.Cqrs.Queries
+﻿namespace EstelApi.Application.ApplicationCqrs
 {
+    using System.Reflection;
+
+    using Autofac;
+
+    using EstelApi.Application.ApplicationCqrs.Queries.CustomerQueries;
+
     public class EstelApiApplicationQueriesModule :Autofac.Module
     {
         protected override void Load(ContainerBuilder builder)

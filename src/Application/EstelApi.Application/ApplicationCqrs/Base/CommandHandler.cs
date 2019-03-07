@@ -1,9 +1,10 @@
-﻿using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
-using EstelApi.Domain.DataAccessLayer.Context.Interfaces;
-using MediatR;
-
-namespace EstelApi.Application.Cqrs.Commands.Base
+﻿namespace EstelApi.Application.ApplicationCqrs.Base
 {
+    using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
+    using EstelApi.Domain.DataAccessLayer.Context.Interfaces;
+
+    using MediatR;
+
     public class CommandHandler
     {
         private readonly IQueryableUnitOfWork uow;

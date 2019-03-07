@@ -3,8 +3,7 @@
     using Autofac;
 
     using EstelApi.Application;
-    using EstelApi.Application.Cqrs.Commands;
-    using EstelApi.Application.Cqrs.Queries;
+    using EstelApi.Application.ApplicationCqrs;
     using EstelApi.Core.Seedwork.Adapter;
     using EstelApi.Core.Seedwork.Adapter.Implementation;
     using EstelApi.CrossCutting.Bus;

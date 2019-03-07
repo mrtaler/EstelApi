@@ -4,8 +4,6 @@ using System.Threading.Tasks;
 
 using AutoMapper;
 
-using EstelApi.Application.Cqrs.Commands.Commands.CustomerCommands.Commands;
-using EstelApi.Application.Cqrs.Queries.Queries.CustomerQueries;
 using EstelApi.Application.EventSourcedNormalizers;
 using EstelApi.Application.Interfaces;
 using EstelApi.Application.ViewModels.Customer;
@@ -16,6 +14,8 @@ using MediatR;
 
 namespace EstelApi.Application.Services
 {
+    using EstelApi.Application.ApplicationCqrs.Commands.CustomerCommands.Commands;
+    using EstelApi.Application.ApplicationCqrs.Queries.CustomerQueries;
     using EstelApi.Application.Dto;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
 

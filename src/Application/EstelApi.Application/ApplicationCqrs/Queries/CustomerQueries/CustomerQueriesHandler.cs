@@ -1,14 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-using EstelApi.Application.Cqrs.Queries.Base;
-using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
-using EstelApi.Domain.DataAccessLayer.Context.Interfaces;
-using MediatR;
-
-namespace EstelApi.Application.Cqrs.Queries.Queries.CustomerQueries
+﻿namespace EstelApi.Application.ApplicationCqrs.Queries.CustomerQueries
 {
-    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
+    using System.Collections.Generic;
+    using System.Threading;
+    using System.Threading.Tasks;
+
+    using EstelApi.Application.ApplicationCqrs.Base;
+    using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
+
+    using MediatR;
 
     public class CustomerQueriesHandler : QueryHandler,
             IRequestHandler<AllCustomersQuery, IEnumerable<Customer>>,

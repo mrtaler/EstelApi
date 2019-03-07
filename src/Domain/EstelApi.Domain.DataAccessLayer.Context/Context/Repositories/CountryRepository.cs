@@ -1,10 +1,8 @@
-﻿namespace EstelApi.Domain.DataAccessLayer.Context.Repository
+﻿namespace EstelApi.Domain.DataAccessLayer.Context.Context.Repositories
 {
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CountryAgg;
     using EstelApi.Domain.DataAccessLayer.Context.Interfaces;
     using EstelApi.Domain.DataAccessLayer.Context.Repository.Base;
-
-    using Microsoft.Extensions.Logging;
 
     /// <inheritdoc cref="ICountryRepository" />
     public class CountryRepository
