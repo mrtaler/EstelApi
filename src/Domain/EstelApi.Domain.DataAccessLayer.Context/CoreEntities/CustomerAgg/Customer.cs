@@ -115,7 +115,7 @@
                 throw new ArgumentException("messages.GetStringResource(LocalizationKeys.Domain.exception_CannotAssociateTransientOrNullCountry)");
             }
 
-            this.CountryId = country.Id;
+           // this.CountryId = country.Id;
             this.Country = country;
         }
 

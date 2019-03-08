@@ -24,8 +24,7 @@
 
             // 3
             builder.RegisterModule(new EstelApiApplicationModule());
-            builder.RegisterModule(new EstelApiApplicationCommandsModule());
-            builder.RegisterModule(new EstelApiApplicationQueriesModule());
+            builder.RegisterModule(new EstelApiApplicationCqrsModule());
 
             builder.RegisterType<AutoMapperTypeAdapterFactory>().As<ITypeAdapterFactory>().InstancePerLifetimeScope();
 

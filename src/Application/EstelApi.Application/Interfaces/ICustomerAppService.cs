@@ -16,7 +16,7 @@
         /// </summary>
         /// <param name="customerDTO">The customer information</param>
         /// <returns>Added customer representation</returns>
-        CustomerDTO AddNewCustomer(CustomerDTO customerDTO);
+        Task<CustomerDTO> AddNewCustomer(CustomerDTO customerDTO);
 
         /// <summary>
         /// Update existing customer

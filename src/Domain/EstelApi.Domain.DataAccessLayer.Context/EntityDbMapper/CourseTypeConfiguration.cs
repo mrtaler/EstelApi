@@ -5,7 +5,7 @@ namespace EstelApi.Domain.DataAccessLayer.Context.EntityDbMapper
 {
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities;
 
-    public class CourseTypeConfiguration : IEntityTypeConfiguration<CourseType>
+   /* public class CourseTypeConfiguration : IEntityTypeConfiguration<CourseType>
     {
         public void Configure(EntityTypeBuilder<CourseType> builder)
         {
@@ -26,5 +26,5 @@ namespace EstelApi.Domain.DataAccessLayer.Context.EntityDbMapper
                 .WithOne(wo => wo.CourseType)
                 .HasForeignKey(fk => fk.CourseTypeId);
         }
-    }
+    }*/
 }

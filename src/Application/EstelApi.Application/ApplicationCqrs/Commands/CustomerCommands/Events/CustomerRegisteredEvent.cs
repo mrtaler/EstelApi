@@ -41,6 +41,7 @@
             this.AddressZipCode = addressZipCode;
             this.AddressAddressLine1 = addressAddressLine1;
             this.AddressAddressLine2 = addressAddressLine2;
+            this.AggregateId = id;
         }
 
 

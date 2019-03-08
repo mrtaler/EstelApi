@@ -2,6 +2,8 @@
 {
     using System.Collections.Generic;
 
+    using FluentValidation.Results;
+
     public interface ICommandResponse
     {
         bool IsSuccess { get; set; }

@@ -5,6 +5,7 @@
     /// <inheritdoc />
     public class RegisterNewCustomerCommand : CustomerCommand
     {
+        public RegisterNewCustomerCommand() { }
         /// <inheritdoc />
         public RegisterNewCustomerCommand(
             string firstName,

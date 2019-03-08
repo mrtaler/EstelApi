@@ -2,6 +2,8 @@
 {
     using System.Collections.Generic;
 
+    using FluentValidation.Results;
+
     public class CommandResponse<TEntity> : ICommandResponse<TEntity>
     {
         public CommandResponse()

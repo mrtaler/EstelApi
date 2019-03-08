@@ -5,7 +5,7 @@ namespace EstelApi.Domain.DataAccessLayer.Context.EntityDbMapper
 {
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities;
 
-    public class CoursesConfiguration : IEntityTypeConfiguration<Course>
+   /* public class CoursesConfiguration : IEntityTypeConfiguration<Course>
     {
         public void Configure(EntityTypeBuilder<Course> builder)
         {
@@ -17,5 +17,5 @@ namespace EstelApi.Domain.DataAccessLayer.Context.EntityDbMapper
                 .Property(b => b.CourseName)
                 .HasMaxLength(50);
         }
-    }
+    }*/
 }

@@ -8,6 +8,8 @@
     using System;
     using System.Threading.Tasks;
 
+    using EstelApi.Application.Dto;
+
     // [Authorize]
 
     /// <summary>
@@ -53,7 +55,7 @@
         [Route("customer-management")]
         public IActionResult Get()
         {
-            return this.Response(this.customerAppService.GetAll());
+            return this.Response(this.customerAppService.GetAllCustomers());
         }
 
         /// <summary>
@@ -71,7 +73,7 @@
         [Route("customer-management/{id:guid}")]
         public IActionResult Get(Guid id)
         {
-            var customerViewModel = this.customerAppService.GetById(id);
+            var customerViewModel = this.customerAppService.FindCustomer(id);
 
             return this.Response(customerViewModel);
         }
@@ -89,7 +91,7 @@
 
         // [Authorize(Policy = "CanWriteCustomerData")]
         [Route("customer-management")]
-        public async Task<IActionResult> Post([FromBody] CreateCustomerViewModel createCustomerViewModel)
+        public async Task<IActionResult> Post([FromBody] CustomerDTO createCustomerViewModel)
         {
             if (!this.ModelState.IsValid)
             {
@@ -97,7 +99,7 @@
                 return this.Response(createCustomerViewModel);
             }
 
-            var resp = await this.customerAppService.Register(createCustomerViewModel);
+            var resp = await this.customerAppService.AddNewCustomer(createCustomerViewModel);
             return this.Response(resp);
         }
 
@@ -112,40 +114,40 @@
         /// </returns>
         [HttpPut]
 
-        // [Authorize(Policy = "CanWriteCustomerData")]
-        [Route("customer-management")]
-        public IActionResult Put([FromBody] UpdateCustomerViewModel updateCustomerViewModel)
-        {
-            if (!this.ModelState.IsValid)
-            {
-                this.NotifyModelStateErrors();
-                return this.Response(updateCustomerViewModel);
-            }
+        /*  // [Authorize(Policy = "CanWriteCustomerData")]
+          [Route("customer-management")]
+          public IActionResult Put([FromBody] UpdateCustomerViewModel updateCustomerViewModel)
+          {
+              if (!this.ModelState.IsValid)
+              {
+                  this.NotifyModelStateErrors();
+                  return this.Response(updateCustomerViewModel);
+              }
 
-            this.customerAppService.Update(updateCustomerViewModel);
+              this.customerAppService.Update(updateCustomerViewModel);
 
-            return this.Response(updateCustomerViewModel);
-        }
+              return this.Response(updateCustomerViewModel);
+          }*/
 
-        /// <summary>
-        /// The delete.
-        /// </summary>
-        /// <param name="deleteCustomerViewModel">
-        /// The delete customer view model.
-        /// </param>
-        /// <returns>
-        /// The <see cref="IActionResult"/>.
-        /// </returns>
-        [HttpDelete]
+        /*   /// <summary>
+           /// The delete.
+           /// </summary>
+           /// <param name="deleteCustomerViewModel">
+           /// The delete customer view model.
+           /// </param>
+           /// <returns>
+           /// The <see cref="IActionResult"/>.
+           /// </returns>
+           [HttpDelete]
 
-        // [Authorize(Policy = "CanRemoveCustomerData")]
-        [Route("customer-management")]
-        public IActionResult Delete([FromBody] DeleteCustomerViewModel deleteCustomerViewModel)
-        {
-            this.customerAppService.Remove(deleteCustomerViewModel.Id);
+           // [Authorize(Policy = "CanRemoveCustomerData")]
+           [Route("customer-management")]
+           public IActionResult Delete([FromBody] DeleteCustomerViewModel deleteCustomerViewModel)
+           {
+               this.customerAppService.Remove(deleteCustomerViewModel.Id);
 
-            return this.Response();
-        }
+               return this.Response();
+           }*/
 
         /// <summary>
         /// The history.
@@ -156,9 +158,8 @@
         /// <returns>
         /// The <see cref="IActionResult"/>.
         /// </returns>
-        [HttpGet]
-
         // [AllowAnonymous]
+        [HttpGet]
         [Route("customer-management/history/{id:guid}")]
         public async Task<IActionResult> History(Guid id)
         {

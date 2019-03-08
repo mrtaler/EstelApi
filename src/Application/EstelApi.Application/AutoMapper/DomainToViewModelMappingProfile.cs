@@ -1,13 +1,17 @@
 ﻿using AutoMapper;
-using EstelApi.Application.ViewModels.Customer;
 
 namespace EstelApi.Application.AutoMapper
 {
+    using EstelApi.Application.Dto;
+    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
+
     public class DomainToViewModelMappingProfile : Profile
     {
         public DomainToViewModelMappingProfile()
         {
-            this.CreateMap<Customer, CustomerViewModelApp>();
+            this.CreateMap<Customer, CustomerDTO>()
+                .PreserveReferences()
+                .ReverseMap();
         }
     }
 }

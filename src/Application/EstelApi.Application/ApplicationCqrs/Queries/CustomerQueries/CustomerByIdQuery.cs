@@ -2,9 +2,12 @@
 {
     using System;
 
+    using EstelApi.Application.Dto;
+    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
+
     using MediatR;
 
-    public  class CustomerByIdQuery : IRequest<Customer>
+    public  class CustomerByIdQuery : IRequest<CustomerDTO>
     {
         public Guid Id { get; set; }
         public CustomerByIdQuery(Guid id)

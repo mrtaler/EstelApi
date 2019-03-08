@@ -4,7 +4,9 @@
 
     using EstelApi.Application.ApplicationCqrs.Commands.CustomerCommands.Commands;
 
-    public abstract class CustomerValidation<T> : AbstractValidator<T> where T : CustomerCommand
+    using FluentValidation;
+
+  /*  public abstract class CustomerValidation<T> : AbstractValidator<T> where T : CustomerCommand
     {
         protected void ValidateName()
         {
@@ -38,5 +40,5 @@
         {
             return birthDate <= DateTime.Now.AddYears(-18);
         }
-    }
+    }*/
 }

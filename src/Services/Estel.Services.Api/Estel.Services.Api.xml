@@ -79,7 +79,7 @@
             The <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/>.
             </returns>
         </member>
-        <member name="M:Estel.Services.Api.Controllers.CustomerController.Post(EstelApi.Application.ViewModels.Customer.CreateCustomerViewModel)">
+        <member name="M:Estel.Services.Api.Controllers.CustomerController.Post(EstelApi.Application.Dto.CustomerDTO)">
             <summary>
             The post.
             </summary>
@@ -90,34 +90,12 @@
             The <see cref="T:System.Threading.Tasks.Task"/>.
             </returns>
         </member>
-        <member name="M:Estel.Services.Api.Controllers.CustomerController.Put(EstelApi.Application.ViewModels.Customer.UpdateCustomerViewModel)">
+        <member name="M:Estel.Services.Api.Controllers.CustomerController.History(System.Guid)">
             <summary>
             The put.
             </summary>
             <param name="updateCustomerViewModel">
             The update customer view model.
-            </param>
-            <returns>
-            The <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/>.
-            </returns>
-        </member>
-        <member name="M:Estel.Services.Api.Controllers.CustomerController.Delete(EstelApi.Application.ViewModels.Customer.DeleteCustomerViewModel)">
-            <summary>
-            The delete.
-            </summary>
-            <param name="deleteCustomerViewModel">
-            The delete customer view model.
-            </param>
-            <returns>
-            The <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/>.
-            </returns>
-        </member>
-        <member name="M:Estel.Services.Api.Controllers.CustomerController.History(System.Guid)">
-            <summary>
-            The history.
-            </summary>
-            <param name="id">
-            The id.
             </param>
             <returns>
             The <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/>.

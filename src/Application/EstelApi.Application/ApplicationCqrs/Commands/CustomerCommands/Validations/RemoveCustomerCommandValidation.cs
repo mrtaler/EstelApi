@@ -2,11 +2,11 @@
 {
     using EstelApi.Application.ApplicationCqrs.Commands.CustomerCommands.Commands;
 
-    public class RemoveCustomerCommandValidation : CustomerValidation<RemoveCustomerCommand>
+   /* public class RemoveCustomerCommandValidation : CustomerValidation<RemoveCustomerCommand>
     {
         public RemoveCustomerCommandValidation()
         {
             this.ValidateId();
         }
-    }
+    }*/
 }

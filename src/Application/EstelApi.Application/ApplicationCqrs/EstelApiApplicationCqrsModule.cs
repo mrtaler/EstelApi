@@ -9,8 +9,9 @@
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
 
     using MediatR;
+    using MediatR.Extensions.Autofac.DependencyInjection;
 
-    public class EstelApiApplicationCommandsModule :Autofac.Module
+    public class EstelApiApplicationCqrsModule :Autofac.Module
     {
         protected override void Load(ContainerBuilder builder)
         {
