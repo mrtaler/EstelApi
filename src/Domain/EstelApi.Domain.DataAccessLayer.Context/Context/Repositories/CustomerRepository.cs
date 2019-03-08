@@ -58,7 +58,7 @@
             if (this.UnitOfWork is EstelContext currentUnitOfWork)
             {
                 currentUnitOfWork.ApplyCurrentValues(persisted, current);
-               // currentUnitOfWork.ApplyCurrentValues(persisted.Picture, current.Picture);
+                currentUnitOfWork.ApplyCurrentValues(persisted.Picture, current.Picture);
             }
         }
     }
