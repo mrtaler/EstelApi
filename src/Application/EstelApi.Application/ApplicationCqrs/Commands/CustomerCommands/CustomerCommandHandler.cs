@@ -20,7 +20,7 @@
     /// The customer command handler.
     /// </summary>
     public class CustomerCommandHandler : CommandHandler,
-        IRequestHandler<RegisterNewCustomerCommand, CommandResponse<CustomerDTO>>
+        IRequestHandler<RegisterNewCustomerCommand, CommandResponse<CustomerDto>>
     {
         /// <summary>
         /// The _customer repository.
@@ -30,7 +30,7 @@
         /// <summary>
         /// The _country repository.
         /// </summary>
-        private readonly ICountryRepository _countryRepository;
+        private readonly ICountryRepository countryRepository;
 
         /// <summary>
         /// The _bus.
@@ -64,7 +64,7 @@
             : base(uow, bus, notifications)
         {
             this.customerRepository = customerRepository;
-            this._countryRepository = countryRepository;
+            this.countryRepository = countryRepository;
             this.bus = bus;
         }
 
@@ -80,7 +80,7 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        public async Task<CommandResponse<CustomerDTO>> Handle(
+        public async Task<CommandResponse<CustomerDto>> Handle(
             RegisterNewCustomerCommand message,
             CancellationToken cancellationToken)
         {
@@ -91,13 +91,12 @@
                 return Task.FromResult(false);
             }
             */
-
             if (message == null || message.CountryId == Guid.Empty)
             {
                 await this.bus.Publish(
                     new DomainNotification(message.GetType().Name, "_resources.GetStringResource(LocalizationKeys.Application.warning_CannotAddCustomerWithEmptyInformation)"),
                     cancellationToken);
-                return new CommandResponse<CustomerDTO>
+                return new CommandResponse<CustomerDto>
                 {
                     IsSuccess = false,
                     Message = "_resources.GetStringResource(LocalizationKeys.Application.warning_CannotAddCustomerWithEmptyInformation)",
@@ -106,7 +105,7 @@
                 throw new ArgumentException("_resources.GetStringResource(LocalizationKeys.Application.warning_CannotAddCustomerWithEmptyInformation)");
             }
 
-            var country = this._countryRepository.GetById(message.CountryId);
+            var country = this.countryRepository.GetById(message.CountryId);
 
             if (country != null)
             {
@@ -143,17 +142,17 @@
                         cancellationToken);
                 }
 
-                return new CommandResponse<CustomerDTO>
+                return new CommandResponse<CustomerDto>
                 {
                     IsSuccess = true,
                     Message = "New Entity was added",
-                    Object = customer.ProjectedAs<CustomerDTO>()
+                    Object = customer.ProjectedAs<CustomerDto>()
                 };
 
             }
             else
             {
-                return new CommandResponse<CustomerDTO>
+                return new CommandResponse<CustomerDto>
                 {
                     IsSuccess = false,
                     Message = "_resources.GetStringResource(LocalizationKeys.Application.warning_CannotAddCustomerWithEmptyInformation)",

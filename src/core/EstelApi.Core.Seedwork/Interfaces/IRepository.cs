@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace EstelApi.Core.Seedwork.Interfaces
+﻿namespace EstelApi.Core.Seedwork.Interfaces
 {
+    using System;
+    using System.Collections.Generic;
+
+    /// <inheritdoc cref="T:IReadableRepository" />
     /// <summary>
-    /// The Repository <see langword="interface"/>.
+    /// The Repository <see langword="interface" />.
     /// </summary>
     /// <typeparam name="TEntity">db Entities
     /// </typeparam>
@@ -12,7 +13,7 @@ namespace EstelApi.Core.Seedwork.Interfaces
         where TEntity : class
     {
         /// <summary>
-        /// Get the unit of work in this repository
+        /// Gets the unit of work in this repository
         /// </summary>
         IUnitOfWork UnitOfWork { get; }
 
@@ -22,9 +23,6 @@ namespace EstelApi.Core.Seedwork.Interfaces
         /// <param name="item">
         /// Item to add to repository
         /// </param>
-        /// <returns>
-        /// The <see cref="int"/>new id for Added entity
-        /// </returns>
         void Add(TEntity item);
 
         /// <summary>
@@ -45,6 +43,12 @@ namespace EstelApi.Core.Seedwork.Interfaces
         /// <param name="items">Items to delete</param>
         void Remove(IEnumerable<TEntity> items);
 
+        /// <summary>
+        /// The remove.
+        /// </summary>
+        /// <param name="id">
+        /// The id.
+        /// </param>
         void Remove(object id);
 
         /// <summary>
@@ -60,17 +64,19 @@ namespace EstelApi.Core.Seedwork.Interfaces
         void Update(IEnumerable<TEntity> items);
 
         /// <summary>
-        ///Track entity into this repository, really in UnitOfWork. 
-        ///In EF this can be done with Attach and with Update in NH
+        /// Track entity into this repository, really in UnitOfWork. 
+        /// In EF this can be done with Attach and with Update in NH
         /// </summary>
         /// <param name="item">Item to attach</param>
         void TrackItem(TEntity item);
 
         /// <summary>
-        ///Track entity into this repository, really in UnitOfWork. 
-        ///In EF this can be done with Attach and with Update in NH
+        /// Track entity into this repository, really in UnitOfWork. 
+        /// In EF this can be done with Attach and with Update in NH
         /// </summary>
-        /// <param name="items">Items to attach</param>
+        /// <param name="item">
+        /// The item.
+        /// </param>
         void TrackItem(IEnumerable<TEntity> item);
 
         /// <summary>
@@ -85,7 +91,7 @@ namespace EstelApi.Core.Seedwork.Interfaces
         /// <summary>
         /// Refresh entity. Note. This generates adhoc queries.
         /// </summary>
-        /// <param name="entity"></param>
+        /// <param name="entity">db Entity</param>
         void Refresh(TEntity entity);
     }
 }

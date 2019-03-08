@@ -1,12 +1,17 @@
-﻿using System.Collections.Generic;
-
-namespace EstelApi.Core.Seedwork.Interfaces
+﻿namespace EstelApi.Core.Seedwork.Interfaces
 {
-    public interface IReadableRepository<TEntity>
+    using System.Collections.Generic;
+
+    /// <summary>
+    /// The ReadableRepository interface.
+    /// </summary>
+    /// <typeparam name="TEntity">entity in Db
+    /// </typeparam>
+    public interface IReadableRepository<out TEntity>
         where TEntity : class
     {
         /// <summary>
-        /// <see cref="Get"/> all elements of type TEntity in repository
+        /// Get all elements of type TEntity in repository
         /// </summary>
         /// <returns>List of selected elements</returns>
         IEnumerable<TEntity> GetAll();

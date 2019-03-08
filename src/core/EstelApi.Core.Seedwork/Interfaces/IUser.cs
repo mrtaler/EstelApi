@@ -25,7 +25,7 @@
         /// The get claims identity.
         /// </summary>
         /// <returns>
-        /// The <see cref="IEnumerable"/>.
+        /// The <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
         /// </returns>
         IEnumerable<Claim> GetClaimsIdentity();
     }

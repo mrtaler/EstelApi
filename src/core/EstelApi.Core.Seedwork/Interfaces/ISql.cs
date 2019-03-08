@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
-
-namespace EstelApi.Core.Seedwork.Interfaces
+﻿namespace EstelApi.Core.Seedwork.Interfaces
 {
+    using System.Collections.Generic;
+
+    /// <summary>
+    /// The Sql interface.
+    /// </summary>
     public interface ISql
     {
         /// <summary>
@@ -28,7 +31,7 @@ namespace EstelApi.Core.Seedwork.Interfaces
         /// <example>
         /// SELECT idCustomer,Name FROM dbo.[Customers] WHERE idCustomer > {0}
         /// </example>
-        ///</param>
+        /// </param>
         /// <param name="parameters">A vector of parameters values</param>
         /// <returns>The number of affected records</returns>
         int ExecuteCommand(string sqlCommand, params object[] parameters);

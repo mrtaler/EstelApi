@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
-
-namespace EstelApi.Core.Seedwork.Adapter
+﻿namespace EstelApi.Core.Seedwork.Adapter
 {
+    using System.Collections.Generic;
+
+    /// <summary>
+    /// The auto mapper projections extension methods.
+    /// </summary>
     public static class AutoMapperProjectionsExtensionMethods
     {
         /// <summary>

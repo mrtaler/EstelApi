@@ -1,11 +1,16 @@
-﻿using System;
-using System.Linq;
-using Swashbuckle.AspNetCore.Swagger;
-using Swashbuckle.AspNetCore.SwaggerGen;
-using TupleExtensions;
-
-namespace Estel.Services.Api.Extension.Swagger
+﻿namespace Estel.Services.Api.Extension.Swagger
 {
+    using System;
+    using System.Linq;
+
+    using Swashbuckle.AspNetCore.Swagger;
+    using Swashbuckle.AspNetCore.SwaggerGen;
+
+    using TupleExtensions;
+
+    /// <summary>
+    /// The version filter.
+    /// </summary>
     internal class VersionFilter : IDocumentFilter, IOperationFilter
     {
         /// <inheritdoc />
@@ -15,12 +20,10 @@ namespace Estel.Services.Api.Extension.Swagger
                 .Select(
                     kvp =>
                     {
-                        (var path, var pathItem) = kvp;
+                        var (path, pathItem) = kvp;
                         path = path.Replace("{api-version}", swaggerDoc.Info.Version, StringComparison.Ordinal);
                         return (path, pathItem);
-                    }
-
-                )
+                    })
                 .ToDictionary();
         }
 

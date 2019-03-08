@@ -9,7 +9,7 @@
     /// <summary>
     /// The customer command.
     /// </summary>
-    public abstract class CustomerCommand : CustomerDTO, ICommand, IValidated, IRequest<CommandResponse<CustomerDTO>>
+    public abstract class CustomerCommand : CustomerDto, ICommand, IValidated, IRequest<CommandResponse<CustomerDto>>
     {
         /// <summary>
         /// Gets or sets a value indicating whether already validated.

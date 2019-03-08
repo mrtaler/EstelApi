@@ -10,23 +10,23 @@ namespace EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CountryAgg
     public class Country
         : EntityGuid
     {
-        //required by EF
+        // required by EF
         private Country() { }
 
-        public Country(string countryName, string countryISOCode)
+        public Country(string countryName, string countryIsoCode)
         {
-            if (String.IsNullOrWhiteSpace(countryName))
+            if (string.IsNullOrWhiteSpace(countryName))
             {
                 throw new ArgumentNullException("countryName");
             }
 
-            if (String.IsNullOrWhiteSpace(countryISOCode))
+            if (string.IsNullOrWhiteSpace(countryIsoCode))
             {
-                throw new ArgumentNullException("countryISOCode");
+                throw new ArgumentNullException("countryIsoCode");
             }
 
             this.CountryName = countryName;
-            this.CountryISOCode = countryISOCode;
+            this.CountryIsoCode = countryIsoCode;
         }
 
         /// <summary>
@@ -37,6 +37,6 @@ namespace EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CountryAgg
         /// <summary>
         /// Gets the Country ISO Code
         /// </summary>
-        public string CountryISOCode { get; private set; }
+        public string CountryIsoCode { get; private set; }
     }
 }

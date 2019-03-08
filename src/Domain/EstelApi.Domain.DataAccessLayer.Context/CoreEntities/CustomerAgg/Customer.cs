@@ -13,6 +13,7 @@
         /// </summary>
         private bool isEnabled;
         
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Customer"/> class.
         /// </summary>

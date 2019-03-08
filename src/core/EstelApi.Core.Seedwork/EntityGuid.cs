@@ -4,35 +4,61 @@
 
     using EstelApi.Core.Seedwork.Interfaces;
 
+    /// <inheritdoc cref="Entity" />
+    /// <summary>
+    /// The entity guid.
+    /// </summary>
     public abstract class EntityGuid : Entity, IEntity<Guid>
     {
-        #region Members
+        /// <summary>
+        /// The requested hash code.
+        /// </summary>
+        private int? requestedHashCode;
 
-        int? _requestedHashCode;
-        Guid _Id;
-
-        #endregion
-
-        #region Properties
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets or sets the persistent object identifier
+        /// </summary>
+        public virtual Guid Id { get; set; }
 
         /// <summary>
-        /// Get the persisten object identifier
+        /// The ==.
         /// </summary>
-        public virtual Guid Id
+        /// <param name="left">
+        /// The left.
+        /// </param>
+        /// <param name="right">
+        /// The right.
+        /// </param>
+        /// <returns>true if equal
+        /// </returns>
+        public static bool operator ==(EntityGuid left, EntityGuid right)
         {
-            get
+            if (object.Equals(left, null))
             {
-                return this._Id;
+                return object.Equals(right, null) ? true : false;
             }
-            set
+            else
             {
-                this._Id = value;
+                return left.Equals(right);
             }
         }
 
-        #endregion
-
-        #region Public Methods
+        /// <summary>
+        /// The !=.
+        /// </summary>
+        /// <param name="left">
+        /// The left.
+        /// </param>
+        /// <param name="right">
+        /// The right.
+        /// </param>
+        /// <returns>true if not equal
+        /// </returns>
+        public static bool operator !=(EntityGuid left, EntityGuid right)
+        {
+            return !(left == right);
+        }
 
         /// <summary>
         /// Check if this entity is transient, ie, without identity at this moment
@@ -49,7 +75,9 @@
         public void GenerateNewIdentity()
         {
             if (this.IsTransient())
+            {
                 this.Id = IdentityGenerator.NewSequentialGuid();
+            }
         }
 
         /// <summary>
@@ -59,65 +87,61 @@
         public void ChangeCurrentIdentity(Guid identity)
         {
             if (identity != Guid.Empty)
+            {
                 this.Id = identity;
+            }
         }
-
-        #endregion
-
-        #region Overrides Methods
 
         /// <summary>
         /// <see cref="M:System.Object.Equals"/>
         /// </summary>
-        /// <param name="obj"><see cref="M:System.Object.Equals"/></param>
-        /// <returns><see cref="M:System.Object.Equals"/></returns>
+        /// <param name="obj"><see cref="M:System.Object.Equals"/>entity for equaling</param>
+        /// <returns><see cref="M:System.Object.Equals"/>true if equal</returns>
         public override bool Equals(object obj)
         {
-            if (obj == null || !(obj is EntityGuid))
+            if (!(obj is EntityGuid))
+            {
                 return false;
+            }
 
-            if (Object.ReferenceEquals(this, obj))
+            if (ReferenceEquals(this, obj))
+            {
                 return true;
+            }
 
-            EntityGuid item = (EntityGuid)obj;
+            var item = (EntityGuid)obj;
 
             if (item.IsTransient() || this.IsTransient())
+            {
                 return false;
+            }
             else
+            {
                 return item.Id == this.Id;
+            }
         }
 
         /// <summary>
-        /// <see cref="M:System.Object.GetHashCode"/>
+        /// The get hash code.
         /// </summary>
-        /// <returns><see cref="M:System.Object.GetHashCode"/></returns>
+        /// <returns>
+        /// The <see cref="int"/>.
+        /// </returns>
         public override int GetHashCode()
         {
             if (!this.IsTransient())
             {
-                if (!this._requestedHashCode.HasValue)
-                    this._requestedHashCode = this.Id.GetHashCode() ^ 31; // XOR for random distribution (http://blogs.msdn.com/b/ericlippert/archive/2011/02/28/guidelines-and-rules-for-gethashcode.aspx)
+                if (!this.requestedHashCode.HasValue)
+                {
+                    this.requestedHashCode = this.Id.GetHashCode() ^ 31; // XOR for random distribution (http://blogs.msdn.com/b/ericlippert/archive/2011/02/28/guidelines-and-rules-for-gethashcode.aspx)
+}
 
-                return this._requestedHashCode.Value;
+                return this.requestedHashCode.Value;
             }
             else
+            {
                 return base.GetHashCode();
-
+            }
         }
-
-        public static bool operator ==(EntityGuid left, EntityGuid right)
-        {
-            if (Object.Equals(left, null))
-                return (Object.Equals(right, null)) ? true : false;
-            else
-                return left.Equals(right);
-        }
-
-        public static bool operator !=(EntityGuid left, EntityGuid right)
-        {
-            return !(left == right);
-        }
-
-        #endregion
     }
 }

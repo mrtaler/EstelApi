@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class CustomerListDTO
+    public class CustomerListDto
     {
         /// <summary>
         /// The customer identifier

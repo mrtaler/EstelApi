@@ -1,45 +1,31 @@
-﻿using System.Runtime.Serialization;
-
-namespace Estel.Services.Api.Extension.Exception
+﻿namespace Estel.Services.Api.Extension.Exception
 {
     using System;
+    using System.Runtime.Serialization;
 
-    public abstract class ApiErrorException : System.Exception
+    /// <inheritdoc />
+    public abstract class ApiErrorException : Exception
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ApiErrorException"/> class.
-        /// </summary>
+        /// <inheritdoc />
         protected ApiErrorException(string message)
             : base(message)
         {
         }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ApiErrorException"/> class.
-        /// </summary>
+        /// <inheritdoc />
         protected ApiErrorException(string message, Exception innerException)
             : base(message, innerException)
         {
         }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ApiErrorException"/> class.
-        /// </summary>
-        protected ApiErrorException()
-            : base()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ApiErrorException"/> class.
-        /// </summary>
+        /// <inheritdoc />
         protected ApiErrorException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }
 
         /// <summary>
-        /// A user-visible description of the error.
+        /// Gets user-visible description of the error.
         /// </summary>
         public abstract string Description { get; }
     }

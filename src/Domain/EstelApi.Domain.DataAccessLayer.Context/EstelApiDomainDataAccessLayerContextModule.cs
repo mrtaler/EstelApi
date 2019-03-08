@@ -18,11 +18,11 @@ namespace EstelApi.Domain.DataAccessLayer.Context
         {
             builder
                 /*.Register(c => new EstelContext(
-                                    new DbContextOptionsBuilder<EstelContext>()
-                                        .UseSqlServer(c.Resolve<IOptions<ConnectionSettings>>().Value.EFConnectionString)
-                                        // .UseLazyLoadingProxies()
-                                        .Options
-                                ))*/
+                                                    new DbContextOptionsBuilder<EstelContext>()
+                                                        .UseSqlServer(c.Resolve<IOptions<ConnectionSettings>>().Value.EFConnectionString)
+                                                        // .UseLazyLoadingProxies()
+                                                        .Options
+                                                ))*/
                 .RegisterType<EstelContext>()
 
                 // .AsSelf().InstancePerLifetimeScope(); ;

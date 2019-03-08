@@ -2,6 +2,7 @@
 {
     using Microsoft.AspNetCore.Identity;
 
+    /// <inheritdoc />
     /// <summary>
     /// The application role claim.
     /// </summary>

@@ -1,14 +1,15 @@
 ﻿namespace Estel.Services.Api.Controllers
 {
-    using EstelApi.Application.Interfaces;
-    using EstelApi.Application.ViewModels.Customer;
-    using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
-    using MediatR;
-    using Microsoft.AspNetCore.Mvc;
     using System;
     using System.Threading.Tasks;
 
     using EstelApi.Application.Dto;
+    using EstelApi.Application.Interfaces;
+    using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
+
+    using MediatR;
+
+    using Microsoft.AspNetCore.Mvc;
 
     // [Authorize]
 
@@ -91,7 +92,7 @@
 
         // [Authorize(Policy = "CanWriteCustomerData")]
         [Route("customer-management")]
-        public async Task<IActionResult> Post([FromBody] CustomerDTO createCustomerViewModel)
+        public async Task<IActionResult> Post([FromBody] CustomerDto createCustomerViewModel)
         {
             if (!this.ModelState.IsValid)
             {
@@ -103,16 +104,16 @@
             return this.Response(resp);
         }
 
-        /// <summary>
-        /// The put.
-        /// </summary>
-        /// <param name="updateCustomerViewModel">
-        /// The update customer view model.
-        /// </param>
-        /// <returns>
-        /// The <see cref="IActionResult"/>.
-        /// </returns>
-        [HttpPut]
+        ///// <summary>
+        ///// The put.
+        ///// </summary>
+        ///// <param name="updateCustomerViewModel">
+        ///// The update customer view model.
+        ///// </param>
+        ///// <returns>
+        ///// The <see cref="IActionResult"/>.
+        ///// </returns>
+        ///// [HttpPut]
 
         /*  // [Authorize(Policy = "CanWriteCustomerData")]
           [Route("customer-management")]
@@ -158,7 +159,7 @@
         /// <returns>
         /// The <see cref="IActionResult"/>.
         /// </returns>
-        // [AllowAnonymous]
+        /// [AllowAnonymous]
         [HttpGet]
         [Route("customer-management/history/{id:guid}")]
         public async Task<IActionResult> History(Guid id)

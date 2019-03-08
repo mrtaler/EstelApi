@@ -7,12 +7,14 @@
     /// <inheritdoc cref="IAuditableEntity" />
     public abstract class AuditableEntity : Entity, IAuditableEntity
     { 
+
         /// <inheritdoc/>
         public string CreatedBy { get; set; }
 
         /// <inheritdoc/>
         public DateTime CreatedAt { get; set; }
         
+
         /// <inheritdoc/>
         public string LastModifiedBy { get; set; }
 

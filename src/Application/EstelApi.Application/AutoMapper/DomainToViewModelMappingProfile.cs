@@ -9,7 +9,7 @@ namespace EstelApi.Application.AutoMapper
     {
         public DomainToViewModelMappingProfile()
         {
-            this.CreateMap<Customer, CustomerDTO>()
+            this.CreateMap<Customer, CustomerDto>()
                 .PreserveReferences()
                 .ReverseMap();
         }

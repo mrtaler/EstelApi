@@ -1,55 +1,67 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-
-using Autofac;
-using Autofac.Extensions.DependencyInjection;
-
-using AutoMapper;
-
-using Estel.Services.Api.Configurations;
-using Estel.Services.Api.Extension.Exception;
-using Estel.Services.Api.Extension.Swagger;
-
-using EstelApi.Core.Seedwork.Adapter;
-using EstelApi.CrossCutting.Identity.Authorization;
-using EstelApi.CrossCutting.Identity.IdentityContext;
-using EstelApi.CrossCutting.Identity.IdentityModels;
-using EstelApi.CrossCutting.Identity.IdentityServices;
-using EstelApi.CrossCutting.IoC;
-
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ApiExplorer;
-using Microsoft.AspNetCore.Mvc.Formatters;
-using Microsoft.AspNetCore.Rewrite;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.FileProviders;
-using Microsoft.Extensions.Logging;
-
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
-
-using Serilog;
-
-using ILogger = Serilog.ILogger;
-
-namespace Estel.Services.Api
+﻿namespace Estel.Services.Api
 {
+    using Autofac;
+    using Autofac.Extensions.DependencyInjection;
+    using AutoMapper;
+    using Estel.Services.Api.Configurations;
+    using Estel.Services.Api.Extension.Exception;
+    using Estel.Services.Api.Extension.Swagger;
+    using EstelApi.Core.Seedwork.Adapter;
+    using EstelApi.CrossCutting.Identity.Authorization;
+    using EstelApi.CrossCutting.Identity.IdentityContext;
+    using EstelApi.CrossCutting.Identity.IdentityModels;
+    using EstelApi.CrossCutting.Identity.IdentityServices;
+    using EstelApi.CrossCutting.IoC;
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.ApiExplorer;
+    using Microsoft.AspNetCore.Mvc.Formatters;
+    using Microsoft.AspNetCore.Rewrite;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.FileProviders;
+    using Microsoft.Extensions.Logging;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Serialization;
+    using Serilog;
+    using System;
+    using System.IO;
+    using System.Linq;
+    using ILogger = Serilog.ILogger;
+
+    /// <summary>
+    /// The startup.
+    /// </summary>
     public class Startup
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Startup"/> class.
+        /// </summary>
+        /// <param name="configuration">
+        /// The configuration.
+        /// </param>
         public Startup(IConfiguration configuration)
         {
             this.Configuration = configuration;
         }
 
+        /// <summary>
+        /// Gets the configuration.
+        /// </summary>
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        /// <summary>
+        /// This method gets called by the runtime. Use this method to add services to the container.
+        /// </summary>
+        /// <param name="services">
+        /// The services.
+        /// </param>
+        /// <returns>
+        /// The <see cref="IServiceProvider"/>.
+        /// </returns>
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             var builder = new ContainerBuilder();
@@ -118,10 +130,26 @@ namespace Estel.Services.Api
             TypeAdapterFactory.SetCurrent(container.Resolve<ITypeAdapterFactory>());
 
             return new AutofacServiceProvider(container);
-
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// <summary>
+        /// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// </summary>
+        /// <param name="app">
+        /// The app.
+        /// </param>
+        /// <param name="env">
+        /// The env.
+        /// </param>
+        /// <param name="provider">
+        /// The provider.
+        /// </param>
+        /// <param name="loggerFactory">
+        /// The logger factory.
+        /// </param>
+        /// <param name="logger">
+        /// The logger.
+        /// </param>
         public void Configure(
             IApplicationBuilder app,
             IHostingEnvironment env,
@@ -136,18 +164,10 @@ namespace Estel.Services.Api
             option.AddRedirect("^$", "swagger");
             app.UseRewriter(option);
 
-            // if (env.IsDevelopment())
-            // {
             app.UseDeveloperExceptionPage();
             app.UseDatabaseErrorPage();
 
-            // }
-            // else
-            // {
-            // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
             app.UseHsts();
-
-            // }
             app.UseDefaultFiles();
 
             var staticFilePath = Path.Combine(Directory.GetCurrentDirectory(), "ContentFolder");
@@ -157,10 +177,10 @@ namespace Estel.Services.Api
             }
 
             var strFileOptions = new StaticFileOptions()
-                                     {
-                                         FileProvider = new PhysicalFileProvider(staticFilePath),
-                                         ServeUnknownFileTypes = true
-                                     };
+            {
+                FileProvider = new PhysicalFileProvider(staticFilePath),
+                ServeUnknownFileTypes = true
+            };
 
             app.UseStaticFiles(strFileOptions);
 
@@ -191,6 +211,12 @@ namespace Estel.Services.Api
             app.UseMvc();
         }
 
+        /// <summary>
+        /// The log configuration.
+        /// </summary>
+        /// <param name="logger">
+        /// The logger.
+        /// </param>
         private void LogConfiguration(ILogger logger)
         {
             logger.Information("Using environment: {Environment}");
@@ -199,9 +225,7 @@ namespace Estel.Services.Api
                 Environment.NewLine,
                 string.Join(
                     Environment.NewLine,
-                    this.Configuration.AsEnumerable().Select(conf => $"{conf.Key} = {conf.Value}")
-                )
-            );
+                    this.Configuration.AsEnumerable().Select(conf => $"{conf.Key} = {conf.Value}")));
         }
     }
 }

@@ -11,10 +11,9 @@ namespace EstelApi.Application.AutoMapper
     {
         public ViewModelToDomainMappingProfile()
         {
-            this.CreateMap<CustomerDTO, RegisterNewCustomerCommand>()
-                .PreserveReferences()
-                .ReverseMap();
-            //     .ConstructUsing(c => new RegisterNewCustomerCommand(c.Name, c.Email, c.BirthDate));
+            this.CreateMap<CustomerDto, RegisterNewCustomerCommand>().PreserveReferences().ReverseMap();
+
+            // .ConstructUsing(c => new RegisterNewCustomerCommand(c.Name, c.Email, c.BirthDate));
             /* this.CreateMap<UpdateCustomerViewModel, UpdateCustomerCommand>()
                  .ConstructUsing(c => new UpdateCustomerCommand(c.Id, c.Name, c.Email, c.BirthDate));*/
         }

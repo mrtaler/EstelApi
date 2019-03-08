@@ -1,16 +1,30 @@
-﻿using System;
-using MediatR;
-
-namespace EstelApi.Core.Seedwork.CoreCqrs.Events
+﻿namespace EstelApi.Core.Seedwork.CoreCqrs.Events
 {
+    using System;
+
+    using MediatR;
+
+    /// <summary>
+    /// The message.
+    /// </summary>
     public abstract class Message : IRequest<bool>
     {
-        public string MessageType { get; protected set; }
-        public Guid AggregateId { get; protected set; }
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Message"/> class.
+        /// </summary>
         protected Message()
         {
             this.MessageType = this.GetType().Name;
         }
+
+        /// <summary>
+        /// Gets or sets the message type.
+        /// </summary>
+        public string MessageType { get; protected set; }
+
+        /// <summary>
+        /// Gets or sets the aggregate id.
+        /// </summary>
+        public Guid AggregateId { get; protected set; }
     }
 }

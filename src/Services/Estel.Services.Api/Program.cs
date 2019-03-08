@@ -1,14 +1,28 @@
-﻿using System;
-using System.IO;
-using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Serilog;
-
-namespace Estel.Services.Api
+﻿namespace Estel.Services.Api
 {
+    using System;
+    using System.IO;
+
+    using Microsoft.AspNetCore;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.Extensions.Configuration;
+
+    using Serilog;
+
+    /// <summary>
+    /// The program.
+    /// </summary>
     public class Program
     {
+        /// <summary>
+        /// The main.
+        /// </summary>
+        /// <param name="args">
+        /// The args.
+        /// </param>
+        /// <returns>
+        /// The <see cref="int"/>.
+        /// </returns>
         public static int Main(string[] args)
         {
             Log.Logger = new LoggerConfiguration().MinimumLevel.Debug()
@@ -36,6 +50,15 @@ namespace Estel.Services.Api
             }
         }
 
+        /// <summary>
+        /// The create web host builder.
+        /// </summary>
+        /// <param name="args">
+        /// The args.
+        /// </param>
+        /// <returns>
+        /// The <see cref="IWebHostBuilder"/>.
+        /// </returns>
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseSerilog()

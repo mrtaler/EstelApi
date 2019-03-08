@@ -37,9 +37,10 @@ namespace EstelApi.Domain.DataAccessLayer.Context.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new CustomerMap());
-     /*       modelBuilder.ApplyConfiguration(new CourseTypeConfiguration());
-            modelBuilder.ApplyConfiguration(new CoursesConfiguration());
-*/
+
+            /*       modelBuilder.ApplyConfiguration(new CourseTypeConfiguration());
+                        modelBuilder.ApplyConfiguration(new CoursesConfiguration());
+            */
             base.OnModelCreating(modelBuilder);
         }
 
@@ -52,7 +53,8 @@ namespace EstelApi.Domain.DataAccessLayer.Context.Context
 
                 // define the database to use
                 optionsBuilder.UseSqlServer(config.GetConnectionString("DefaultConnection"));
-                //  .EnableSensitiveDataLogging(true).UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+
+                // .EnableSensitiveDataLogging(true).UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
 
                 // ,x => x.MigrationsAssembly("GomelEstel.Infra.Data"));}
             }

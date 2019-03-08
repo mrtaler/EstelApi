@@ -1,10 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using Swashbuckle.AspNetCore.Swagger;
-using Swashbuckle.AspNetCore.SwaggerGen;
-
-namespace Estel.Services.Api.Extension.Swagger
+﻿namespace Estel.Services.Api.Extension.Swagger
 {
+    using System;
+    using System.Collections.Generic;
+
+    using Swashbuckle.AspNetCore.Swagger;
+    using Swashbuckle.AspNetCore.SwaggerGen;
+
+    /// <inheritdoc />
     internal class SecurityRequirementsDocumentFilter : IDocumentFilter
     {
         /// <inheritdoc />

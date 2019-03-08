@@ -7,7 +7,7 @@
 
     using MediatR;
 
-    public  class CustomerByIdQuery : IRequest<CustomerDTO>
+    public  class CustomerByIdQuery : IRequest<CustomerDto>
     {
         public Guid Id { get; set; }
         public CustomerByIdQuery(Guid id)

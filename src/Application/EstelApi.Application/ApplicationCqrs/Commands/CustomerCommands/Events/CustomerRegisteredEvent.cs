@@ -1,7 +1,8 @@
 ﻿namespace EstelApi.Application.ApplicationCqrs.Commands.CustomerCommands.Events
 {
-    using EstelApi.Core.Seedwork.CoreCqrs.Events;
     using System;
+
+    using EstelApi.Core.Seedwork.CoreCqrs.Events;
 
     /// <summary>
     /// The customer registered event.

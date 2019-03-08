@@ -5,16 +5,10 @@
     /// </summary>
     public static class TypeAdapterFactory
     {
-        #region Members
-
         /// <summary>
         /// The _current type adapter factory.
         /// </summary>
         private static ITypeAdapterFactory currentTypeAdapterFactory;
-
-        #endregion
-
-        #region Public Static Methods
 
         /// <summary>
         /// Set the current type adapter factory
@@ -33,7 +27,5 @@
         {
             return currentTypeAdapterFactory.Create();
         }
-
-        #endregion
     }
 }

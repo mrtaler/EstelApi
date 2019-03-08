@@ -14,10 +14,10 @@
     using MediatR;
 
     public class CustomerQueriesHandler : QueryHandler,
-            IRequestHandler<AllCustomersQuery, IEnumerable<CustomerDTO>>,
-            IRequestHandler<CustomerByIdQuery, CustomerDTO>// ,
-                                                           // IRequestHandler<UpdateCustomerCommand, bool>,
+            IRequestHandler<AllCustomersQuery, IEnumerable<CustomerDto>>,
+            IRequestHandler<CustomerByIdQuery, CustomerDto>// ,
     {
+        // IRequestHandler<UpdateCustomerCommand, bool>,
         // IRequestHandler<RemoveCustomerCommand, bool>
         private readonly ICustomerRepository customerRepository;
         private readonly IMediator bus;
@@ -36,13 +36,13 @@
             this.customerRepository.Dispose();
         }
 
-        public async Task<IEnumerable<CustomerDTO>> Handle(AllCustomersQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<CustomerDto>> Handle(AllCustomersQuery request, CancellationToken cancellationToken)
         {
             var ret = this.customerRepository.GetAll();
-            return await Task.FromResult(ret.ProjectedAsCollection<CustomerDTO>());
+            return await Task.FromResult(ret.ProjectedAsCollection<CustomerDto>());
         }
 
-        public Task<CustomerDTO> Handle(CustomerByIdQuery request, CancellationToken cancellationToken)
+        public Task<CustomerDto> Handle(CustomerByIdQuery request, CancellationToken cancellationToken)
         {
             throw new System.NotImplementedException();
         }

@@ -1,10 +1,14 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using Microsoft.Extensions.DependencyModel;
-
-namespace EstelApi.Core.Seedwork.Adapter.Implementation
+﻿namespace EstelApi.Core.Seedwork.Adapter.Implementation
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+
+    using Microsoft.Extensions.DependencyModel;
+
+    /// <summary>
+    /// The app domain.
+    /// </summary>
     public class AppDomain
     {
         /// <summary>

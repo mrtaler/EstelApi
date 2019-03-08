@@ -1,23 +1,32 @@
-﻿using System;
-using System.Net;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Filters;
-using Serilog;
-using Serilog.Events;
-
-namespace Estel.Services.Api.Extension.Exception
+﻿namespace Estel.Services.Api.Extension.Exception
 {
+    using System;
+    using System.Net;
+
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.Filters;
+
+    using Serilog;
+    using Serilog.Events;
+
+    /// <inheritdoc />
     /// <summary>
     /// Exception filter for handling unexpected and expected exceptions that passes through to the framework.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public sealed class ApiExceptionFilterAttribute : ExceptionFilterAttribute
     {
+        /// <summary>
+        /// The log.
+        /// </summary>
         private readonly ILogger log;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiExceptionFilterAttribute"/> class.
         /// </summary>
+        /// <param name="log">
+        /// The log.
+        /// </param>
         public ApiExceptionFilterAttribute(ILogger log)
         {
             this.log = log;

@@ -10,6 +10,7 @@
     // Add-Migration Init_IdentityEstelContext -Context IdentityEstelContext -OutputDir Migrations -project EstelApi.CrossCutting.Identity
     // update-database -Project EstelApi.CrossCutting.Identity
     
+
     /// <summary>
     /// The identity estel context.
     /// </summary>
@@ -36,6 +37,7 @@
             this.env = env;
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// The on configuring.
         /// </summary>

@@ -5,11 +5,13 @@
 
     using Microsoft.AspNetCore.Authorization;
 
+    /// <inheritdoc />
     /// <summary>
     /// The claims requirement handler.
     /// </summary>
     public class ClaimsRequirementHandler : AuthorizationHandler<ClaimRequirement>
     {
+        /// <inheritdoc />
         /// <summary>
         /// The handle requirement async.
         /// </summary>
@@ -20,7 +22,7 @@
         /// The requirement.
         /// </param>
         /// <returns>
-        /// The <see cref="Task"/>.
+        /// The <see cref="T:System.Threading.Tasks.Task" />.
         /// </returns>
         protected override Task HandleRequirementAsync(
             AuthorizationHandlerContext context,

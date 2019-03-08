@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EstelApi.Application.Dto
 {
-    public class CountryDTO
+    public class CountryDto
     {
         /// <summary>
         /// The country identifier
@@ -19,6 +19,6 @@ namespace EstelApi.Application.Dto
         /// <summary>
         /// The country ISO Code
         /// </summary>
-        public string CountryISOCode { get; set; }
+        public string CountryIsoCode { get; set; }
     }
 }

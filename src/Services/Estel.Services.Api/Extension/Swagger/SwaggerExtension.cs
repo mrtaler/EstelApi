@@ -1,14 +1,38 @@
-﻿using System.IO;
-using System.Reflection;
-using Microsoft.AspNetCore.Mvc.ApiExplorer;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.PlatformAbstractions;
-using Swashbuckle.AspNetCore.Swagger;
-
-namespace Estel.Services.Api.Extension.Swagger
+﻿namespace Estel.Services.Api.Extension.Swagger
 {
+    using System.IO;
+    using System.Reflection;
+
+    using Microsoft.AspNetCore.Mvc.ApiExplorer;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.PlatformAbstractions;
+
+    using Swashbuckle.AspNetCore.Swagger;
+
+    /// <summary>
+    /// The swagger extension.
+    /// </summary>
     public static class SwaggerExtension
     {
+        /// <summary>
+        /// Gets the xml comments file path.
+        /// </summary>
+        private static string XmlCommentsFilePath
+        {
+            get
+            {
+                var basePath = PlatformServices.Default.Application.ApplicationBasePath;
+                var fileName = typeof(Startup).GetTypeInfo().Assembly.GetName().Name + ".xml";
+                return Path.Combine(basePath, fileName);
+            }
+        }
+
+        /// <summary>
+        /// The add swagger documentation.
+        /// </summary>
+        /// <param name="services">
+        /// The services.
+        /// </param>
         public static void AddSwaggerDocumentation(this IServiceCollection services)
         {
             services.AddVersionedApiExplorer(
@@ -73,24 +97,13 @@ namespace Estel.Services.Api.Extension.Swagger
                                                              In = "header",
                                                              Type = "apiKey"
                                                          }
-                                                     );*/
+                                                     );
                         // options.IncludeXmlComments(XmlCommentsFilePath);
-
-                        // options.DescribeAllParametersInCamelCase();
+                        // options.DescribeAllParametersInCamelCase();*/
                     });
 
         }
-
-        private static string XmlCommentsFilePath
-        {
-            get
-            {
-                var basePath = PlatformServices.Default.Application.ApplicationBasePath;
-                var fileName = typeof(Startup).GetTypeInfo().Assembly.GetName().Name + ".xml";
-                return Path.Combine(basePath, fileName);
-            }
-        }
-
+        
         /*   /// <summary>
            /// The create info for api version.
            /// </summary>

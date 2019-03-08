@@ -3,6 +3,7 @@
     using System;
     using System.Threading.Tasks;
 
+    /// <inheritdoc />
     /// <summary>
     /// Contract for ‘UnitOfWork pattern’. For more
     /// related info see http://martinfowler.com/eaaCatalog/unitOfWork.html or
@@ -72,6 +73,5 @@
         /// The entity.
         /// </param>
         void Refresh(object entity);
-
     }
 }

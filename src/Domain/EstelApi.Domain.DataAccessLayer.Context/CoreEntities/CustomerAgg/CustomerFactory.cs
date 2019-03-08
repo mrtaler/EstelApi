@@ -42,37 +42,36 @@
             Country country,
             Address address)
         {
-            //create new instance and set identity
+            // create new instance and set identity
             var customer = new Customer();
 
             customer.GenerateNewIdentity();
 
-            //set data
-
+            // set data
             customer.FirstName = firstName;
             customer.LastName = lastName;
 
             customer.Company = company;
             customer.Telephone = telephone;
 
-            //set address
+            // set address
             customer.Address = address;
 
-            //customer is enabled by default
+            // customer is enabled by default
             customer.Enable();
 
-            //TODO: By default this is the limit for customer credit, you can set this 
-            //parameter customizable via configuration or other system
+            // TODO: By default this is the limit for customer credit, you can set this 
+            // parameter customizable via configuration or other system
             customer.ChangeTheCurrentCredit(1000M);
 
 
-            //set default picture
+            // set default picture
             var picture = new Picture();
             picture.ChangeCurrentIdentity(customer.Id);
 
             customer.ChangePicture(picture);
 
-            //set the country for this customer
+            // set the country for this customer
             customer.SetTheCountryForThisCustomer(country);
 
             return customer;

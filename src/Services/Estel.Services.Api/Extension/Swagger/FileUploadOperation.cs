@@ -1,21 +1,31 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using Microsoft.AspNetCore.Http;
-using Swashbuckle.AspNetCore.Swagger;
-using Swashbuckle.AspNetCore.SwaggerGen;
-
-namespace Estel.Services.Api.Extension.Swagger
+﻿namespace Estel.Services.Api.Extension.Swagger
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+
+    using Microsoft.AspNetCore.Http;
+
+    using Swashbuckle.AspNetCore.Swagger;
+    using Swashbuckle.AspNetCore.SwaggerGen;
+
+    /// <inheritdoc />
     internal class FileUploadOperation : IOperationFilter
     {
+        /// <summary>
+        /// The form file property names.
+        /// </summary>
         private static readonly string[] FormFilePropertyNames =
             typeof(IFormFile).GetTypeInfo().DeclaredProperties.Select(p => p.Name).ToArray();
 
+        /// <inheritdoc />
         public void Apply(Operation operation, OperationFilterContext context)
         {
             var parameters = operation.Parameters;
-            if (parameters == null || parameters.Count == 0) return;
+            if (parameters == null || parameters.Count == 0)
+            {
+                return;
+            }
 
             var formFileParameterNames = new List<string>();
             var formFileSubParameterNames = new List<string>();
@@ -35,11 +45,18 @@ namespace Estel.Services.Api.Extension.Swagger
                     continue;
                 }
 
-                if (actionParameter.ParameterType != typeof(IFormFile)) continue;
+                if (actionParameter.ParameterType != typeof(IFormFile))
+                {
+                    continue;
+                }
+
                 formFileParameterNames.Add(actionParameter.Name);
             }
 
-            if (!formFileParameterNames.Any()) return;
+            if (!formFileParameterNames.Any())
+            {
+                return;
+            }
 
             var consumes = operation.Consumes;
             consumes.Clear();
@@ -47,10 +64,16 @@ namespace Estel.Services.Api.Extension.Swagger
 
             foreach (var parameter in parameters.ToArray())
             {
-                if (!(parameter is NonBodyParameter) || parameter.In != "formData") continue;
+                if (!(parameter is NonBodyParameter) || parameter.In != "formData")
+                {
+                    continue;
+                }
+
                 if (formFileSubParameterNames.Any(p => parameter.Name.StartsWith(p + "."))
                     || FormFilePropertyNames.Contains(parameter.Name))
+                {
                     parameters.Remove(parameter);
+                }
             }
 
             foreach (var formFileParameter in formFileParameterNames)
@@ -64,7 +87,6 @@ namespace Estel.Services.Api.Extension.Swagger
                     In = "formData"
                 });
             }
-
 
             /*   var uploadParametr = operation.Parameters.FirstOrDefault(p => p.Name.Contains("File"));
              //  var uploadParametr = operation.Parameters.FirstOrDefault(p => p.Name.Contains("uploadedFile"));

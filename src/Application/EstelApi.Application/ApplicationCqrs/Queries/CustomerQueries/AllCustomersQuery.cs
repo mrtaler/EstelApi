@@ -7,7 +7,7 @@
 
     using MediatR;
 
-    public class AllCustomersQuery : IRequest<IEnumerable<CustomerDTO>>
+    public class AllCustomersQuery : IRequest<IEnumerable<CustomerDto>>
     {
         public AllCustomersQuery()
         {
