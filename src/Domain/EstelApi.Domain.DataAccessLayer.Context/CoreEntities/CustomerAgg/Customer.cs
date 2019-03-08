@@ -65,7 +65,6 @@
             private set => this.isEnabled = value;
         }
 
-
         /// <summary>
         /// Gets or set associated country identifier
         /// </summary>
@@ -106,7 +105,7 @@
         /// <summary>
         /// Associate existing country to this customer
         /// </summary>
-        /// <param name="country"></param>
+        /// <param name="country">Country for customer</param>
         public void SetTheCountryForThisCustomer(Country country)
         {
             if (country == null
@@ -123,7 +122,7 @@
         /// <summary>
         /// Set the country reference for this customer
         /// </summary>
-        /// <param name="countryId"></param>
+        /// <param name="countryId">Country Id</param>
         public void SetTheCountryReference(Guid countryId)
         {
             if (countryId == Guid.Empty)

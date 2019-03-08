@@ -2,6 +2,9 @@
 {
     using System;
 
+    /// <summary>
+    /// The downloaded file.
+    /// </summary>
     public class DownloadedFile
     {
         public Uri Source { get; set; }

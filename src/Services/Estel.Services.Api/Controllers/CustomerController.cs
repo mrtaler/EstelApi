@@ -3,8 +3,11 @@
     using System;
     using System.Threading.Tasks;
 
+    using Estel.Services.Api.ViewModels.Customer;
+
     using EstelApi.Application.Dto;
     using EstelApi.Application.Interfaces;
+    using EstelApi.Core.Seedwork.Adapter;
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
 
     using MediatR;
@@ -53,7 +56,7 @@
         /// </returns>
         /// [AllowAnonymous]
         [HttpGet]
-        [Route("customer-management")]
+        [Route("customer-management/getallcustomers")]
         public IActionResult Get()
         {
             return this.Response(this.customerAppService.GetAllCustomers());
@@ -68,10 +71,9 @@
         /// <returns>
         /// The <see cref="IActionResult"/>.
         /// </returns>
+        /// [AllowAnonymous]
         [HttpGet]
-
-        // [AllowAnonymous]
-        [Route("customer-management/{id:guid}")]
+        [Route("customer-management/GetById/{id:guid}")]
         public IActionResult Get(Guid id)
         {
             var customerViewModel = this.customerAppService.FindCustomer(id);
@@ -80,7 +82,7 @@
         }
 
         /// <summary>
-        /// The post.
+        /// Work
         /// </summary>
         /// <param name="createCustomerViewModel">
         /// The create customer view model.
@@ -88,11 +90,10 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
+        /// [Authorize(Policy = "CanWriteCustomerData")]
         [HttpPost]
-
-        // [Authorize(Policy = "CanWriteCustomerData")]
-        [Route("customer-management")]
-        public async Task<IActionResult> Post([FromBody] CustomerDto createCustomerViewModel)
+        [Route("customer-management/CreateNewCustomer")]
+        public async Task<IActionResult> Post([FromBody] CreateCustomerViewModel createCustomerViewModel)
         {
             if (!this.ModelState.IsValid)
             {
@@ -100,23 +101,23 @@
                 return this.Response(createCustomerViewModel);
             }
 
-            var resp = await this.customerAppService.AddNewCustomer(createCustomerViewModel);
+            var dto = createCustomerViewModel.ProjectedAs<CustomerDto>();
+            var resp = await this.customerAppService.AddNewCustomer(dto);
             return this.Response(resp);
         }
 
-        ///// <summary>
-        ///// The put.
-        ///// </summary>
-        ///// <param name="updateCustomerViewModel">
-        ///// The update customer view model.
-        ///// </param>
-        ///// <returns>
-        ///// The <see cref="IActionResult"/>.
-        ///// </returns>
-        ///// [HttpPut]
-
-        /*  // [Authorize(Policy = "CanWriteCustomerData")]
-          [Route("customer-management")]
+        /// <summary>
+        /// The put.
+        /// </summary>
+        /// <param name="updateCustomerViewModel">
+        /// The update customer view model.
+        /// </param>
+        /// <returns>
+        /// The <see cref="IActionResult"/>.
+        /// </returns>
+        /// [Authorize(Policy = "CanWriteCustomerData")]
+        [HttpPut]
+        [Route("customer-management/UpdateCustomer")]
           public IActionResult Put([FromBody] UpdateCustomerViewModel updateCustomerViewModel)
           {
               if (!this.ModelState.IsValid)
@@ -125,10 +126,19 @@
                   return this.Response(updateCustomerViewModel);
               }
 
-              this.customerAppService.Update(updateCustomerViewModel);
+              try
+              {
+                  var dto = updateCustomerViewModel.ProjectedAs<CustomerDto>();
+                  this.customerAppService.UpdateCustomer(dto);
 
-              return this.Response(updateCustomerViewModel);
-          }*/
+                  return this.Response(updateCustomerViewModel);
+            }
+              catch (Exception e)
+              {
+                  Console.WriteLine(e);
+                  throw new Exception("ff",e);
+              }
+          }
 
         /*   /// <summary>
            /// The delete.

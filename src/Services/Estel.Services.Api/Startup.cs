@@ -104,7 +104,7 @@
                     options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                 })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddAutoMapperSetup();
+          //  services.AddAutoMapperSetup();
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("CanWriteCustomerData", policy => policy.Requirements.Add(new ClaimRequirement("Customers", "Write")));
@@ -113,17 +113,14 @@
             services.AddAutoMapper();
 
             builder.Populate(services);
-            builder.Register<ILogger>((c, p) =>
-            {
-                return new LoggerConfiguration().MinimumLevel.Debug()
-
-                    // .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
-                    .Enrich.FromLogContext()
-                    .WriteTo.Console(
-                        theme: Serilog.Sinks.SystemConsole.Themes.AnsiConsoleTheme.Code,
-                        outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} {Level}:{EventId} [{SourceContext}] {Message}{NewLine}{Exception}")
-                    .CreateLogger();
-            }).SingleInstance();
+            builder.Register<ILogger>((c, p) => new LoggerConfiguration().MinimumLevel.Debug()
+            
+                // .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
+                .Enrich.FromLogContext()
+                .WriteTo.Console(
+                    theme: Serilog.Sinks.SystemConsole.Themes.AnsiConsoleTheme.Code,
+                    outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} {Level}:{EventId} [{SourceContext}] {Message}{NewLine}{Exception}")
+                .CreateLogger()).SingleInstance();
 
             builder.RegisterModule(new EstelApiCrossCuttingIoC());
             var container = builder.Build();

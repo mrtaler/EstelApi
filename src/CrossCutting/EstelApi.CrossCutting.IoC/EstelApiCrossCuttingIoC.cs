@@ -26,7 +26,7 @@
             builder.RegisterModule(new EstelApiApplicationModule());
             builder.RegisterModule(new EstelApiApplicationCqrsModule());
 
-            builder.RegisterType<AutoMapperTypeAdapterFactory>().As<ITypeAdapterFactory>().InstancePerLifetimeScope();
+            builder.RegisterType<AutoMapperTypeAdapterFactory>().As<ITypeAdapterFactory>().SingleInstance();
 
             // services.AddScoped<ITypeAdapterFactory, AutomapperTypeAdapterFactory>();
         }

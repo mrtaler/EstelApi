@@ -9,7 +9,6 @@
     /// </summary>
     public static class CustomerFactory
     {
-
         /// <summary>
         /// Create a new transient customer
         /// </summary>
@@ -63,7 +62,6 @@
             // TODO: By default this is the limit for customer credit, you can set this 
             // parameter customizable via configuration or other system
             customer.ChangeTheCurrentCredit(1000M);
-
 
             // set default picture
             var picture = new Picture();

@@ -1,21 +1,18 @@
-﻿namespace EstelApi.Application.EventSourcedNormalizers
+﻿namespace Estel.Services.Api.ViewModels.Customer
 {
     using System;
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
 
     /// <summary>
-    /// The customer history data.
+    /// The update customer view model.
     /// </summary>
-    public class CustomerHistoryData
+    public class UpdateCustomerViewModel
     {
-        /// <summary>
-        /// Gets or sets the action.
-        /// </summary>
-        public string Action { get; set; }
-        
         /// <summary>
         /// The customer identifier
         /// </summary>
-        public string Id { get; set; }
+        public Guid Id { get; set; }
 
         /// <summary>
         /// The customer first name
@@ -48,6 +45,11 @@
         public Guid CountryId { get; set; }
 
         /// <summary>
+        /// The country Name
+        /// </summary>
+        public string CountryCountryName { get; set; }
+
+        /// <summary>
         /// The address city
         /// </summary>
         public string AddressCity { get; set; }
@@ -66,15 +68,5 @@
         /// The address line 2
         /// </summary>
         public string AddressAddressLine2 { get; set; }
-
-        /// <summary>
-        /// Gets or sets the when.
-        /// </summary>
-        public string When { get; set; }
-
-        /// <summary>
-        /// Gets or sets the who.
-        /// </summary>
-        public string Who { get; set; }
     }
 }

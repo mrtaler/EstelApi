@@ -5,6 +5,7 @@
 
     using EstelApi.Application.ApplicationCqrs.Commands.CustomerCommands.Events;
     using EstelApi.Core.Seedwork.CoreCqrs.Events;
+    using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
 
     using MediatR;
 
@@ -47,7 +48,7 @@
         public Task Handle(CustomerUpdatedEvent message, CancellationToken cancellationToken)
         {
             var msg = message.MessageType;
-            if (!message.MessageType.Equals("DomainNotification"))
+            if (!message.MessageType.Equals(typeof(DomainNotification).Name))
             {
                 this.eventStore?.Save(message);
             }
@@ -70,7 +71,7 @@
         public Task Handle(CustomerRegisteredEvent message, CancellationToken cancellationToken)
         {
             // Send some greetings e-mail
-            if (!message.MessageType.Equals("DomainNotification"))
+            if (!message.MessageType.Equals(typeof(DomainNotification).Name))
             {
                 this.eventStore?.Save(message);
             }
@@ -93,7 +94,7 @@
         public Task Handle(CustomerRemovedEvent message, CancellationToken cancellationToken)
         {
             // Send some see you soon e-mail
-            if (!message.MessageType.Equals("DomainNotification"))
+            if (!message.MessageType.Equals(typeof(DomainNotification).Name))
             {
                 this.eventStore?.Save(message);
             }

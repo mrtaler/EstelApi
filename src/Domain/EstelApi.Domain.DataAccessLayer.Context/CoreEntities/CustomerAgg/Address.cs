@@ -25,7 +25,9 @@
         /// Initializes a new instance of the <see cref="Address"/> class.
         /// required for EF
         /// </summary>
-        protected Address() { }  
+        protected Address()
+        {
+        }  
 
 
         /// <summary>
@@ -47,7 +49,5 @@
         /// Gets address line 2
         /// </summary>
         public string AddressLine2 { get; private set; }
-     
-
     }
 }

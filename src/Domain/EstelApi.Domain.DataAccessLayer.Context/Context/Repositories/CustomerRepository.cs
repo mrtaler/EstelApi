@@ -1,12 +1,14 @@
 ﻿namespace EstelApi.Domain.DataAccessLayer.Context.Context.Repositories
 {
-    using System.Collections.Generic;
-    using System.Linq;
+    using System;
 
     using EstelApi.Domain.DataAccessLayer.Context.Context;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
     using EstelApi.Domain.DataAccessLayer.Context.Interfaces;
     using EstelApi.Domain.DataAccessLayer.Context.Repository.Base;
+    using Microsoft.EntityFrameworkCore;
+    using System.Collections.Generic;
+    using System.Linq;
 
     /// <inheritdoc cref="ICustomerRepository" />
     public class CustomerRepository : Repository<Customer>, ICustomerRepository
@@ -20,6 +22,18 @@
         public CustomerRepository(IQueryableUnitOfWork context)
             : base(context)
         {
+        }
+
+        public override Customer GetById(object id)
+        {
+            var ret = this.unitOfWork
+                .CreateSet<Customer>()
+                .Include(x => x.Country)
+                .Include(x => x.Picture);
+
+            var retData = ret.First(x => x.Id == (Guid)id);
+
+            return retData;
         }
 
         /// <inheritdoc />
@@ -44,7 +58,7 @@
             if (this.UnitOfWork is EstelContext currentUnitOfWork)
             {
                 currentUnitOfWork.ApplyCurrentValues(persisted, current);
-                currentUnitOfWork.ApplyCurrentValues(persisted.Picture, current.Picture);
+               // currentUnitOfWork.ApplyCurrentValues(persisted.Picture, current.Picture);
             }
         }
     }

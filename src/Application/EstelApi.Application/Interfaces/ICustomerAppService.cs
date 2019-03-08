@@ -1,11 +1,10 @@
 ﻿namespace EstelApi.Application.Interfaces
 {
+    using EstelApi.Application.Dto;
+    using EstelApi.Application.EventSourcedNormalizers;
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-
-    using EstelApi.Application.Dto;
-    using EstelApi.Application.EventSourcedNormalizers;
 
     public interface ICustomerAppService : IDisposable
     {
@@ -22,13 +21,13 @@
         /// Update existing customer
         /// </summary>
         /// <param name="customerDto">The customerdto with changes</param>
-        void UpdateCustomer(CustomerDto customerDto);
+        Task UpdateCustomer(CustomerDto customerDto);
 
         /// <summary>
         /// Remove existing customer
         /// </summary>
         /// <param name="customerId">The customer identifier</param>
-        void RemoveCustomer(Guid customerId);
+        ///  void RemoveCustomer(Guid customerId);
 
         /// <summary>
         /// Find paged customers
@@ -36,7 +35,7 @@
         /// <param name="pageIndex">The index of page</param>
         /// <param name="pageCount">The # of elements in each page</param>
         /// <returns>A collection of customer representation</returns>
-        List<CustomerListDto> GetAllCustomers();
+        List<CustomerDto> GetAllCustomers();
 
         /// <summary>
         /// Find customers with contain specific text in
@@ -44,7 +43,7 @@
         /// </summary>
         /// <param name="text">the text to seach</param>
         /// <returns>A collection of customer representation</returns>
-        List<CustomerListDto> FindCustomers(string text);
+        ///  List<CustomerDto> FindCustomers(string text);
 
         /// <summary>
         /// Find customer
@@ -59,13 +58,13 @@
         /// <param name="pageIndex">The index of page</param>
         /// <param name="pageCount">The # of elements in each page</param>
         /// <returns>A collection of countries dto</returns>
-        List<CountryDto> FindCountries(int pageIndex, int pageCount);
+        /// List<CountryDto> FindCountries(int pageIndex, int pageCount);
 
         /// <summary>
         /// Find countries with country name or iso code like <paramref name="text"/>
         /// </summary>
         /// <param name="text">The text to search in countries</param>
         /// <returns>A collection of country dto</returns>
-        List<CountryDto> FindCountries(string text);
+        ///     List<CountryDto> FindCountries(string text);
     }
 }

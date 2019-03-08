@@ -1,5 +1,9 @@
 ﻿namespace EstelApi.Domain.DataAccessLayer.Context.Context.Base
 {
+    /// <inheritdoc />
+    /// <summary>
+    /// The estel context design time db context factory.
+    /// </summary>
     internal class EstelContextDesignTimeDbContextFactory : DesignTimeDbContextFactory<EstelContext>
     {
         // get the configuration from the app settings

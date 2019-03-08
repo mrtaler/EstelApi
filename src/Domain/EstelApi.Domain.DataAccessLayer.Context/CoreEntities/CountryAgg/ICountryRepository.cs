@@ -2,6 +2,7 @@
 {
     using EstelApi.Core.Seedwork.Interfaces;
 
+    /// <inheritdoc />
     /// <summary>
     /// Base contract for country repository
     /// </summary>

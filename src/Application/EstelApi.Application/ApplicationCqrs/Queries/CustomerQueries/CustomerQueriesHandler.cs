@@ -13,38 +13,85 @@
 
     using MediatR;
 
+    /// <inheritdoc cref="QueryHandler" />
+    /// <summary>
+    /// The customer queries handler.
+    /// </summary>
     public class CustomerQueriesHandler : QueryHandler,
             IRequestHandler<AllCustomersQuery, IEnumerable<CustomerDto>>,
-            IRequestHandler<CustomerByIdQuery, CustomerDto>// ,
+            IRequestHandler<CustomerByIdQuery, CustomerDto>
     {
-        // IRequestHandler<UpdateCustomerCommand, bool>,
-        // IRequestHandler<RemoveCustomerCommand, bool>
+        /// <summary>
+        /// The customer repository.
+        /// </summary>
         private readonly ICustomerRepository customerRepository;
-        private readonly IMediator bus;
 
-        public CustomerQueriesHandler(ICustomerRepository customerRepository,
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CustomerQueriesHandler"/> class.
+        /// </summary>
+        /// <param name="customerRepository">
+        /// The customer repository.
+        /// </param>
+        /// <param name="uow">
+        /// The uow.
+        /// </param>
+        /// <param name="bus">
+        /// The bus.
+        /// </param>
+        /// <param name="notifications">
+        /// The notifications.
+        /// </param>
+        public CustomerQueriesHandler(
+            ICustomerRepository customerRepository,
             IQueryableUnitOfWork uow,
             IMediator bus,
             INotificationHandler<DomainNotification> notifications) : base(uow, bus, notifications)
         {
             this.customerRepository = customerRepository;
-            this.bus = bus;
         }
 
+        /// <summary>
+        /// The dispose.
+        /// </summary>
         public void Dispose()
         {
             this.customerRepository.Dispose();
         }
 
+        /// <summary>
+        /// The handle.
+        /// </summary>
+        /// <param name="request">
+        /// The request.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// The cancellation token.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         public async Task<IEnumerable<CustomerDto>> Handle(AllCustomersQuery request, CancellationToken cancellationToken)
         {
             var ret = this.customerRepository.GetAll();
             return await Task.FromResult(ret.ProjectedAsCollection<CustomerDto>());
         }
 
-        public Task<CustomerDto> Handle(CustomerByIdQuery request, CancellationToken cancellationToken)
+        /// <summary>
+        /// The handle.
+        /// </summary>
+        /// <param name="request">
+        /// The request.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// The cancellation token.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        public async Task<CustomerDto> Handle(CustomerByIdQuery request, CancellationToken cancellationToken)
         {
-            throw new System.NotImplementedException();
+            var ret = this.customerRepository.GetById(request.Id);
+            return await Task.FromResult(ret.ProjectedAs<CustomerDto>());
         }
     }
 }

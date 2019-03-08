@@ -1,21 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
-using AutoMapper;
-
+﻿using AutoMapper;
 using EstelApi.Application.EventSourcedNormalizers;
 using EstelApi.Application.Interfaces;
 using EstelApi.Core.Seedwork.Adapter;
 using EstelApi.Core.Seedwork.CoreCqrs.Events;
-
 using MediatR;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace EstelApi.Application.Services
 {
     using EstelApi.Application.ApplicationCqrs.Commands.CustomerCommands.Commands;
+    using EstelApi.Application.ApplicationCqrs.Queries.CustomerQueries;
     using EstelApi.Application.Dto;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
+    using System.Linq;
 
     public class CustomerAppService : ICustomerAppService
     {
@@ -109,9 +108,11 @@ namespace EstelApi.Application.Services
             return result.IsSuccess ? result.Object : null;
         }
 
-        public void UpdateCustomer(CustomerDto customerDto)
+        public async Task UpdateCustomer(CustomerDto customerDto)
         {
-            throw new NotImplementedException();
+            var updateCommand =
+                customerDto.ProjectedAs<UpdateCustomerCommand>();
+            var result = await this.bus.Send(updateCommand);
             // if (customerDTO == null || customerDTO.Id == Guid.Empty)
             // throw new ArgumentException(_resources.GetStringResource(LocalizationKeys.Application.warning_CannotUpdateCustomerWithEmptyInformation));
 
@@ -133,102 +134,95 @@ namespace EstelApi.Application.Services
             // _logger.LogWarning(_resources.GetStringResource(LocalizationKeys.Application.warning_CannotUpdateNonExistingCustomer));
         }
 
-        public void RemoveCustomer(Guid customerId)
+        /*  public void RemoveCustomer(Guid customerId)
+          {
+              throw new NotImplementedException();
+              // var customer = _customerRepository.Get(customerId);
+
+              // if (customer != null) //if customer exist
+              // {
+              // //disable customer ( "logical delete" ) 
+              // customer.Disable();
+
+              // //commit changes
+              // _customerRepository.UnitOfWork.Commit();
+              // }
+              // else //the customer not exist, cannot remove
+              // _logger.LogWarning(_resources.GetStringResource(LocalizationKeys.Application.warning_CannotRemoveNonExistingCustomer));
+          }*/
+
+        public List<CustomerDto> GetAllCustomers()
         {
-            throw new NotImplementedException();
-            // var customer = _customerRepository.Get(customerId);
-
-            // if (customer != null) //if customer exist
-            // {
-            // //disable customer ( "logical delete" ) 
-            // customer.Disable();
-
-            // //commit changes
-            // _customerRepository.UnitOfWork.Commit();
-            // }
-            // else //the customer not exist, cannot remove
-            // _logger.LogWarning(_resources.GetStringResource(LocalizationKeys.Application.warning_CannotRemoveNonExistingCustomer));
+            var result = this.bus.Send(new AllCustomersQuery()).Result;
+            return result.ToList();
         }
 
-        public List<CustomerListDto> GetAllCustomers()
-        {
-            throw new NotImplementedException();
-        }
+        /*     public List<CustomerDto> FindCustomers(string text)
+             {
+                 throw new NotImplementedException();
+                 ////get the specification
 
-        public List<CustomerListDto> FindCustomers(string text)
-        {
-            throw new NotImplementedException();
-            ////get the specification
+                 // var enabledCustomers = CustomerSpecifications.EnabledCustomers();
+                 // var filter = CustomerSpecifications.CustomerFullText(text);
 
-            // var enabledCustomers = CustomerSpecifications.EnabledCustomers();
-            // var filter = CustomerSpecifications.CustomerFullText(text);
+                 // ISpecification<Customer> spec = enabledCustomers & filter;
 
-            // ISpecification<Customer> spec = enabledCustomers & filter;
+                 ////Query this criteria
+                 // var customers = _customerRepository.AllMatching(spec);
 
-            ////Query this criteria
-            // var customers = _customerRepository.AllMatching(spec);
-
-            // if (customers != null
-            // &&
-            // customers.Any())
-            // {
-            // //return adapted data
-            // return customers.ProjectedAsCollection<CustomerListDTO>();
-            // }
-            // else // no data..
-            // return null;
-        }
+                 // if (customers != null
+                 // &&
+                 // customers.Any())
+                 // {
+                 // //return adapted data
+                 // return customers.ProjectedAsCollection<CustomerListDTO>();
+                 // }
+                 // else // no data..
+                 // return null;
+             }*/
 
         public CustomerDto FindCustomer(Guid customerId)
         {
-            throw new NotImplementedException();
-            ////recover existing customer and map
-            // var customer = _customerRepository.Get(customerId);
-
-            // if (customer != null) //adapt
-            // {
-            // return customer.ProjectedAs<CustomerDTO>();
-            // }
-            // else
-            // return null;
+            var result = this.bus.Send(new CustomerByIdQuery(customerId)).Result;
+            return result;
         }
 
-        public List<CountryDto> FindCountries(int pageIndex, int pageCount)
-        {
-            throw new NotImplementedException();
-            // if (pageIndex < 0 || pageCount <= 0)
-            // throw new ArgumentException(_resources.GetStringResource(LocalizationKeys.Application.warning_InvalidArgumentsForFindCountries));
+        /*  public List<CountryDto> FindCountries(int pageIndex, int pageCount)
+          {
+              throw new NotImplementedException();
+              // if (pageIndex < 0 || pageCount <= 0)
+              // throw new ArgumentException(_resources.GetStringResource(LocalizationKeys.Application.warning_InvalidArgumentsForFindCountries));
 
-            ////recover countries
-            // var countries = _countryRepository.GetPaged(pageIndex, pageCount, c => c.CountryName, false);
+              ////recover countries
+              // var countries = _countryRepository.GetPaged(pageIndex, pageCount, c => c.CountryName, false);
 
-            // if (countries != null
-            // &&
-            // countries.Any())
-            // {
-            // return countries.ProjectedAsCollection<CountryDTO>();
-            // }
-            // else // no data.
-            // return null;
-        }
+              // if (countries != null
+              // &&
+              // countries.Any())
+              // {
+              // return countries.ProjectedAsCollection<CountryDTO>();
+              // }
+              // else // no data.
+              // return null;
+          }*/
 
-        public List<CountryDto> FindCountries(string text)
-        {
-            throw new NotImplementedException();
-            ////get the specification
-            // ISpecification<Country> specification = CountrySpecifications.CountryFullText(text);
+        /*  public List<CountryDto> FindCountries(string text)
+          {
+              throw new NotImplementedException();
+              ////get the specification
+              // ISpecification<Country> specification = CountrySpecifications.CountryFullText(text);
 
-            ////Query this criteria
-            // var countries = _countryRepository.AllMatching(specification);
+              ////Query this criteria
+              // var countries = _countryRepository.AllMatching(specification);
 
-            // if (countries != null
-            // &&
-            // countries.Any())
-            // {
-            // return countries.ProjectedAsCollection<CountryDTO>();
-            // }
-            // else // no data
-            // return null;
-        }
+              // if (countries != null
+              // &&
+              // countries.Any())
+              // {
+              // return countries.ProjectedAsCollection<CountryDTO>();
+              // }
+              // else // no data
+              // return null;
+          }*/
     }
 }

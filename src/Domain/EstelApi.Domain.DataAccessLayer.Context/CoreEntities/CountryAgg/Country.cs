@@ -10,9 +10,24 @@ namespace EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CountryAgg
     public class Country
         : EntityGuid
     {
-        // required by EF
-        private Country() { }
+        /// <summary>
+        /// Prevents a default instance of the <see cref="Country"/> class from being created. Required by EF
+        /// </summary>
+        private Country()
+        {
+        }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Country"/> class.
+        /// </summary>
+        /// <param name="countryName">
+        /// The country name.
+        /// </param>
+        /// <param name="countryIsoCode">
+        /// The country iso code.
+        /// </param>
+        /// <exception cref="ArgumentNullException">if Arguments is null
+        /// </exception>
         public Country(string countryName, string countryIsoCode)
         {
             if (string.IsNullOrWhiteSpace(countryName))

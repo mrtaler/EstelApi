@@ -2,6 +2,7 @@
 {
     using EstelApi.Core.Seedwork;
 
+    /// <inheritdoc />
     /// <summary>
     /// Picture of customer
     /// </summary>

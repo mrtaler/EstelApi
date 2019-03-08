@@ -35,6 +35,127 @@
             The route attribute.
             </param>
         </member>
+        <member name="T:Estel.Services.Api.Configurations.RouteConvention">
+            <inheritdoc />
+        </member>
+        <member name="F:Estel.Services.Api.Configurations.RouteConvention.centralPrefix">
+            <summary>
+            The central prefix.
+            </summary>
+        </member>
+        <member name="M:Estel.Services.Api.Configurations.RouteConvention.#ctor(Microsoft.AspNetCore.Mvc.Routing.IRouteTemplateProvider)">
+            <inheritdoc />
+        </member>
+        <member name="M:Estel.Services.Api.Configurations.RouteConvention.Apply(Microsoft.AspNetCore.Mvc.ApplicationModels.ApplicationModel)">
+            <inheritdoc />
+        </member>
+        <member name="T:Estel.Services.Api.Controllers.AccountController">
+            <inheritdoc />
+        </member>
+        <member name="F:Estel.Services.Api.Controllers.AccountController.userManager">
+            <summary>
+            The user manager.
+            </summary>
+        </member>
+        <member name="F:Estel.Services.Api.Controllers.AccountController.signInManager">
+            <summary>
+            The sign in manager.
+            </summary>
+        </member>
+        <member name="F:Estel.Services.Api.Controllers.AccountController.logger">
+            <summary>
+            The logger.
+            </summary>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.AccountController.#ctor(Microsoft.AspNetCore.Identity.UserManager{EstelApi.CrossCutting.Identity.IdentityModels.ApplicationUser},Microsoft.AspNetCore.Identity.SignInManager{EstelApi.CrossCutting.Identity.IdentityModels.ApplicationUser},MediatR.INotificationHandler{EstelApi.Core.Seedwork.CoreCqrs.Notifications.DomainNotification},Microsoft.Extensions.Logging.ILoggerFactory,MediatR.IMediator)">
+            <inheritdoc />
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.AccountController.Login(EstelApi.CrossCutting.Identity.IdentityViewModels.AccountViewModels.LoginViewModel)">
+            <summary>
+            The login.
+            </summary>
+            <param name="model">
+            The model.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.AccountController.Register(EstelApi.CrossCutting.Identity.IdentityViewModels.AccountViewModels.RegisterViewModel)">
+            <summary>
+            The register.
+            </summary>
+            <param name="model">
+            The model.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="T:Estel.Services.Api.Controllers.ApiController">
+            <inheritdoc />
+        </member>
+        <member name="F:Estel.Services.Api.Controllers.ApiController.notifications">
+            <summary>
+            The notifications.
+            </summary>
+        </member>
+        <member name="F:Estel.Services.Api.Controllers.ApiController.mediator">
+            <summary>
+            The mediator.
+            </summary>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.ApiController.#ctor(MediatR.INotificationHandler{EstelApi.Core.Seedwork.CoreCqrs.Notifications.DomainNotification},MediatR.IMediator)">
+            <inheritdoc />
+        </member>
+        <member name="P:Estel.Services.Api.Controllers.ApiController.Notifications">
+            <summary>
+            The notifications.
+            </summary>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.ApiController.IsValidOperation">
+            <summary>
+            The is valid operation.
+            </summary>
+            <returns>
+            The <see cref="T:System.Boolean"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.ApiController.Response(System.Object)">
+            <summary>
+            The response.
+            </summary>
+            <param name="result">
+            The result.
+            </param>
+            <returns>
+            The <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.ApiController.NotifyModelStateErrors">
+            <summary>
+            The notify model state errors.
+            </summary>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.ApiController.NotifyError(System.String,System.String)">
+            <summary>
+            The notify error.
+            </summary>
+            <param name="code">
+            The code.
+            </param>
+            <param name="message">
+            The message.
+            </param>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.ApiController.AddIdentityErrors(Microsoft.AspNetCore.Identity.IdentityResult)">
+            <summary>
+            The add identity errors.
+            </summary>
+            <param name="result">
+            The result.
+            </param>
+        </member>
         <member name="T:Estel.Services.Api.Controllers.CustomerController">
             <summary>
             The customer controller.
@@ -78,10 +199,11 @@
             <returns>
             The <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/>.
             </returns>
+            [AllowAnonymous]
         </member>
-        <member name="M:Estel.Services.Api.Controllers.CustomerController.Post(EstelApi.Application.Dto.CustomerDTO)">
+        <member name="M:Estel.Services.Api.Controllers.CustomerController.Post(Estel.Services.Api.ViewModels.Customer.CreateCustomerViewModel)">
             <summary>
-            The post.
+            Work
             </summary>
             <param name="createCustomerViewModel">
             The create customer view model.
@@ -89,8 +211,9 @@
             <returns>
             The <see cref="T:System.Threading.Tasks.Task"/>.
             </returns>
+            [Authorize(Policy = "CanWriteCustomerData")]
         </member>
-        <member name="M:Estel.Services.Api.Controllers.CustomerController.History(System.Guid)">
+        <member name="M:Estel.Services.Api.Controllers.CustomerController.Put(Estel.Services.Api.ViewModels.Customer.UpdateCustomerViewModel)">
             <summary>
             The put.
             </summary>
@@ -100,16 +223,45 @@
             <returns>
             The <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/>.
             </returns>
+            [Authorize(Policy = "CanWriteCustomerData")]
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.CustomerController.History(System.Guid)">
+            <summary>
+            The history.
+            </summary>
+            <param name="id">
+            The id.
+            </param>
+            <returns>
+            The <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/>.
+            </returns>
+            [AllowAnonymous]
+        </member>
+        <member name="T:Estel.Services.Api.Extension.Exception.ApiError">
+            <summary>
+            The api error.
+            </summary>
+        </member>
+        <member name="F:Estel.Services.Api.Extension.Exception.ApiError.exception">
+            <summary>
+            The exception.
+            </summary>
         </member>
         <member name="M:Estel.Services.Api.Extension.Exception.ApiError.#ctor(System.Exception)">
             <summary>
             Initializes a new instance of the <see cref="T:Estel.Services.Api.Extension.Exception.ApiError"/> class. The error does not have a specific description.
             </summary>
+            <param name="exception">
+            The exception.
+            </param>
         </member>
         <member name="M:Estel.Services.Api.Extension.Exception.ApiError.#ctor(System.String)">
             <summary>
             Initializes a new instance of the <see cref="T:Estel.Services.Api.Extension.Exception.ApiError"/> class. The error does not have an exception that is associated with it.
             </summary>
+            <param name="description">
+            The description.
+            </param>
         </member>
         <member name="M:Estel.Services.Api.Extension.Exception.ApiError.#ctor(System.String,System.Exception)">
             <summary>
@@ -120,58 +272,65 @@
         </member>
         <member name="P:Estel.Services.Api.Extension.Exception.ApiError.Description">
             <summary>
-            Overall description of error explaining which part of system in general is broken
+            Gets Overall description of error explaining which part of system in general is broken
             </summary>
         </member>
         <member name="P:Estel.Services.Api.Extension.Exception.ApiError.Id">
             <summary>
-            Unique error ID for tracking purposes
+            Gets Unique error ID for tracking purposes
             </summary>
         </member>
         <member name="M:Estel.Services.Api.Extension.Exception.ApiError.ToString">
             <summary>
             Returns a string representation of ApiError
             </summary>
+            <returns>
+            The <see cref="T:System.String"/>.
+            </returns>
         </member>
         <member name="M:Estel.Services.Api.Extension.Exception.ApiError.GetException">
             <summary>
             Returns the exception that caused the error, if any
             </summary>
+            <returns>
+            The <see cref="T:System.Exception"/>.
+            </returns>
+        </member>
+        <member name="T:Estel.Services.Api.Extension.Exception.ApiErrorException">
+            <inheritdoc />
         </member>
         <member name="M:Estel.Services.Api.Extension.Exception.ApiErrorException.#ctor(System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:Estel.Services.Api.Extension.Exception.ApiErrorException"/> class.
-            </summary>
+            <inheritdoc />
         </member>
         <member name="M:Estel.Services.Api.Extension.Exception.ApiErrorException.#ctor(System.String,System.Exception)">
-            <summary>
-            Initializes a new instance of the <see cref="T:Estel.Services.Api.Extension.Exception.ApiErrorException"/> class.
-            </summary>
-        </member>
-        <member name="M:Estel.Services.Api.Extension.Exception.ApiErrorException.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:Estel.Services.Api.Extension.Exception.ApiErrorException"/> class.
-            </summary>
+            <inheritdoc />
         </member>
         <member name="M:Estel.Services.Api.Extension.Exception.ApiErrorException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>
-            Initializes a new instance of the <see cref="T:Estel.Services.Api.Extension.Exception.ApiErrorException"/> class.
-            </summary>
+            <inheritdoc />
         </member>
         <member name="P:Estel.Services.Api.Extension.Exception.ApiErrorException.Description">
             <summary>
-            A user-visible description of the error.
+            Gets user-visible description of the error.
             </summary>
         </member>
         <member name="T:Estel.Services.Api.Extension.Exception.ApiExceptionFilterAttribute">
+            <inheritdoc />
             <summary>
             Exception filter for handling unexpected and expected exceptions that passes through to the framework.
+            </summary>
+        </member>
+        <member name="F:Estel.Services.Api.Extension.Exception.ApiExceptionFilterAttribute.log">
+            <summary>
+            The log.
             </summary>
         </member>
         <member name="M:Estel.Services.Api.Extension.Exception.ApiExceptionFilterAttribute.#ctor(Serilog.ILogger)">
             <summary>
             Initializes a new instance of the <see cref="T:Estel.Services.Api.Extension.Exception.ApiExceptionFilterAttribute"/> class.
             </summary>
+            <param name="log">
+            The log.
+            </param>
         </member>
         <member name="M:Estel.Services.Api.Extension.Exception.ApiExceptionFilterAttribute.OnException(Microsoft.AspNetCore.Mvc.Filters.ExceptionContext)">
             <inheritdoc />
@@ -183,10 +342,36 @@
         </member>
         <member name="M:Estel.Services.Api.Extension.Exception.ErrorLoggingExtensions.ApiError(Serilog.ILogger,Estel.Services.Api.Extension.Exception.ApiError,Serilog.Events.LogEventLevel)">
             <summary>
-            Log an <see cref="M:Estel.Services.Api.Extension.Exception.ErrorLoggingExtensions.ApiError(Serilog.ILogger,Estel.Services.Api.Extension.Exception.ApiError,Serilog.Events.LogEventLevel)" /> using Serilog.
+            Log an <see cref="M:Estel.Services.Api.Extension.Exception.ErrorLoggingExtensions.ApiError(Serilog.ILogger,Estel.Services.Api.Extension.Exception.ApiError,Serilog.Events.LogEventLevel)"/> using Serilog.
+            </summary>
+            <param name="logger">
+            The logger.
+            </param>
+            <param name="error">
+            The error.
+            </param>
+            <param name="level">
+            The level.
+            </param>
+        </member>
+        <member name="T:Estel.Services.Api.Extension.Swagger.FileUploadOperation">
+            <inheritdoc />
+        </member>
+        <member name="F:Estel.Services.Api.Extension.Swagger.FileUploadOperation.FormFilePropertyNames">
+            <summary>
+            The form file property names.
             </summary>
         </member>
+        <member name="M:Estel.Services.Api.Extension.Swagger.FileUploadOperation.Apply(Swashbuckle.AspNetCore.Swagger.Operation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)">
+            <inheritdoc />
+        </member>
+        <member name="T:Estel.Services.Api.Extension.Swagger.SecurityRequirementsDocumentFilter">
+            <inheritdoc />
+        </member>
         <member name="M:Estel.Services.Api.Extension.Swagger.SecurityRequirementsDocumentFilter.Apply(Swashbuckle.AspNetCore.Swagger.SwaggerDocument,Swashbuckle.AspNetCore.SwaggerGen.DocumentFilterContext)">
+            <inheritdoc />
+        </member>
+        <member name="T:Estel.Services.Api.Extension.Swagger.SwaggerDefaultValues">
             <inheritdoc />
         </member>
         <member name="M:Estel.Services.Api.Extension.Swagger.SwaggerDefaultValues.Apply(Swashbuckle.AspNetCore.Swagger.Operation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)">
@@ -196,11 +381,270 @@
             <param name="operation">The operation to apply the filter to.</param>
             <param name="context">The current operation filter context.</param>
         </member>
+        <member name="T:Estel.Services.Api.Extension.Swagger.SwaggerExtension">
+            <summary>
+            The swagger extension.
+            </summary>
+        </member>
+        <member name="P:Estel.Services.Api.Extension.Swagger.SwaggerExtension.XmlCommentsFilePath">
+            <summary>
+            Gets the xml comments file path.
+            </summary>
+        </member>
+        <member name="M:Estel.Services.Api.Extension.Swagger.SwaggerExtension.AddSwaggerDocumentation(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            The add swagger documentation.
+            </summary>
+            <param name="services">
+            The services.
+            </param>
+        </member>
+        <member name="T:Estel.Services.Api.Extension.Swagger.VersionFilter">
+            <summary>
+            The version filter.
+            </summary>
+        </member>
         <member name="M:Estel.Services.Api.Extension.Swagger.VersionFilter.Apply(Swashbuckle.AspNetCore.Swagger.SwaggerDocument,Swashbuckle.AspNetCore.SwaggerGen.DocumentFilterContext)">
             <inheritdoc />
         </member>
         <member name="M:Estel.Services.Api.Extension.Swagger.VersionFilter.Apply(Swashbuckle.AspNetCore.Swagger.Operation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)">
             <inheritdoc />
+        </member>
+        <member name="T:Estel.Services.Api.Program">
+            <summary>
+            The program.
+            </summary>
+        </member>
+        <member name="M:Estel.Services.Api.Program.Main(System.String[])">
+            <summary>
+            The main.
+            </summary>
+            <param name="args">
+            The args.
+            </param>
+            <returns>
+            The <see cref="T:System.Int32"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Program.CreateWebHostBuilder(System.String[])">
+            <summary>
+            The create web host builder.
+            </summary>
+            <param name="args">
+            The args.
+            </param>
+            <returns>
+            The <see cref="T:Microsoft.AspNetCore.Hosting.IWebHostBuilder"/>.
+            </returns>
+        </member>
+        <member name="T:Estel.Services.Api.Startup">
+            <summary>
+            The startup.
+            </summary>
+        </member>
+        <member name="M:Estel.Services.Api.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Estel.Services.Api.Startup"/> class.
+            </summary>
+            <param name="configuration">
+            The configuration.
+            </param>
+        </member>
+        <member name="P:Estel.Services.Api.Startup.Configuration">
+            <summary>
+            Gets the configuration.
+            </summary>
+        </member>
+        <member name="M:Estel.Services.Api.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            This method gets called by the runtime. Use this method to add services to the container.
+            </summary>
+            <param name="services">
+            The services.
+            </param>
+            <returns>
+            The <see cref="T:System.IServiceProvider"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment,Microsoft.AspNetCore.Mvc.ApiExplorer.IApiVersionDescriptionProvider,Microsoft.Extensions.Logging.ILoggerFactory,Serilog.ILogger)">
+            <summary>
+            This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            </summary>
+            <param name="app">
+            The app.
+            </param>
+            <param name="env">
+            The env.
+            </param>
+            <param name="provider">
+            The provider.
+            </param>
+            <param name="loggerFactory">
+            The logger factory.
+            </param>
+            <param name="logger">
+            The logger.
+            </param>
+        </member>
+        <member name="M:Estel.Services.Api.Startup.LogConfiguration(Serilog.ILogger)">
+            <summary>
+            The log configuration.
+            </summary>
+            <param name="logger">
+            The logger.
+            </param>
+        </member>
+        <member name="T:Estel.Services.Api.ViewModels.Customer.CreateCustomerViewModel">
+            <summary>
+            The create customer view model.
+            </summary>
+        </member>
+        <member name="P:Estel.Services.Api.ViewModels.Customer.CreateCustomerViewModel.FirstName">
+            <summary>
+            The customer first name
+            </summary>
+        </member>
+        <member name="P:Estel.Services.Api.ViewModels.Customer.CreateCustomerViewModel.LastName">
+            <summary>
+            The customer lastName
+            </summary>
+        </member>
+        <member name="P:Estel.Services.Api.ViewModels.Customer.CreateCustomerViewModel.Telephone">
+            <summary>
+            Get or set the telephone 
+            </summary>
+        </member>
+        <member name="P:Estel.Services.Api.ViewModels.Customer.CreateCustomerViewModel.Company">
+            <summary>
+            Get or set the company name
+            </summary>
+        </member>
+        <member name="P:Estel.Services.Api.ViewModels.Customer.CreateCustomerViewModel.CountryId">
+            <summary>
+            The country identifier
+            </summary>
+        </member>
+        <member name="P:Estel.Services.Api.ViewModels.Customer.CreateCustomerViewModel.AddressCity">
+            <summary>
+            The address city
+            </summary>
+        </member>
+        <member name="P:Estel.Services.Api.ViewModels.Customer.CreateCustomerViewModel.AddressZipCode">
+            <summary>
+            The address zip code
+            </summary>
+        </member>
+        <member name="P:Estel.Services.Api.ViewModels.Customer.CreateCustomerViewModel.AddressAddressLine1">
+            <summary>
+            The address line 1
+            </summary>
+        </member>
+        <member name="P:Estel.Services.Api.ViewModels.Customer.CreateCustomerViewModel.AddressAddressLine2">
+            <summary>
+            The address line 2
+            </summary>
+        </member>
+        <member name="T:Estel.Services.Api.ViewModels.Customer.DeleteCustomerViewModel">
+            <summary>
+            The delete customer view model.
+            </summary>
+        </member>
+        <member name="P:Estel.Services.Api.ViewModels.Customer.DeleteCustomerViewModel.Id">
+            <summary>
+            Gets or sets the id.
+            </summary>
+        </member>
+        <member name="T:Estel.Services.Api.ViewModels.Customer.UpdateCustomerViewModel">
+            <summary>
+            The update customer view model.
+            </summary>
+        </member>
+        <member name="P:Estel.Services.Api.ViewModels.Customer.UpdateCustomerViewModel.Id">
+            <summary>
+            The customer identifier
+            </summary>
+        </member>
+        <member name="P:Estel.Services.Api.ViewModels.Customer.UpdateCustomerViewModel.FirstName">
+            <summary>
+            The customer first name
+            </summary>
+        </member>
+        <member name="P:Estel.Services.Api.ViewModels.Customer.UpdateCustomerViewModel.LastName">
+            <summary>
+            The customer lastName
+            </summary>
+        </member>
+        <member name="P:Estel.Services.Api.ViewModels.Customer.UpdateCustomerViewModel.Telephone">
+            <summary>
+            Get or set the telephone 
+            </summary>
+        </member>
+        <member name="P:Estel.Services.Api.ViewModels.Customer.UpdateCustomerViewModel.Company">
+            <summary>
+            Get or set the company name
+            </summary>
+        </member>
+        <member name="P:Estel.Services.Api.ViewModels.Customer.UpdateCustomerViewModel.CreditLimit">
+            <summary>
+            The asociated credit limit
+            </summary>
+        </member>
+        <member name="P:Estel.Services.Api.ViewModels.Customer.UpdateCustomerViewModel.CountryId">
+            <summary>
+            The country identifier
+            </summary>
+        </member>
+        <member name="P:Estel.Services.Api.ViewModels.Customer.UpdateCustomerViewModel.CountryCountryName">
+            <summary>
+            The country Name
+            </summary>
+        </member>
+        <member name="P:Estel.Services.Api.ViewModels.Customer.UpdateCustomerViewModel.AddressCity">
+            <summary>
+            The address city
+            </summary>
+        </member>
+        <member name="P:Estel.Services.Api.ViewModels.Customer.UpdateCustomerViewModel.AddressZipCode">
+            <summary>
+            The address zip code
+            </summary>
+        </member>
+        <member name="P:Estel.Services.Api.ViewModels.Customer.UpdateCustomerViewModel.AddressAddressLine1">
+            <summary>
+            The address line 1
+            </summary>
+        </member>
+        <member name="P:Estel.Services.Api.ViewModels.Customer.UpdateCustomerViewModel.AddressAddressLine2">
+            <summary>
+            The address line 2
+            </summary>
+        </member>
+        <member name="T:Estel.Services.Api.ViewModels.ViewModelToDtoProfileRev">
+            <summary>
+            The dto to cqrs command profile rev.
+            </summary>
+        </member>
+        <member name="M:Estel.Services.Api.ViewModels.ViewModelToDtoProfileRev.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Estel.Services.Api.ViewModels.ViewModelToDtoProfileRev"/> class.
+            </summary>
+        </member>
+        <member name="T:Estel.Services.Api.ViewModels.ViewModelWrapper`1">
+            <summary>
+            The view model wrapper.
+            </summary>
+            <typeparam name="TEntity">Wrapped Entity
+            </typeparam>
+        </member>
+        <member name="P:Estel.Services.Api.ViewModels.ViewModelWrapper`1.File">
+            <summary>
+            Gets or sets the file.
+            </summary>
+        </member>
+        <member name="P:Estel.Services.Api.ViewModels.ViewModelWrapper`1.ViewModel">
+            <summary>
+            Gets or sets the view model.
+            </summary>
         </member>
     </members>
 </doc>

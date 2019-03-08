@@ -1,29 +1,38 @@
-﻿using EstelApi.Core.Seedwork.CoreCqrs.Events;
-using EstelApi.Domain.DataAccessLayer.Context.EntityDbMapper;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
-
-namespace EstelApi.Domain.DataAccessLayer.Context.Context
+﻿namespace EstelApi.Domain.DataAccessLayer.Context.Context
 {
-    // Add-Migration Init_EventStoreSQLContext -Context EventStoreSQLContext -project EstelApi.Domain.DataAccessLayer.Context -OutputDir Migrations\EventStore
-    // update-database                         -Context EventStoreSQLContext -project EstelApi.Domain.DataAccessLayer.Context
+    using EstelApi.Core.Seedwork.CoreCqrs.Events;
+    using EstelApi.Domain.DataAccessLayer.Context.EntityDbMapper;
+
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.Hosting;
+
+    /// <inheritdoc />
     public class EventStoreSqlContext : DbContext
     {
-        public DbSet<StoredEvent> StoredEvent { get; set; }
-
+        /// <summary>
+        /// The env.
+        /// </summary>
         private readonly IHostingEnvironment env;
 
+        /// <inheritdoc />
         public EventStoreSqlContext(IHostingEnvironment env)
         {
             this.env = env;
         }
 
+        /// <inheritdoc />
         public EventStoreSqlContext(DbContextOptions<EventStoreSqlContext> options)
             : base(options)
         {
         }
 
+        /// <summary>
+        /// Gets or sets the stored event.
+        /// </summary>
+        public DbSet<StoredEvent> StoredEvent { get; set; }
+
+        /// <inheritdoc />
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new StoredEventMap());
@@ -31,6 +40,7 @@ namespace EstelApi.Domain.DataAccessLayer.Context.Context
             base.OnModelCreating(modelBuilder);
         }
 
+        /// <inheritdoc />
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)

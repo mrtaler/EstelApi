@@ -4,6 +4,7 @@
 
     using Newtonsoft.Json;
 
+    /// <inheritdoc />
     /// <summary>
     /// The course.
     /// </summary>

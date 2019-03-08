@@ -4,8 +4,16 @@
 
     using FluentValidation.Results;
 
+    /// <summary>
+    /// The command response.
+    /// </summary>
+    /// <typeparam name="TEntity">Responsed entity
+    /// </typeparam>
     public class CommandResponse<TEntity> : ICommandResponse<TEntity>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CommandResponse{TEntity}"/> class.
+        /// </summary>
         public CommandResponse()
         {
             this.IsSuccess = false;

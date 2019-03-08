@@ -1,39 +1,64 @@
-﻿using EstelApi.Domain.DataAccessLayer.Context.Context.Base;
-using EstelApi.Domain.DataAccessLayer.Context.EntityDbMapper;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
-
-namespace EstelApi.Domain.DataAccessLayer.Context.Context
+﻿namespace EstelApi.Domain.DataAccessLayer.Context.Context
 {
+    using EstelApi.Domain.DataAccessLayer.Context.Context.Base;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CountryAgg;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
+    using EstelApi.Domain.DataAccessLayer.Context.EntityDbMapper;
 
-    // Add-Migration Init_EstelContext -Context EstelContext  -project EstelApi.Domain.DataAccessLayer.Context -OutputDir Migrations
-    // update-database                 -Context EstelContext  -project EstelApi.Domain.DataAccessLayer.Context
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.Hosting;
+
+    /// <inheritdoc />
+    /// <summary>
+    /// The estel context.
+    /// </summary>
     internal class EstelContext : BaseContext
     {
+        /// <summary>
+        /// The env.
+        /// </summary>
         private readonly IHostingEnvironment env;
 
+        /// <inheritdoc />
         public EstelContext(IHostingEnvironment env)
         {
             this.env = env;
         }
 
+        /// <inheritdoc />
         public EstelContext(DbContextOptions<EstelContext> options)
             : base(options)
         {
         }
 
-        public virtual DbSet<Customer> Customers { get; }
-       
-        public virtual DbSet<Country> Countries { get; }
+        /// <summary>
+        /// Gets or sets the customers.
+        /// </summary>
+        public virtual DbSet<Customer> Customers { get; set; }
 
+        /// <summary>
+        /// Gets or sets the countries.
+        /// </summary>
+        public virtual DbSet<Country> Countries { get; set; }
+
+        /// <summary>
+        /// Gets or sets the course types.
+        /// </summary>
         public virtual DbSet<CourseType> CourseTypes { get; set; }
 
+        /// <summary>
+        /// Gets or sets the courses.
+        /// </summary>
         public virtual DbSet<Course> Courses { get; set; }
 
+        /// <summary>
+        /// The on model creating.
+        /// </summary>
+        /// <param name="modelBuilder">
+        /// The model builder.
+        /// </param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new CustomerMap());
@@ -44,6 +69,12 @@ namespace EstelApi.Domain.DataAccessLayer.Context.Context
             base.OnModelCreating(modelBuilder);
         }
 
+        /// <summary>
+        /// The on configuring.
+        /// </summary>
+        /// <param name="optionsBuilder">
+        /// The options builder.
+        /// </param>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
