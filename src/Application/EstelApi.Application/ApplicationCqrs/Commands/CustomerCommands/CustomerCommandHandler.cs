@@ -205,8 +205,9 @@
 
                 //Merge changes
 
-                //this.customerRepository.Update(current);
-               this.customerRepository.Merge(persisted, current);
+               this.customerRepository.Update(current);
+
+   //   this.customerRepository.Merge(persisted, current);
                 if (this.Commit())
                 {
                     await this.bus.Publish(
@@ -249,16 +250,16 @@
                 customerDTO.AddressAddressLine1,
                 customerDTO.AddressAddressLine2);
 
-            Country country = new Country("Spain", "es-ES");
-            country.ChangeCurrentIdentity(customerDTO.CountryId);
-
+         /*   Country country = new Country("Spain", "es-ES");
+            country.ChangeCurrentIdentity(customerDTO.CountryId);*/
+            
             var current = CustomerFactory.CreateCustomer(customerDTO.FirstName,
                 customerDTO.LastName,
                 customerDTO.Telephone,
                 customerDTO.Company,
-                country,
+                null,
                 address);
-
+            current.SetTheCountryReference(customerDTO.CountryId);
             current.SetTheCountryReference(customerDTO.Id);
 
             //set credit

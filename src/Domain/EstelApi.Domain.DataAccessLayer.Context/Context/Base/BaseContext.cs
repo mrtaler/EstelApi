@@ -38,7 +38,7 @@
             where TEntity : class
         {
             // attach and set as unchanged
-            this.Entry(item).State = EntityState.Unchanged;
+            base.Entry<TEntity>(item).State = EntityState.Unchanged;
         }
 
         /// <inheritdoc />
@@ -46,7 +46,7 @@
             where TEntity : class
         {
             // this operation also attach item in object state manager
-            this.Entry(item).State = EntityState.Modified;
+            base.Entry<TEntity>(item).State = EntityState.Modified;
         }
 
         /// <inheritdoc />

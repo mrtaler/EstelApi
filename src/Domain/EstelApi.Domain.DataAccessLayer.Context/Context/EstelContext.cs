@@ -9,6 +9,7 @@
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.Hosting;
+    using Microsoft.Extensions.Logging;
 
     /// <inheritdoc />
     /// <summary>
@@ -20,17 +21,20 @@
         /// The env.
         /// </summary>
         private readonly IHostingEnvironment env;
+        private readonly ILoggerFactory loggerFactory;
 
         /// <inheritdoc />
-        public EstelContext(IHostingEnvironment env)
+        public EstelContext(IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             this.env = env;
+            this.loggerFactory = loggerFactory;
         }
 
         /// <inheritdoc />
-        public EstelContext(DbContextOptions<EstelContext> options)
+        public EstelContext(DbContextOptions<EstelContext> options, ILoggerFactory loggerFactory)
             : base(options)
         {
+            this.loggerFactory = loggerFactory;
         }
 
         /// <summary>
@@ -83,9 +87,11 @@
                     .AddJsonFile("appsettings.json").Build();
 
                 // define the database to use
-                optionsBuilder.UseSqlServer(config.GetConnectionString("DefaultConnection"));
+                optionsBuilder.UseSqlServer(config.GetConnectionString("DefaultConnection"))
+                    .UseLoggerFactory(this.loggerFactory)
+                    .EnableSensitiveDataLogging(true)
 
-                // .EnableSensitiveDataLogging(true).UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+                .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
 
                 // ,x => x.MigrationsAssembly("GomelEstel.Infra.Data"));}
             }

@@ -1,12 +1,11 @@
 ﻿namespace EstelApi.Domain.DataAccessLayer.Context.Context.Repositories
 {
-    using System;
-
     using EstelApi.Domain.DataAccessLayer.Context.Context;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
     using EstelApi.Domain.DataAccessLayer.Context.Interfaces;
     using EstelApi.Domain.DataAccessLayer.Context.Repository.Base;
     using Microsoft.EntityFrameworkCore;
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -51,15 +50,16 @@
             return currentUnitOfWork?.Customers.Where(c => c.IsEnabled).OrderBy(c => c.FullName);
         }
 
-        /// <inheritdoc />
-        public override void Merge(Customer persisted, Customer current)
+           /// <inheritdoc />
+     public override void Merge(Customer persisted, Customer current)
         {
+           
             // merge customer and customer picture
-            if (this.UnitOfWork is EstelContext currentUnitOfWork)
-            {
-                currentUnitOfWork.ApplyCurrentValues(persisted, current);
-                currentUnitOfWork.ApplyCurrentValues(persisted.Picture, current.Picture);
-            }
+               if (this.UnitOfWork is EstelContext currentUnitOfWork)
+               {
+                   currentUnitOfWork.ApplyCurrentValues(persisted, current);
+                   currentUnitOfWork.ApplyCurrentValues(persisted.Picture, current.Picture);
+             }
         }
     }
 }
