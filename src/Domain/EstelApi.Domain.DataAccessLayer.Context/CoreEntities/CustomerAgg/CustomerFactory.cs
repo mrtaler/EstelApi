@@ -65,13 +65,14 @@
 
             // set default picture
             var picture = new Picture();
-            picture.ChangeCurrentIdentity(customer.Id);
-
+           picture.GenerateNewIdentity();
             customer.ChangePicture(picture);
 
             // set the country for this customer
+         //   set
+        //    customer.SetTheCountryForThisCustomer(country);
+           // customer.SetTheCountryReference(country.Id);
             customer.SetTheCountryForThisCustomer(country);
-
             return customer;
         }
     }

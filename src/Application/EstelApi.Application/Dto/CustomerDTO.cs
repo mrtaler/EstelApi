@@ -4,8 +4,6 @@
 
     public class CustomerDto
     {
-        public CustomerDto() { }
-
         /// <summary>
         /// The customer identifier
         /// </summary>

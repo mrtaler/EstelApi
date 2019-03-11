@@ -1,11 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
-namespace EstelApi.Domain.DataAccessLayer.Context.EntityDbMapper
+﻿namespace EstelApi.Domain.DataAccessLayer.Context.EntityDbMapper
 {
-    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities;
-
-   /* public class CourseTypeConfiguration : IEntityTypeConfiguration<CourseType>
+    /* public class CourseTypeConfiguration : IEntityTypeConfiguration<CourseType>
     {
         public void Configure(EntityTypeBuilder<CourseType> builder)
         {

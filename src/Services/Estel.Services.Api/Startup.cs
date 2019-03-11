@@ -30,6 +30,9 @@
     using System;
     using System.IO;
     using System.Linq;
+
+    using Serilog.Events;
+
     using ILogger = Serilog.ILogger;
 
     /// <summary>
@@ -115,12 +118,13 @@
             builder.Populate(services);
             builder.Register<ILogger>((c, p) => new LoggerConfiguration().MinimumLevel.Debug()
             
-                // .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
+                .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
                 .Enrich.FromLogContext()
                 .WriteTo.Console(
                     theme: Serilog.Sinks.SystemConsole.Themes.AnsiConsoleTheme.Code,
                     outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} {Level}:{EventId} [{SourceContext}] {Message}{NewLine}{Exception}")
-                .CreateLogger()).SingleInstance();
+                .CreateLogger())
+                .SingleInstance();
 
             builder.RegisterModule(new EstelApiCrossCuttingIoC());
             var container = builder.Build();

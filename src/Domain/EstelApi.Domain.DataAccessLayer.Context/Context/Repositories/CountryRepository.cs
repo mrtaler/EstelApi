@@ -9,7 +9,7 @@
         : Repository<Country>, ICountryRepository
     {
         /// <inheritdoc />
-        public CountryRepository(IQueryableUnitOfWork context)
+        public CountryRepository(EstelContext context)
              : base(context)
         {
         }

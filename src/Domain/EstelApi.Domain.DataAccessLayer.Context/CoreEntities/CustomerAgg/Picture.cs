@@ -9,6 +9,8 @@
     public class Picture
         : EntityGuid
     {
+        public Picture() { }
+
         /// <summary>
         /// Gets or sets the raw photo.
         /// </summary>

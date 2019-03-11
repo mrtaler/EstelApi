@@ -3,7 +3,6 @@
     using System.Collections.Generic;
 
     using EstelApi.Application.Dto;
-    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
 
     using MediatR;
 

@@ -1,39 +1,30 @@
-﻿using AutoMapper;
-using EstelApi.Application.EventSourcedNormalizers;
-using EstelApi.Application.Interfaces;
-using EstelApi.Core.Seedwork.Adapter;
-using EstelApi.Core.Seedwork.CoreCqrs.Events;
-using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace EstelApi.Application.Services
+﻿namespace EstelApi.Application.Services
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+
     using EstelApi.Application.ApplicationCqrs.Commands.CustomerCommands.Commands;
     using EstelApi.Application.ApplicationCqrs.Queries.CustomerQueries;
     using EstelApi.Application.Dto;
-    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
-    using System.Linq;
+    using EstelApi.Application.EventSourcedNormalizers;
+    using EstelApi.Application.Interfaces;
+    using EstelApi.Core.Seedwork.Adapter;
+    using EstelApi.Core.Seedwork.CoreCqrs.Events;
+
+    using MediatR;
 
     public class CustomerAppService : ICustomerAppService
     {
-        private readonly IMapper mapper;
-
-        private readonly ICustomerRepository customerRepository;
-
         private readonly IEventStoreRepository eventStoreRepository;
 
         private readonly IMediator bus;
 
         public CustomerAppService(
-            IMapper mapper,
-            ICustomerRepository customerRepository,
             IMediator bus,
             IEventStoreRepository eventStoreRepository)
         {
-            this.mapper = mapper;
-            this.customerRepository = customerRepository;
             this.bus = bus;
             this.eventStoreRepository = eventStoreRepository;
         }

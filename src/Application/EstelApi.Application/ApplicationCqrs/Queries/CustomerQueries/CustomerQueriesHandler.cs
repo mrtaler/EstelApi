@@ -47,7 +47,7 @@
             IMediator bus,
             INotificationHandler<DomainNotification> notifications) : base(uow, bus, notifications)
         {
-            this.customerRepository = customerRepository;
+           this.customerRepository = customerRepository;
         }
 
         /// <summary>
@@ -90,7 +90,7 @@
         /// </returns>
         public async Task<CustomerDto> Handle(CustomerByIdQuery request, CancellationToken cancellationToken)
         {
-            var ret = this.customerRepository.GetById(request.Id);
+            var ret = this.customerRepository.Get(request.Id);
             return await Task.FromResult(ret.ProjectedAs<CustomerDto>());
         }
     }

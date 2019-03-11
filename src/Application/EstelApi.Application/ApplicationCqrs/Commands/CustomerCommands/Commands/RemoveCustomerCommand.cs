@@ -1,8 +1,6 @@
 ﻿namespace EstelApi.Application.ApplicationCqrs.Commands.CustomerCommands.Commands
 {
-    using System;
-
-   /* public class RemoveCustomerCommand : CustomerCommand
+    /* public class RemoveCustomerCommand : CustomerCommand
     {
         public RemoveCustomerCommand(Guid id)
         {

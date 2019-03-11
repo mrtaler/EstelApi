@@ -13,7 +13,7 @@ namespace EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CountryAgg
         /// <summary>
         /// Prevents a default instance of the <see cref="Country"/> class from being created. Required by EF
         /// </summary>
-        private Country()
+        public Country()
         {
         }
 

@@ -22,7 +22,7 @@
         {
             builder.HasKey(c => c.Id).HasName("CustomerId");
             builder.OwnsOne(c => c.Address);
-
+          //  builder.HasOne(x => x.Picture).WithOne(x => x.Customer).HasForeignKey<Customer>(x => x.Id);
             /* builder.Property(c => c.Id)
                                          .HasColumnName("Id");*/
             /*  builder.Property(c => c.Name).HasColumnType("varchar(100)").HasMaxLength(100).IsRequired();

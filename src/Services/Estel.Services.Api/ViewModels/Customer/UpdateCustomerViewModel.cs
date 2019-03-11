@@ -1,8 +1,6 @@
 ﻿namespace Estel.Services.Api.ViewModels.Customer
 {
     using System;
-    using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
 
     /// <summary>
     /// The update customer view model.

@@ -1,5 +1,9 @@
 ﻿namespace EstelApi.Application.ApplicationCqrs.Commands.CustomerCommands
 {
+    using System;
+    using System.Threading;
+    using System.Threading.Tasks;
+
     using EstelApi.Application.ApplicationCqrs.Base;
     using EstelApi.Application.ApplicationCqrs.Commands.CustomerCommands.Commands;
     using EstelApi.Application.ApplicationCqrs.Commands.CustomerCommands.Events;
@@ -9,10 +13,8 @@
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CountryAgg;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
     using EstelApi.Domain.DataAccessLayer.Context.Interfaces;
+
     using MediatR;
-    using System;
-    using System.Threading;
-    using System.Threading.Tasks;
 
     /// <summary>
     /// The customer command handler.
@@ -55,15 +57,15 @@
         /// The notifications.
         /// </param>
         public CustomerCommandHandler(
-            ICustomerRepository customerRepository,
-            ICountryRepository countryRepository,
-            IQueryableUnitOfWork uow,
+             ICustomerRepository customerRepository,
+             ICountryRepository countryRepository,
+             IQueryableUnitOfWork uow,
             IMediator bus,
             INotificationHandler<DomainNotification> notifications)
             : base(uow, bus, notifications)
         {
-            this.customerRepository = customerRepository;
-            this.countryRepository = countryRepository;
+             this.customerRepository = customerRepository;
+             this.countryRepository = countryRepository;
             this.bus = bus;
         }
 
@@ -106,7 +108,7 @@
                 // throw new ArgumentException("_resources.GetStringResource(LocalizationKeys.Application.warning_CannotAddCustomerWithEmptyInformation)");
             }
 
-            var country = this.countryRepository.GetById(message.CountryId);
+            var country = this.countryRepository.Get(message.CountryId);
 
             if (country != null)
             {
@@ -195,7 +197,7 @@
             }
 
             // get persisted item
-            var persisted = this.customerRepository.GetById(request.Id);
+            var persisted = this.customerRepository.Get(request.Id);
 
             // if customer exist
             if (persisted != null)
@@ -205,9 +207,11 @@
 
                 //Merge changes
 
-               this.customerRepository.Update(current);
+          //   this.customerRepository.Modify(current);
 
-   //   this.customerRepository.Merge(persisted, current);
+              this.customerRepository.Merge(persisted, current);
+
+          //  this.customerRepository.TrackItem(current);
                 if (this.Commit())
                 {
                     await this.bus.Publish(
@@ -250,32 +254,29 @@
                 customerDTO.AddressAddressLine1,
                 customerDTO.AddressAddressLine2);
 
-         /*   Country country = new Country("Spain", "es-ES");
-            country.ChangeCurrentIdentity(customerDTO.CountryId);*/
-            
+               Country country = new Country(customerDTO.CountryCountryName, "dEFF");
+               country.GenerateNewIdentity();
+
             var current = CustomerFactory.CreateCustomer(customerDTO.FirstName,
                 customerDTO.LastName,
                 customerDTO.Telephone,
                 customerDTO.Company,
-                null,
+                country,
                 address);
             current.SetTheCountryReference(customerDTO.CountryId);
-            current.SetTheCountryReference(customerDTO.Id);
+      //      current.SetTheCountryReference(customerDTO.Id);
 
             //set credit
             current.ChangeTheCurrentCredit(customerDTO.CreditLimit);
 
             //set picture
+    //        var picture = new Picture { RawPhoto = customerDTO.PictureRawPhoto };
+      //      picture.ChangeCurrentIdentity(current.Id);
 
-                var picture = new Picture { RawPhoto = customerDTO.PictureRawPhoto };
-                picture.ChangeCurrentIdentity(current.Id);
+       //     current.ChangePicture(picture);
 
-                current.ChangePicture(picture);
-       
             //set identity
             current.ChangeCurrentIdentity(customerDTO.Id);
-
-
             return current;
         }
     }

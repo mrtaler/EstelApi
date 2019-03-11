@@ -15,7 +15,7 @@
     /// <summary>
     /// The estel context.
     /// </summary>
-    internal class EstelContext : BaseContext
+    public class EstelContext :DbContext// BaseContext
     {
         /// <summary>
         /// The env.
@@ -31,31 +31,35 @@
         }
 
         /// <inheritdoc />
-        public EstelContext(DbContextOptions<EstelContext> options, ILoggerFactory loggerFactory)
+        public EstelContext(DbContextOptions<EstelContext> options)
             : base(options)
         {
-            this.loggerFactory = loggerFactory;
         }
+
+        private DbSet<Country> countries;
+        private DbSet<Customer> customers;
+        private DbSet<CourseType> courseTypes;
+        private DbSet<Course> courses;
 
         /// <summary>
         /// Gets or sets the customers.
         /// </summary>
-        public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<Customer> Customers => this.customers ?? (this.customers = base.Set<Customer>());
 
         /// <summary>
-        /// Gets or sets the countries.
+        /// Gets the countries.
         /// </summary>
-        public virtual DbSet<Country> Countries { get; set; }
+        public virtual DbSet<Country> Countries => this.countries ?? (this.countries = base.Set<Country>());
 
         /// <summary>
         /// Gets or sets the course types.
         /// </summary>
-        public virtual DbSet<CourseType> CourseTypes { get; set; }
+        public virtual DbSet<CourseType> CourseTypes => this.courseTypes ?? (this.courseTypes = base.Set<CourseType>());
 
         /// <summary>
         /// Gets or sets the courses.
         /// </summary>
-        public virtual DbSet<Course> Courses { get; set; }
+        public virtual DbSet<Course> Courses => this.courses ?? (this.courses = base.Set<Course>());
 
         /// <summary>
         /// The on model creating.
@@ -81,20 +85,24 @@
         /// </param>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
+            if (optionsBuilder.IsConfigured)
             {
-                var config = new ConfigurationBuilder().SetBasePath(this.env.ContentRootPath)
-                    .AddJsonFile("appsettings.json").Build();
-
-                // define the database to use
-                optionsBuilder.UseSqlServer(config.GetConnectionString("DefaultConnection"))
-                    .UseLoggerFactory(this.loggerFactory)
-                    .EnableSensitiveDataLogging(true)
-
-                .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
-
-                // ,x => x.MigrationsAssembly("GomelEstel.Infra.Data"));}
+                return;
             }
+
+            var config = new ConfigurationBuilder().SetBasePath(this.env.ContentRootPath)
+                .AddJsonFile("appsettings.json").Build();
+
+            // define the database to use
+            optionsBuilder.UseSqlServer(config.GetConnectionString("DefaultConnection"))
+                .UseLoggerFactory(this.loggerFactory)
+                .EnableSensitiveDataLogging(true);//;.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);/*
+              //  .UseLazyLoadingProxies()
+
+               // */
+         //   ;
+
+            // ,x => x.MigrationsAssembly("GomelEstel.Infra.Data"));}
         }
     }
 }

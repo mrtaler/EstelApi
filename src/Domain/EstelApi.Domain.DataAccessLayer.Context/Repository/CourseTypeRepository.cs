@@ -1,5 +1,6 @@
 ﻿namespace EstelApi.Domain.DataAccessLayer.Context.Repository
 {
+    using EstelApi.Domain.DataAccessLayer.Context.Context;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities;
     using EstelApi.Domain.DataAccessLayer.Context.Interfaces;
     using EstelApi.Domain.DataAccessLayer.Context.Repository.Base;
@@ -17,7 +18,7 @@
         /// <param name="context">
         /// The context.
         /// </param>
-        public CourseTypeRepository(IQueryableUnitOfWork context) : base(context)
+        public CourseTypeRepository(EstelContext context) : base(context)
         {
         }
     }

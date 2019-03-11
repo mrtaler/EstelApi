@@ -4,6 +4,7 @@
 
     using EstelApi.Core.Seedwork.CoreCqrs.Events;
     using EstelApi.Domain.DataAccessLayer.Context.Context;
+    using EstelApi.Domain.DataAccessLayer.Context.Context.Base;
     using EstelApi.Domain.DataAccessLayer.Context.Context.Repositories;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CountryAgg;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
@@ -35,9 +36,13 @@
                                             ))  .AsSelf().InstancePerLifetimeScope(); ;*/
             builder
                 .RegisterType<EstelContext>()
+                .AsSelf()
+                .InstancePerLifetimeScope();
+            builder
+                .RegisterType<UnitOfWork>()
                 .As<IQueryableUnitOfWork>()
                 .InstancePerLifetimeScope();
-          
+
             builder
                 .RegisterType<EventStoreSqlContext>()
                 .AsSelf()

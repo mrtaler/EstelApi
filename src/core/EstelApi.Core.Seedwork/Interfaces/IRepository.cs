@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     /// <inheritdoc cref="T:IReadableRepository" />
     /// <summary>
@@ -9,13 +10,13 @@
     /// </summary>
     /// <typeparam name="TEntity">db Entities
     /// </typeparam>
-    public interface IRepository<TEntity> : IReadableRepository<TEntity> /*, IAsyncRepository<TEntity>*/, IDisposable
-        where TEntity : class
+    public interface IRepository<TEntity> : /*IReadableRepository<TEntity> , IAsyncRepository<TEntity>,*/ IDisposable
+        where TEntity : Entity
     {
-        /// <summary>
+       /* /// <summary>
         /// Gets the unit of work in this repository
         /// </summary>
-        IUnitOfWork UnitOfWork { get; }
+        IUnitOfWork UnitOfWork { get; }*/
 
         /// <summary>
         /// Add <paramref name="item"/> into repository
@@ -44,24 +45,16 @@
         void Remove(IEnumerable<TEntity> items);
 
         /// <summary>
-        /// The remove.
-        /// </summary>
-        /// <param name="id">
-        /// The id.
-        /// </param>
-        void Remove(object id);
-
-        /// <summary>
         /// Set <paramref name="item"/> as modified
         /// </summary>
         /// <param name="item">Item to modify</param>
-        void Update(TEntity item);
+        void Modify(TEntity item);
 
         /// <summary>
         /// Set <paramref name="items"/> as modified
         /// </summary>
         /// <param name="items">Items to modify</param>
-        void Update(IEnumerable<TEntity> items);
+        void Modify(IEnumerable<TEntity> items);
 
         /// <summary>
         /// Track entity into this repository, really in UnitOfWork. 
@@ -89,9 +82,35 @@
         void Merge(TEntity persisted, TEntity current);
 
         /// <summary>
+        /// Get element by entity key
+        /// </summary>
+        /// <param name="id">Entity key value</param>
+        /// <returns></returns>
+        TEntity Get(object id);
+
+        /// <summary>
+        /// Get element by entity key - Async
+        /// </summary>
+        /// <param name="id">Entity key value</param>
+        /// <returns></returns>
+        Task<TEntity> GetAsync(object id);
+
+        /// <summary>
+        /// Get all elements of type TEntity in repository
+        /// </summary>
+        /// <returns>List of selected elements</returns>
+        IEnumerable<TEntity> GetAll();
+
+        /// <summary>
+        /// Get all elements of type TEntity in repository - Async
+        /// </summary>
+        /// <returns>List of selected elements</returns>
+        Task<IEnumerable<TEntity>> GetAllAsync();
+
+        /// <summary>
         /// Refresh entity. Note. This generates adhoc queries.
         /// </summary>
-        /// <param name="entity">db Entity</param>
+        /// <param name="entity"></param>
         void Refresh(TEntity entity);
     }
 }

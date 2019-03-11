@@ -19,9 +19,7 @@ namespace EstelApi.Application.AutoMapper
         public DomainToDtoMappingProfileReverse()
         {
             Log.Debug($"AutoMapper profile {nameof(DomainToDtoMappingProfileReverse)} was launch");
-            this.CreateMap<Customer, CustomerDto>()
-                .PreserveReferences()
-                .ReverseMap();
+            this.CreateMap<Customer, CustomerDto>().PreserveReferences();
         }
     }
 }

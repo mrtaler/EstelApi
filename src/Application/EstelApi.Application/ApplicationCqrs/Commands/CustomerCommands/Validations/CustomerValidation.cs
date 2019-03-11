@@ -1,12 +1,6 @@
 ﻿namespace EstelApi.Application.ApplicationCqrs.Commands.CustomerCommands.Validations
 {
-    using System;
-
-    using EstelApi.Application.ApplicationCqrs.Commands.CustomerCommands.Commands;
-
-    using FluentValidation;
-
-  /*  public abstract class CustomerValidation<T> : AbstractValidator<T> where T : CustomerCommand
+    /*  public abstract class CustomerValidation<T> : AbstractValidator<T> where T : CustomerCommand
     {
         protected void ValidateName()
         {

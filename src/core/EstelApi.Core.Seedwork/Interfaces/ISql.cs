@@ -1,6 +1,7 @@
 ﻿namespace EstelApi.Core.Seedwork.Interfaces
 {
     using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// The Sql interface.
@@ -21,7 +22,8 @@
         /// <returns>
         /// Enumerable results 
         /// </returns>
-        IEnumerable<TEntity> ExecuteQuery<TEntity>(string sqlQuery, params object[] parameters);
+       Task<IEnumerable<TEntity>> ExecuteQuery<TEntity>(string sqlQuery, params object[] parameters)
+            where TEntity : class;
 
         /// <summary>
         /// Execute arbitrary command into underliying persistence store
@@ -34,6 +36,6 @@
         /// </param>
         /// <param name="parameters">A vector of parameters values</param>
         /// <returns>The number of affected records</returns>
-        int ExecuteCommand(string sqlCommand, params object[] parameters);
+        Task<int> ExecuteCommand(string sqlCommand, params object[] parameters);
     }
 }
