@@ -18,6 +18,9 @@
     /// </summary>
     public class UnitOfWork : IQueryableUnitOfWork
     {
+        /// <summary>
+        /// The context.
+        /// </summary>
         private readonly EstelContext context;
 
         /// <inheritdoc />
@@ -26,6 +29,10 @@
             this.context = context;
         }
 
+        /// <inheritdoc />
+        /// <summary>
+        /// The dispose.
+        /// </summary>
         public void Dispose()
         {
             this.context.Dispose();
@@ -169,30 +176,26 @@
             this.context.Entry(entity).Reload();
         }
 
-
-
-        #region Private Methods
+        /// <summary>
+        /// The audit.
+        /// </summary>
         private void Audit()
         {
             // Get the authenticated user name 
             string userName = "Anonymous";
 
             var user = ClaimsPrincipal.Current;
-            if (user != null)
+            var identity = user?.Identity;
+            if (identity != null)
             {
-                var identity = user.Identity;
-                if (identity != null)
-                {
-                    userName = identity.Name;
-                }
+                userName = identity.Name;
             }
 
-            foreach (var auditedEntity in context.ChangeTracker.Entries<IAuditableEntity>())
+            foreach (var auditedEntity in this.context.ChangeTracker.Entries<IAuditableEntity>())
             {
                 if (auditedEntity.State == EntityState.Added ||
                     auditedEntity.State == EntityState.Modified)
                 {
-
                     auditedEntity.Entity.LastModifiedAt = DateTime.UtcNow;
                     auditedEntity.Entity.LastModifiedBy = userName;
 
@@ -208,22 +211,33 @@
                     }
                 }
             }
-
-
         }
 
+        /// <summary>
+        /// The save and audit changes.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="int"/>.
+        /// </returns>
         private int SaveAndAuditChanges()
         {
             this.Audit();
             return this.context.SaveChanges();
         }
 
+        /// <summary>
+        /// The save and audit changes async.
+        /// </summary>
+        /// <param name="cancellationToken">
+        /// The cancellation token.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         private async Task<int> SaveAndAuditChangesAsync(CancellationToken cancellationToken = default(CancellationToken))
         {
             this.Audit();
-            return await this.context.SaveChangesAsync();
+            return await this.context.SaveChangesAsync(cancellationToken);
         }
-
-        #endregion
     }
 }

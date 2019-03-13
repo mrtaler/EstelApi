@@ -22,12 +22,10 @@
             this.CreateMap<CreateCustomerViewModel, CustomerDto>(MemberList.Source);
             this.CreateMap<UpdateCustomerViewModel, CustomerDto>(MemberList.Source);
 
-
-
-            /* .ForMember(p => p.Id, x => x.Ignore())
+            /*  .ForMember(p => p.Id, x => x.Ignore())
                 .ForMember(p => p.CreditLimit, x => x.MapFrom(y => 0M))
-        .ForMember(p => p.CountryCountryName, x => x.Ignore())
-             .ForMember(p => p.PictureRawPhoto, x => x.Ignore());*/
+                .ForMember(p => p.CountryCountryName, x => x.Ignore())
+                .ForMember(p => p.PictureRawPhoto, x => x.Ignore());*/
 
             // this.CreateMap<CustomerDto, CreateCustomerViewModel>();
 

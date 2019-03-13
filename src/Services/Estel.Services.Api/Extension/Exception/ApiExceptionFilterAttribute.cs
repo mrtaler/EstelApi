@@ -1,13 +1,12 @@
 ﻿namespace Estel.Services.Api.Extension.Exception
 {
-    using System;
-    using System.Net;
-
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Filters;
-
     using Serilog;
     using Serilog.Events;
+    using System;
+    using System.Net;
+    using System.Threading.Tasks;
 
     /// <inheritdoc />
     /// <summary>
@@ -33,7 +32,7 @@
         }
 
         /// <inheritdoc />
-        public override void OnException(ExceptionContext context)
+        public override async Task OnExceptionAsync(ExceptionContext context)
         {
             ApiError error;
             if (context.Exception is ApiErrorException ex)
@@ -49,7 +48,7 @@
 
             context.HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
             context.Result = new JsonResult(error);
-            base.OnException(context);
+            await base.OnExceptionAsync(context);
         }
     }
 }

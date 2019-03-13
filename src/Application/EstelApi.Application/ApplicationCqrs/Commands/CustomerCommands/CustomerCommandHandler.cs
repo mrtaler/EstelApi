@@ -1,9 +1,5 @@
 ﻿namespace EstelApi.Application.ApplicationCqrs.Commands.CustomerCommands
 {
-    using System;
-    using System.Threading;
-    using System.Threading.Tasks;
-
     using EstelApi.Application.ApplicationCqrs.Base;
     using EstelApi.Application.ApplicationCqrs.Commands.CustomerCommands.Commands;
     using EstelApi.Application.ApplicationCqrs.Commands.CustomerCommands.Events;
@@ -13,15 +9,18 @@
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CountryAgg;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
     using EstelApi.Domain.DataAccessLayer.Context.Interfaces;
-
     using MediatR;
+    using System;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// The customer command handler.
     /// </summary>
     public class CustomerCommandHandler : CommandHandler,
         IRequestHandler<RegisterNewCustomerCommand, CommandResponse<CustomerDto>>,
-        IRequestHandler<UpdateCustomerCommand, CommandResponse<CustomerDto>>
+        IRequestHandler<UpdateCustomerCommand, CommandResponse<CustomerDto>>,
+        IRequestHandler<RemoveCustomerCommand, CommandResponse<CustomerDto>>
     {
         /// <summary>
         /// The _customer repository.
@@ -64,8 +63,8 @@
             INotificationHandler<DomainNotification> notifications)
             : base(uow, bus, notifications)
         {
-             this.customerRepository = customerRepository;
-             this.countryRepository = countryRepository;
+            this.customerRepository = customerRepository;
+            this.countryRepository = countryRepository;
             this.bus = bus;
         }
 
@@ -96,7 +95,7 @@
             if (message == null || message.CountryId == Guid.Empty)
             {
                 await this.bus.Publish(
-                    new DomainNotification(message.GetType().Name, "_resources.GetStringResource(LocalizationKeys.Application.warning_CannotAddCustomerWithEmptyInformation)"),
+                    new DomainNotification(message?.GetType().Name, "_resources.GetStringResource(LocalizationKeys.Application.warning_CannotAddCustomerWithEmptyInformation)"),
                     cancellationToken);
                 return new CommandResponse<CustomerDto>
                 {
@@ -203,15 +202,11 @@
             if (persisted != null)
             {
                 // materialize from customer dto
-                var current = MaterializeCustomerFromDto(request);
+                var current = this.MaterializeCustomerFromDto(request);
 
-                //Merge changes
+                // Merge changes
+                this.customerRepository.Merge(persisted, current);
 
-          //   this.customerRepository.Modify(current);
-
-              this.customerRepository.Merge(persisted, current);
-
-          //  this.customerRepository.TrackItem(current);
                 if (this.Commit())
                 {
                     await this.bus.Publish(
@@ -231,7 +226,7 @@
                     return new CommandResponse<CustomerDto>
                     {
                         IsSuccess = true,
-                        Message = "New Entity was added",
+                        Message = "Entity was changed",
                         Object = current.ProjectedAs<CustomerDto>()
                     };
                 }
@@ -245,37 +240,93 @@
             };
         }
 
-        Customer MaterializeCustomerFromDto(CustomerDto customerDTO)
+        /// <summary>
+        /// The handle.
+        /// </summary>
+        /// <param name="request">
+        /// The request.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// The cancellation token.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        public async Task<CommandResponse<CustomerDto>> Handle(RemoveCustomerCommand request, CancellationToken cancellationToken)
         {
-            //create the current instance with changes from customerDTO
+            if (request == null || request.Id == Guid.Empty)
+            {
+                await this.bus.Publish(
+                    new DomainNotification(request.GetType().Name, "_resources.GetStringResource(LocalizationKeys.Application.warning_CannotAddCustomerWithEmptyInformation)"),
+                    cancellationToken);
+                return new CommandResponse<CustomerDto>
+                {
+                    IsSuccess = false,
+                    Message = "_resources.GetStringResource(LocalizationKeys.Application.warning_CannotAddCustomerWithEmptyInformation)",
+                    Object = null
+                };
+            }
+
+            var current = this.customerRepository.Get(request.Id);
+
+            this.customerRepository.Remove(current);
+
+            if (this.Commit())
+            {
+                await this.bus.Publish(
+                    new CustomerRemovedEvent(
+                        current.Id),
+                    cancellationToken);
+                return new CommandResponse<CustomerDto>
+                {
+                    IsSuccess = true,
+                    Message = "Entity was changed",
+                    Object = current.ProjectedAs<CustomerDto>()
+                };
+            }
+
+            return new CommandResponse<CustomerDto>
+                       {
+                           IsSuccess = true,
+                           Message = "New Entity was added",
+                           Object = null
+                       };
+        }
+
+        /// <summary>
+        /// The materialize customer from dto.
+        /// </summary>
+        /// <param name="customerDTO">
+        /// The customer dto.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Customer"/>.
+        /// </returns>
+        private Customer MaterializeCustomerFromDto(CustomerDto customerDTO)
+        {
+            // create the current instance with changes from customerDTO
             var address = new Address(
                 customerDTO.AddressCity,
                 customerDTO.AddressZipCode,
                 customerDTO.AddressAddressLine1,
                 customerDTO.AddressAddressLine2);
 
-               Country country = new Country(customerDTO.CountryCountryName, "dEFF");
-               country.GenerateNewIdentity();
+            Country country = new Country(customerDTO.CountryCountryName, "dEFF");
+            country.GenerateNewIdentity();
 
-            var current = CustomerFactory.CreateCustomer(customerDTO.FirstName,
+            var current = CustomerFactory.CreateCustomer(
+                customerDTO.FirstName,
                 customerDTO.LastName,
                 customerDTO.Telephone,
                 customerDTO.Company,
                 country,
                 address);
             current.SetTheCountryReference(customerDTO.CountryId);
-      //      current.SetTheCountryReference(customerDTO.Id);
 
-            //set credit
+            // set credit
             current.ChangeTheCurrentCredit(customerDTO.CreditLimit);
 
-            //set picture
-    //        var picture = new Picture { RawPhoto = customerDTO.PictureRawPhoto };
-      //      picture.ChangeCurrentIdentity(current.Id);
-
-       //     current.ChangePicture(picture);
-
-            //set identity
+            // set identity
             current.ChangeCurrentIdentity(customerDTO.Id);
             return current;
         }

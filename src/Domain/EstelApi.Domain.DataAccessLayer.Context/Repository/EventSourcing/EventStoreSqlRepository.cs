@@ -58,10 +58,10 @@
         /// <returns>
         /// The <see cref="T:System.Threading.Tasks.Task" />.
         /// </returns>
-        public Task<int> Store(StoredEvent theEvent)
+        public async Task<int> Store(StoredEvent theEvent)
         {
             this.context.StoredEvent.Add(theEvent);
-            return this.context.SaveChangesAsync();
+            return await this.context.SaveChangesAsync();
         }
 
         /// <inheritdoc />

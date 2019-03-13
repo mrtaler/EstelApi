@@ -27,12 +27,10 @@
     using Newtonsoft.Json;
     using Newtonsoft.Json.Serialization;
     using Serilog;
+    using Serilog.Events;
     using System;
     using System.IO;
     using System.Linq;
-
-    using Serilog.Events;
-
     using ILogger = Serilog.ILogger;
 
     /// <summary>
@@ -107,7 +105,7 @@
                     options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                 })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-          //  services.AddAutoMapperSetup();
+
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("CanWriteCustomerData", policy => policy.Requirements.Add(new ClaimRequirement("Customers", "Write")));
@@ -117,7 +115,7 @@
 
             builder.Populate(services);
             builder.Register<ILogger>((c, p) => new LoggerConfiguration().MinimumLevel.Debug()
-            
+
                 .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
                 .Enrich.FromLogContext()
                 .WriteTo.Console(
@@ -224,9 +222,7 @@
             logger.Debug(
                 "Using configuration: {NewLine:l}{Configuration:l}",
                 Environment.NewLine,
-                string.Join(
-                    Environment.NewLine,
-                    this.Configuration.AsEnumerable().Select(conf => $"{conf.Key} = {conf.Value}")));
+                string.Join(Environment.NewLine, this.Configuration.AsEnumerable().Select(conf => $"{conf.Key} = {conf.Value}")));
         }
     }
 }

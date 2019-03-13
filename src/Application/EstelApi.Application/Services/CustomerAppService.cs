@@ -1,10 +1,5 @@
 ﻿namespace EstelApi.Application.Services
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
-
     using EstelApi.Application.ApplicationCqrs.Commands.CustomerCommands.Commands;
     using EstelApi.Application.ApplicationCqrs.Queries.CustomerQueries;
     using EstelApi.Application.Dto;
@@ -12,15 +7,37 @@
     using EstelApi.Application.Interfaces;
     using EstelApi.Core.Seedwork.Adapter;
     using EstelApi.Core.Seedwork.CoreCqrs.Events;
-
     using MediatR;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
 
+    /// <inheritdoc />
+    /// <summary>
+    /// The customer app service.
+    /// </summary>
     public class CustomerAppService : ICustomerAppService
     {
+        /// <summary>
+        /// The event store repository.
+        /// </summary>
         private readonly IEventStoreRepository eventStoreRepository;
 
+        /// <summary>
+        /// The bus.
+        /// </summary>
         private readonly IMediator bus;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CustomerAppService"/> class.
+        /// </summary>
+        /// <param name="bus">
+        /// The bus.
+        /// </param>
+        /// <param name="eventStoreRepository">
+        /// The event store repository.
+        /// </param>
         public CustomerAppService(
             IMediator bus,
             IEventStoreRepository eventStoreRepository)
@@ -29,68 +46,28 @@
             this.eventStoreRepository = eventStoreRepository;
         }
 
-        #region 2
-
-        /*  public IEnumerable<CustomerViewModelApp> GetAll()
-                  {
-                      var result = this.bus.Send(new AllCustomersQuery()).Result;
-        
-                      List<CustomerViewModelApp> ret = result.ProjectedAsCollection<CustomerViewModelApp>();
-        
-                      return
-                          ret; // _customerRepository.GetAll().AsQueryable().ProjectTo<CustomerViewModelApp>(_mapper.ConfigurationProvider);
-                  }
-        
-                  public CustomerViewModelApp GetById(Guid id)
-                  {
-                      return this.mapper.Map<CustomerViewModelApp>(this.customerRepository.GetById(id));
-                  }
-        
-                  public async Task<CustomerViewModelApp> Register(CreateCustomerViewModel customerViewModel)
-                  {
-                      var registerCommand = customerViewModel.ProjectedAs<RegisterNewCustomerCommand>();// _mapper.Map<>(customerViewModel);
-                      var result = await this.bus.Send(registerCommand);
-                      if (result.IsSuccess)
-                      {
-                          var retVal = new CustomerViewModelApp
-                          {
-                              BirthDate = result.Object.BirthDate,
-                              Email = result.Object.Email,
-                              Id = result.Object.Id,
-                              Name = result.Object.Name
-                          };
-        
-                          return retVal;
-                      }
-        
-                      return new CustomerViewModelApp();
-                  }
-        
-                  public void Update(UpdateCustomerViewModel customerViewModel)
-                  {
-                      var updateCommand = customerViewModel.ProjectedAs<UpdateCustomerCommand>();// _mapper.Map<>(customerViewModel);
-                      this.bus.Send(updateCommand);
-                  }
-        
-                  public void Remove(Guid id)
-                  {
-                      var removeCommand = new RemoveCustomerCommand(id);
-                      this.bus.Send(removeCommand);
-                  }
-        
-                  */
-        #endregion
-
+        /// <inheritdoc />
         public async Task<IList<CustomerHistoryData>> GetAllHistory(Guid id)
         {
             return CustomerHistory.ToJavaScriptCustomerHistory(await this.eventStoreRepository.All(id));
         }
 
+        /// <inheritdoc />
         public void Dispose()
         {
             GC.SuppressFinalize(this);
         }
 
+        /// <inheritdoc />
+        /// <summary>
+        /// The add new customer.
+        /// </summary>
+        /// <param name="customerDto">
+        /// The customer dto.
+        /// </param>
+        /// <returns>
+        /// The <see cref="T:System.Threading.Tasks.Task" />.
+        /// </returns>
         public async Task<CustomerDto> AddNewCustomer(CustomerDto customerDto)
         {
             var registerCommand =
@@ -99,30 +76,19 @@
             return result.IsSuccess ? result.Object : null;
         }
 
+        /// <inheritdoc />
         public async Task UpdateCustomer(CustomerDto customerDto)
         {
             var updateCommand =
                 customerDto.ProjectedAs<UpdateCustomerCommand>();
             var result = await this.bus.Send(updateCommand);
-            // if (customerDTO == null || customerDTO.Id == Guid.Empty)
-            // throw new ArgumentException(_resources.GetStringResource(LocalizationKeys.Application.warning_CannotUpdateCustomerWithEmptyInformation));
+        }
 
-            ////get persisted item
-            // var persisted = _customerRepository.Get(customerDTO.Id);
-
-            // if (persisted != null) //if customer exist
-            // {
-            // //materialize from customer dto
-            // var current = MaterializeCustomerFromDto(customerDTO);
-
-            // //Merge changes
-            // _customerRepository.Merge(persisted, current);
-
-            // //commit unit of work
-            // _customerRepository.UnitOfWork.Commit();
-            // }
-            // else
-            // _logger.LogWarning(_resources.GetStringResource(LocalizationKeys.Application.warning_CannotUpdateNonExistingCustomer));
+        /// <inheritdoc />
+        public async Task RemoveCustomer(Guid customerId)
+        {
+            var deleteCommand = new RemoveCustomerCommand(customerId);
+            var result = await this.bus.Send(deleteCommand);
         }
 
         /*  public void RemoveCustomer(Guid customerId)

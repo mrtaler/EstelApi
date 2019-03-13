@@ -1,22 +1,19 @@
 ﻿namespace EstelApi.Application.ApplicationCqrs.Commands.CustomerCommands.Commands
 {
-    /* public class RemoveCustomerCommand : CustomerCommand
+    using System;
+
+    /// <inheritdoc />
+    public class RemoveCustomerCommand : CustomerCommand
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RemoveCustomerCommand"/> class.
+        /// </summary>
+        /// <param name="id">
+        /// The id.
+        /// </param>
         public RemoveCustomerCommand(Guid id)
         {
-           Id
-                FirstName
-            LastName
-                Telephone
-            Company
-                CreditLimit
-            CountryId
-                CountryCountryName
-            AddressCity
-                AddressZipCode
-            AddressAddressLine1
-                AddressAddressLine2
-            PictureRawPhoto
+            this.Id = id;
         }
-    }*/
+    }
 }

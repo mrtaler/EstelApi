@@ -1,18 +1,14 @@
 ﻿namespace Estel.Services.Api.Controllers
 {
-    using System;
-    using System.Threading.Tasks;
-
     using Estel.Services.Api.ViewModels.Customer;
-
     using EstelApi.Application.Dto;
     using EstelApi.Application.Interfaces;
     using EstelApi.Core.Seedwork.Adapter;
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
-
     using MediatR;
-
     using Microsoft.AspNetCore.Mvc;
+    using System;
+    using System.Threading.Tasks;
 
     // [Authorize]
 
@@ -82,7 +78,7 @@
         }
 
         /// <summary>
-        /// Work
+        /// Create New Customer (work)
         /// </summary>
         /// <param name="createCustomerViewModel">
         /// The create customer view model.
@@ -107,7 +103,7 @@
         }
 
         /// <summary>
-        /// The put.
+        /// Update Customer. (work)
         /// </summary>
         /// <param name="updateCustomerViewModel">
         /// The update customer view model.
@@ -118,29 +114,29 @@
         /// [Authorize(Policy = "CanWriteCustomerData")]
         [HttpPut]
         [Route("customer-management/UpdateCustomer")]
-          public IActionResult Put([FromBody] UpdateCustomerViewModel updateCustomerViewModel)
-          {
-              if (!this.ModelState.IsValid)
-              {
-                  this.NotifyModelStateErrors();
-                  return this.Response(updateCustomerViewModel);
-              }
-
-              try
-              {
-                  var dto = updateCustomerViewModel.ProjectedAs<CustomerDto>();
-                  this.customerAppService.UpdateCustomer(dto);
-
-                  return this.Response(updateCustomerViewModel);
+        public IActionResult Put([FromBody] UpdateCustomerViewModel updateCustomerViewModel)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                this.NotifyModelStateErrors();
+                return this.Response(updateCustomerViewModel);
             }
-              catch (Exception e)
-              {
-                  Console.WriteLine(e);
-                  throw new Exception("ff",e);
-              }
-          }
 
-        /*   /// <summary>
+            try
+            {
+                var dto = updateCustomerViewModel.ProjectedAs<CustomerDto>();
+                this.customerAppService.UpdateCustomer(dto);
+
+                return this.Response(updateCustomerViewModel);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw new Exception("ff", e);
+            }
+        }
+
+           /// <summary>
            /// The delete.
            /// </summary>
            /// <param name="deleteCustomerViewModel">
@@ -155,13 +151,13 @@
            [Route("customer-management")]
            public IActionResult Delete([FromBody] DeleteCustomerViewModel deleteCustomerViewModel)
            {
-               this.customerAppService.Remove(deleteCustomerViewModel.Id);
+               this.customerAppService.RemoveCustomer(deleteCustomerViewModel.Id);
 
                return this.Response();
-           }*/
+           }
 
         /// <summary>
-        /// The history.
+        /// Customer history (work)
         /// </summary>
         /// <param name="id">
         /// The id.

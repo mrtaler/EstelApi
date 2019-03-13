@@ -1,13 +1,27 @@
 ﻿namespace EstelApi.Application.Interfaces
 {
-    using EstelApi.Application.Dto;
-    using EstelApi.Application.EventSourcedNormalizers;
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
+    using EstelApi.Application.Dto;
+    using EstelApi.Application.EventSourcedNormalizers;
+
+    /// <inheritdoc />
+    /// <summary>
+    /// The CustomerAppService interface.
+    /// </summary>
     public interface ICustomerAppService : IDisposable
     {
+        /// <summary>
+        /// The get all history.
+        /// </summary>
+        /// <param name="id">
+        /// The id.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         Task<IList<CustomerHistoryData>> GetAllHistory(Guid id);
 
         /// <summary>
@@ -20,30 +34,27 @@
         /// <summary>
         /// Update existing customer
         /// </summary>
-        /// <param name="customerDto">The customerdto with changes</param>
+        /// <param name="customerDto">
+        /// The customer dto with changes
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         Task UpdateCustomer(CustomerDto customerDto);
 
         /// <summary>
         /// Remove existing customer
         /// </summary>
         /// <param name="customerId">The customer identifier</param>
-        ///  void RemoveCustomer(Guid customerId);
+        Task RemoveCustomer(Guid customerId);
 
         /// <summary>
         /// Find paged customers
         /// </summary>
-        /// <param name="pageIndex">The index of page</param>
-        /// <param name="pageCount">The # of elements in each page</param>
-        /// <returns>A collection of customer representation</returns>
+        /// <returns>
+        /// A collection of customer representation
+        /// </returns>
         List<CustomerDto> GetAllCustomers();
-
-        /// <summary>
-        /// Find customers with contain specific text in
-        /// firstname or lastname
-        /// </summary>
-        /// <param name="text">the text to seach</param>
-        /// <returns>A collection of customer representation</returns>
-        ///  List<CustomerDto> FindCustomers(string text);
 
         /// <summary>
         /// Find customer
@@ -51,20 +62,5 @@
         /// <param name="customerId">The customer identifier</param>
         /// <returns>Selected customer representation if exist or null if not exist</returns>
         CustomerDto FindCustomer(Guid customerId);
-
-        /// <summary>
-        /// Find paged countries
-        /// </summary>
-        /// <param name="pageIndex">The index of page</param>
-        /// <param name="pageCount">The # of elements in each page</param>
-        /// <returns>A collection of countries dto</returns>
-        /// List<CountryDto> FindCountries(int pageIndex, int pageCount);
-
-        /// <summary>
-        /// Find countries with country name or iso code like <paramref name="text"/>
-        /// </summary>
-        /// <param name="text">The text to search in countries</param>
-        /// <returns>A collection of country dto</returns>
-        ///     List<CountryDto> FindCountries(string text);
     }
 }

@@ -101,7 +101,6 @@
                         // options.IncludeXmlComments(XmlCommentsFilePath);
                         // options.DescribeAllParametersInCamelCase();*/
                     });
-
         }
         
         /*   /// <summary>

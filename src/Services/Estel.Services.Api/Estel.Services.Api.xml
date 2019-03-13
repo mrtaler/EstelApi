@@ -203,7 +203,7 @@
         </member>
         <member name="M:Estel.Services.Api.Controllers.CustomerController.Post(Estel.Services.Api.ViewModels.Customer.CreateCustomerViewModel)">
             <summary>
-            Work
+            Create New Customer (work)
             </summary>
             <param name="createCustomerViewModel">
             The create customer view model.
@@ -215,7 +215,7 @@
         </member>
         <member name="M:Estel.Services.Api.Controllers.CustomerController.Put(Estel.Services.Api.ViewModels.Customer.UpdateCustomerViewModel)">
             <summary>
-            The put.
+            Update Customer. (work)
             </summary>
             <param name="updateCustomerViewModel">
             The update customer view model.
@@ -225,9 +225,20 @@
             </returns>
             [Authorize(Policy = "CanWriteCustomerData")]
         </member>
+        <member name="M:Estel.Services.Api.Controllers.CustomerController.Delete(Estel.Services.Api.ViewModels.Customer.DeleteCustomerViewModel)">
+            <summary>
+            The delete.
+            </summary>
+            <param name="deleteCustomerViewModel">
+            The delete customer view model.
+            </param>
+            <returns>
+            The <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/>.
+            </returns>
+        </member>
         <member name="M:Estel.Services.Api.Controllers.CustomerController.History(System.Guid)">
             <summary>
-            The history.
+            Customer history (work)
             </summary>
             <param name="id">
             The id.
@@ -332,7 +343,7 @@
             The log.
             </param>
         </member>
-        <member name="M:Estel.Services.Api.Extension.Exception.ApiExceptionFilterAttribute.OnException(Microsoft.AspNetCore.Mvc.Filters.ExceptionContext)">
+        <member name="M:Estel.Services.Api.Extension.Exception.ApiExceptionFilterAttribute.OnExceptionAsync(Microsoft.AspNetCore.Mvc.Filters.ExceptionContext)">
             <inheritdoc />
         </member>
         <member name="T:Estel.Services.Api.Extension.Exception.ErrorLoggingExtensions">
