@@ -30,7 +30,15 @@
 //            return _mediator.Publish(@event);
 //        }
 
-      
+
 //    }
 
 //}
+
+namespace EstelApi.CrossCutting.Bus
+{
+    public class ServiceBusConfiguration
+    {
+        public string ConnectionString { get; set; }
+    }
+}
