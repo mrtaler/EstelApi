@@ -1,9 +1,16 @@
 ﻿namespace EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg
 {
-    using System;
-
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
+    using System;
+
+    public enum StaffType
+    {
+        Worker,
+        HairSt,
+        Painter,
+        Bicth
+    }
 
     public class Worker : Customer
     {
@@ -14,13 +21,7 @@
         public StaffType StaffType { get; set; }
     }
 
-    public enum StaffType
-    {
-        Worker,
-        HairSt,
-        Painter,
-        Bicth
-    }
+
 
     public class WorkerConfiguration : IEntityTypeConfiguration<Worker>
     {
@@ -40,7 +41,7 @@
                   BirthDate = DateTimeOffset.UtcNow.AddDays(-150),
                   WorkFrom = DateTimeOffset.UtcNow.AddDays(-15),
                   IsEnabled = true,
-                  StaffType= StaffType.Worker,
+                  StaffType = StaffType.Worker,
                   LogoPath = @"c:\Worker"
               },
               new Worker

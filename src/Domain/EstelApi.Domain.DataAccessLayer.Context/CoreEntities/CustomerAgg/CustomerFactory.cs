@@ -1,7 +1,5 @@
 ﻿namespace EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg
 {
-    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CountryAgg;
-
     /// <summary>
     /// This is the factory for Customer creation, which means that the main purpose
     /// is to encapsulate the creation knowledge.

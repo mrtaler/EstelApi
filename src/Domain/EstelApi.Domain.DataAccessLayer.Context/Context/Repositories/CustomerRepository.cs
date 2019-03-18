@@ -55,12 +55,4 @@
             //     this.unitOfWork.Entry<Picture>(persisted.Picture).CurrentValues.SetValues( current.Picture);
         }
     }
-
-    public class WorkerRepository : Repository<Worker>,IWorkerRepository
-    {
-        public WorkerRepository(EstelContext unitOfWork)
-            : base(unitOfWork)
-        {
-        }
-    }
 }

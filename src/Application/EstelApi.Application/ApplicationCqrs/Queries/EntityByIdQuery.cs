@@ -10,17 +10,19 @@
     using MediatR;
 
     /// <summary>
-    /// The customer by id query.
+    /// The entity by id query.
     /// </summary>
-    public class AdditionalAmenityByIdQuery : IRequest<AdditionalAmenity>
+    /// <typeparam name="TEntity">db Entity
+    /// </typeparam>
+    public class EntityByIdQuery<TEntity> : IRequest<TEntity>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AdditionalAmenityByIdQuery"/> class. 
+        /// Initializes a new instance of the <see cref="EntityByIdQuery{TEntity}"/> class.
         /// </summary>
         /// <param name="id">
         /// The id.
         /// </param>
-        public AdditionalAmenityByIdQuery(int id)
+        public EntityByIdQuery(int id)
         {
             this.Id = id;
         }

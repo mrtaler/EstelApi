@@ -112,7 +112,7 @@
 
         public List<Customer> GetAllCustomers()
         {
-            var result = this.bus.Send(new AllCustomersQuery()).Result;
+            var result = this.bus.Send(new AllEntitiesQuery<Customer>()).Result;
             return result.ToList();
         }
 
@@ -142,7 +142,7 @@
 
         public Customer FindCustomer(int customerId)
         {
-            var result = this.bus.Send(new CustomerByIdQuery(customerId)).Result;
+            var result = this.bus.Send(new EntityByIdQuery<Customer>(customerId)).Result;
             return result;
         }
 

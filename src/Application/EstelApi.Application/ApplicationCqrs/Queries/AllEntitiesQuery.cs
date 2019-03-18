@@ -12,12 +12,14 @@
     /// <summary>
     /// The all customers query.
     /// </summary>
-    public class AllAdditionalAmenityQuery : IRequest<IEnumerable<AdditionalAmenity>>
+    /// <typeparam name="TEntity">db Entity
+    /// </typeparam>
+    public class AllEntitiesQuery<TEntity> : IRequest<IEnumerable<TEntity>>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AllAdditionalAmenityQuery"/> class. 
+        /// Initializes a new instance of the <see cref="AllEntitiesQuery{TEntity}"/> class.
         /// </summary>
-        public AllAdditionalAmenityQuery()
+        public AllEntitiesQuery()
         {
         }
     }

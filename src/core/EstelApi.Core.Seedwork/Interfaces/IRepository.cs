@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     /// <inheritdoc cref="T:IReadableRepository" />
@@ -13,10 +14,10 @@
     public interface IRepository<TEntity> : /*IReadableRepository<TEntity> , IAsyncRepository<TEntity>,*/ IDisposable
         where TEntity : Entity
     {
-       /* /// <summary>
-        /// Gets the unit of work in this repository
-        /// </summary>
-        IUnitOfWork UnitOfWork { get; }*/
+        /* /// <summary>
+         /// Gets the unit of work in this repository
+         /// </summary>
+         IUnitOfWork UnitOfWork { get; }*/
 
         /// <summary>
         /// Add <paramref name="item"/> into repository
@@ -112,5 +113,8 @@
         /// </summary>
         /// <param name="entity"></param>
         void Refresh(TEntity entity);
+
+        void SetInclude(IEnumerable<Func<IQueryable<TEntity>, IQueryable<TEntity>>> Includes);
+        void SetUseInclude(bool useInclude = false);
     }
 }

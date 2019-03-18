@@ -1,30 +1,30 @@
 ﻿namespace EstelApi.Application.ApplicationCqrs.Queries.CustomerQueries
 {
-    using System.Collections.Generic;
-    using System.Threading;
-    using System.Threading.Tasks;
-
     using EstelApi.Application.ApplicationCqrs.Base;
-   // using EstelApi.Application.Dto;
-    using EstelApi.Core.Seedwork.Adapter;
+    // using EstelApi.Application.Dto;
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
     using EstelApi.Domain.DataAccessLayer.Context.Interfaces;
-
     using MediatR;
+    using Microsoft.EntityFrameworkCore;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     /// <inheritdoc cref="QueryHandler" />
     /// <summary>
     /// The customer queries handler.
     /// </summary>
     public class CustomerQueriesHandler : QueryHandler,
-            IRequestHandler<AllCustomersQuery, IEnumerable<Customer>>,
-            IRequestHandler<CustomerByIdQuery, Customer>
+            IRequestHandler<AllEntitiesQuery<Customer>, IEnumerable<Customer>>,
+            IRequestHandler<EntityByIdQuery<Customer>, Customer>
     {
         /// <summary>
         /// The customer repository.
         /// </summary>
-        private readonly ICustomerRepository customerRepository;
+        private readonly ICustomerRepository repository;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CustomerQueriesHandler"/> class.
@@ -47,7 +47,11 @@
             IMediator bus,
             INotificationHandler<DomainNotification> notifications) : base(uow, bus, notifications)
         {
-           this.customerRepository = customerRepository;
+            this.repository = customerRepository;
+            this.repository.SetInclude(new List<Func<IQueryable<Customer>, IQueryable<Customer>>>
+                                          {
+                                              p=>p.Include(x=>x.CourseAttendances)
+                                          });
         }
 
         /// <summary>
@@ -55,7 +59,7 @@
         /// </summary>
         public void Dispose()
         {
-            this.customerRepository.Dispose();
+            this.repository.Dispose();
         }
 
         /// <summary>
@@ -70,10 +74,12 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        public async Task<IEnumerable<Customer>> Handle(AllCustomersQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<Customer>> Handle(AllEntitiesQuery<Customer> request, CancellationToken cancellationToken)
         {
-            var ret = this.customerRepository.GetAll();
-            return await Task.FromResult(ret.ProjectedAsCollection<Customer>());
+            var ret = this.repository.GetAll();
+
+            return await Task.FromResult(ret);
+            // return await Task.FromResult(ret.ProjectedAsCollection<Customer>());
         }
 
         /// <summary>
@@ -88,10 +94,11 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        public async Task<Customer> Handle(CustomerByIdQuery request, CancellationToken cancellationToken)
+        public async Task<Customer> Handle(EntityByIdQuery<Customer> request, CancellationToken cancellationToken)
         {
-            var ret = this.customerRepository.Get(request.Id);
-            return await Task.FromResult(ret.ProjectedAs<Customer>());
+            var ret = this.repository.Get(request.Id);
+            return await Task.FromResult(ret);
+            // return await Task.FromResult(ret.ProjectedAs<Customer>());
         }
     }
 }

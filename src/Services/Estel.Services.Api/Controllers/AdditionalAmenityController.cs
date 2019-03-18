@@ -5,7 +5,7 @@
     using MediatR;
 
     using Microsoft.AspNetCore.Mvc;
-
+    /*
     [ApiVersion("1.0")]
     public class AdditionalAmenityController : ApiController
     {
@@ -39,4 +39,5 @@
         {
         }
     }
+    */
 }

@@ -6,7 +6,6 @@
  //   using EstelApi.Application.Dto;
     using EstelApi.Core.Seedwork.Adapter;
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
-    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CountryAgg;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
     using EstelApi.Domain.DataAccessLayer.Context.Interfaces;
     using MediatR;
@@ -25,11 +24,6 @@
         /// The _customer repository.
         /// </summary>
         private readonly ICustomerRepository customerRepository;
-
-        /// <summary>
-        /// The _country repository.
-        /// </summary>
-        private readonly ICountryRepository countryRepository;
 
         /// <summary>
         /// The _bus.
@@ -56,14 +50,12 @@
         /// </param>
         public CustomerCommandHandler(
              ICustomerRepository customerRepository,
-             ICountryRepository countryRepository,
              IQueryableUnitOfWork uow,
             IMediator bus,
             INotificationHandler<DomainNotification> notifications)
             : base(uow, bus, notifications)
         {
             this.customerRepository = customerRepository;
-            this.countryRepository = countryRepository;
             this.bus = bus;
         }
 
