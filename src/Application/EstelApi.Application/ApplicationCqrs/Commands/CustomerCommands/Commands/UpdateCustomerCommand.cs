@@ -52,25 +52,13 @@
             Guid id,
             string firstName,
             string lastName,
-            string telephone,
-            string company,
-            Guid countryId,
-            string addressCity,
-            string addressZipCode,
-            string addressAddressLine1,
-            string addressAddressLine2)
+            string telephone)
         {
             this.Id = id;
             this.FirstName = firstName;
             this.LastName = lastName;
             this.Telephone = telephone;
-            this.Company = company;
-            this.CreditLimit = this.CreditLimit;
-            this.CountryId = countryId;
-            this.AddressCity = addressCity;
-            this.AddressZipCode = addressZipCode;
-            this.AddressAddressLine1 = addressAddressLine1;
-            this.AddressAddressLine2 = addressAddressLine2;
+            
         }
     }
 }

@@ -92,7 +92,7 @@
             }
             */
 
-            if (message == null || message.CountryId == Guid.Empty)
+            if (message == null)
             {
                 await this.bus.Publish(
                     new DomainNotification(message?.GetType().Name, "_resources.GetStringResource(LocalizationKeys.Application.warning_CannotAddCustomerWithEmptyInformation)"),
@@ -107,56 +107,29 @@
                 // throw new ArgumentException("_resources.GetStringResource(LocalizationKeys.Application.warning_CannotAddCustomerWithEmptyInformation)");
             }
 
-            var country = this.countryRepository.Get(message.CountryId);
+            var customer = CustomerFactory.CreateCustomer(
+                message.FirstName,
+                message.LastName,
+                message.Telephone);
 
-            if (country != null)
+            this.customerRepository.Add(customer);
+
+            if (this.Commit())
             {
-                var address = new Address(
-                    message.AddressCity,
-                    message.AddressZipCode,
-                    message.AddressAddressLine1,
-                    message.AddressAddressLine2);
-
-                var customer = CustomerFactory.CreateCustomer(
-                    message.FirstName,
-                    message.LastName,
-                    message.Telephone,
-                    message.Company,
-                    country,
-                    address);
-
-                this.customerRepository.Add(customer);
-
-                if (this.Commit())
-                {
-                    await this.bus.Publish(
-                        new CustomerRegisteredEvent(
-                            customer.Id,
-                            customer.FirstName,
-                            customer.LastName,
-                            customer.Telephone,
-                            customer.Company,
-                            customer.CountryId,
-                            customer.Address.City,
-                            customer.Address.ZipCode,
-                            customer.Address.AddressLine1,
-                            customer.Address.AddressLine2),
-                        cancellationToken);
-                }
-
-                return new CommandResponse<CustomerDto>
-                {
-                    IsSuccess = true,
-                    Message = "New Entity was added",
-                    Object = customer.ProjectedAs<CustomerDto>()
-                };
+                await this.bus.Publish(
+                    new CustomerRegisteredEvent(
+                        customer.Id,
+                        customer.FirstName,
+                        customer.LastName,
+                        customer.Telephone),
+                    cancellationToken);
             }
 
             return new CommandResponse<CustomerDto>
             {
-                IsSuccess = false,
-                Message = "_resources.GetStringResource(LocalizationKeys.Application.warning_CannotAddCustomerWithEmptyInformation)",
-                Object = null
+                IsSuccess = true,
+                Message = "New Entity was added",
+                Object = customer.ProjectedAs<CustomerDto>()
             };
         }
 
@@ -182,7 +155,7 @@
         /// </returns>
         public async Task<CommandResponse<CustomerDto>> Handle(UpdateCustomerCommand request, CancellationToken cancellationToken)
         {
-            if (request == null || request.CountryId == Guid.Empty)
+            if (request == null)
             {
                 await this.bus.Publish(
                     new DomainNotification(request.GetType().Name, "_resources.GetStringResource(LocalizationKeys.Application.warning_CannotAddCustomerWithEmptyInformation)"),
@@ -214,14 +187,7 @@
                             current.Id,
                             current.FirstName,
                             current.LastName,
-                            current.Telephone,
-                            current.Company,
-                            current.CreditLimit,
-                            current.CountryId,
-                            current.Address.City,
-                            current.Address.ZipCode,
-                            current.Address.AddressLine1,
-                            current.Address.AddressLine2),
+                            current.Telephone),
                         cancellationToken);
                     return new CommandResponse<CustomerDto>
                     {
@@ -286,11 +252,11 @@
             }
 
             return new CommandResponse<CustomerDto>
-                       {
-                           IsSuccess = true,
-                           Message = "New Entity was added",
-                           Object = null
-                       };
+            {
+                IsSuccess = true,
+                Message = "New Entity was added",
+                Object = null
+            };
         }
 
         /// <summary>
@@ -305,26 +271,12 @@
         private Customer MaterializeCustomerFromDto(CustomerDto customerDTO)
         {
             // create the current instance with changes from customerDTO
-            var address = new Address(
-                customerDTO.AddressCity,
-                customerDTO.AddressZipCode,
-                customerDTO.AddressAddressLine1,
-                customerDTO.AddressAddressLine2);
-
-            Country country = new Country(customerDTO.CountryCountryName, "dEFF");
-            country.GenerateNewIdentity();
-
             var current = CustomerFactory.CreateCustomer(
                 customerDTO.FirstName,
                 customerDTO.LastName,
-                customerDTO.Telephone,
-                customerDTO.Company,
-                country,
-                address);
-            current.SetTheCountryReference(customerDTO.CountryId);
+                customerDTO.Telephone);
 
-            // set credit
-            current.ChangeTheCurrentCredit(customerDTO.CreditLimit);
+            current.ChangePicture(customerDTO.LogoPhotoPath);
 
             // set identity
             current.ChangeCurrentIdentity(customerDTO.Id);
