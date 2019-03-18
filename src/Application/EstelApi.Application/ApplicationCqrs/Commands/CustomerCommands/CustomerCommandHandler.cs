@@ -17,18 +17,12 @@
     /// </summary>
     public class CustomerCommandHandler : CommandHandler,
         IRequestHandler<RegisterNewCustomerCommand, CommandResponse<Customer>>,
-        IRequestHandler<UpdateCustomerCommand, CommandResponse<Customer>>,
-        IRequestHandler<RemoveCustomerCommand, CommandResponse<Customer>>
+        IRequestHandler<UpdateCustomerCommand, CommandResponse<Customer>>
     {
         /// <summary>
         /// The _customer repository.
         /// </summary>
         private readonly ICustomerRepository customerRepository;
-
-        /// <summary>
-        /// The _bus.
-        /// </summary>
-        private readonly IMediator bus;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CustomerCommandHandler"/> class.
@@ -56,7 +50,6 @@
             : base(uow, bus, notifications)
         {
             this.customerRepository = customerRepository;
-            this.bus = bus;
         }
 
         /// <summary>
@@ -196,60 +189,7 @@
                 Object = null
             };
         }
-
-        /// <summary>
-        /// The handle.
-        /// </summary>
-        /// <param name="request">
-        /// The request.
-        /// </param>
-        /// <param name="cancellationToken">
-        /// The cancellation token.
-        /// </param>
-        /// <returns>
-        /// The <see cref="Task"/>.
-        /// </returns>
-        public async Task<CommandResponse<Customer>> Handle(RemoveCustomerCommand request, CancellationToken cancellationToken)
-        {
-            if (request == null || request.Id == 0)
-            {
-                await this.bus.Publish(
-                    new DomainNotification(request.GetType().Name, "_resources.GetStringResource(LocalizationKeys.Application.warning_CannotAddCustomerWithEmptyInformation)"),
-                    cancellationToken);
-                return new CommandResponse<Customer>
-                {
-                    IsSuccess = false,
-                    Message = "_resources.GetStringResource(LocalizationKeys.Application.warning_CannotAddCustomerWithEmptyInformation)",
-                    Object = null
-                };
-            }
-
-            var current = this.customerRepository.Get(request.Id);
-
-            this.customerRepository.Remove(current);
-
-            if (this.Commit())
-            {
-                await this.bus.Publish(
-                    new CustomerRemovedEvent(
-                        current.Id),
-                    cancellationToken);
-                return new CommandResponse<Customer>
-                {
-                    IsSuccess = true,
-                    Message = "Entity was changed",
-                    Object = current.ProjectedAs<Customer>()
-                };
-            }
-
-            return new CommandResponse<Customer>
-            {
-                IsSuccess = true,
-                Message = "New Entity was added",
-                Object = null
-            };
-        }
-
+        
         /// <summary>
         /// The materialize customer from dto.
         /// </summary>

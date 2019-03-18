@@ -18,7 +18,7 @@
         /// <summary>
         /// The bus.
         /// </summary>
-        private readonly IMediator bus;
+        protected readonly IMediator bus;
 
         /// <summary>
         /// The notifications.

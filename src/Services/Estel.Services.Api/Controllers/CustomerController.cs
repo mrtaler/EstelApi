@@ -55,7 +55,7 @@
         /// [AllowAnonymous]
         [HttpGet]
         [Route("customer-management/getallcustomers")]
-        public IActionResult Get()
+        public IActionResult GetAll()
         {
             return this.Response(this.customerAppService.GetAllCustomers());
         }

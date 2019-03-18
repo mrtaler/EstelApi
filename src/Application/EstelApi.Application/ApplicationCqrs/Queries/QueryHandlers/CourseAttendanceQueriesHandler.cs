@@ -1,16 +1,17 @@
 namespace EstelApi.Application.ApplicationCqrs.Queries.CustomerQueries
 {
-    using System.Collections.Generic;
-    using System.Threading;
-    using System.Threading.Tasks;
-
     using EstelApi.Application.ApplicationCqrs.Base;
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
     using EstelApi.Domain.DataAccessLayer.Context.Interfaces;
-
     using MediatR;
+    using Microsoft.EntityFrameworkCore;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     public class CourseAttendanceQueriesHandler : QueryHandler,
                                                   IRequestHandler<AllEntitiesQuery<CourseAttendance>, IEnumerable<CourseAttendance>>,
@@ -24,6 +25,11 @@ namespace EstelApi.Application.ApplicationCqrs.Queries.CustomerQueries
             : base(uow, bus, notifications)
         {
             this.repository = courseAttendanceRepository;
+            this.repository.SetInclude(new List<Func<IQueryable<CourseAttendance>, IQueryable<CourseAttendance>>>
+                                           {
+                                               x=>x.Include(p=>p.Customer),
+                                               x=>x.Include(p=>p.Course)
+                                           });
         }
 
         public async Task<IEnumerable<CourseAttendance>> Handle(AllEntitiesQuery<CourseAttendance> request, CancellationToken cancellationToken)

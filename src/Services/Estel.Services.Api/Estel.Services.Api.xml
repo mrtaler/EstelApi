@@ -156,6 +156,31 @@
             The result.
             </param>
         </member>
+        <member name="T:Estel.Services.Api.Controllers.CourseController">
+            <inheritdoc />
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.CourseController.#ctor(MediatR.INotificationHandler{EstelApi.Core.Seedwork.CoreCqrs.Notifications.DomainNotification},MediatR.IMediator)">
+            <inheritdoc />
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.CourseController.Get">
+            <summary>
+            The get.
+            </summary>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.CourseController.Get(System.Int32)">
+            <summary>
+            The get.
+            </summary>
+            <param name="id">
+            The id.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
         <member name="T:Estel.Services.Api.Controllers.CustomerController">
             <summary>
             The customer controller.
@@ -180,7 +205,7 @@
             The mediator.
             </param>
         </member>
-        <member name="M:Estel.Services.Api.Controllers.CustomerController.Get">
+        <member name="M:Estel.Services.Api.Controllers.CustomerController.GetAll">
             <summary>
             Work The getAll.
             </summary>
@@ -247,6 +272,12 @@
             The <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/>.
             </returns>
             [AllowAnonymous]
+        </member>
+        <member name="T:Estel.Services.Api.Controllers.WorkerController">
+            <inheritdoc />
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.WorkerController.#ctor(MediatR.INotificationHandler{EstelApi.Core.Seedwork.CoreCqrs.Notifications.DomainNotification},MediatR.IMediator)">
+            <inheritdoc />
         </member>
         <member name="T:Estel.Services.Api.Extension.Exception.ApiError">
             <summary>

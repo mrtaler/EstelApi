@@ -5,38 +5,40 @@
     using EstelApi.Application.ApplicationCqrs.Base;
     using EstelApi.Application.ApplicationCqrs.Queries.CustomerQueries;
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
-    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities;
+    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
 
     using MediatR;
 
     using Microsoft.AspNetCore.Mvc;
 
+    /// <inheritdoc />
     [ApiVersion("1.0")]
-    public class AdditionalAmenityController : ApiController
+    public class WorkerController : ApiController
     {
-        public AdditionalAmenityController(INotificationHandler<DomainNotification> notifications, IMediator mediator)
+        /// <inheritdoc />
+        public WorkerController(INotificationHandler<DomainNotification> notifications, IMediator mediator)
             : base(notifications, mediator)
         {
         }
 
-        [HttpGet("GetAllAdditionalAmenity")]
+        [HttpGet("GetAllWorker")]
         public async Task<IActionResult> Get()
         {
-            var result = await this.mediator.Send(new AllEntitiesQuery<AdditionalAmenity>());
+            var result = await this.mediator.Send(new AllEntitiesQuery<Worker>());
             return this.Response(result);
         }
 
-        [HttpGet("GetAdditionalAmenityById")]
+        [HttpGet("GetWorkerById")]
         public async Task<IActionResult> Get(int id)
         {
-            var result = await this.mediator.Send(new EntityByIdQuery<AdditionalAmenity>(id));
+            var result = await this.mediator.Send(new EntityByIdQuery<Worker>(id));
             return this.Response(result);
         }
 
-        [HttpDelete("DeleteAdditionalAmenityById")]
+        [HttpDelete("DeleteWorkerById")]
         public async Task<IActionResult> Delete(int id)
         {
-            var result = await this.mediator.Send(new RemoveEntityCommand<AdditionalAmenity>(id));
+            var result = await this.mediator.Send(new RemoveEntityCommand<Worker>(id));
             return this.Response(result);
         }
     }

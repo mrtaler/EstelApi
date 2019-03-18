@@ -9,7 +9,6 @@
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
     using EstelApi.Domain.DataAccessLayer.Context.EventSourcing;
     using EstelApi.Domain.DataAccessLayer.Context.Interfaces;
-    using EstelApi.Domain.DataAccessLayer.Context.Repository;
     using EstelApi.Domain.DataAccessLayer.Context.Repository.EventSourcing;
 
     /// <inheritdoc />
@@ -88,8 +87,6 @@
               .RegisterType<CourseTypeRepository>()
               .As<ICourseTypeRepository>()
               .InstancePerLifetimeScope();
-
-
 
             builder
                 .RegisterType<CourseRepository>()

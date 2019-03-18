@@ -12,31 +12,31 @@
     using Microsoft.AspNetCore.Mvc;
 
     [ApiVersion("1.0")]
-    public class AdditionalAmenityController : ApiController
+    public class CourseTypeController : ApiController
     {
-        public AdditionalAmenityController(INotificationHandler<DomainNotification> notifications, IMediator mediator)
+        public CourseTypeController(INotificationHandler<DomainNotification> notifications, IMediator mediator)
             : base(notifications, mediator)
         {
         }
 
-        [HttpGet("GetAllAdditionalAmenity")]
+        [HttpGet("GetAllCourseType")]
         public async Task<IActionResult> Get()
         {
-            var result = await this.mediator.Send(new AllEntitiesQuery<AdditionalAmenity>());
+            var result = await this.mediator.Send(new AllEntitiesQuery<CourseType>());
             return this.Response(result);
         }
 
-        [HttpGet("GetAdditionalAmenityById")]
+        [HttpGet("GetCourseTypeById")]
         public async Task<IActionResult> Get(int id)
         {
-            var result = await this.mediator.Send(new EntityByIdQuery<AdditionalAmenity>(id));
+            var result = await this.mediator.Send(new EntityByIdQuery<CourseType>(id));
             return this.Response(result);
         }
 
-        [HttpDelete("DeleteAdditionalAmenityById")]
+        [HttpDelete("DeleteCourseTypeById")]
         public async Task<IActionResult> Delete(int id)
         {
-            var result = await this.mediator.Send(new RemoveEntityCommand<AdditionalAmenity>(id));
+            var result = await this.mediator.Send(new RemoveEntityCommand<CourseType>(id));
             return this.Response(result);
         }
     }

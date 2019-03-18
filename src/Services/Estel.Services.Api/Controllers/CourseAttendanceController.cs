@@ -12,31 +12,31 @@
     using Microsoft.AspNetCore.Mvc;
 
     [ApiVersion("1.0")]
-    public class AdditionalAmenityController : ApiController
+    public class CourseAttendanceController : ApiController
     {
-        public AdditionalAmenityController(INotificationHandler<DomainNotification> notifications, IMediator mediator)
+        public CourseAttendanceController(INotificationHandler<DomainNotification> notifications, IMediator mediator)
             : base(notifications, mediator)
         {
         }
 
-        [HttpGet("GetAllAdditionalAmenity")]
+        [HttpGet("GetAllCourseAttendance")]
         public async Task<IActionResult> Get()
         {
-            var result = await this.mediator.Send(new AllEntitiesQuery<AdditionalAmenity>());
+            var result = await this.mediator.Send(new AllEntitiesQuery<CourseAttendance>());
             return this.Response(result);
         }
 
-        [HttpGet("GetAdditionalAmenityById")]
+        [HttpGet("GetCourseAttendanceById")]
         public async Task<IActionResult> Get(int id)
         {
-            var result = await this.mediator.Send(new EntityByIdQuery<AdditionalAmenity>(id));
+            var result = await this.mediator.Send(new EntityByIdQuery<CourseAttendance>(id));
             return this.Response(result);
         }
 
-        [HttpDelete("DeleteAdditionalAmenityById")]
+        [HttpDelete("DeleteCourseAttendanceById")]
         public async Task<IActionResult> Delete(int id)
         {
-            var result = await this.mediator.Send(new RemoveEntityCommand<AdditionalAmenity>(id));
+            var result = await this.mediator.Send(new RemoveEntityCommand<CourseAttendance>(id));
             return this.Response(result);
         }
     }

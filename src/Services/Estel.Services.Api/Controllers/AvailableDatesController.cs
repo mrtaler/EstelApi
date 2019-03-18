@@ -12,31 +12,31 @@
     using Microsoft.AspNetCore.Mvc;
 
     [ApiVersion("1.0")]
-    public class AdditionalAmenityController : ApiController
+    public class AvailableDatesController : ApiController
     {
-        public AdditionalAmenityController(INotificationHandler<DomainNotification> notifications, IMediator mediator)
+        public AvailableDatesController(INotificationHandler<DomainNotification> notifications, IMediator mediator)
             : base(notifications, mediator)
         {
         }
 
-        [HttpGet("GetAllAdditionalAmenity")]
+        [HttpGet("GetAllAvailableDates")]
         public async Task<IActionResult> Get()
         {
-            var result = await this.mediator.Send(new AllEntitiesQuery<AdditionalAmenity>());
+            var result = await this.mediator.Send(new AllEntitiesQuery<AvailableDates>());
             return this.Response(result);
         }
 
-        [HttpGet("GetAdditionalAmenityById")]
+        [HttpGet("GetAvailableDatesById")]
         public async Task<IActionResult> Get(int id)
         {
-            var result = await this.mediator.Send(new EntityByIdQuery<AdditionalAmenity>(id));
+            var result = await this.mediator.Send(new EntityByIdQuery<AvailableDates>(id));
             return this.Response(result);
         }
 
-        [HttpDelete("DeleteAdditionalAmenityById")]
+        [HttpDelete("DeleteAvailableDatesById")]
         public async Task<IActionResult> Delete(int id)
         {
-            var result = await this.mediator.Send(new RemoveEntityCommand<AdditionalAmenity>(id));
+            var result = await this.mediator.Send(new RemoveEntityCommand<AvailableDates>(id));
             return this.Response(result);
         }
     }

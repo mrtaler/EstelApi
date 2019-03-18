@@ -22,7 +22,7 @@
         /// <summary>
         /// The mediator.
         /// </summary>
-        private readonly IMediator mediator;
+        protected readonly IMediator mediator;
 
         /// <inheritdoc />
         protected ApiController(
