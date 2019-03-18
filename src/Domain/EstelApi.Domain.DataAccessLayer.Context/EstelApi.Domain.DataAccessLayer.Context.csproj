@@ -11,6 +11,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20190317160056_InitialCOntext.cs" />
+    <Compile Remove="Migrations\20190317161733_UpdateAddAmenityAndWorker.cs" />
+    <Compile Remove="Migrations\20190317164522_TPTForWorker.cs" />
+    <Compile Remove="Migrations\20190317170956_Init_EstelContext.cs" />
+    <Compile Remove="Migrations\20190318102650_Init_EstelContext.cs" />
+    <Compile Remove="Migrations\20190318113626_initData.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Autofac" Version="4.9.1" />
     <PackageReference Include="JetBrains.Annotations" Version="2018.3.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.3" />

@@ -189,7 +189,7 @@
             </returns>
             [AllowAnonymous]
         </member>
-        <member name="M:Estel.Services.Api.Controllers.CustomerController.Get(System.Guid)">
+        <member name="M:Estel.Services.Api.Controllers.CustomerController.Get(System.Int32)">
             <summary>
             The get.
             </summary>
@@ -236,7 +236,7 @@
             The <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/>.
             </returns>
         </member>
-        <member name="M:Estel.Services.Api.Controllers.CustomerController.History(System.Guid)">
+        <member name="M:Estel.Services.Api.Controllers.CustomerController.History(System.Int32)">
             <summary>
             Customer history (work)
             </summary>

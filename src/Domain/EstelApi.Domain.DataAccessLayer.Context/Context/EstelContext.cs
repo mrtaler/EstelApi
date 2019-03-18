@@ -1,8 +1,6 @@
 ﻿namespace EstelApi.Domain.DataAccessLayer.Context.Context
 {
-    using EstelApi.Domain.DataAccessLayer.Context.Context.Base;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities;
-    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CountryAgg;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
     using EstelApi.Domain.DataAccessLayer.Context.EntityDbMapper;
 
@@ -15,7 +13,7 @@
     /// <summary>
     /// The estel context.
     /// </summary>
-    public class EstelContext :DbContext// BaseContext
+    public class EstelContext : DbContext// BaseContext
     {
         /// <summary>
         /// The env.
@@ -36,30 +34,17 @@
         {
         }
 
-        private DbSet<Country> countries;
-        private DbSet<Customer> customers;
-        private DbSet<CourseType> courseTypes;
-        private DbSet<Course> courses;
+        public virtual DbSet<Customer> Customers { get; set; }
 
-        /// <summary>
-        /// Gets or sets the customers.
-        /// </summary>
-        public virtual DbSet<Customer> Customers => this.customers ?? (this.customers = base.Set<Customer>());
+        public virtual DbSet<AdditionalAmenity> AdditionalAmenities { get; set; }
+        public virtual DbSet<AvailableDates> AvailableDates { get; set; }
+        public virtual DbSet<Course> Courses { get; set; }
+        public virtual DbSet<CourseAttendance> CourseAttendances { get; set; }
+        public virtual DbSet<CourseType> CourseTypes { get; set; }
+        public virtual DbSet<Worker> Workers { get; set; }
 
-        /// <summary>
-        /// Gets the countries.
-        /// </summary>
-        public virtual DbSet<Country> Countries => this.countries ?? (this.countries = base.Set<Country>());
 
-        /// <summary>
-        /// Gets or sets the course types.
-        /// </summary>
-        public virtual DbSet<CourseType> CourseTypes => this.courseTypes ?? (this.courseTypes = base.Set<CourseType>());
 
-        /// <summary>
-        /// Gets or sets the courses.
-        /// </summary>
-        public virtual DbSet<Course> Courses => this.courses ?? (this.courses = base.Set<Course>());
 
         /// <summary>
         /// The on model creating.
@@ -70,7 +55,17 @@
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new CustomerMap());
+            modelBuilder.ApplyConfiguration(new WorkerConfiguration());
 
+            modelBuilder.ApplyConfiguration(new AdditionalAmenityConfiguration());
+            modelBuilder.ApplyConfiguration(new AdditionalAmenityCourseConfiguration());
+            modelBuilder.ApplyConfiguration(new AvailableDatesConfiguration());
+            modelBuilder.ApplyConfiguration(new CourseConfiguration());
+            modelBuilder.ApplyConfiguration(new CourseAttendanceConfiguration());
+            modelBuilder.ApplyConfiguration(new CourseTopicsConfiguration());
+            modelBuilder.ApplyConfiguration(new CourseTopicsCourseConfiguration());
+            modelBuilder.ApplyConfiguration(new CourseTypeConfiguration());
+            
             /*       modelBuilder.ApplyConfiguration(new CourseTypeConfiguration());
                         modelBuilder.ApplyConfiguration(new CoursesConfiguration());
             */
@@ -97,10 +92,10 @@
             optionsBuilder.UseSqlServer(config.GetConnectionString("DefaultConnection"))
                 .UseLoggerFactory(this.loggerFactory)
                 .EnableSensitiveDataLogging(true);//;.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);/*
-              //  .UseLazyLoadingProxies()
+                                                  //  .UseLazyLoadingProxies()
 
-               // */
-         //   ;
+            // */
+            //   ;
 
             // ,x => x.MigrationsAssembly("GomelEstel.Infra.Data"));}
         }

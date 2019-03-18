@@ -2,7 +2,7 @@
 {
     using EstelApi.Application.ApplicationCqrs.Commands.CustomerCommands.Commands;
     using EstelApi.Application.ApplicationCqrs.Queries.CustomerQueries;
-    using EstelApi.Application.Dto;
+  //  using EstelApi.Application.Dto;
     using EstelApi.Application.EventSourcedNormalizers;
     using EstelApi.Application.Interfaces;
     using EstelApi.Core.Seedwork.Adapter;
@@ -12,6 +12,8 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+
+    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
 
     /// <inheritdoc />
     /// <summary>
@@ -47,7 +49,7 @@
         }
 
         /// <inheritdoc />
-        public async Task<IList<CustomerHistoryData>> GetAllHistory(Guid id)
+        public async Task<IList<CustomerHistoryData>> GetAllHistory(int id)
         {
             return CustomerHistory.ToJavaScriptCustomerHistory(await this.eventStoreRepository.All(id));
         }
@@ -68,7 +70,7 @@
         /// <returns>
         /// The <see cref="T:System.Threading.Tasks.Task" />.
         /// </returns>
-        public async Task<CustomerDto> AddNewCustomer(CustomerDto customerDto)
+        public async Task<Customer> AddNewCustomer(Customer customerDto)
         {
             var registerCommand =
                 customerDto.ProjectedAs<RegisterNewCustomerCommand>(); // _mapper.Map<>(customerViewModel);
@@ -77,7 +79,7 @@
         }
 
         /// <inheritdoc />
-        public async Task UpdateCustomer(CustomerDto customerDto)
+        public async Task UpdateCustomer(Customer customerDto)
         {
             var updateCommand =
                 customerDto.ProjectedAs<UpdateCustomerCommand>();
@@ -85,7 +87,7 @@
         }
 
         /// <inheritdoc />
-        public async Task RemoveCustomer(Guid customerId)
+        public async Task RemoveCustomer(int customerId)
         {
             var deleteCommand = new RemoveCustomerCommand(customerId);
             var result = await this.bus.Send(deleteCommand);
@@ -108,7 +110,7 @@
               // _logger.LogWarning(_resources.GetStringResource(LocalizationKeys.Application.warning_CannotRemoveNonExistingCustomer));
           }*/
 
-        public List<CustomerDto> GetAllCustomers()
+        public List<Customer> GetAllCustomers()
         {
             var result = this.bus.Send(new AllCustomersQuery()).Result;
             return result.ToList();
@@ -138,7 +140,7 @@
                  // return null;
              }*/
 
-        public CustomerDto FindCustomer(Guid customerId)
+        public Customer FindCustomer(int customerId)
         {
             var result = this.bus.Send(new CustomerByIdQuery(customerId)).Result;
             return result;

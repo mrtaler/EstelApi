@@ -4,7 +4,7 @@
 
     using Estel.Services.Api.ViewModels.Customer;
 
-    using EstelApi.Application.Dto;
+   // using EstelApi.Application.Dto;
 
     using Serilog;
 
@@ -19,8 +19,8 @@
         public ViewModelToDtoProfileRev()
         {
             Log.Debug($"AutoMapper profile {nameof(ViewModelToDtoProfileRev)} was launch");
-            this.CreateMap<CreateCustomerViewModel, CustomerDto>(MemberList.Source);
-            this.CreateMap<UpdateCustomerViewModel, CustomerDto>(MemberList.Source);
+         //   this.CreateMap<CreateCustomerViewModel, CustomerDto>(MemberList.Source);
+          //  this.CreateMap<UpdateCustomerViewModel, CustomerDto>(MemberList.Source);
 
             /*  .ForMember(p => p.Id, x => x.Ignore())
                 .ForMember(p => p.CreditLimit, x => x.MapFrom(y => 0M))

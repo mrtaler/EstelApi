@@ -12,6 +12,6 @@
         /// Gets or sets the id.
         /// </summary>
         [Key]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
     }
 }

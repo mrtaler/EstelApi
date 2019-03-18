@@ -4,14 +4,16 @@ using EstelApi.Domain.DataAccessLayer.Context.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EstelApi.Domain.DataAccessLayer.Context.Migrations
 {
     [DbContext(typeof(EstelContext))]
-    partial class EstelContextModelSnapshot : ModelSnapshot
+    [Migration("20190318133828_AddInitDataWorker")]
+    partial class AddInitDataWorker
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

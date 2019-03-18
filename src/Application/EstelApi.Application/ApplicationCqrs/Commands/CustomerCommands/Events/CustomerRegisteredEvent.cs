@@ -9,13 +9,13 @@
     /// </summary>
     public class CustomerRegisteredEvent : Event
     {
-        public Guid Id { get; private set; }
+        public int Id { get; private set; }
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
         public string Telephone { get; private set; }
 
         public CustomerRegisteredEvent(
-            Guid id,
+            int id,
             string firstName,
             string lastName,
             string telephone)

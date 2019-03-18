@@ -61,6 +61,10 @@
                 .As<ICustomerRepository>()
                 .InstancePerLifetimeScope();
             builder
+                .RegisterType<WorkerRepository>()
+                .As<IWorkerRepository>()
+                .InstancePerLifetimeScope();
+            builder
                 .RegisterType<CountryRepository>()
                 .As<ICountryRepository>()
                 .InstancePerLifetimeScope();

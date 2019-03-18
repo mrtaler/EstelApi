@@ -1,7 +1,7 @@
 ﻿namespace Estel.Services.Api.Controllers
 {
     using Estel.Services.Api.ViewModels.Customer;
-    using EstelApi.Application.Dto;
+    //using EstelApi.Application.Dto;
     using EstelApi.Application.Interfaces;
     using EstelApi.Core.Seedwork.Adapter;
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
@@ -9,6 +9,8 @@
     using Microsoft.AspNetCore.Mvc;
     using System;
     using System.Threading.Tasks;
+
+    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
 
     // [Authorize]
 
@@ -69,8 +71,8 @@
         /// </returns>
         /// [AllowAnonymous]
         [HttpGet]
-        [Route("customer-management/GetById/{id:guid}")]
-        public IActionResult Get(Guid id)
+        [Route("customer-management/GetById/{id:int}")]
+        public IActionResult Get(int id)
         {
             var customerViewModel = this.customerAppService.FindCustomer(id);
 
@@ -97,7 +99,7 @@
                 return this.Response(createCustomerViewModel);
             }
 
-            var dto = createCustomerViewModel.ProjectedAs<CustomerDto>();
+            var dto = createCustomerViewModel.ProjectedAs<Customer>();
             var resp = await this.customerAppService.AddNewCustomer(dto);
             return this.Response(resp);
         }
@@ -124,7 +126,7 @@
 
             try
             {
-                var dto = updateCustomerViewModel.ProjectedAs<CustomerDto>();
+                var dto = updateCustomerViewModel.ProjectedAs<Customer>();
                 this.customerAppService.UpdateCustomer(dto);
 
                 return this.Response(updateCustomerViewModel);
@@ -168,7 +170,7 @@
         /// [AllowAnonymous]
         [HttpGet]
         [Route("customer-management/history/{id:guid}")]
-        public async Task<IActionResult> History(Guid id)
+        public async Task<IActionResult> History(int id)
         {
             var customerHistoryData = await this.customerAppService.GetAllHistory(id);
             return this.Response(customerHistoryData);

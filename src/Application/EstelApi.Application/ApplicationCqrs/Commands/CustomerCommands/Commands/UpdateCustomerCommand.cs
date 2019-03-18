@@ -49,7 +49,7 @@
         /// The address address line 2.
         /// </param>
         public UpdateCustomerCommand(
-            Guid id,
+            int id,
             string firstName,
             string lastName,
             string telephone)
@@ -58,7 +58,6 @@
             this.FirstName = firstName;
             this.LastName = lastName;
             this.Telephone = telephone;
-            
         }
     }
 }

@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
 
+    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
 
     // using EstelApi.Application.Dto;
@@ -11,12 +12,12 @@
     /// <summary>
     /// The all customers query.
     /// </summary>
-    public class AllCustomersQuery : IRequest<IEnumerable<Customer>>
+    public class AllAdditionalAmenityQuery : IRequest<IEnumerable<AdditionalAmenity>>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AllCustomersQuery"/> class.
+        /// Initializes a new instance of the <see cref="AllAdditionalAmenityQuery"/> class. 
         /// </summary>
-        public AllCustomersQuery()
+        public AllAdditionalAmenityQuery()
         {
         }
     }

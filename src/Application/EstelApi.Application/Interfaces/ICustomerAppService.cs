@@ -4,8 +4,9 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    using EstelApi.Application.Dto;
+   // using EstelApi.Application.Dto;
     using EstelApi.Application.EventSourcedNormalizers;
+    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
 
     /// <inheritdoc />
     /// <summary>
@@ -22,14 +23,14 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        Task<IList<CustomerHistoryData>> GetAllHistory(Guid id);
+        Task<IList<CustomerHistoryData>> GetAllHistory(int id);
 
         /// <summary>
         /// Add new customer 
         /// </summary>
         /// <param name="customerDto">The customer information</param>
         /// <returns>Added customer representation</returns>
-        Task<CustomerDto> AddNewCustomer(CustomerDto customerDto);
+        Task<Customer> AddNewCustomer(Customer customerDto);
 
         /// <summary>
         /// Update existing customer
@@ -40,13 +41,13 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        Task UpdateCustomer(CustomerDto customerDto);
+        Task UpdateCustomer(Customer customerDto);
 
         /// <summary>
         /// Remove existing customer
         /// </summary>
         /// <param name="customerId">The customer identifier</param>
-        Task RemoveCustomer(Guid customerId);
+        Task RemoveCustomer(int customerId);
 
         /// <summary>
         /// Find paged customers
@@ -54,13 +55,13 @@
         /// <returns>
         /// A collection of customer representation
         /// </returns>
-        List<CustomerDto> GetAllCustomers();
+        List<Customer> GetAllCustomers();
 
         /// <summary>
         /// Find customer
         /// </summary>
         /// <param name="customerId">The customer identifier</param>
         /// <returns>Selected customer representation if exist or null if not exist</returns>
-        CustomerDto FindCustomer(Guid customerId);
+        Customer FindCustomer(int customerId);
     }
 }

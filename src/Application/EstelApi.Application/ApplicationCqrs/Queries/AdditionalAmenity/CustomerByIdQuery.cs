@@ -2,6 +2,7 @@
 {
     using System;
 
+    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
 
     //   using EstelApi.Application.Dto;
@@ -11,15 +12,15 @@
     /// <summary>
     /// The customer by id query.
     /// </summary>
-    public class CustomerByIdQuery : IRequest<Customer>
+    public class AdditionalAmenityByIdQuery : IRequest<AdditionalAmenity>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CustomerByIdQuery"/> class.
+        /// Initializes a new instance of the <see cref="AdditionalAmenityByIdQuery"/> class. 
         /// </summary>
         /// <param name="id">
         /// The id.
         /// </param>
-        public CustomerByIdQuery(int id)
+        public AdditionalAmenityByIdQuery(int id)
         {
             this.Id = id;
         }

@@ -8,6 +8,7 @@
    // using EstelApi.Application.Dto;
     using EstelApi.Core.Seedwork.Adapter;
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
+    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
     using EstelApi.Domain.DataAccessLayer.Context.Interfaces;
 
@@ -17,15 +18,10 @@
     /// <summary>
     /// The customer queries handler.
     /// </summary>
-    public class CustomerQueriesHandler : QueryHandler,
-            IRequestHandler<AllCustomersQuery, IEnumerable<Customer>>,
-            IRequestHandler<CustomerByIdQuery, Customer>
+    public class AdditionalAmenityQueriesHandler : QueryHandler,
+            IRequestHandler<AllAdditionalAmenityQuery, IEnumerable<AdditionalAmenity>>,
+            IRequestHandler<AdditionalAmenityByIdQuery, AdditionalAmenity>
     {
-        /// <summary>
-        /// The customer repository.
-        /// </summary>
-        private readonly ICustomerRepository customerRepository;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="CustomerQueriesHandler"/> class.
         /// </summary>
@@ -41,13 +37,11 @@
         /// <param name="notifications">
         /// The notifications.
         /// </param>
-        public CustomerQueriesHandler(
-            ICustomerRepository customerRepository,
+        public AdditionalAmenityQueriesHandler(
             IQueryableUnitOfWork uow,
             IMediator bus,
             INotificationHandler<DomainNotification> notifications) : base(uow, bus, notifications)
         {
-           this.customerRepository = customerRepository;
         }
 
         /// <summary>
@@ -55,7 +49,7 @@
         /// </summary>
         public void Dispose()
         {
-            this.customerRepository.Dispose();
+           // this.customerRepository.Dispose();
         }
 
         /// <summary>
@@ -70,9 +64,10 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        public async Task<IEnumerable<Customer>> Handle(AllCustomersQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<AdditionalAmenity>> Handle(AllAdditionalAmenityQuery request, CancellationToken cancellationToken)
         {
             var ret = this.customerRepository.GetAll();
+            var retWor = this.workerRepository.GetAll();
             return await Task.FromResult(ret.ProjectedAsCollection<Customer>());
         }
 
@@ -88,7 +83,7 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        public async Task<Customer> Handle(CustomerByIdQuery request, CancellationToken cancellationToken)
+        public async Task<AdditionalAmenity> Handle(AdditionalAmenityByIdQuery request, CancellationToken cancellationToken)
         {
             var ret = this.customerRepository.Get(request.Id);
             return await Task.FromResult(ret.ProjectedAs<Customer>());

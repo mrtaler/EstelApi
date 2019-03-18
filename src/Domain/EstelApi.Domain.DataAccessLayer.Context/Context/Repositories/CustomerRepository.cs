@@ -48,11 +48,19 @@
         /// <inheritdoc />
         public override void Merge(Customer persisted, Customer current)
         {
-
             // merge customer and customer picture
             this.unitOfWork.Entry<Customer>(persisted).CurrentValues.SetValues(current);
-            this.unitOfWork.Entry<Address>(persisted.Address).CurrentValues.SetValues(current.Address);
+            
+            // this.unitOfWork.Entry<Address>(persisted.Address).CurrentValues.SetValues(current.Address);
             //     this.unitOfWork.Entry<Picture>(persisted.Picture).CurrentValues.SetValues( current.Picture);
+        }
+    }
+
+    public class WorkerRepository : Repository<Worker>,IWorkerRepository
+    {
+        public WorkerRepository(EstelContext unitOfWork)
+            : base(unitOfWork)
+        {
         }
     }
 }

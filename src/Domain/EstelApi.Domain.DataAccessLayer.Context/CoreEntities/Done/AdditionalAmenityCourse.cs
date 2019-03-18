@@ -1,0 +1,38 @@
+﻿namespace EstelApi.Domain.DataAccessLayer.Context.CoreEntities
+{
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Metadata.Builders;
+    using System;
+
+    public class AdditionalAmenityCourse
+    {
+
+        public virtual int CourseId { get; set; }
+        public virtual int AdditionalAmenityId { get; set; }
+        public Course Course { get; set; }
+        public AdditionalAmenity AdditionalAmenity { get; set; }
+    }
+
+    public class AdditionalAmenityCourseConfiguration : IEntityTypeConfiguration<AdditionalAmenityCourse>
+    {
+        public void Configure(EntityTypeBuilder<AdditionalAmenityCourse> builder)
+        {
+            builder
+                .HasKey(bc => new { bc.CourseId, bc.AdditionalAmenityId });
+            builder
+                .HasOne(bc => bc.Course)
+                .WithMany(b => b.AdditionalAmenityCourses)
+                .HasForeignKey(bc => bc.CourseId);
+            builder
+                .HasOne(bc => bc.AdditionalAmenity)
+                .WithMany(c => c.AdditionalAmenityCourses)
+                .HasForeignKey(bc => bc.AdditionalAmenityId);
+
+            builder.HasData(new AdditionalAmenityCourse { CourseId = 1, AdditionalAmenityId = 1 },
+                new AdditionalAmenityCourse { CourseId = 1, AdditionalAmenityId =2 },
+                new AdditionalAmenityCourse { CourseId = 1, AdditionalAmenityId = 3 },
+                new AdditionalAmenityCourse { CourseId = 2, AdditionalAmenityId = 1 },
+                new AdditionalAmenityCourse { CourseId = 2, AdditionalAmenityId = 2 });
+        }
+    }
+}

@@ -11,7 +11,7 @@
         /// <param name="id">
         /// The id.
         /// </param>
-        public RemoveCustomerCommand(Guid id)
+        public RemoveCustomerCommand(int id)
         {
             this.Id = id;
         }

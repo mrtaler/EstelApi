@@ -7,7 +7,7 @@
     public class CustomerUpdatedEvent : Event
     {
         public CustomerUpdatedEvent(
-            Guid id,
+            int id,
             string firstName,
             string lastName,
             string telephone)
@@ -19,7 +19,7 @@
             this.AggregateId = id;
         }
 
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Telephone { get; set; }

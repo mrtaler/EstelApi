@@ -42,7 +42,7 @@
         /// <returns>
         /// The <see cref="T:System.Threading.Tasks.Task" />.
         /// </returns>
-        public Task<List<StoredEvent>> All(Guid aggregateId)
+        public Task<List<StoredEvent>> All(int aggregateId)
         {
             var t2 = this.context.StoredEvent.Where(e => e.AggregateId == aggregateId).ToListAsync();
             return t2;

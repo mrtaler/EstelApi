@@ -3,14 +3,13 @@
     using EstelApi.Application.ApplicationCqrs.Base;
     using EstelApi.Application.ApplicationCqrs.Commands.CustomerCommands.Commands;
     using EstelApi.Application.ApplicationCqrs.Commands.CustomerCommands.Events;
-    using EstelApi.Application.Dto;
+ //   using EstelApi.Application.Dto;
     using EstelApi.Core.Seedwork.Adapter;
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CountryAgg;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
     using EstelApi.Domain.DataAccessLayer.Context.Interfaces;
     using MediatR;
-    using System;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -18,9 +17,9 @@
     /// The customer command handler.
     /// </summary>
     public class CustomerCommandHandler : CommandHandler,
-        IRequestHandler<RegisterNewCustomerCommand, CommandResponse<CustomerDto>>,
-        IRequestHandler<UpdateCustomerCommand, CommandResponse<CustomerDto>>,
-        IRequestHandler<RemoveCustomerCommand, CommandResponse<CustomerDto>>
+        IRequestHandler<RegisterNewCustomerCommand, CommandResponse<Customer>>,
+        IRequestHandler<UpdateCustomerCommand, CommandResponse<Customer>>,
+        IRequestHandler<RemoveCustomerCommand, CommandResponse<Customer>>
     {
         /// <summary>
         /// The _customer repository.
@@ -80,7 +79,7 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        public async Task<CommandResponse<CustomerDto>> Handle(
+        public async Task<CommandResponse<Customer>> Handle(
             RegisterNewCustomerCommand message,
             CancellationToken cancellationToken)
         {
@@ -97,7 +96,7 @@
                 await this.bus.Publish(
                     new DomainNotification(message?.GetType().Name, "_resources.GetStringResource(LocalizationKeys.Application.warning_CannotAddCustomerWithEmptyInformation)"),
                     cancellationToken);
-                return new CommandResponse<CustomerDto>
+                return new CommandResponse<Customer>
                 {
                     IsSuccess = false,
                     Message = "_resources.GetStringResource(LocalizationKeys.Application.warning_CannotAddCustomerWithEmptyInformation)",
@@ -125,11 +124,11 @@
                     cancellationToken);
             }
 
-            return new CommandResponse<CustomerDto>
+            return new CommandResponse<Customer>
             {
                 IsSuccess = true,
                 Message = "New Entity was added",
-                Object = customer.ProjectedAs<CustomerDto>()
+                Object = customer.ProjectedAs<Customer>()
             };
         }
 
@@ -153,14 +152,14 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        public async Task<CommandResponse<CustomerDto>> Handle(UpdateCustomerCommand request, CancellationToken cancellationToken)
+        public async Task<CommandResponse<Customer>> Handle(UpdateCustomerCommand request, CancellationToken cancellationToken)
         {
             if (request == null)
             {
                 await this.bus.Publish(
                     new DomainNotification(request.GetType().Name, "_resources.GetStringResource(LocalizationKeys.Application.warning_CannotAddCustomerWithEmptyInformation)"),
                     cancellationToken);
-                return new CommandResponse<CustomerDto>
+                return new CommandResponse<Customer>
                 {
                     IsSuccess = false,
                     Message = "_resources.GetStringResource(LocalizationKeys.Application.warning_CannotAddCustomerWithEmptyInformation)",
@@ -189,16 +188,16 @@
                             current.LastName,
                             current.Telephone),
                         cancellationToken);
-                    return new CommandResponse<CustomerDto>
+                    return new CommandResponse<Customer>
                     {
                         IsSuccess = true,
                         Message = "Entity was changed",
-                        Object = current.ProjectedAs<CustomerDto>()
+                        Object = current.ProjectedAs<Customer>()
                     };
                 }
             }
 
-            return new CommandResponse<CustomerDto>
+            return new CommandResponse<Customer>
             {
                 IsSuccess = true,
                 Message = "New Entity was added",
@@ -218,14 +217,14 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        public async Task<CommandResponse<CustomerDto>> Handle(RemoveCustomerCommand request, CancellationToken cancellationToken)
+        public async Task<CommandResponse<Customer>> Handle(RemoveCustomerCommand request, CancellationToken cancellationToken)
         {
-            if (request == null || request.Id == Guid.Empty)
+            if (request == null || request.Id == 0)
             {
                 await this.bus.Publish(
                     new DomainNotification(request.GetType().Name, "_resources.GetStringResource(LocalizationKeys.Application.warning_CannotAddCustomerWithEmptyInformation)"),
                     cancellationToken);
-                return new CommandResponse<CustomerDto>
+                return new CommandResponse<Customer>
                 {
                     IsSuccess = false,
                     Message = "_resources.GetStringResource(LocalizationKeys.Application.warning_CannotAddCustomerWithEmptyInformation)",
@@ -243,15 +242,15 @@
                     new CustomerRemovedEvent(
                         current.Id),
                     cancellationToken);
-                return new CommandResponse<CustomerDto>
+                return new CommandResponse<Customer>
                 {
                     IsSuccess = true,
                     Message = "Entity was changed",
-                    Object = current.ProjectedAs<CustomerDto>()
+                    Object = current.ProjectedAs<Customer>()
                 };
             }
 
-            return new CommandResponse<CustomerDto>
+            return new CommandResponse<Customer>
             {
                 IsSuccess = true,
                 Message = "New Entity was added",
@@ -268,7 +267,7 @@
         /// <returns>
         /// The <see cref="Customer"/>.
         /// </returns>
-        private Customer MaterializeCustomerFromDto(CustomerDto customerDTO)
+        private Customer MaterializeCustomerFromDto(Customer customerDTO)
         {
             // create the current instance with changes from customerDTO
             var current = CustomerFactory.CreateCustomer(
@@ -276,10 +275,10 @@
                 customerDTO.LastName,
                 customerDTO.Telephone);
 
-            current.ChangePicture(customerDTO.LogoPhotoPath);
+            current.ChangePicture(customerDTO.LogoPath);
 
             // set identity
-            current.ChangeCurrentIdentity(customerDTO.Id);
+            current.Id = customerDTO.Id;
             return current;
         }
     }

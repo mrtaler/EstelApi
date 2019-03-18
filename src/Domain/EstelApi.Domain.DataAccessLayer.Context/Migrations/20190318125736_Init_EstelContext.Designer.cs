@@ -4,14 +4,16 @@ using EstelApi.Domain.DataAccessLayer.Context.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EstelApi.Domain.DataAccessLayer.Context.Migrations
 {
     [DbContext(typeof(EstelContext))]
-    partial class EstelContextModelSnapshot : ModelSnapshot
+    [Migration("20190318125736_Init_EstelContext")]
+    partial class Init_EstelContext
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -201,9 +203,9 @@ namespace EstelApi.Domain.DataAccessLayer.Context.Migrations
 
                     b.Property<DateTimeOffset>("CourseEndDAte");
 
-                    b.Property<int>("CourseId");
+                    b.Property<int?>("CourseId");
 
-                    b.Property<int>("CustomerId");
+                    b.Property<int?>("CustomerId");
 
                     b.Property<string>("Description");
 
@@ -216,63 +218,6 @@ namespace EstelApi.Domain.DataAccessLayer.Context.Migrations
                     b.HasIndex("CustomerId");
 
                     b.ToTable("CourseAttendances");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            AttendenseDate = new DateTimeOffset(new DateTime(2019, 3, 3, 13, 38, 28, 55, DateTimeKind.Unspecified).AddTicks(9864), new TimeSpan(0, 0, 0, 0, 0)),
-                            CourseDate = new DateTimeOffset(new DateTime(2019, 3, 17, 12, 38, 28, 56, DateTimeKind.Unspecified).AddTicks(509), new TimeSpan(0, 0, 0, 0, 0)),
-                            CourseEndDAte = new DateTimeOffset(new DateTime(2019, 3, 18, 13, 38, 28, 56, DateTimeKind.Unspecified).AddTicks(1232), new TimeSpan(0, 0, 0, 0, 0)),
-                            CourseId = 1,
-                            CustomerId = 1,
-                            Description = "testDescription",
-                            Status = 4
-                        },
-                        new
-                        {
-                            Id = 2,
-                            AttendenseDate = new DateTimeOffset(new DateTime(2019, 3, 6, 13, 38, 28, 56, DateTimeKind.Unspecified).AddTicks(2799), new TimeSpan(0, 0, 0, 0, 0)),
-                            CourseDate = new DateTimeOffset(new DateTime(2019, 3, 17, 15, 38, 28, 56, DateTimeKind.Unspecified).AddTicks(2808), new TimeSpan(0, 0, 0, 0, 0)),
-                            CourseEndDAte = new DateTimeOffset(new DateTime(2019, 3, 18, 13, 38, 28, 56, DateTimeKind.Unspecified).AddTicks(2814), new TimeSpan(0, 0, 0, 0, 0)),
-                            CourseId = 2,
-                            CustomerId = 2,
-                            Description = "testDescription",
-                            Status = 4
-                        },
-                        new
-                        {
-                            Id = 3,
-                            AttendenseDate = new DateTimeOffset(new DateTime(2019, 3, 5, 13, 38, 28, 56, DateTimeKind.Unspecified).AddTicks(2830), new TimeSpan(0, 0, 0, 0, 0)),
-                            CourseDate = new DateTimeOffset(new DateTime(2019, 3, 18, 13, 38, 28, 56, DateTimeKind.Unspecified).AddTicks(2831), new TimeSpan(0, 0, 0, 0, 0)),
-                            CourseEndDAte = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            CourseId = 1,
-                            CustomerId = 2,
-                            Description = "testDescription",
-                            Status = 3
-                        },
-                        new
-                        {
-                            Id = 4,
-                            AttendenseDate = new DateTimeOffset(new DateTime(2019, 3, 4, 13, 38, 28, 56, DateTimeKind.Unspecified).AddTicks(2832), new TimeSpan(0, 0, 0, 0, 0)),
-                            CourseDate = new DateTimeOffset(new DateTime(2019, 3, 18, 13, 38, 28, 56, DateTimeKind.Unspecified).AddTicks(2833), new TimeSpan(0, 0, 0, 0, 0)),
-                            CourseEndDAte = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            CourseId = 2,
-                            CustomerId = 2,
-                            Description = "testDescription",
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 5,
-                            AttendenseDate = new DateTimeOffset(new DateTime(2019, 3, 2, 13, 38, 28, 56, DateTimeKind.Unspecified).AddTicks(2834), new TimeSpan(0, 0, 0, 0, 0)),
-                            CourseDate = new DateTimeOffset(new DateTime(2019, 3, 18, 13, 38, 28, 56, DateTimeKind.Unspecified).AddTicks(2835), new TimeSpan(0, 0, 0, 0, 0)),
-                            CourseEndDAte = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            CourseId = 1,
-                            CustomerId = 3,
-                            Description = "testDescription",
-                            Status = 0
-                        });
                 });
 
             modelBuilder.Entity("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CourseTopics", b =>
@@ -456,155 +401,21 @@ namespace EstelApi.Domain.DataAccessLayer.Context.Migrations
                     b.ToTable("Customer");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("Customer");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            BirthDate = new DateTimeOffset(new DateTime(2018, 10, 19, 13, 38, 28, 28, DateTimeKind.Unspecified).AddTicks(5104), new TimeSpan(0, 0, 0, 0, 0)),
-                            FirstName = "FirstName1",
-                            IdentityId = 0,
-                            IsEnabled = true,
-                            LastName = "LastName1",
-                            LogoPath = "c:\\",
-                            MiddleName = "MiddleName1",
-                            Telephone = "123456789"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            BirthDate = new DateTimeOffset(new DateTime(2018, 6, 16, 13, 38, 28, 28, DateTimeKind.Unspecified).AddTicks(6921), new TimeSpan(0, 0, 0, 0, 0)),
-                            FirstName = "FirstName2",
-                            IdentityId = 0,
-                            IsEnabled = true,
-                            LastName = "LastName2",
-                            LogoPath = "c:\\",
-                            MiddleName = "MiddleName2",
-                            Telephone = "234567891"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            BirthDate = new DateTimeOffset(new DateTime(2017, 4, 27, 13, 38, 28, 28, DateTimeKind.Unspecified).AddTicks(6943), new TimeSpan(0, 0, 0, 0, 0)),
-                            FirstName = "FirstName3",
-                            IdentityId = 0,
-                            IsEnabled = true,
-                            LastName = "LastName3",
-                            LogoPath = "c:\\",
-                            MiddleName = "MiddleName3",
-                            Telephone = "345678912"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            BirthDate = new DateTimeOffset(new DateTime(2016, 11, 18, 13, 38, 28, 28, DateTimeKind.Unspecified).AddTicks(6945), new TimeSpan(0, 0, 0, 0, 0)),
-                            FirstName = "FirstName4",
-                            IdentityId = 0,
-                            IsEnabled = true,
-                            LastName = "LastName4",
-                            LogoPath = "c:\\",
-                            MiddleName = "MiddleName4",
-                            Telephone = "456789123"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            BirthDate = new DateTimeOffset(new DateTime(2016, 7, 4, 13, 38, 28, 28, DateTimeKind.Unspecified).AddTicks(6947), new TimeSpan(0, 0, 0, 0, 0)),
-                            FirstName = "FirstName5",
-                            IdentityId = 0,
-                            IsEnabled = true,
-                            LastName = "LastName5",
-                            LogoPath = "c:\\",
-                            MiddleName = "MiddleName5",
-                            Telephone = "567891234"
-                        });
                 });
 
             modelBuilder.Entity("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg.Worker", b =>
                 {
                     b.HasBaseType("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg.Customer");
 
-                    b.Property<DateTimeOffset?>("RetirementDate");
+                    b.Property<DateTimeOffset>("RetirementDate");
 
-                    b.Property<int>("StaffType");
+                    b.Property<string>("StaffType");
 
                     b.Property<DateTimeOffset>("WorkFrom");
 
                     b.ToTable("Worker");
 
                     b.HasDiscriminator().HasValue("Worker");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 6,
-                            BirthDate = new DateTimeOffset(new DateTime(2018, 10, 19, 13, 38, 28, 31, DateTimeKind.Unspecified).AddTicks(6462), new TimeSpan(0, 0, 0, 0, 0)),
-                            FirstName = "WorkerFirstName1",
-                            IdentityId = 0,
-                            IsEnabled = true,
-                            LastName = "WorkerLastName1",
-                            LogoPath = "c:\\Worker",
-                            MiddleName = "WorkerMiddleName1",
-                            Telephone = "Worker123456789",
-                            StaffType = 0,
-                            WorkFrom = new DateTimeOffset(new DateTime(2019, 3, 3, 13, 38, 28, 31, DateTimeKind.Unspecified).AddTicks(6471), new TimeSpan(0, 0, 0, 0, 0))
-                        },
-                        new
-                        {
-                            Id = 7,
-                            BirthDate = new DateTimeOffset(new DateTime(2018, 6, 16, 13, 38, 28, 31, DateTimeKind.Unspecified).AddTicks(7808), new TimeSpan(0, 0, 0, 0, 0)),
-                            FirstName = "WorkerFirstName2",
-                            IdentityId = 0,
-                            IsEnabled = true,
-                            LastName = "WorkerLastName2",
-                            LogoPath = "c:\\Worker",
-                            MiddleName = "WorkerMiddleName2",
-                            Telephone = "Worker234567891",
-                            StaffType = 3,
-                            WorkFrom = new DateTimeOffset(new DateTime(2019, 3, 6, 13, 38, 28, 31, DateTimeKind.Unspecified).AddTicks(7812), new TimeSpan(0, 0, 0, 0, 0))
-                        },
-                        new
-                        {
-                            Id = 8,
-                            BirthDate = new DateTimeOffset(new DateTime(2017, 4, 27, 13, 38, 28, 31, DateTimeKind.Unspecified).AddTicks(7824), new TimeSpan(0, 0, 0, 0, 0)),
-                            FirstName = "WorkerFirstName3",
-                            IdentityId = 0,
-                            IsEnabled = true,
-                            LastName = "WorkerLastName3",
-                            LogoPath = "c:\\Worker",
-                            MiddleName = "WorkerMiddleName3",
-                            Telephone = "Worker345678912",
-                            StaffType = 1,
-                            WorkFrom = new DateTimeOffset(new DateTime(2019, 3, 5, 13, 38, 28, 31, DateTimeKind.Unspecified).AddTicks(7825), new TimeSpan(0, 0, 0, 0, 0))
-                        },
-                        new
-                        {
-                            Id = 9,
-                            BirthDate = new DateTimeOffset(new DateTime(2016, 11, 18, 13, 38, 28, 31, DateTimeKind.Unspecified).AddTicks(7827), new TimeSpan(0, 0, 0, 0, 0)),
-                            FirstName = "WorkerFirstName4",
-                            IdentityId = 0,
-                            IsEnabled = true,
-                            LastName = "WorkerLastName4",
-                            LogoPath = "c:\\Worker",
-                            MiddleName = "WorkerMiddleName4",
-                            Telephone = "Worker456789123",
-                            StaffType = 2,
-                            WorkFrom = new DateTimeOffset(new DateTime(2019, 2, 21, 13, 38, 28, 31, DateTimeKind.Unspecified).AddTicks(7828), new TimeSpan(0, 0, 0, 0, 0))
-                        },
-                        new
-                        {
-                            Id = 10,
-                            BirthDate = new DateTimeOffset(new DateTime(2016, 7, 4, 13, 38, 28, 31, DateTimeKind.Unspecified).AddTicks(7829), new TimeSpan(0, 0, 0, 0, 0)),
-                            FirstName = "WorkerFirstName5",
-                            IdentityId = 0,
-                            IsEnabled = true,
-                            LastName = "WorkerLastName5",
-                            LogoPath = "c:\\Worker",
-                            MiddleName = "WorkerMiddleName5",
-                            Telephone = "Worker567891234",
-                            StaffType = 0,
-                            WorkFrom = new DateTimeOffset(new DateTime(2019, 1, 2, 13, 38, 28, 31, DateTimeKind.Unspecified).AddTicks(7830), new TimeSpan(0, 0, 0, 0, 0))
-                        });
                 });
 
             modelBuilder.Entity("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.AdditionalAmenityCourse", b =>
@@ -639,14 +450,12 @@ namespace EstelApi.Domain.DataAccessLayer.Context.Migrations
             modelBuilder.Entity("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CourseAttendance", b =>
                 {
                     b.HasOne("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Course", "Course")
-                        .WithMany("CourseAttendances")
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .WithMany("Customers")
+                        .HasForeignKey("CourseId");
 
                     b.HasOne("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg.Customer", "Customer")
-                        .WithMany("CourseAttendances")
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .WithMany("Couses")
+                        .HasForeignKey("CustomerId");
                 });
 
             modelBuilder.Entity("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CourseTopicsCourse", b =>

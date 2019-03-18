@@ -1,9 +1,10 @@
-﻿using AutoMapper;
-
-namespace EstelApi.Application.AutoMapper
+﻿namespace EstelApi.Application.AutoMapper
 {
-    using EstelApi.Application.Dto;
+    //using EstelApi.Application.Dto;
+
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
+
+    using global::AutoMapper;
 
     using Serilog;
 
@@ -19,7 +20,7 @@ namespace EstelApi.Application.AutoMapper
         public DomainToDtoMappingProfileReverse()
         {
             Log.Debug($"AutoMapper profile {nameof(DomainToDtoMappingProfileReverse)} was launch");
-            this.CreateMap<Customer, CustomerDto>().PreserveReferences();
+         //   this.CreateMap<Customer, CustomerDto>().PreserveReferences();
         }
     }
 }
