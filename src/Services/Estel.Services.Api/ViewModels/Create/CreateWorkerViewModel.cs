@@ -7,7 +7,6 @@
 
     public class CreateWorkerViewModel
     {
-        [Required]
         public int IdentityId { get; set; }
 
         [Required]
@@ -25,6 +24,7 @@
         public DateTimeOffset WorkFrom { get; set; }
 
         public DateTimeOffset? RetirementDate { get; set; }
+        [Required]
         public StaffType StaffType { get; set; }
     }
 }
