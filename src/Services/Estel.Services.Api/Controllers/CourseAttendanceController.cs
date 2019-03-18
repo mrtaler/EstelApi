@@ -3,9 +3,10 @@
     using System.Threading.Tasks;
 
     using EstelApi.Application.ApplicationCqrs.Base;
-    using EstelApi.Application.ApplicationCqrs.Queries.CustomerQueries;
+    using EstelApi.Application.ApplicationCqrs.Queries;
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities;
+    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
 
     using MediatR;
 
@@ -39,5 +40,5 @@
             var result = await this.mediator.Send(new RemoveEntityCommand<CourseAttendance>(id));
             return this.Response(result);
         }
-    }
+        }
 }

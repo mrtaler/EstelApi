@@ -1,13 +1,9 @@
-﻿namespace EstelApi.Application.ApplicationCqrs.Queries.CustomerQueries
+﻿namespace EstelApi.Application.ApplicationCqrs.Queries
 {
     using System.Collections.Generic;
 
-    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities;
-    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
-
-    // using EstelApi.Application.Dto;
-
     using MediatR;
+    // using EstelApi.Application.Dto;
 
     /// <summary>
     /// The all customers query.

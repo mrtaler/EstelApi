@@ -4,8 +4,8 @@
 
     using Autofac;
 
-    using EstelApi.Application.ApplicationCqrs.Commands.CustomerCommands;
-    using EstelApi.Application.ApplicationCqrs.Commands.CustomerCommands.Events;
+    using EstelApi.Application.ApplicationCqrs.Commands._CustomerCommands;
+    using EstelApi.Application.ApplicationCqrs.Commands._CustomerCommands.Events;
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
 
     using MediatR;

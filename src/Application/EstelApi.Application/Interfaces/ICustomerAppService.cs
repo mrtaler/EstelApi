@@ -7,14 +7,14 @@
    // using EstelApi.Application.Dto;
     using EstelApi.Application.EventSourcedNormalizers;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
-
+ /*
     /// <inheritdoc />
     /// <summary>
     /// The CustomerAppService interface.
     /// </summary>
     public interface ICustomerAppService : IDisposable
     {
-        /// <summary>
+       /// <summary>
         /// The get all history.
         /// </summary>
         /// <param name="id">
@@ -63,5 +63,5 @@
         /// <param name="customerId">The customer identifier</param>
         /// <returns>Selected customer representation if exist or null if not exist</returns>
         Customer FindCustomer(int customerId);
-    }
+    }*/
 }

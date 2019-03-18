@@ -1,8 +1,9 @@
 ﻿namespace EstelApi.Application.AutoMapper
 {
+    using EstelApi.Application.ApplicationCqrs.Commands.UpdateCommands;
+
     using global::AutoMapper;
-    using EstelApi.Application.ApplicationCqrs.Commands.CustomerCommands.Commands;
-   // using EstelApi.Application.Dto;
+    // using EstelApi.Application.Dto;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
 
     using Serilog;
@@ -19,8 +20,8 @@
         public DtoToCqrsCommandProfileRev()
         {
             Log.Debug($"AutoMapper profile {nameof(DtoToCqrsCommandProfileRev)} was launch");
-            this.CreateMap<Customer, RegisterNewCustomerCommand>().PreserveReferences();
-            this.CreateMap<Customer, UpdateCustomerCommand>().PreserveReferences(); 
+         //   this.CreateMap<Customer, RegisterNewCustomerCommand>().PreserveReferences();
+         //   this.CreateMap<Customer, UpdateCustomerCommand>().PreserveReferences(); 
 
             // .ConstructUsing(c => new RegisterNewCustomerCommand(c.Name, c.Email, c.BirthDate));
             /* this.CreateMap<UpdateCustomerViewModel, UpdateCustomerCommand>()

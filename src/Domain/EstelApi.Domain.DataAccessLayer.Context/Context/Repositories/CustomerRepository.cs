@@ -6,6 +6,8 @@
     using System.Collections.Generic;
     using System.Linq;
 
+    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Repositories;
+
     /// <inheritdoc cref="ICustomerRepository" />
     public class CustomerRepository : Repository<Customer>, ICustomerRepository
     {

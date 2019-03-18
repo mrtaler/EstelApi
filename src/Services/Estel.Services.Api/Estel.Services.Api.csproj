@@ -41,9 +41,4 @@
     <ProjectReference Include="..\..\CrossCutting\EstelApi.CrossCutting.IoC\EstelApi.CrossCutting.IoC.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ViewModels\CourseType\" />
-    <Folder Include="ViewModels\Course\" />
-  </ItemGroup>
-
 </Project>

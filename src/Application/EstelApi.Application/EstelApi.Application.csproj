@@ -19,9 +19,5 @@
     <ProjectReference Include="..\..\Domain\EstelApi.Domain.DataAccessLayer.Context\EstelApi.Domain.DataAccessLayer.Context.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ApplicationCqrs\Commands\AdditionalAmenity\" />
-  </ItemGroup>
-
 
 </Project>

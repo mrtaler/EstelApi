@@ -1,6 +1,8 @@
-﻿namespace EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg
+﻿namespace EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Repositories
 {
     using EstelApi.Core.Seedwork.Interfaces;
+    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
+    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
 
     public interface IWorkerRepository : IRepository<Worker>{}
     public interface IAdditionalAmenityRepository : IRepository<AdditionalAmenity>{}

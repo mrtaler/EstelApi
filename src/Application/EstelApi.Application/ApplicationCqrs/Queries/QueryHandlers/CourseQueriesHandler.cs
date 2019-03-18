@@ -1,4 +1,4 @@
-namespace EstelApi.Application.ApplicationCqrs.Queries.CustomerQueries
+namespace EstelApi.Application.ApplicationCqrs.Queries.QueryHandlers
 {
     using System;
     using System.Collections.Generic;
@@ -8,8 +8,8 @@ namespace EstelApi.Application.ApplicationCqrs.Queries.CustomerQueries
 
     using EstelApi.Application.ApplicationCqrs.Base;
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
-    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities;
-    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
+    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
+    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Repositories;
     using EstelApi.Domain.DataAccessLayer.Context.Interfaces;
 
     using MediatR;

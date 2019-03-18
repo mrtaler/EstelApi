@@ -1,6 +1,5 @@
-namespace EstelApi.Domain.DataAccessLayer.Context.CoreEntities
+namespace EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done
 {
-
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

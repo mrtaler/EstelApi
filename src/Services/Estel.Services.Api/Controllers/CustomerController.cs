@@ -1,16 +1,18 @@
 ﻿namespace Estel.Services.Api.Controllers
 {
-    using Estel.Services.Api.ViewModels.Customer;
+    using Estel.Services.Api.ViewModels.Create;
+    using Estel.Services.Api.ViewModels.Update;
+    using EstelApi.Application.ApplicationCqrs.Base;
+    using EstelApi.Application.ApplicationCqrs.Commands.CreateCommands;
+    using EstelApi.Application.ApplicationCqrs.Commands.UpdateCommands;
+    using EstelApi.Application.ApplicationCqrs.Queries;
     //using EstelApi.Application.Dto;
-    using EstelApi.Application.Interfaces;
     using EstelApi.Core.Seedwork.Adapter;
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
+    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
     using MediatR;
     using Microsoft.AspNetCore.Mvc;
-    using System;
     using System.Threading.Tasks;
-
-    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
 
     // [Authorize]
 
@@ -20,11 +22,6 @@
     [ApiVersion("1.0")]
     public class CustomerController : ApiController
     {
-        /// <summary>
-        /// The customer app service.
-        /// </summary>
-        private readonly ICustomerAppService customerAppService;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="CustomerController"/> class.
         /// </summary>
@@ -38,12 +35,10 @@
         /// The mediator.
         /// </param>
         public CustomerController(
-            ICustomerAppService customerAppService,
             INotificationHandler<DomainNotification> notifications,
             IMediator mediator)
             : base(notifications, mediator)
         {
-            this.customerAppService = customerAppService;
         }
 
         /// <summary>
@@ -53,11 +48,11 @@
         /// The <see cref="IActionResult"/>.
         /// </returns>
         /// [AllowAnonymous]
-        [HttpGet]
-        [Route("customer-management/getallcustomers")]
-        public IActionResult GetAll()
+        [HttpGet("GetAllCustomer")]
+        public async Task<IActionResult> Get()
         {
-            return this.Response(this.customerAppService.GetAllCustomers());
+            var result = await this.mediator.Send(new AllEntitiesQuery<Customer>());
+            return this.Response(result);
         }
 
         /// <summary>
@@ -70,13 +65,11 @@
         /// The <see cref="IActionResult"/>.
         /// </returns>
         /// [AllowAnonymous]
-        [HttpGet]
-        [Route("customer-management/GetById/{id:int}")]
-        public IActionResult Get(int id)
+        [HttpGet("GetCustomerById")]
+        public async Task<IActionResult> Get(int id)
         {
-            var customerViewModel = this.customerAppService.FindCustomer(id);
-
-            return this.Response(customerViewModel);
+            var result = await this.mediator.Send(new EntityByIdQuery<Customer>(id));
+            return this.Response(result);
         }
 
         /// <summary>
@@ -89,8 +82,7 @@
         /// The <see cref="Task"/>.
         /// </returns>
         /// [Authorize(Policy = "CanWriteCustomerData")]
-        [HttpPost]
-        [Route("customer-management/CreateNewCustomer")]
+        [HttpPost("CreateNewCustomer")]
         public async Task<IActionResult> Post([FromBody] CreateCustomerViewModel createCustomerViewModel)
         {
             if (!this.ModelState.IsValid)
@@ -99,8 +91,8 @@
                 return this.Response(createCustomerViewModel);
             }
 
-            var dto = createCustomerViewModel.ProjectedAs<Customer>();
-            var resp = await this.customerAppService.AddNewCustomer(dto);
+            var command = createCustomerViewModel.ProjectedAs<CreateNewCustomerCommand>();
+            var resp = await this.mediator.Send(command);
             return this.Response(resp);
         }
 
@@ -114,9 +106,8 @@
         /// The <see cref="IActionResult"/>.
         /// </returns>
         /// [Authorize(Policy = "CanWriteCustomerData")]
-        [HttpPut]
-        [Route("customer-management/UpdateCustomer")]
-        public IActionResult Put([FromBody] UpdateCustomerViewModel updateCustomerViewModel)
+        [HttpPut("UpdateCustomer")]
+        public async Task<IActionResult> Put([FromBody] UpdateCustomerViewModel updateCustomerViewModel)
         {
             if (!this.ModelState.IsValid)
             {
@@ -124,39 +115,27 @@
                 return this.Response(updateCustomerViewModel);
             }
 
-            try
-            {
-                var dto = updateCustomerViewModel.ProjectedAs<Customer>();
-                this.customerAppService.UpdateCustomer(dto);
-
-                return this.Response(updateCustomerViewModel);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw new Exception("ff", e);
-            }
+            var command = updateCustomerViewModel.ProjectedAs<UpdateCustomerCommand>();
+            var resp = await this.mediator.Send(command);
+            return this.Response(resp);
         }
 
-           /// <summary>
-           /// The delete.
-           /// </summary>
-           /// <param name="deleteCustomerViewModel">
-           /// The delete customer view model.
-           /// </param>
-           /// <returns>
-           /// The <see cref="IActionResult"/>.
-           /// </returns>
-           [HttpDelete]
-
-           // [Authorize(Policy = "CanRemoveCustomerData")]
-           [Route("customer-management")]
-           public IActionResult Delete([FromBody] DeleteCustomerViewModel deleteCustomerViewModel)
-           {
-               this.customerAppService.RemoveCustomer(deleteCustomerViewModel.Id);
-
-               return this.Response();
-           }
+        /// <summary>
+        /// The delete.
+        /// </summary>
+        /// <param name="deleteCustomerViewModel">
+        /// The delete customer view model.
+        /// </param>
+        /// <returns>
+        /// The <see cref="IActionResult"/>.
+        /// </returns>
+        // [Authorize(Policy = "CanRemoveCustomerData")]
+        [HttpDelete("DeleteCustomerById")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var result = await this.mediator.Send(new RemoveEntityCommand<Customer>(id));
+            return this.Response(result);
+        }
 
         /// <summary>
         /// Customer history (work)
@@ -172,8 +151,9 @@
         [Route("customer-management/history/{id:guid}")]
         public async Task<IActionResult> History(int id)
         {
-            var customerHistoryData = await this.customerAppService.GetAllHistory(id);
-            return this.Response(customerHistoryData);
+            /*   var customerHistoryData = await this.customerAppService.GetAllHistory(id);
+               return this.Response(customerHistoryData);*/
+            return this.Ok();
         }
     }
 }

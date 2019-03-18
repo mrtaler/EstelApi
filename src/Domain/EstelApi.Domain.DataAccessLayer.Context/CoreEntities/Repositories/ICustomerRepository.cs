@@ -1,8 +1,9 @@
-﻿namespace EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg
+﻿namespace EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Repositories
 {
     using System.Collections.Generic;
 
     using EstelApi.Core.Seedwork.Interfaces;
+    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
 
     /// <inheritdoc />
     public interface ICustomerRepository : IRepository<Customer>
@@ -26,4 +27,5 @@
         /// </returns>
         IEnumerable<Customer> GetEnabled();
     }
+
 }

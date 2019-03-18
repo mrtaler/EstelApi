@@ -1,6 +1,6 @@
 ﻿using Autofac;
 using EstelApi.Application.Interfaces;
-using EstelApi.Application.Services;
+//using EstelApi.Application.Services;
 
 namespace EstelApi.Application
 {
@@ -8,7 +8,7 @@ namespace EstelApi.Application
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<CustomerAppService>().As<ICustomerAppService>().InstancePerLifetimeScope();
+          //  builder.RegisterType<CustomerAppService>().As<ICustomerAppService>().InstancePerLifetimeScope();
         }
     }
 }

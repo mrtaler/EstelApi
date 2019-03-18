@@ -2,9 +2,13 @@
 {
     using AutoMapper;
 
-    using Estel.Services.Api.ViewModels.Customer;
+    using Estel.Services.Api.ViewModels.Create;
+    using Estel.Services.Api.ViewModels.Update;
 
-   // using EstelApi.Application.Dto;
+    using EstelApi.Application.ApplicationCqrs.Commands.CreateCommands;
+    using EstelApi.Application.ApplicationCqrs.Commands.UpdateCommands;
+
+    // using EstelApi.Application.Dto;
 
     using Serilog;
 
@@ -19,8 +23,22 @@
         public ViewModelToDtoProfileRev()
         {
             Log.Debug($"AutoMapper profile {nameof(ViewModelToDtoProfileRev)} was launch");
-         //   this.CreateMap<CreateCustomerViewModel, CustomerDto>(MemberList.Source);
-          //  this.CreateMap<UpdateCustomerViewModel, CustomerDto>(MemberList.Source);
+            this.CreateMap<CreateAdditionalAmenityViewModel, CreateNewAdditionalAmenityCommand>(MemberList.Source);
+            this.CreateMap<CreateAvailableDatesViewModel, CreateNewAvailableDatesCommand>(MemberList.Source);
+            this.CreateMap<CreateCourseTopicsViewModel, CreateNewCourseTopicsCommand>(MemberList.Source);
+            this.CreateMap<CreateCourseTypeViewModel, CreateNewCourseTypeCommand>(MemberList.Source);
+            this.CreateMap<CreateCourseViewModel, CreateNewCourseCommand>(MemberList.Source);
+            this.CreateMap<CreateCustomerViewModel, CreateNewCustomerCommand>(MemberList.Source);
+            this.CreateMap<CreateWorkerViewModel, CreateNewWorkerCommand>(MemberList.Source);
+
+
+            this.CreateMap<UpdateAdditionalAmenityViewModel, UpdateAdditionalAmenityCommand>(MemberList.Source);
+            this.CreateMap<UpdateAvailableDatesViewModel, UpdateAvailableDatesCommand>(MemberList.Source);
+            this.CreateMap<UpdateCourseTopicsViewModel, UpdateCourseTopicsCommand>(MemberList.Source);
+            this.CreateMap<UpdateCourseTypeViewModel, UpdateCourseTypeCommand>(MemberList.Source);
+            this.CreateMap<UpdateCourseViewModel, UpdateCourseCommand>(MemberList.Source);
+            this.CreateMap<UpdateCustomerViewModel, UpdateCustomerCommand>(MemberList.Source);
+            this.CreateMap<UpdateWorkerViewModel, UpdateWorkerCommand>(MemberList.Source);
 
             /*  .ForMember(p => p.Id, x => x.Ignore())
                 .ForMember(p => p.CreditLimit, x => x.MapFrom(y => 0M))

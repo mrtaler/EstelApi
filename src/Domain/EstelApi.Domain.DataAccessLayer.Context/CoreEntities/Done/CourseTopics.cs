@@ -1,9 +1,11 @@
-﻿namespace EstelApi.Domain.DataAccessLayer.Context.CoreEntities
+﻿namespace EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done
 {
+    using System.Collections.Generic;
+
     using EstelApi.Core.Seedwork;
+
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
-    using System.Collections.Generic;
 
     public class CourseTopics : EntityInt
     {

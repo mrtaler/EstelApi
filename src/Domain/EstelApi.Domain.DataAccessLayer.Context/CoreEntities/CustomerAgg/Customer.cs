@@ -6,6 +6,8 @@
     using System;
     using System.Collections.Generic;
 
+    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
+
     /// <inheritdoc />
     public class Customer : EntityInt
     {

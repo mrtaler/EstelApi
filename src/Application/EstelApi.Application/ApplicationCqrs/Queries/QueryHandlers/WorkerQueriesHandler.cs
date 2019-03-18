@@ -1,13 +1,16 @@
-namespace EstelApi.Application.ApplicationCqrs.Queries.CustomerQueries
+namespace EstelApi.Application.ApplicationCqrs.Queries.QueryHandlers
 {
-    using EstelApi.Application.ApplicationCqrs.Base;
-    using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
-    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
-    using EstelApi.Domain.DataAccessLayer.Context.Interfaces;
-    using MediatR;
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
+
+    using EstelApi.Application.ApplicationCqrs.Base;
+    using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
+    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
+    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Repositories;
+    using EstelApi.Domain.DataAccessLayer.Context.Interfaces;
+
+    using MediatR;
 
     public class WorkerQueriesHandler : QueryHandler,
                                         IRequestHandler<AllEntitiesQuery<Worker>, IEnumerable<Worker>>,

@@ -1,18 +1,21 @@
-﻿namespace EstelApi.Application.ApplicationCqrs.Queries.CustomerQueries
+namespace EstelApi.Application.ApplicationCqrs.Queries.QueryHandlers
 {
-    using EstelApi.Application.ApplicationCqrs.Base;
-    // using EstelApi.Application.Dto;
-    using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
-    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities;
-    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
-    using EstelApi.Domain.DataAccessLayer.Context.Interfaces;
-    using MediatR;
-    using Microsoft.EntityFrameworkCore;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
+
+    using EstelApi.Application.ApplicationCqrs.Base;
+    using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
+    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
+    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Repositories;
+    using EstelApi.Domain.DataAccessLayer.Context.Interfaces;
+
+    using MediatR;
+
+    using Microsoft.EntityFrameworkCore;
+    // using EstelApi.Application.Dto;
 
     public class AdditionalAmenityQueriesHandler : QueryHandler,
                                         IRequestHandler<AllEntitiesQuery<AdditionalAmenity>, IEnumerable<AdditionalAmenity>>,

@@ -2,10 +2,17 @@
 {
     using System.Threading.Tasks;
 
+    using Estel.Services.Api.ViewModels.Create;
+    using Estel.Services.Api.ViewModels.Update;
+
     using EstelApi.Application.ApplicationCqrs.Base;
-    using EstelApi.Application.ApplicationCqrs.Queries.CustomerQueries;
+    using EstelApi.Application.ApplicationCqrs.Commands.CreateCommands;
+    using EstelApi.Application.ApplicationCqrs.Commands.UpdateCommands;
+    using EstelApi.Application.ApplicationCqrs.Queries;
+    using EstelApi.Core.Seedwork.Adapter;
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities;
+    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
 
     using MediatR;
 
@@ -38,6 +45,34 @@
         {
             var result = await this.mediator.Send(new RemoveEntityCommand<AdditionalAmenity>(id));
             return this.Response(result);
+        }
+
+        [HttpPost("CreateNewAdditionalAmenity")]
+        public async Task<IActionResult> Post([FromBody] CreateAdditionalAmenityViewModel createCustomerViewModel)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                this.NotifyModelStateErrors();
+                return this.Response(createCustomerViewModel);
+            }
+
+            var command = createCustomerViewModel.ProjectedAs<CreateNewAdditionalAmenityCommand>();
+            var resp = await this.mediator.Send(command);
+            return this.Response(resp);
+        }
+
+        [HttpPut("UpdateAdditionalAmenity")]
+        public async Task<IActionResult> Put([FromBody] UpdateAdditionalAmenityViewModel updateCustomerViewModel)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                this.NotifyModelStateErrors();
+                return this.Response(updateCustomerViewModel);
+            }
+
+            var command = updateCustomerViewModel.ProjectedAs<UpdateAdditionalAmenityCommand>();
+            var resp = await this.mediator.Send(command);
+            return this.Response(resp);
         }
     }
 }

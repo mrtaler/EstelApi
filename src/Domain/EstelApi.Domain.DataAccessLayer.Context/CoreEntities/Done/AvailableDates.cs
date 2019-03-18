@@ -1,4 +1,4 @@
-﻿namespace EstelApi.Domain.DataAccessLayer.Context.CoreEntities
+﻿namespace EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done
 {
     using EstelApi.Core.Seedwork;
 

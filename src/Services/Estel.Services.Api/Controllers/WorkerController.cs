@@ -2,8 +2,14 @@
 {
     using System.Threading.Tasks;
 
+    using Estel.Services.Api.ViewModels.Create;
+    using Estel.Services.Api.ViewModels.Update;
+
     using EstelApi.Application.ApplicationCqrs.Base;
-    using EstelApi.Application.ApplicationCqrs.Queries.CustomerQueries;
+    using EstelApi.Application.ApplicationCqrs.Commands.CreateCommands;
+    using EstelApi.Application.ApplicationCqrs.Commands.UpdateCommands;
+    using EstelApi.Application.ApplicationCqrs.Queries;
+    using EstelApi.Core.Seedwork.Adapter;
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
 
@@ -40,6 +46,34 @@
         {
             var result = await this.mediator.Send(new RemoveEntityCommand<Worker>(id));
             return this.Response(result);
+        }
+
+        [HttpPost("CreateNewWorker")]
+        public async Task<IActionResult> Post([FromBody] CreateWorkerViewModel createCustomerViewModel)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                this.NotifyModelStateErrors();
+                return this.Response(createCustomerViewModel);
+            }
+
+            var command = createCustomerViewModel.ProjectedAs<CreateNewWorkerCommand>();
+            var resp = await this.mediator.Send(command);
+            return this.Response(resp);
+        }
+
+        [HttpPut("UpdateWorker")]
+        public async Task<IActionResult> Put([FromBody] UpdateWorkerViewModel updateCustomerViewModel)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                this.NotifyModelStateErrors();
+                return this.Response(updateCustomerViewModel);
+            }
+
+            var command = updateCustomerViewModel.ProjectedAs<UpdateWorkerCommand>();
+            var resp = await this.mediator.Send(command);
+            return this.Response(resp);
         }
     }
 }
