@@ -1,11 +1,12 @@
-﻿namespace Estel.Services.Api.ViewModels.Create
+﻿
+namespace Estel.Services.Api.ViewModels.Create
 {
+
     using System;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
-    using System.Diagnostics.CodeAnalysis;
 
-    
+
     /// <summary>
     /// The create customer view model.
     /// </summary>
@@ -28,7 +29,7 @@
         [MaxLength(100)]
         [DisplayName("Last Name")]
         public string LastName { get; set; }
-        
+
         [MinLength(2)]
         [MaxLength(100)]
         [DisplayName("Telephone")]

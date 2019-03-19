@@ -1,10 +1,14 @@
 ﻿[assembly:
     System.Diagnostics.CodeAnalysis.SuppressMessage(
         "StyleCop.CSharp.ReadabilityRules",
-        "SA1129:Do not use default value type constructor",
-        Justification = "Reviewed. Suppression is OK here.")]
-[assembly:
+        "SA1129_1111",
+        Justification = "Reviewed. Suppression is OK here.",
+        Scope = "namespace",
+        Target = "Estel.Services.Api.ViewModels")]
+[assembly: 
     System.Diagnostics.CodeAnalysis.SuppressMessage(
         "StyleCop.CSharp.DocumentationRules",
-        "SA1600:ElementsMustBeDocumented",
-        Justification = "Reviewed. Suppression is OK here.")]
+        "CS1591_1111",
+        Justification = "Reviewed. Suppression is OK here.",
+        Scope = "namespace",
+        Target = "Estel.Services.Api.ViewModels.Create")]
