@@ -5,6 +5,8 @@ namespace EstelApi.Application.ApplicationCqrs.Queries.QueryHandlers
     using System.Threading.Tasks;
 
     using EstelApi.Application.ApplicationCqrs.Base;
+    using EstelApi.Application.ApplicationCqrs.Queries.FindByIdSpec;
+    using EstelApi.Application.ApplicationCqrs.Queries.IncludeSpec;
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Repositories;
@@ -28,13 +30,16 @@ namespace EstelApi.Application.ApplicationCqrs.Queries.QueryHandlers
 
         public async Task<IEnumerable<CourseTopics>> Handle(AllEntitiesQuery<CourseTopics> request, CancellationToken cancellationToken)
         {
-            var ret = this.repository.GetAll();
+            var ret = this.repository.AllMatching(includes:new CourseTopicsInclude());
             return await Task.FromResult(ret);
         }
 
         public async Task<CourseTopics> Handle(EntityByIdQuery<CourseTopics> request, CancellationToken cancellationToken)
         {
-            var ret = this.repository.Get(request.Id);
+            var ret = this.repository.OneMatching(
+                filter: new FindCourseTopicsById().SetId(request.Id),
+                includes: new CourseTopicsInclude());
+
             return await Task.FromResult(ret);
         }
     }

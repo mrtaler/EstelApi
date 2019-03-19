@@ -12,7 +12,7 @@
         public string StartHour { get; set; }
         public string EndHour { get; set; }
         public int CourseId { get; set; }
-        public virtual Course Course { set; get; }
+        public  Course Course { set; get; }
     }
     public class AvailableDatesConfiguration : IEntityTypeConfiguration<AvailableDates>
     {

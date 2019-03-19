@@ -1,9 +1,10 @@
-﻿namespace EstelApi.Application.ApplicationCqrs.Commands.DeleteCommands
+﻿namespace EstelApi.Application.ApplicationCqrs.Commands.HandlersDeleteCommands
 {
     using System.Threading;
     using System.Threading.Tasks;
 
     using EstelApi.Application.ApplicationCqrs.Base;
+    using EstelApi.Application.ApplicationCqrs.Queries.FindByIdSpec;
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Repositories;
@@ -46,7 +47,7 @@
                            };
             }
 
-            var current = this.workerRepository.Get(request.Id);
+            var current = this.workerRepository.OneMatching(new FindWorkerById().SetId(request.Id));
             this.workerRepository.Remove(current);
             return !this.Commit()
                        ? new CommandResponse<Worker> { IsSuccess = false, Message = "Delete error", Object = null }

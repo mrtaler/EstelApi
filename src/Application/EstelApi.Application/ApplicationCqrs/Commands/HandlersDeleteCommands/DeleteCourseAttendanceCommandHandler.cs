@@ -1,15 +1,14 @@
-﻿namespace EstelApi.Application.ApplicationCqrs.Commands.DeleteCommands
+﻿namespace EstelApi.Application.ApplicationCqrs.Commands.HandlersDeleteCommands
 {
-    using System.Threading;
-    using System.Threading.Tasks;
-
     using EstelApi.Application.ApplicationCqrs.Base;
+    using EstelApi.Application.ApplicationCqrs.Queries.FindByIdSpec;
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Repositories;
     using EstelApi.Domain.DataAccessLayer.Context.Interfaces;
-
     using MediatR;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     public class DeleteCourseAttendanceCommandHandler : CommandHandler,
                                                         IRequestHandler<RemoveEntityCommand<CourseAttendance>, CommandResponse<CourseAttendance>>
@@ -46,7 +45,7 @@
                 };
             }
 
-            var current = this.courseAttendanceRepository.Get(request.Id);
+            var current = this.courseAttendanceRepository.OneMatching(new FindCourseAttendanceById().SetId(request.Id));
             this.courseAttendanceRepository.Remove(current);
             return !this.Commit()
                        ? new CommandResponse<CourseAttendance>

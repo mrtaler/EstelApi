@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EstelApi.Domain.DataAccessLayer.Context.Migrations
 {
     [DbContext(typeof(EstelContext))]
-    [Migration("20190318133305_AddInitDataWorcer")]
-    partial class AddInitDataWorcer
+    [Migration("20190319202306_ChangeCustomerInheritanse")]
+    partial class ChangeCustomerInheritanse
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,7 +21,39 @@ namespace EstelApi.Domain.DataAccessLayer.Context.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.AdditionalAmenity", b =>
+            modelBuilder.Entity("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg.Customer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTimeOffset>("BirthDate");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired();
+
+                    b.Property<string>("FirstName");
+
+                    b.Property<int>("IdentityId");
+
+                    b.Property<bool>("IsEnabled");
+
+                    b.Property<string>("LastName");
+
+                    b.Property<string>("LogoPath");
+
+                    b.Property<string>("MiddleName");
+
+                    b.Property<string>("Telephone");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Customer");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Customer");
+                });
+
+            modelBuilder.Entity("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done.AdditionalAmenity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -51,7 +83,7 @@ namespace EstelApi.Domain.DataAccessLayer.Context.Migrations
                         });
                 });
 
-            modelBuilder.Entity("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.AdditionalAmenityCourse", b =>
+            modelBuilder.Entity("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done.AdditionalAmenityCourse", b =>
                 {
                     b.Property<int>("CourseId");
 
@@ -91,7 +123,7 @@ namespace EstelApi.Domain.DataAccessLayer.Context.Migrations
                         });
                 });
 
-            modelBuilder.Entity("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.AvailableDates", b =>
+            modelBuilder.Entity("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done.AvailableDates", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -152,7 +184,7 @@ namespace EstelApi.Domain.DataAccessLayer.Context.Migrations
                         });
                 });
 
-            modelBuilder.Entity("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Course", b =>
+            modelBuilder.Entity("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done.Course", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -191,7 +223,7 @@ namespace EstelApi.Domain.DataAccessLayer.Context.Migrations
                         });
                 });
 
-            modelBuilder.Entity("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CourseAttendance", b =>
+            modelBuilder.Entity("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done.CourseAttendance", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -211,11 +243,15 @@ namespace EstelApi.Domain.DataAccessLayer.Context.Migrations
 
                     b.Property<int>("Status");
 
+                    b.Property<int?>("WorkerId");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CourseId");
 
                     b.HasIndex("CustomerId");
+
+                    b.HasIndex("WorkerId");
 
                     b.ToTable("CourseAttendances");
 
@@ -223,9 +259,9 @@ namespace EstelApi.Domain.DataAccessLayer.Context.Migrations
                         new
                         {
                             Id = 1,
-                            AttendenseDate = new DateTimeOffset(new DateTime(2019, 3, 3, 13, 33, 4, 612, DateTimeKind.Unspecified).AddTicks(9815), new TimeSpan(0, 0, 0, 0, 0)),
-                            CourseDate = new DateTimeOffset(new DateTime(2019, 3, 17, 12, 33, 4, 613, DateTimeKind.Unspecified).AddTicks(322), new TimeSpan(0, 0, 0, 0, 0)),
-                            CourseEndDAte = new DateTimeOffset(new DateTime(2019, 3, 18, 13, 33, 4, 613, DateTimeKind.Unspecified).AddTicks(767), new TimeSpan(0, 0, 0, 0, 0)),
+                            AttendenseDate = new DateTimeOffset(new DateTime(2019, 3, 4, 20, 23, 4, 938, DateTimeKind.Unspecified).AddTicks(4684), new TimeSpan(0, 0, 0, 0, 0)),
+                            CourseDate = new DateTimeOffset(new DateTime(2019, 3, 18, 19, 23, 4, 938, DateTimeKind.Unspecified).AddTicks(6372), new TimeSpan(0, 0, 0, 0, 0)),
+                            CourseEndDAte = new DateTimeOffset(new DateTime(2019, 3, 19, 20, 23, 4, 938, DateTimeKind.Unspecified).AddTicks(7181), new TimeSpan(0, 0, 0, 0, 0)),
                             CourseId = 1,
                             CustomerId = 1,
                             Description = "testDescription",
@@ -234,9 +270,9 @@ namespace EstelApi.Domain.DataAccessLayer.Context.Migrations
                         new
                         {
                             Id = 2,
-                            AttendenseDate = new DateTimeOffset(new DateTime(2019, 3, 6, 13, 33, 4, 613, DateTimeKind.Unspecified).AddTicks(1977), new TimeSpan(0, 0, 0, 0, 0)),
-                            CourseDate = new DateTimeOffset(new DateTime(2019, 3, 17, 15, 33, 4, 613, DateTimeKind.Unspecified).AddTicks(1983), new TimeSpan(0, 0, 0, 0, 0)),
-                            CourseEndDAte = new DateTimeOffset(new DateTime(2019, 3, 18, 13, 33, 4, 613, DateTimeKind.Unspecified).AddTicks(1987), new TimeSpan(0, 0, 0, 0, 0)),
+                            AttendenseDate = new DateTimeOffset(new DateTime(2019, 3, 7, 20, 23, 4, 938, DateTimeKind.Unspecified).AddTicks(9217), new TimeSpan(0, 0, 0, 0, 0)),
+                            CourseDate = new DateTimeOffset(new DateTime(2019, 3, 18, 22, 23, 4, 938, DateTimeKind.Unspecified).AddTicks(9227), new TimeSpan(0, 0, 0, 0, 0)),
+                            CourseEndDAte = new DateTimeOffset(new DateTime(2019, 3, 19, 20, 23, 4, 938, DateTimeKind.Unspecified).AddTicks(9233), new TimeSpan(0, 0, 0, 0, 0)),
                             CourseId = 2,
                             CustomerId = 2,
                             Description = "testDescription",
@@ -245,8 +281,8 @@ namespace EstelApi.Domain.DataAccessLayer.Context.Migrations
                         new
                         {
                             Id = 3,
-                            AttendenseDate = new DateTimeOffset(new DateTime(2019, 3, 5, 13, 33, 4, 613, DateTimeKind.Unspecified).AddTicks(1997), new TimeSpan(0, 0, 0, 0, 0)),
-                            CourseDate = new DateTimeOffset(new DateTime(2019, 3, 18, 13, 33, 4, 613, DateTimeKind.Unspecified).AddTicks(1998), new TimeSpan(0, 0, 0, 0, 0)),
+                            AttendenseDate = new DateTimeOffset(new DateTime(2019, 3, 6, 20, 23, 4, 938, DateTimeKind.Unspecified).AddTicks(9248), new TimeSpan(0, 0, 0, 0, 0)),
+                            CourseDate = new DateTimeOffset(new DateTime(2019, 3, 19, 20, 23, 4, 938, DateTimeKind.Unspecified).AddTicks(9250), new TimeSpan(0, 0, 0, 0, 0)),
                             CourseEndDAte = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             CourseId = 1,
                             CustomerId = 2,
@@ -256,8 +292,8 @@ namespace EstelApi.Domain.DataAccessLayer.Context.Migrations
                         new
                         {
                             Id = 4,
-                            AttendenseDate = new DateTimeOffset(new DateTime(2019, 3, 4, 13, 33, 4, 613, DateTimeKind.Unspecified).AddTicks(1999), new TimeSpan(0, 0, 0, 0, 0)),
-                            CourseDate = new DateTimeOffset(new DateTime(2019, 3, 18, 13, 33, 4, 613, DateTimeKind.Unspecified).AddTicks(2000), new TimeSpan(0, 0, 0, 0, 0)),
+                            AttendenseDate = new DateTimeOffset(new DateTime(2019, 3, 5, 20, 23, 4, 938, DateTimeKind.Unspecified).AddTicks(9251), new TimeSpan(0, 0, 0, 0, 0)),
+                            CourseDate = new DateTimeOffset(new DateTime(2019, 3, 19, 20, 23, 4, 938, DateTimeKind.Unspecified).AddTicks(9252), new TimeSpan(0, 0, 0, 0, 0)),
                             CourseEndDAte = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             CourseId = 2,
                             CustomerId = 2,
@@ -267,8 +303,8 @@ namespace EstelApi.Domain.DataAccessLayer.Context.Migrations
                         new
                         {
                             Id = 5,
-                            AttendenseDate = new DateTimeOffset(new DateTime(2019, 3, 2, 13, 33, 4, 613, DateTimeKind.Unspecified).AddTicks(2001), new TimeSpan(0, 0, 0, 0, 0)),
-                            CourseDate = new DateTimeOffset(new DateTime(2019, 3, 18, 13, 33, 4, 613, DateTimeKind.Unspecified).AddTicks(2001), new TimeSpan(0, 0, 0, 0, 0)),
+                            AttendenseDate = new DateTimeOffset(new DateTime(2019, 3, 3, 20, 23, 4, 938, DateTimeKind.Unspecified).AddTicks(9254), new TimeSpan(0, 0, 0, 0, 0)),
+                            CourseDate = new DateTimeOffset(new DateTime(2019, 3, 19, 20, 23, 4, 938, DateTimeKind.Unspecified).AddTicks(9255), new TimeSpan(0, 0, 0, 0, 0)),
                             CourseEndDAte = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             CourseId = 1,
                             CustomerId = 3,
@@ -277,7 +313,7 @@ namespace EstelApi.Domain.DataAccessLayer.Context.Migrations
                         });
                 });
 
-            modelBuilder.Entity("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CourseTopics", b =>
+            modelBuilder.Entity("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done.CourseTopics", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -322,7 +358,7 @@ namespace EstelApi.Domain.DataAccessLayer.Context.Migrations
                         });
                 });
 
-            modelBuilder.Entity("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CourseTopicsCourse", b =>
+            modelBuilder.Entity("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done.CourseTopicsCourse", b =>
                 {
                     b.Property<int>("CourseId");
 
@@ -392,7 +428,7 @@ namespace EstelApi.Domain.DataAccessLayer.Context.Migrations
                         });
                 });
 
-            modelBuilder.Entity("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CourseType", b =>
+            modelBuilder.Entity("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done.CourseType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -427,43 +463,19 @@ namespace EstelApi.Domain.DataAccessLayer.Context.Migrations
                         });
                 });
 
-            modelBuilder.Entity("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg.Customer", b =>
+            modelBuilder.Entity("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg.User", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.HasBaseType("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg.Customer");
 
-                    b.Property<DateTimeOffset>("BirthDate");
+                    b.ToTable("User");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired();
-
-                    b.Property<string>("FirstName");
-
-                    b.Property<int>("IdentityId");
-
-                    b.Property<bool>("IsEnabled");
-
-                    b.Property<string>("LastName");
-
-                    b.Property<string>("LogoPath");
-
-                    b.Property<string>("MiddleName");
-
-                    b.Property<string>("Telephone");
-
-                    b.HasKey("Id")
-                        .HasName("CustomerId");
-
-                    b.ToTable("Customer");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Customer");
+                    b.HasDiscriminator().HasValue("User");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            BirthDate = new DateTimeOffset(new DateTime(2018, 10, 19, 13, 33, 4, 582, DateTimeKind.Unspecified).AddTicks(6194), new TimeSpan(0, 0, 0, 0, 0)),
+                            BirthDate = new DateTimeOffset(new DateTime(2018, 10, 20, 20, 23, 4, 884, DateTimeKind.Unspecified).AddTicks(5607), new TimeSpan(0, 0, 0, 0, 0)),
                             FirstName = "FirstName1",
                             IdentityId = 0,
                             IsEnabled = true,
@@ -475,7 +487,7 @@ namespace EstelApi.Domain.DataAccessLayer.Context.Migrations
                         new
                         {
                             Id = 2,
-                            BirthDate = new DateTimeOffset(new DateTime(2018, 6, 16, 13, 33, 4, 582, DateTimeKind.Unspecified).AddTicks(7912), new TimeSpan(0, 0, 0, 0, 0)),
+                            BirthDate = new DateTimeOffset(new DateTime(2018, 6, 17, 20, 23, 4, 884, DateTimeKind.Unspecified).AddTicks(7527), new TimeSpan(0, 0, 0, 0, 0)),
                             FirstName = "FirstName2",
                             IdentityId = 0,
                             IsEnabled = true,
@@ -487,7 +499,7 @@ namespace EstelApi.Domain.DataAccessLayer.Context.Migrations
                         new
                         {
                             Id = 3,
-                            BirthDate = new DateTimeOffset(new DateTime(2017, 4, 27, 13, 33, 4, 582, DateTimeKind.Unspecified).AddTicks(7930), new TimeSpan(0, 0, 0, 0, 0)),
+                            BirthDate = new DateTimeOffset(new DateTime(2017, 4, 28, 20, 23, 4, 884, DateTimeKind.Unspecified).AddTicks(7547), new TimeSpan(0, 0, 0, 0, 0)),
                             FirstName = "FirstName3",
                             IdentityId = 0,
                             IsEnabled = true,
@@ -499,7 +511,7 @@ namespace EstelApi.Domain.DataAccessLayer.Context.Migrations
                         new
                         {
                             Id = 4,
-                            BirthDate = new DateTimeOffset(new DateTime(2016, 11, 18, 13, 33, 4, 582, DateTimeKind.Unspecified).AddTicks(7932), new TimeSpan(0, 0, 0, 0, 0)),
+                            BirthDate = new DateTimeOffset(new DateTime(2016, 11, 19, 20, 23, 4, 884, DateTimeKind.Unspecified).AddTicks(7550), new TimeSpan(0, 0, 0, 0, 0)),
                             FirstName = "FirstName4",
                             IdentityId = 0,
                             IsEnabled = true,
@@ -511,7 +523,7 @@ namespace EstelApi.Domain.DataAccessLayer.Context.Migrations
                         new
                         {
                             Id = 5,
-                            BirthDate = new DateTimeOffset(new DateTime(2016, 7, 4, 13, 33, 4, 582, DateTimeKind.Unspecified).AddTicks(7934), new TimeSpan(0, 0, 0, 0, 0)),
+                            BirthDate = new DateTimeOffset(new DateTime(2016, 7, 5, 20, 23, 4, 884, DateTimeKind.Unspecified).AddTicks(7552), new TimeSpan(0, 0, 0, 0, 0)),
                             FirstName = "FirstName5",
                             IdentityId = 0,
                             IsEnabled = true,
@@ -528,7 +540,7 @@ namespace EstelApi.Domain.DataAccessLayer.Context.Migrations
 
                     b.Property<DateTimeOffset?>("RetirementDate");
 
-                    b.Property<string>("StaffType");
+                    b.Property<int>("StaffType");
 
                     b.Property<DateTimeOffset>("WorkFrom");
 
@@ -540,7 +552,7 @@ namespace EstelApi.Domain.DataAccessLayer.Context.Migrations
                         new
                         {
                             Id = 6,
-                            BirthDate = new DateTimeOffset(new DateTime(2018, 10, 19, 13, 33, 4, 586, DateTimeKind.Unspecified).AddTicks(3140), new TimeSpan(0, 0, 0, 0, 0)),
+                            BirthDate = new DateTimeOffset(new DateTime(2018, 10, 20, 20, 23, 4, 887, DateTimeKind.Unspecified).AddTicks(6649), new TimeSpan(0, 0, 0, 0, 0)),
                             FirstName = "WorkerFirstName1",
                             IdentityId = 0,
                             IsEnabled = true,
@@ -548,12 +560,13 @@ namespace EstelApi.Domain.DataAccessLayer.Context.Migrations
                             LogoPath = "c:\\Worker",
                             MiddleName = "WorkerMiddleName1",
                             Telephone = "Worker123456789",
-                            WorkFrom = new DateTimeOffset(new DateTime(2019, 3, 3, 13, 33, 4, 586, DateTimeKind.Unspecified).AddTicks(3164), new TimeSpan(0, 0, 0, 0, 0))
+                            StaffType = 0,
+                            WorkFrom = new DateTimeOffset(new DateTime(2019, 3, 4, 20, 23, 4, 887, DateTimeKind.Unspecified).AddTicks(6660), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
                             Id = 7,
-                            BirthDate = new DateTimeOffset(new DateTime(2018, 6, 16, 13, 33, 4, 586, DateTimeKind.Unspecified).AddTicks(4008), new TimeSpan(0, 0, 0, 0, 0)),
+                            BirthDate = new DateTimeOffset(new DateTime(2018, 6, 17, 20, 23, 4, 887, DateTimeKind.Unspecified).AddTicks(8014), new TimeSpan(0, 0, 0, 0, 0)),
                             FirstName = "WorkerFirstName2",
                             IdentityId = 0,
                             IsEnabled = true,
@@ -561,12 +574,13 @@ namespace EstelApi.Domain.DataAccessLayer.Context.Migrations
                             LogoPath = "c:\\Worker",
                             MiddleName = "WorkerMiddleName2",
                             Telephone = "Worker234567891",
-                            WorkFrom = new DateTimeOffset(new DateTime(2019, 3, 6, 13, 33, 4, 586, DateTimeKind.Unspecified).AddTicks(4012), new TimeSpan(0, 0, 0, 0, 0))
+                            StaffType = 3,
+                            WorkFrom = new DateTimeOffset(new DateTime(2019, 3, 7, 20, 23, 4, 887, DateTimeKind.Unspecified).AddTicks(8018), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
                             Id = 8,
-                            BirthDate = new DateTimeOffset(new DateTime(2017, 4, 27, 13, 33, 4, 586, DateTimeKind.Unspecified).AddTicks(4019), new TimeSpan(0, 0, 0, 0, 0)),
+                            BirthDate = new DateTimeOffset(new DateTime(2017, 4, 28, 20, 23, 4, 887, DateTimeKind.Unspecified).AddTicks(8029), new TimeSpan(0, 0, 0, 0, 0)),
                             FirstName = "WorkerFirstName3",
                             IdentityId = 0,
                             IsEnabled = true,
@@ -574,12 +588,13 @@ namespace EstelApi.Domain.DataAccessLayer.Context.Migrations
                             LogoPath = "c:\\Worker",
                             MiddleName = "WorkerMiddleName3",
                             Telephone = "Worker345678912",
-                            WorkFrom = new DateTimeOffset(new DateTime(2019, 3, 5, 13, 33, 4, 586, DateTimeKind.Unspecified).AddTicks(4020), new TimeSpan(0, 0, 0, 0, 0))
+                            StaffType = 1,
+                            WorkFrom = new DateTimeOffset(new DateTime(2019, 3, 6, 20, 23, 4, 887, DateTimeKind.Unspecified).AddTicks(8030), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
                             Id = 9,
-                            BirthDate = new DateTimeOffset(new DateTime(2016, 11, 18, 13, 33, 4, 586, DateTimeKind.Unspecified).AddTicks(4022), new TimeSpan(0, 0, 0, 0, 0)),
+                            BirthDate = new DateTimeOffset(new DateTime(2016, 11, 19, 20, 23, 4, 887, DateTimeKind.Unspecified).AddTicks(8033), new TimeSpan(0, 0, 0, 0, 0)),
                             FirstName = "WorkerFirstName4",
                             IdentityId = 0,
                             IsEnabled = true,
@@ -587,12 +602,13 @@ namespace EstelApi.Domain.DataAccessLayer.Context.Migrations
                             LogoPath = "c:\\Worker",
                             MiddleName = "WorkerMiddleName4",
                             Telephone = "Worker456789123",
-                            WorkFrom = new DateTimeOffset(new DateTime(2019, 2, 21, 13, 33, 4, 586, DateTimeKind.Unspecified).AddTicks(4023), new TimeSpan(0, 0, 0, 0, 0))
+                            StaffType = 2,
+                            WorkFrom = new DateTimeOffset(new DateTime(2019, 2, 22, 20, 23, 4, 887, DateTimeKind.Unspecified).AddTicks(8034), new TimeSpan(0, 0, 0, 0, 0))
                         },
                         new
                         {
                             Id = 10,
-                            BirthDate = new DateTimeOffset(new DateTime(2016, 7, 4, 13, 33, 4, 586, DateTimeKind.Unspecified).AddTicks(4025), new TimeSpan(0, 0, 0, 0, 0)),
+                            BirthDate = new DateTimeOffset(new DateTime(2016, 7, 5, 20, 23, 4, 887, DateTimeKind.Unspecified).AddTicks(8036), new TimeSpan(0, 0, 0, 0, 0)),
                             FirstName = "WorkerFirstName5",
                             IdentityId = 0,
                             IsEnabled = true,
@@ -600,60 +616,65 @@ namespace EstelApi.Domain.DataAccessLayer.Context.Migrations
                             LogoPath = "c:\\Worker",
                             MiddleName = "WorkerMiddleName5",
                             Telephone = "Worker567891234",
-                            WorkFrom = new DateTimeOffset(new DateTime(2019, 1, 2, 13, 33, 4, 586, DateTimeKind.Unspecified).AddTicks(4025), new TimeSpan(0, 0, 0, 0, 0))
+                            StaffType = 0,
+                            WorkFrom = new DateTimeOffset(new DateTime(2019, 1, 3, 20, 23, 4, 887, DateTimeKind.Unspecified).AddTicks(8037), new TimeSpan(0, 0, 0, 0, 0))
                         });
                 });
 
-            modelBuilder.Entity("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.AdditionalAmenityCourse", b =>
+            modelBuilder.Entity("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done.AdditionalAmenityCourse", b =>
                 {
-                    b.HasOne("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.AdditionalAmenity", "AdditionalAmenity")
+                    b.HasOne("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done.AdditionalAmenity", "AdditionalAmenity")
                         .WithMany("AdditionalAmenityCourses")
                         .HasForeignKey("AdditionalAmenityId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Course", "Course")
+                    b.HasOne("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done.Course", "Course")
                         .WithMany("AdditionalAmenityCourses")
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.AvailableDates", b =>
+            modelBuilder.Entity("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done.AvailableDates", b =>
                 {
-                    b.HasOne("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Course", "Course")
+                    b.HasOne("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done.Course", "Course")
                         .WithMany("AvailableDates")
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Course", b =>
+            modelBuilder.Entity("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done.Course", b =>
                 {
-                    b.HasOne("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CourseType", "CourseType")
+                    b.HasOne("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done.CourseType", "CourseType")
                         .WithMany("Courses")
                         .HasForeignKey("CourseTypeId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CourseAttendance", b =>
+            modelBuilder.Entity("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done.CourseAttendance", b =>
                 {
-                    b.HasOne("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Course", "Course")
+                    b.HasOne("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done.Course", "Course")
                         .WithMany("CourseAttendances")
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg.Customer", "Customer")
+                    b.HasOne("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg.User", "User")
                         .WithMany("CourseAttendances")
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg.Worker")
+                        .WithMany("CourseAttendances")
+                        .HasForeignKey("WorkerId");
                 });
 
-            modelBuilder.Entity("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CourseTopicsCourse", b =>
+            modelBuilder.Entity("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done.CourseTopicsCourse", b =>
                 {
-                    b.HasOne("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Course", "Course")
+                    b.HasOne("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done.Course", "Course")
                         .WithMany("CourseTopics")
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CourseTopics", "CourseTopics")
+                    b.HasOne("EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done.CourseTopics", "CourseTopics")
                         .WithMany("Courses")
                         .HasForeignKey("CourseTopicsId")
                         .OnDelete(DeleteBehavior.Cascade);

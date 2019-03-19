@@ -3,11 +3,13 @@
     using System;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
+    using System.Diagnostics.CodeAnalysis;
 
+    
     /// <summary>
     /// The create customer view model.
     /// </summary>
-    public class CreateCustomerViewModel
+    public class CreateUserViewModel
     {
         /// <summary>
         /// The customer first name
@@ -26,10 +28,7 @@
         [MaxLength(100)]
         [DisplayName("Last Name")]
         public string LastName { get; set; }
-
-        /// <summary>
-        /// Get or set the telephone 
-        /// </summary>
+        
         [MinLength(2)]
         [MaxLength(100)]
         [DisplayName("Telephone")]

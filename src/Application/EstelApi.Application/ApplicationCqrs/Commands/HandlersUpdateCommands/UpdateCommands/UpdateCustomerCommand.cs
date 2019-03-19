@@ -1,4 +1,4 @@
-﻿namespace EstelApi.Application.ApplicationCqrs.Commands.UpdateCommands
+﻿namespace EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands
 {
     using EstelApi.Application.ApplicationCqrs.Base;
     using EstelApi.Core.Seedwork.CoreCqrs.Commands;
@@ -6,7 +6,7 @@
 
     using MediatR;
 
-    public class UpdateCustomerCommand : Customer, ICommand, IRequest<CommandResponse<Customer>>
+    public class UpdateUserCommand : User, ICommand, IRequest<CommandResponse<User>>
     {
     }
 }

@@ -31,31 +31,31 @@
 
         public int CourseTypeId { get; set; }
 
-        public virtual CourseType CourseType { get; set; }
+        public  CourseType CourseType { get; set; }
 
         /// <summary>
         /// Gets or sets the customers.
         /// This is all customers which attended to the course 
         /// </summary>
-        public virtual ICollection<CourseAttendance> CourseAttendances { get; set; }
+        public  ICollection<CourseAttendance> CourseAttendances { get; set; }
 
         /// <summary>
         /// +1 Gets or sets the course topics.
         /// All Topics which your learn on courses
         /// </summary>
-        public virtual ICollection<CourseTopicsCourse> CourseTopics { get; set; }
+        public  ICollection<CourseTopicsCourse> CourseTopics { get; set; }
 
         /// <summary>
         /// +1 Gets or sets the additional amenities.
         /// All Amenities (coffee break, certificates ets)
         /// </summary>
-        public virtual ICollection<AdditionalAmenityCourse> AdditionalAmenityCourses { get; set; }
+        public  ICollection<AdditionalAmenityCourse> AdditionalAmenityCourses { get; set; }
 
         /// <summary>
         /// +1 Gets or sets the available dates.
         /// All Available dates for this course 
         /// </summary>
-        public virtual ICollection<AvailableDates> AvailableDates { get; set; }
+        public  ICollection<AvailableDates> AvailableDates { get; set; }
     }
 
     public class CourseConfiguration : IEntityTypeConfiguration<Course>

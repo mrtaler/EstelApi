@@ -12,7 +12,7 @@
         public string CourseTopicName { get; set; }
 
 
-        public virtual ICollection<CourseTopicsCourse> Courses { get; set; }
+        public  ICollection<CourseTopicsCourse> Courses { get; set; }
     }
 
     public class CourseTopicsConfiguration : IEntityTypeConfiguration<CourseTopics>

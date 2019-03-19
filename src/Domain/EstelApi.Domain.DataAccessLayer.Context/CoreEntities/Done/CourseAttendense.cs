@@ -11,9 +11,9 @@
     public class CourseAttendance : EntityInt
     {
         public int CustomerId { get; set; }
-        public virtual Customer Customer { get; set; }
+        public User User { get; set; }
         public int CourseId { get; set; }
-        public virtual Course Course { get; set; }
+        public  Course Course { get; set; }
 
         public DateTimeOffset AttendenseDate { get; set; }
         public DateTimeOffset CourseDate { get; set; }
@@ -27,7 +27,7 @@
         public void Configure(EntityTypeBuilder<CourseAttendance> builder)
         {
             builder
-                .HasOne(x => x.Customer)
+                .HasOne(x => x.User)
                 .WithMany(y => y.CourseAttendances)
                 .HasForeignKey(x => x.CustomerId);
             builder

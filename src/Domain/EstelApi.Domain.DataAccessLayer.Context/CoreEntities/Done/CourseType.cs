@@ -31,7 +31,7 @@
         /// <summary>
         /// Gets or sets the courses.
         /// </summary>
-        public virtual IEnumerable<Course> Courses { get; set; }
+        public  IEnumerable<Course> Courses { get; set; }
     }
 
     public class CourseTypeConfiguration : IEntityTypeConfiguration<CourseType>

@@ -10,7 +10,7 @@
     public class AdditionalAmenity : EntityInt
     {
         public string AdditionalAmenityName { get; set; }
-        public virtual ICollection<AdditionalAmenityCourse> AdditionalAmenityCourses { get; set; }
+        public ICollection<AdditionalAmenityCourse> AdditionalAmenityCourses { get; set; }
     }
 
     public class AdditionalAmenityConfiguration : IEntityTypeConfiguration<AdditionalAmenity>

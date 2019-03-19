@@ -5,6 +5,8 @@
     using System.Linq;
     using System.Threading.Tasks;
 
+    using EstelApi.Core.Seedwork.Specifications.Interfaces;
+
     /// <inheritdoc cref="T:IReadableRepository" />
     /// <summary>
     /// The Repository <see langword="interface" />.
@@ -87,6 +89,7 @@
         /// </summary>
         /// <param name="id">Entity key value</param>
         /// <returns></returns>
+        [Obsolete("OldMethod")]
         TEntity Get(object id);
 
         /// <summary>
@@ -94,6 +97,7 @@
         /// </summary>
         /// <param name="id">Entity key value</param>
         /// <returns></returns>
+        [Obsolete("OldMethod")]
         Task<TEntity> GetAsync(object id);
 
         /// <summary>
@@ -114,7 +118,44 @@
         /// <param name="entity"></param>
         void Refresh(TEntity entity);
 
-        void SetInclude(IEnumerable<Func<IQueryable<TEntity>, IQueryable<TEntity>>> Includes);
-        void SetUseInclude(bool useInclude = false);
+        /// <summary>
+        /// The get all.
+        /// </summary>
+        /// <param name="filter">
+        /// The <paramref name="filter"/>.
+        /// </param>
+        /// <param name="orderBy">
+        /// The order by.
+        /// </param>
+        /// <param name="includes">
+        /// The include specification.
+        /// </param>
+        /// <returns>
+        /// The <see cref="IEnumerable{T}"/>.
+        /// </returns>
+        IEnumerable<TEntity> AllMatching(
+            ISpecification<TEntity> filter = null,
+            IOrderSpecification<TEntity> orderBy = null,
+            IIncludeSpecification<TEntity> includes = null);
+
+        /// <summary>
+        /// <see cref="Get"/> the first element of type TEntity that matching a Specification 
+        /// </summary>
+        /// <param name="filter">
+        /// The filter.
+        /// </param>
+        /// <param name="orderBy">
+        /// The order By.
+        /// </param>
+        /// <param name="includes">
+        /// The includes.
+        /// </param>
+        /// <returns>
+        /// Db Entity
+        /// </returns>
+        TEntity OneMatching(
+            ISpecification<TEntity> filter = null,
+            IOrderSpecification<TEntity> orderBy = null,
+            IIncludeSpecification<TEntity> includes = null);
     }
 }

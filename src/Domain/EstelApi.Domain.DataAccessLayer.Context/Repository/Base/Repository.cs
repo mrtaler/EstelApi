@@ -1,15 +1,20 @@
 ﻿namespace EstelApi.Domain.DataAccessLayer.Context.Repository.Base
 {
-    using EstelApi.Core.Seedwork;
-    using EstelApi.Core.Seedwork.Interfaces;
-    using EstelApi.Domain.DataAccessLayer.Context.Context;
-    using Microsoft.EntityFrameworkCore;
-    using Microsoft.EntityFrameworkCore.Internal;
-    using Serilog;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+
+    using EstelApi.Core.Seedwork;
+    using EstelApi.Core.Seedwork.Interfaces;
+    using EstelApi.Core.Seedwork.Specifications.Interfaces;
+    using EstelApi.Core.Seedwork.Specifications.OrderSpecification;
+    using EstelApi.Core.Seedwork.Specifications.Specifications;
+    using EstelApi.Domain.DataAccessLayer.Context.Context;
+
+    using Microsoft.EntityFrameworkCore;
+
+    using Serilog;
 
     /// <inheritdoc />
     /// <summary>
@@ -20,25 +25,29 @@
     public class Repository<TEntity> : IRepository<TEntity>
         where TEntity : Entity
     {
+        /// <summary>
+        /// The unit of work.
+        /// </summary>
+        protected readonly EstelContext UnitOfWork;
 
-        protected readonly EstelContext unitOfWork;
+        /// <summary>
+        /// The db set.
+        /// </summary>
         protected readonly DbSet<TEntity> DbSet;
 
-        private bool useInclude = false;
-
-        private List<Func<IQueryable<TEntity>, IQueryable<TEntity>>> includes =
-            new List<Func<IQueryable<TEntity>, IQueryable<TEntity>>>();
+        /// <inheritdoc />
         public Repository(EstelContext unitOfWork)
         {
-            this.unitOfWork = unitOfWork ?? throw new ArgumentNullException("unitOfWork");
+            this.UnitOfWork = unitOfWork ?? throw new ArgumentNullException("unitOfWork");
             this.DbSet = unitOfWork.Set<TEntity>();
         }
 
+        /// <inheritdoc />
         public virtual void Add(TEntity item)
         {
-            if (item != (TEntity)null)
+            if (item != null)
             {
-                this.GetSet().Add(item); // add new item in this set
+                this.DbSet.Add(item); // add new item in this set
             }
 
             /*  else
@@ -47,6 +56,7 @@
               }*/
         }
 
+        /// <inheritdoc />
         public virtual void Add(IEnumerable<TEntity> items)
         {
             if (items != null)
@@ -63,15 +73,16 @@
             }
         }
 
+        /// <inheritdoc />
         public virtual void Remove(TEntity item)
         {
-            if (item != (TEntity)null)
+            if (item != null)
             {
                 // attach item if not exist
-                this.unitOfWork.Attach(item);
+                this.UnitOfWork.Attach(item);
 
                 // set as "removed"
-                this.GetSet().Remove(item);
+                this.DbSet.Remove(item);
             }
             else
             {
@@ -80,6 +91,7 @@
             }
         }
 
+        /// <inheritdoc />
         public virtual void Remove(IEnumerable<TEntity> items)
         {
             if (items != null)
@@ -96,9 +108,13 @@
             }
         }
 
+        /// <inheritdoc />
         public virtual void TrackItem(TEntity item)
         {
-            if (item != (TEntity)null) this.unitOfWork.Attach<TEntity>(item);
+            if (item != null)
+            {
+                this.UnitOfWork.Attach(item);
+            }
 
             /*  else
                           {
@@ -106,6 +122,7 @@
                           }*/
         }
 
+        /// <inheritdoc />
         public virtual void TrackItem(IEnumerable<TEntity> items)
         {
             if (items != null)
@@ -122,9 +139,10 @@
                          }*/
         }
 
+        /// <inheritdoc />
         public virtual void Modify(TEntity item)
         {
-            if (item != (TEntity)null)
+            if (item != null)
             {
                 this.DbSet.Update(item);
             }
@@ -135,6 +153,7 @@
             }*/
         }
 
+        /// <inheritdoc />
         public virtual void Modify(IEnumerable<TEntity> items)
         {
             if (items != null)
@@ -151,29 +170,24 @@
             }*/
         }
 
+        /// <inheritdoc />
         public virtual TEntity Get(object id)
         {
-            if (id != null)
-            {
-                if (this.useInclude)
-                {
-                    var retEnumerable = this.GetSetAsQueryable(id).First();
-                    return retEnumerable;
-                }
-
-                return this.GetSet().Find(id);
-            }
-            else
+            if (id == null)
             {
                 return null;
             }
+
+            var ret = this.DbSet.Find(id);
+            return ret;
         }
 
+        /// <inheritdoc />
         public virtual async Task<TEntity> GetAsync(object id)
         {
             if (id != null)
             {
-                return await this.GetSet().FindAsync(id);
+                return await this.DbSet.FindAsync(id);
             }
             else
             {
@@ -181,75 +195,105 @@
             }
         }
 
+        /// <inheritdoc />
         public virtual IEnumerable<TEntity> GetAll()
         {
-            if (this.useInclude)
-            {
-                var retEnumerable = GetSetAsQueryable().ToList();
-                return retEnumerable;
-            }
-
-            var ret = this.GetSet().ToList();
-            return ret;
+            var retEnumerable = this.AllMatching().ToList();
+            return retEnumerable;
         }
 
+        /// <inheritdoc />
         public virtual async Task<IEnumerable<TEntity>> GetAllAsync()
         {
-            return await this.GetSet().ToListAsync();
+            return await this.DbSet.ToListAsync();
         }
 
+        /// <inheritdoc />
         public virtual void Merge(TEntity persisted, TEntity current)
         {
             // unitOfWork.ApplyCurrentValues(persisted, current);
-            this.unitOfWork.Entry<TEntity>(persisted).CurrentValues.SetValues(current);
+            this.UnitOfWork.Entry(persisted).CurrentValues.SetValues(current);
         }
 
+        /// <inheritdoc />
         public virtual void Refresh(TEntity entity)
         {
-            this.unitOfWork.Entry(entity).Reload();
+            this.UnitOfWork.Entry(entity).Reload();
         }
 
-        public void SetInclude(IEnumerable<Func<IQueryable<TEntity>, IQueryable<TEntity>>> Includes)
+        /// <inheritdoc />
+        public IEnumerable<TEntity> AllMatching(
+            ISpecification<TEntity> filter = null,
+            IOrderSpecification<TEntity> orderBy = null,
+            IIncludeSpecification<TEntity> includes = null)
         {
-            this.includes = Includes.ToList();
-            this.useInclude = true;
+            var ret = this.GetQueryable(
+                filter: filter,
+                sort: orderBy,
+                includeSpecification: includes);
+            return ret.ToList();
         }
 
+        /// <inheritdoc />
+        public TEntity OneMatching(
+            ISpecification<TEntity> filter = null,
+            IOrderSpecification<TEntity> orderBy = null,
+            IIncludeSpecification<TEntity> includes = null)
+        {
+            var ret = this.GetQueryable(
+                filter,
+                orderBy,
+                includeSpecification: includes);
+            return ret.SingleOrDefault();
+        }
+
+        /// <inheritdoc />
         public void Dispose()
         {
-            if (this.unitOfWork != null) this.unitOfWork.Dispose();
+            this.UnitOfWork?.Dispose();
         }
 
-        public void SetUseInclude(bool useInclude = false)
+        /// <summary>
+        /// The get queryable.
+        /// </summary>
+        /// <param name="filter">
+        /// The filter.
+        /// </param>
+        /// <param name="sort">
+        /// The sort.
+        /// </param>
+        /// <param name="includeSpecification">
+        /// The include specification.
+        /// </param>
+        /// <returns>
+        /// The <see cref="IQueryable"/>.
+        /// </returns>
+        protected virtual IQueryable<TEntity> GetQueryable(
+            ISpecification<TEntity> filter = null,
+            IOrderSpecification<TEntity> sort = null,
+            IIncludeSpecification<TEntity> includeSpecification = null)
         {
-            this.useInclude = useInclude;
-        }
+            IQueryable<TEntity> query = this.DbSet;
 
-        DbSet<TEntity> GetSet()
-        {
-            var retVAl = this.unitOfWork.Set<TEntity>();
-            return retVAl;
-        }
-
-        IQueryable<TEntity> GetSetAsQueryable(object id = null)
-        {
-            var retVal = this.unitOfWork.Set<TEntity>();
-            if (id != null)
+            if (includeSpecification != null)
             {
-                retVal.Find(id);
-            }
-
-            var retValQ = retVal.AsQueryable();
-
-            if (this.useInclude && this.includes.Any())
-            {
-                foreach (var includeItem in this.includes)
+                foreach (var includeItem in includeSpecification.Includes)
                 {
-                    retValQ = includeItem(retValQ);
+                    query = includeItem(query);
                 }
             }
 
-            return retValQ;
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+
+            if (sort != null)
+            {
+                query = query.OrderBy(sort);
+            }
+
+            return query;
         }
     }
 }

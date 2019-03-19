@@ -1,4 +1,4 @@
-﻿namespace EstelApi.Application.ApplicationCqrs.Commands.CreateCommands
+﻿namespace EstelApi.Application.ApplicationCqrs.Commands.HandlersCreateCommands.CreateCommands
 {
     using EstelApi.Application.ApplicationCqrs.Base;
     using EstelApi.Core.Seedwork.CoreCqrs.Commands;
@@ -6,9 +6,9 @@
 
     using MediatR;
 
-    public class CreateNewCustomerCommand : Customer,
+    public class CreateNewUserCommand : User,
                                             ICommand,
-                                            IRequest<CommandResponse<Customer>>
+                                            IRequest<CommandResponse<User>>
     {
 
     }

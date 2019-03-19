@@ -181,18 +181,15 @@
             The <see cref="T:System.Threading.Tasks.Task"/>.
             </returns>
         </member>
-        <member name="T:Estel.Services.Api.Controllers.CustomerController">
+        <member name="T:Estel.Services.Api.Controllers.UserController">
             <summary>
             The customer controller.
             </summary>
         </member>
-        <member name="M:Estel.Services.Api.Controllers.CustomerController.#ctor(MediatR.INotificationHandler{EstelApi.Core.Seedwork.CoreCqrs.Notifications.DomainNotification},MediatR.IMediator)">
+        <member name="M:Estel.Services.Api.Controllers.UserController.#ctor(MediatR.INotificationHandler{EstelApi.Core.Seedwork.CoreCqrs.Notifications.DomainNotification},MediatR.IMediator)">
             <summary>
-            Initializes a new instance of the <see cref="T:Estel.Services.Api.Controllers.CustomerController"/> class.
+            Initializes a new instance of the <see cref="T:Estel.Services.Api.Controllers.UserController"/> class.
             </summary>
-            <param name="customerAppService">
-            The customer app service.
-            </param>
             <param name="notifications">
             The notifications.
             </param>
@@ -200,7 +197,7 @@
             The mediator.
             </param>
         </member>
-        <member name="M:Estel.Services.Api.Controllers.CustomerController.Get">
+        <member name="M:Estel.Services.Api.Controllers.UserController.Get">
             <summary>
             Work The getAll.
             </summary>
@@ -209,7 +206,7 @@
             </returns>
             [AllowAnonymous]
         </member>
-        <member name="M:Estel.Services.Api.Controllers.CustomerController.Get(System.Int32)">
+        <member name="M:Estel.Services.Api.Controllers.UserController.Get(System.Int32)">
             <summary>
             The get.
             </summary>
@@ -221,7 +218,7 @@
             </returns>
             [AllowAnonymous]
         </member>
-        <member name="M:Estel.Services.Api.Controllers.CustomerController.Post(Estel.Services.Api.ViewModels.Create.CreateCustomerViewModel)">
+        <member name="M:Estel.Services.Api.Controllers.UserController.Post(Estel.Services.Api.ViewModels.Create.CreateUserViewModel)">
             <summary>
             Create New Customer (work)
             </summary>
@@ -233,7 +230,7 @@
             </returns>
             [Authorize(Policy = "CanWriteCustomerData")]
         </member>
-        <member name="M:Estel.Services.Api.Controllers.CustomerController.Put(Estel.Services.Api.ViewModels.Update.UpdateCustomerViewModel)">
+        <member name="M:Estel.Services.Api.Controllers.UserController.Put(Estel.Services.Api.ViewModels.Update.UpdateUserViewModel)">
             <summary>
             Update Customer. (work)
             </summary>
@@ -245,18 +242,18 @@
             </returns>
             [Authorize(Policy = "CanWriteCustomerData")]
         </member>
-        <member name="M:Estel.Services.Api.Controllers.CustomerController.Delete(System.Int32)">
+        <member name="M:Estel.Services.Api.Controllers.UserController.Delete(System.Int32)">
             <summary>
             The delete.
             </summary>
-            <param name="deleteCustomerViewModel">
-            The delete customer view model.
+            <param name="id">
+            current id
             </param>
             <returns>
-            The <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/>.
+            The <see cref="T:System.Threading.Tasks.Task"/>.
             </returns>
         </member>
-        <member name="M:Estel.Services.Api.Controllers.CustomerController.History(System.Int32)">
+        <member name="M:Estel.Services.Api.Controllers.UserController.History(System.Int32)">
             <summary>
             Customer history (work)
             </summary>
@@ -541,24 +538,19 @@
             Gets or sets the description.
             </summary>
         </member>
-        <member name="T:Estel.Services.Api.ViewModels.Create.CreateCustomerViewModel">
+        <member name="T:Estel.Services.Api.ViewModels.Create.CreateUserViewModel">
             <summary>
             The create customer view model.
             </summary>
         </member>
-        <member name="P:Estel.Services.Api.ViewModels.Create.CreateCustomerViewModel.FirstName">
+        <member name="P:Estel.Services.Api.ViewModels.Create.CreateUserViewModel.FirstName">
             <summary>
             The customer first name
             </summary>
         </member>
-        <member name="P:Estel.Services.Api.ViewModels.Create.CreateCustomerViewModel.LastName">
+        <member name="P:Estel.Services.Api.ViewModels.Create.CreateUserViewModel.LastName">
             <summary>
             The customer lastName
-            </summary>
-        </member>
-        <member name="P:Estel.Services.Api.ViewModels.Create.CreateCustomerViewModel.Telephone">
-            <summary>
-            Get or set the telephone 
             </summary>
         </member>
         <member name="P:Estel.Services.Api.ViewModels.Update.UpdateCourseTypeViewModel.CourseTypeName">
@@ -571,27 +563,27 @@
             Gets or sets the description.
             </summary>
         </member>
-        <member name="T:Estel.Services.Api.ViewModels.Update.UpdateCustomerViewModel">
+        <member name="T:Estel.Services.Api.ViewModels.Update.UpdateUserViewModel">
             <summary>
             The update customer view model.
             </summary>
         </member>
-        <member name="P:Estel.Services.Api.ViewModels.Update.UpdateCustomerViewModel.Id">
+        <member name="P:Estel.Services.Api.ViewModels.Update.UpdateUserViewModel.Id">
             <summary>
             The customer identifier
             </summary>
         </member>
-        <member name="P:Estel.Services.Api.ViewModels.Update.UpdateCustomerViewModel.FirstName">
+        <member name="P:Estel.Services.Api.ViewModels.Update.UpdateUserViewModel.FirstName">
             <summary>
             The customer first name
             </summary>
         </member>
-        <member name="P:Estel.Services.Api.ViewModels.Update.UpdateCustomerViewModel.LastName">
+        <member name="P:Estel.Services.Api.ViewModels.Update.UpdateUserViewModel.LastName">
             <summary>
             The customer lastName
             </summary>
         </member>
-        <member name="P:Estel.Services.Api.ViewModels.Update.UpdateCustomerViewModel.Telephone">
+        <member name="P:Estel.Services.Api.ViewModels.Update.UpdateUserViewModel.Telephone">
             <summary>
             Get or set the telephone 
             </summary>

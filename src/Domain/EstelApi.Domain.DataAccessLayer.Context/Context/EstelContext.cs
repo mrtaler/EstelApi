@@ -37,6 +37,7 @@
 
         public virtual DbSet<Customer> Customers { get; set; }
 
+        public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<AdditionalAmenity> AdditionalAmenities { get; set; }
         public virtual DbSet<AvailableDates> AvailableDates { get; set; }
         public virtual DbSet<Course> Courses { get; set; }
@@ -55,7 +56,8 @@
         /// </param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new CustomerMap());
+            modelBuilder.ApplyConfiguration(new CustomerConfiguration());
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
             modelBuilder.ApplyConfiguration(new WorkerConfiguration());
 
             modelBuilder.ApplyConfiguration(new AdditionalAmenityConfiguration());
@@ -67,9 +69,6 @@
             modelBuilder.ApplyConfiguration(new CourseTopicsCourseConfiguration());
             modelBuilder.ApplyConfiguration(new CourseTypeConfiguration());
             
-            /*       modelBuilder.ApplyConfiguration(new CourseTypeConfiguration());
-                        modelBuilder.ApplyConfiguration(new CoursesConfiguration());
-            */
             base.OnModelCreating(modelBuilder);
         }
 

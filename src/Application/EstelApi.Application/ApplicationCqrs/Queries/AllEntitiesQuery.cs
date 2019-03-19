@@ -3,7 +3,6 @@
     using System.Collections.Generic;
 
     using MediatR;
-    // using EstelApi.Application.Dto;
 
     /// <summary>
     /// The all customers query.

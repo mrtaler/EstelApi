@@ -1,11 +1,10 @@
-﻿namespace EstelApi.Application.ApplicationCqrs.Commands.DeleteCommands
+﻿namespace EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands
 {
     using System.Threading;
     using System.Threading.Tasks;
 
     using EstelApi.Application.ApplicationCqrs.Base;
-    using EstelApi.Application.ApplicationCqrs.Commands.CreateCommands;
-    using EstelApi.Application.ApplicationCqrs.Commands.UpdateCommands;
+    using EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands;
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Repositories;

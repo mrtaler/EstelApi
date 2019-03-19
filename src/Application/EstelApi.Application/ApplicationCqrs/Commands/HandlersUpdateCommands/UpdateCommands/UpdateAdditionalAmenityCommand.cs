@@ -1,4 +1,4 @@
-﻿namespace EstelApi.Application.ApplicationCqrs.Commands.UpdateCommands
+﻿namespace EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands
 {
     using EstelApi.Application.ApplicationCqrs.Base;
     using EstelApi.Core.Seedwork.CoreCqrs.Commands;

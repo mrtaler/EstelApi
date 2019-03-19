@@ -6,8 +6,8 @@
     public class AdditionalAmenityCourse
     {
 
-        public virtual int CourseId { get; set; }
-        public virtual int AdditionalAmenityId { get; set; }
+        public  int CourseId { get; set; }
+        public  int AdditionalAmenityId { get; set; }
         public Course Course { get; set; }
         public AdditionalAmenity AdditionalAmenity { get; set; }
     }

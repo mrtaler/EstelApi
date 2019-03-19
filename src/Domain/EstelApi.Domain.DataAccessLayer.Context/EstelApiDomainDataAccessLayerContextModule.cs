@@ -56,8 +56,8 @@
                 .InstancePerLifetimeScope();
 
             builder
-                .RegisterType<CustomerRepository>()
-                .As<ICustomerRepository>()
+                .RegisterType<UserRepository>()
+                .As<IUserRepository>()
                 .InstancePerLifetimeScope();
             builder
                 .RegisterType<WorkerRepository>()

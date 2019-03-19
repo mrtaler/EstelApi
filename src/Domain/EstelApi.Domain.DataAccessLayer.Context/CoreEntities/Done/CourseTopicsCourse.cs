@@ -5,10 +5,10 @@ namespace EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done
 
     public class CourseTopicsCourse
     {
-        public virtual int CourseId { get; set; }
-        public virtual int CourseTopicsId { get; set; }
-        public virtual Course Course { get; set; }
-        public virtual CourseTopics CourseTopics { get; set; }
+        public  int CourseId { get; set; }
+        public  int CourseTopicsId { get; set; }
+        public  Course Course { get; set; }
+        public  CourseTopics CourseTopics { get; set; }
     }
 
     public class CourseTopicsCourseConfiguration : IEntityTypeConfiguration<CourseTopicsCourse>

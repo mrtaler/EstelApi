@@ -1,34 +1,30 @@
 ﻿namespace EstelApi.Application.ApplicationCqrs.Queries.QueryHandlers
 {
-    using System;
+    using EstelApi.Application.ApplicationCqrs.Base;
+    using EstelApi.Application.ApplicationCqrs.Queries.FindByIdSpec;
+    using EstelApi.Application.ApplicationCqrs.Queries.IncludeSpec;
+    using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
+    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
+    using EstelApi.Domain.DataAccessLayer.Context.Interfaces;
+    using MediatR;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
 
-    using EstelApi.Application.ApplicationCqrs.Base;
-    using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
-    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Repositories;
-    using EstelApi.Domain.DataAccessLayer.Context.Interfaces;
-
-    using MediatR;
-
-    using Microsoft.EntityFrameworkCore;
-    // using EstelApi.Application.Dto;
 
     /// <inheritdoc cref="QueryHandler" />
     /// <summary>
     /// The customer queries handler.
     /// </summary>
-    public class CustomerQueriesHandler : QueryHandler,
-            IRequestHandler<AllEntitiesQuery<Customer>, IEnumerable<Customer>>,
-            IRequestHandler<EntityByIdQuery<Customer>, Customer>
+    public class UserQueriesHandler : QueryHandler,
+            IRequestHandler<AllEntitiesQuery<User>, IEnumerable<User>>,
+            IRequestHandler<EntityByIdQuery<User>, User>
     {
         /// <summary>
         /// The customer repository.
         /// </summary>
-        private readonly ICustomerRepository repository;
+        private readonly IUserRepository repository;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CustomerQueriesHandler"/> class.
@@ -45,17 +41,13 @@
         /// <param name="notifications">
         /// The notifications.
         /// </param>
-        public CustomerQueriesHandler(
-            ICustomerRepository customerRepository,
+        public UserQueriesHandler(
+            IUserRepository customerRepository,
             IQueryableUnitOfWork uow,
             IMediator bus,
             INotificationHandler<DomainNotification> notifications) : base(uow, bus, notifications)
         {
             this.repository = customerRepository;
-            this.repository.SetInclude(new List<Func<IQueryable<Customer>, IQueryable<Customer>>>
-                                          {
-                                              p=>p.Include(x=>x.CourseAttendances)
-                                          });
         }
 
         /// <summary>
@@ -78,12 +70,11 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        public async Task<IEnumerable<Customer>> Handle(AllEntitiesQuery<Customer> request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<User>> Handle(AllEntitiesQuery<User> request, CancellationToken cancellationToken)
         {
-            var ret = this.repository.GetAll();
+            var ret = this.repository.AllMatching(includes: new UserInclude());
 
             return await Task.FromResult(ret);
-            // return await Task.FromResult(ret.ProjectedAsCollection<Customer>());
         }
 
         /// <summary>
@@ -98,11 +89,13 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        public async Task<Customer> Handle(EntityByIdQuery<Customer> request, CancellationToken cancellationToken)
+        public async Task<User> Handle(EntityByIdQuery<User> request, CancellationToken cancellationToken)
         {
-            var ret = this.repository.Get(request.Id);
+            var ret = this.repository.OneMatching(
+                filter: new FindUserById().SetId(request.Id),
+                includes: new UserInclude());
+
             return await Task.FromResult(ret);
-            // return await Task.FromResult(ret.ProjectedAs<Customer>());
         }
     }
 }

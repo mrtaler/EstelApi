@@ -1,7 +1,5 @@
 ﻿namespace EstelApi.Application.AutoMapper
 {
-    using EstelApi.Application.ApplicationCqrs.Commands.UpdateCommands;
-
     using global::AutoMapper;
     // using EstelApi.Application.Dto;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;

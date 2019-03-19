@@ -7,6 +7,8 @@ namespace EstelApi.Application.ApplicationCqrs.Queries.QueryHandlers
     using System.Threading.Tasks;
 
     using EstelApi.Application.ApplicationCqrs.Base;
+    using EstelApi.Application.ApplicationCqrs.Queries.FindByIdSpec;
+    using EstelApi.Application.ApplicationCqrs.Queries.IncludeSpec;
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Repositories;
@@ -28,26 +30,21 @@ namespace EstelApi.Application.ApplicationCqrs.Queries.QueryHandlers
             : base(uow, bus, notifications)
         {
             this.repository = courseRepository;
-            this.repository.SetInclude(new List<Func<IQueryable<Course>, IQueryable<Course>>>
-                                           {
-                                               x=>x.Include(p=>p.CourseType),
-                                               x=>x.Include(p=>p.CourseAttendances),
-                                               x=>x.Include(p=>p.CourseTopics),
-                                               x=>x.Include(p=>p.AdditionalAmenityCourses),
-                                               x=>x.Include(p=>p.AvailableDates),
-
-                                           });
+           
         }
 
         public async Task<IEnumerable<Course>> Handle(AllEntitiesQuery<Course> request, CancellationToken cancellationToken)
         {
-            var ret = this.repository.GetAll();
+            var ret = this.repository.AllMatching(includes:new CourseInclude());
             return await Task.FromResult(ret);
         }
 
         public async Task<Course> Handle(EntityByIdQuery<Course> request, CancellationToken cancellationToken)
         {
-            var ret = this.repository.Get(request.Id);
+            var ret = this.repository.OneMatching(
+                filter: new FindCourseById().SetId(request.Id),
+                includes: new CourseInclude());
+
             return await Task.FromResult(ret);
         }
     }

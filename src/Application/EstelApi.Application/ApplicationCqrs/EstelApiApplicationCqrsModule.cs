@@ -4,6 +4,7 @@
 
     using Autofac;
 
+    using EstelApi.Application.ApplicationCqrs.Commands.HandlersCreateCommands;
     using EstelApi.Application.ApplicationCqrs.Commands._CustomerCommands;
     using EstelApi.Application.ApplicationCqrs.Commands._CustomerCommands.Events;
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
@@ -27,7 +28,7 @@
         protected override void Load(ContainerBuilder builder)
         {
             builder.AddMediatR(
-                typeof(CustomerCommandHandler).GetTypeInfo().Assembly);
+                typeof(CreateUserCommandHandler).GetTypeInfo().Assembly);
 
             builder.RegisterType<DomainNotificationHandler>().As<INotificationHandler<DomainNotification>>().InstancePerLifetimeScope();
             builder.RegisterType<CustomerEventHandler>().As<INotificationHandler<CustomerRegisteredEvent>>().InstancePerLifetimeScope();

@@ -7,7 +7,7 @@
     /// <summary>
     /// The update customer view model.
     /// </summary>
-    public class UpdateCustomerViewModel
+    public class UpdateUserViewModel
     {
         /// <summary>
         /// The customer identifier

@@ -8,8 +8,8 @@
 
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Repositories;
 
-    /// <inheritdoc cref="ICustomerRepository" />
-    public class CustomerRepository : Repository<Customer>, ICustomerRepository
+    /// <inheritdoc cref="IUserRepository" />
+    public class UserRepository : Repository<User>, IUserRepository
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CustomerRepository"/> class.
@@ -17,7 +17,7 @@
         /// <param name="context">
         /// The context.
         /// </param>
-        public CustomerRepository(EstelContext context)
+        public UserRepository(EstelContext context)
             : base(context)
         {
         }
@@ -35,23 +35,23 @@
          }*/
 
         /// <inheritdoc />
-        public Customer GetByFirstName(string email)
+        public User GetByFirstName(string email)
         {
             var ret = this.GetAll().FirstOrDefault(c => c.FirstName == email);
             return ret;
         }
 
         /// <inheritdoc />
-        public IEnumerable<Customer> GetEnabled()
+        public IEnumerable<User> GetEnabled()
         {
-            return unitOfWork.Customers.Where(c => c.IsEnabled).OrderBy(c => c.FullName);
+            return this.UnitOfWork.Users.Where(c => c.IsEnabled).OrderBy(c => c.FullName);
         }
 
         /// <inheritdoc />
-        public override void Merge(Customer persisted, Customer current)
+        public override void Merge(User persisted, User current)
         {
             // merge customer and customer picture
-            this.unitOfWork.Entry<Customer>(persisted).CurrentValues.SetValues(current);
+            this.UnitOfWork.Entry<User>(persisted).CurrentValues.SetValues(current);
             
             // this.unitOfWork.Entry<Address>(persisted.Address).CurrentValues.SetValues(current.Address);
             //     this.unitOfWork.Entry<Picture>(persisted.Picture).CurrentValues.SetValues( current.Picture);

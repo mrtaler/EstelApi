@@ -5,8 +5,8 @@
     using Estel.Services.Api.ViewModels.Create;
     using Estel.Services.Api.ViewModels.Update;
 
-    using EstelApi.Application.ApplicationCqrs.Commands.CreateCommands;
-    using EstelApi.Application.ApplicationCqrs.Commands.UpdateCommands;
+    using EstelApi.Application.ApplicationCqrs.Commands.HandlersCreateCommands.CreateCommands;
+    using EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands;
 
     // using EstelApi.Application.Dto;
 
@@ -28,7 +28,7 @@
             this.CreateMap<CreateCourseTopicsViewModel, CreateNewCourseTopicsCommand>(MemberList.Source);
             this.CreateMap<CreateCourseTypeViewModel, CreateNewCourseTypeCommand>(MemberList.Source);
             this.CreateMap<CreateCourseViewModel, CreateNewCourseCommand>(MemberList.Source);
-            this.CreateMap<CreateCustomerViewModel, CreateNewCustomerCommand>(MemberList.Source);
+            this.CreateMap<CreateUserViewModel, CreateNewUserCommand>(MemberList.Source);
             this.CreateMap<CreateWorkerViewModel, CreateNewWorkerCommand>(MemberList.Source);
 
 
@@ -37,7 +37,7 @@
             this.CreateMap<UpdateCourseTopicsViewModel, UpdateCourseTopicsCommand>(MemberList.Source);
             this.CreateMap<UpdateCourseTypeViewModel, UpdateCourseTypeCommand>(MemberList.Source);
             this.CreateMap<UpdateCourseViewModel, UpdateCourseCommand>(MemberList.Source);
-            this.CreateMap<UpdateCustomerViewModel, UpdateCustomerCommand>(MemberList.Source);
+            this.CreateMap<UpdateUserViewModel, UpdateUserCommand>(MemberList.Source);
             this.CreateMap<UpdateWorkerViewModel, UpdateWorkerCommand>(MemberList.Source);
 
             /*  .ForMember(p => p.Id, x => x.Ignore())

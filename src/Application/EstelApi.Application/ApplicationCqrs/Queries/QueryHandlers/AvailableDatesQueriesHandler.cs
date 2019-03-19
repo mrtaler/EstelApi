@@ -7,6 +7,8 @@ namespace EstelApi.Application.ApplicationCqrs.Queries.QueryHandlers
     using System.Threading.Tasks;
 
     using EstelApi.Application.ApplicationCqrs.Base;
+    using EstelApi.Application.ApplicationCqrs.Queries.FindByIdSpec;
+    using EstelApi.Application.ApplicationCqrs.Queries.IncludeSpec;
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Repositories;
@@ -28,20 +30,18 @@ namespace EstelApi.Application.ApplicationCqrs.Queries.QueryHandlers
             : base(uow, bus, notifications)
         {
             this.repository = availableDatesRepository;
-            this.repository.SetInclude(new List<Func<IQueryable<AvailableDates>, IQueryable<AvailableDates>>>
-                                           {
-                                               x => x.Include(y => y.Course)
-                                           });
         }
 
         public async Task<IEnumerable<AvailableDates>> Handle(AllEntitiesQuery<AvailableDates> request, CancellationToken cancellationToken)
         {
-            var ret = this.repository.GetAll();
+            var ret = this.repository.AllMatching(includes:new AvailableDatesInclude());
             return await Task.FromResult(ret);
         }
         public async Task<AvailableDates> Handle(EntityByIdQuery<AvailableDates> request, CancellationToken cancellationToken)
         {
-            var ret = this.repository.Get(request.Id);
+            var ret = this.repository.OneMatching(
+                filter: new FindAvailableDatesById().SetId(request.Id),
+                includes: new AvailableDatesInclude());
             return await Task.FromResult(ret);
         }
     }

@@ -6,7 +6,7 @@
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
 
     /// <inheritdoc />
-    public interface ICustomerRepository : IRepository<Customer>
+    public interface IUserRepository : IRepository<User>
     {
         /// <summary>
         /// The get by email.
@@ -15,9 +15,9 @@
         /// The email.
         /// </param>
         /// <returns>
-        /// The <see cref="Customer"/>.
+        /// The <see cref="User"/>.
         /// </returns>
-        Customer GetByFirstName(string email);
+        User GetByFirstName(string email);
 
         /// <summary>
         /// The get enabled.
@@ -25,7 +25,7 @@
         /// <returns>
         /// The <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
         /// </returns>
-        IEnumerable<Customer> GetEnabled();
+        IEnumerable<User> GetEnabled();
     }
 
 }

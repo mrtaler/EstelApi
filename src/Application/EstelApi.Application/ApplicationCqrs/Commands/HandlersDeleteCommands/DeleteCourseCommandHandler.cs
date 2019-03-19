@@ -1,9 +1,10 @@
-﻿namespace EstelApi.Application.ApplicationCqrs.Commands.DeleteCommands
+﻿namespace EstelApi.Application.ApplicationCqrs.Commands.HandlersDeleteCommands
 {
     using System.Threading;
     using System.Threading.Tasks;
 
     using EstelApi.Application.ApplicationCqrs.Base;
+    using EstelApi.Application.ApplicationCqrs.Queries.FindByIdSpec;
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Repositories;
@@ -45,7 +46,7 @@
                 };
             }
 
-            var current = this.courseRepository.Get(request.Id);
+            var current = this.courseRepository.OneMatching(new FindCourseById().SetId(request.Id));
             this.courseRepository.Remove(current);
             return !this.Commit()
                        ? new CommandResponse<Course> { IsSuccess = false, Message = "Delete error", Object = null }
