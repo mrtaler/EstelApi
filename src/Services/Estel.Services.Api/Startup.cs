@@ -1,17 +1,25 @@
 ﻿namespace Estel.Services.Api
 {
+    using System;
+    using System.IO;
+    using System.Linq;
+
     using Autofac;
     using Autofac.Extensions.DependencyInjection;
+
     using AutoMapper;
+
     using Estel.Services.Api.Configurations;
     using Estel.Services.Api.Extension.Exception;
     using Estel.Services.Api.Extension.Swagger;
+
     using EstelApi.Core.Seedwork.Adapter;
     using EstelApi.CrossCutting.Identity.Authorization;
     using EstelApi.CrossCutting.Identity.IdentityContext;
     using EstelApi.CrossCutting.Identity.IdentityModels;
     using EstelApi.CrossCutting.Identity.IdentityServices;
     using EstelApi.CrossCutting.IoC;
+
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
@@ -24,13 +32,13 @@
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.FileProviders;
     using Microsoft.Extensions.Logging;
+
     using Newtonsoft.Json;
     using Newtonsoft.Json.Serialization;
+
     using Serilog;
     using Serilog.Events;
-    using System;
-    using System.IO;
-    using System.Linq;
+
     using ILogger = Serilog.ILogger;
 
     /// <summary>

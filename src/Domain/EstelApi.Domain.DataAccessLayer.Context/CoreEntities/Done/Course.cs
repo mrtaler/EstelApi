@@ -55,7 +55,7 @@
         /// +1 Gets or sets the available dates.
         /// All Available dates for this course 
         /// </summary>
-        public  ICollection<AvailableDates> AvailableDates { get; set; }
+        public  ICollection<AvailableDatesCourse> AvailableDates { get; set; }
     }
 
     public class CourseConfiguration : IEntityTypeConfiguration<Course>

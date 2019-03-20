@@ -1,19 +1,21 @@
 ﻿namespace Estel.Services.Api.Controllers
 {
+    using System.Threading.Tasks;
+
     using Estel.Services.Api.ViewModels.Create;
     using Estel.Services.Api.ViewModels.Update;
+
     using EstelApi.Application.ApplicationCqrs.Base;
+    using EstelApi.Application.ApplicationCqrs.Commands.HandlersCreateCommands.CreateCommands;
+    using EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands;
     using EstelApi.Application.ApplicationCqrs.Queries;
-    //using EstelApi.Application.Dto;
     using EstelApi.Core.Seedwork.Adapter;
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
-    using MediatR;
-    using Microsoft.AspNetCore.Mvc;
-    using System.Threading.Tasks;
 
-    using EstelApi.Application.ApplicationCqrs.Commands.HandlersCreateCommands.CreateCommands;
-    using EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands;
+    using MediatR;
+
+    using Microsoft.AspNetCore.Mvc;
 
     // [Authorize]
 
@@ -49,7 +51,7 @@
         [HttpGet("GetAllCustomer")]
         public async Task<IActionResult> Get()
         {
-            var result = await this.mediator.Send(new AllEntitiesQuery<User>());
+            var result = await this.Mediator.Send(new AllEntitiesQuery<User>());
             return this.Response(result);
         }
 
@@ -66,7 +68,7 @@
         [HttpGet("GetCustomerById")]
         public async Task<IActionResult> Get(int id)
         {
-            var result = await this.mediator.Send(new EntityByIdQuery<User>(id));
+            var result = await this.Mediator.Send(new EntityByIdQuery<User>(id));
             return this.Response(result);
         }
 
@@ -90,7 +92,7 @@
             }
 
             var command = createCustomerViewModel.ProjectedAs<CreateNewUserCommand>();
-            var resp = await this.mediator.Send(command);
+            var resp = await this.Mediator.Send(command);
             return this.Response(resp);
         }
 
@@ -114,7 +116,7 @@
             }
 
             var command = updateCustomerViewModel.ProjectedAs<UpdateUserCommand>();
-            var resp = await this.mediator.Send(command);
+            var resp = await this.Mediator.Send(command);
             return this.Response(resp);
         }
 
@@ -127,11 +129,11 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        // [Authorize(Policy = "CanRemoveCustomerData")]
+        /// [Authorize(Policy = "CanRemoveCustomerData")]
         [HttpDelete("DeleteCustomerById")]
         public async Task<IActionResult> Delete(int id)
         {
-            var result = await this.mediator.Send(new RemoveEntityCommand<User>(id));
+            var result = await this.Mediator.Send(new RemoveEntityCommand<User>(id));
             return this.Response(result);
         }
 
@@ -147,7 +149,7 @@
         /// [AllowAnonymous]
         [HttpGet]
         [Route("customer-management/history/{id:guid}")]
-        public async Task<IActionResult> History(int id)
+        public IActionResult History(int id)
         {
             /*   var customerHistoryData = await this.customerAppService.GetAllHistory(id);
                return this.Response(customerHistoryData);*/

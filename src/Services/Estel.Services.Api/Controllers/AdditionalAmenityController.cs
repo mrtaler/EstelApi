@@ -11,42 +11,88 @@
     using EstelApi.Application.ApplicationCqrs.Queries;
     using EstelApi.Core.Seedwork.Adapter;
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
-    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
 
     using MediatR;
 
     using Microsoft.AspNetCore.Mvc;
 
+    /// <inheritdoc />
+    /// <summary>
+    /// The additional amenity controller.
+    /// </summary>
     [ApiVersion("1.0")]
     public class AdditionalAmenityController : ApiController
     {
+        /// <inheritdoc />
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:Estel.Services.Api.Controllers.AdditionalAmenityController" /> class.
+        /// </summary>
+        /// <param name="notifications">
+        /// The notifications.
+        /// </param>
+        /// <param name="mediator">
+        /// The mediator.
+        /// </param>
         public AdditionalAmenityController(INotificationHandler<DomainNotification> notifications, IMediator mediator)
             : base(notifications, mediator)
         {
         }
 
+        /// <summary>
+        /// Get All Additional Amenity.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         [HttpGet("GetAllAdditionalAmenity")]
         public async Task<IActionResult> Get()
         {
-            var result = await this.mediator.Send(new AllEntitiesQuery<AdditionalAmenity>());
+            var result = await this.Mediator.Send(new AllEntitiesQuery<AdditionalAmenity>());
             return this.Response(result);
         }
 
+        /// <summary>
+        /// Get Additional Amenity By Id.
+        /// </summary>
+        /// <param name="id">
+        /// The id.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         [HttpGet("GetAdditionalAmenityById")]
         public async Task<IActionResult> Get(int id)
         {
-            var result = await this.mediator.Send(new EntityByIdQuery<AdditionalAmenity>(id));
+            var result = await this.Mediator.Send(new EntityByIdQuery<AdditionalAmenity>(id));
             return this.Response(result);
         }
 
+        /// <summary>
+        /// Delete Additional Amenity By Id.
+        /// </summary>
+        /// <param name="id">
+        /// The id.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         [HttpDelete("DeleteAdditionalAmenityById")]
         public async Task<IActionResult> Delete(int id)
         {
-            var result = await this.mediator.Send(new RemoveEntityCommand<AdditionalAmenity>(id));
+            var result = await this.Mediator.Send(new RemoveEntityCommand<AdditionalAmenity>(id));
             return this.Response(result);
         }
 
+        /// <summary>
+        /// Create New Additional Amenity.
+        /// </summary>
+        /// <param name="createCustomerViewModel">
+        /// The create customer view model.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         [HttpPost("CreateNewAdditionalAmenity")]
         public async Task<IActionResult> Post([FromBody] CreateAdditionalAmenityViewModel createCustomerViewModel)
         {
@@ -57,10 +103,19 @@
             }
 
             var command = createCustomerViewModel.ProjectedAs<CreateNewAdditionalAmenityCommand>();
-            var resp = await this.mediator.Send(command);
+            var resp = await this.Mediator.Send(command);
             return this.Response(resp);
         }
 
+        /// <summary>
+        /// Update Additional Amenity.
+        /// </summary>
+        /// <param name="updateCustomerViewModel">
+        /// The update customer view model.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         [HttpPut("UpdateAdditionalAmenity")]
         public async Task<IActionResult> Put([FromBody] UpdateAdditionalAmenityViewModel updateCustomerViewModel)
         {
@@ -71,7 +126,7 @@
             }
 
             var command = updateCustomerViewModel.ProjectedAs<UpdateAdditionalAmenityCommand>();
-            var resp = await this.mediator.Send(command);
+            var resp = await this.Mediator.Send(command);
             return this.Response(resp);
         }
     }

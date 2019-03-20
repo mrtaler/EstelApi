@@ -8,7 +8,7 @@
     {
         public AvailableDatesInclude()
         {
-            this.AddInclude(x => x.Include(y => y.Course));
+            this.AddInclude(x => x.Include(y => y.Courses));
         }
     }
 }

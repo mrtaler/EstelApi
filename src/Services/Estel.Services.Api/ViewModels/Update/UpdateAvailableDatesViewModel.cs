@@ -19,6 +19,6 @@
         [Required]
         public string EndHour { get; set; }
 
-        public int CourseId { get; set; }
+        public int? CourseId { get; set; }
     }
 }

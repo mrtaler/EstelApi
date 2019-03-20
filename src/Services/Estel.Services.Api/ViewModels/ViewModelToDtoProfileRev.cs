@@ -9,7 +9,6 @@
     using EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands;
 
     // using EstelApi.Application.Dto;
-
     using Serilog;
 
     /// <summary>
@@ -47,8 +46,8 @@
 
             // this.CreateMap<CustomerDto, CreateCustomerViewModel>();
 
-            //      this.CreateMap<CustomerDto, DeleteCustomerViewModel>().PreserveReferences().ReverseMap();
-            //    this.CreateMap<CustomerDto, UpdateCustomerViewModel>().PreserveReferences().ReverseMap();
+            // this.CreateMap<CustomerDto, DeleteCustomerViewModel>().PreserveReferences().ReverseMap();
+            // this.CreateMap<CustomerDto, UpdateCustomerViewModel>().PreserveReferences().ReverseMap();
 
             // .ConstructUsing(c => new RegisterNewCustomerCommand(c.Name, c.Email, c.BirthDate));
             /* this.CreateMap<UpdateCustomerViewModel, UpdateCustomerCommand>()

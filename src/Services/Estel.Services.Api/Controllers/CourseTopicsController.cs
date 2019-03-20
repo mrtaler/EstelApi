@@ -11,42 +11,88 @@
     using EstelApi.Application.ApplicationCqrs.Queries;
     using EstelApi.Core.Seedwork.Adapter;
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
-    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
 
     using MediatR;
 
     using Microsoft.AspNetCore.Mvc;
 
+    /// <inheritdoc />
+    /// <summary>
+    /// The course topics controller.
+    /// </summary>
     [ApiVersion("1.0")]
     public class CourseTopicsController : ApiController
     {
+        /// <inheritdoc />
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:Estel.Services.Api.Controllers.CourseTopicsController" /> class.
+        /// </summary>
+        /// <param name="notifications">
+        /// The notifications.
+        /// </param>
+        /// <param name="mediator">
+        /// The mediator.
+        /// </param>
         public CourseTopicsController(INotificationHandler<DomainNotification> notifications, IMediator mediator)
             : base(notifications, mediator)
         {
         }
 
+        /// <summary>
+        /// Get All Course Topics.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         [HttpGet("GetAllCourseTopics")]
         public async Task<IActionResult> Get()
         {
-            var result = await this.mediator.Send(new AllEntitiesQuery<CourseTopics>());
+            var result = await this.Mediator.Send(new AllEntitiesQuery<CourseTopics>());
             return this.Response(result);
         }
 
+        /// <summary>
+        /// Get Course Topics By Id.
+        /// </summary>
+        /// <param name="id">
+        /// The id.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         [HttpGet("GetCourseTopicsById")]
         public async Task<IActionResult> Get(int id)
         {
-            var result = await this.mediator.Send(new EntityByIdQuery<CourseTopics>(id));
+            var result = await this.Mediator.Send(new EntityByIdQuery<CourseTopics>(id));
             return this.Response(result);
         }
 
+        /// <summary>
+        /// Delete Course Topics By Id
+        /// </summary>
+        /// <param name="id">
+        /// The id.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         [HttpDelete("DeleteCourseTopicsById")]
         public async Task<IActionResult> Delete(int id)
         {
-            var result = await this.mediator.Send(new RemoveEntityCommand<CourseTopics>(id));
+            var result = await this.Mediator.Send(new RemoveEntityCommand<CourseTopics>(id));
             return this.Response(result);
         }
 
+        /// <summary>
+        /// Create New Course Topics.
+        /// </summary>
+        /// <param name="createCustomerViewModel">
+        /// The create customer view model.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         [HttpPost("CreateNewCourseTopics")]
         public async Task<IActionResult> Post([FromBody] CreateCourseTopicsViewModel createCustomerViewModel)
         {
@@ -57,10 +103,19 @@
             }
 
             var command = createCustomerViewModel.ProjectedAs<CreateNewCourseTopicsCommand>();
-            var resp = await this.mediator.Send(command);
+            var resp = await this.Mediator.Send(command);
             return this.Response(resp);
         }
 
+        /// <summary>
+        /// Update Course Topics.
+        /// </summary>
+        /// <param name="updateCustomerViewModel">
+        /// The update customer view model.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         [HttpPut("UpdateCourseTopics")]
         public async Task<IActionResult> Put([FromBody] UpdateCourseTopicsViewModel updateCustomerViewModel)
         {
@@ -71,7 +126,7 @@
             }
 
             var command = updateCustomerViewModel.ProjectedAs<UpdateCourseTopicsCommand>();
-            var resp = await this.mediator.Send(command);
+            var resp = await this.Mediator.Send(command);
             return this.Response(resp);
         }
     }

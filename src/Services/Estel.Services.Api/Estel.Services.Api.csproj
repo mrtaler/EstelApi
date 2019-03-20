@@ -9,6 +9,7 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>..\..\Services\Estel.Services.Api\Estel.Services.Api.xml</DocumentationFile>
+    <NoWarn>1701;1702;1623;CS1591,SA1600</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
@@ -40,9 +41,4 @@
     <ProjectReference Include="..\..\CrossCutting\EstelApi.CrossCutting.Identity\EstelApi.CrossCutting.Identity.csproj" />
     <ProjectReference Include="..\..\CrossCutting\EstelApi.CrossCutting.IoC\EstelApi.CrossCutting.IoC.csproj" />
   </ItemGroup>
-
-  <PropertyGroup>
-    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-  </PropertyGroup>
-
 </Project>

@@ -27,27 +27,60 @@
         {
         }
 
+        /// <summary>
+        /// Get All Worker.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         [HttpGet("GetAllWorker")]
         public async Task<IActionResult> Get()
         {
-            var result = await this.mediator.Send(new AllEntitiesQuery<Worker>());
+            var result = await this.Mediator.Send(new AllEntitiesQuery<Worker>());
             return this.Response(result);
         }
 
+        /// <summary>
+        /// Get Worker By Id.
+        /// </summary>
+        /// <param name="id">
+        /// The id.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         [HttpGet("GetWorkerById")]
         public async Task<IActionResult> Get(int id)
         {
-            var result = await this.mediator.Send(new EntityByIdQuery<Worker>(id));
+            var result = await this.Mediator.Send(new EntityByIdQuery<Worker>(id));
             return this.Response(result);
         }
 
+        /// <summary>
+        /// Delete Worker By Id
+        /// </summary>
+        /// <param name="id">
+        /// The id.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         [HttpDelete("DeleteWorkerById")]
         public async Task<IActionResult> Delete(int id)
         {
-            var result = await this.mediator.Send(new RemoveEntityCommand<Worker>(id));
+            var result = await this.Mediator.Send(new RemoveEntityCommand<Worker>(id));
             return this.Response(result);
         }
 
+        /// <summary>
+        /// Create New Worker.
+        /// </summary>
+        /// <param name="createCustomerViewModel">
+        /// The create customer view model.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         [HttpPost("CreateNewWorker")]
         public async Task<IActionResult> Post([FromBody] CreateWorkerViewModel createCustomerViewModel)
         {
@@ -58,10 +91,19 @@
             }
 
             var command = createCustomerViewModel.ProjectedAs<CreateNewWorkerCommand>();
-            var resp = await this.mediator.Send(command);
+            var resp = await this.Mediator.Send(command);
             return this.Response(resp);
         }
 
+        /// <summary>
+        /// Update Worker.
+        /// </summary>
+        /// <param name="updateCustomerViewModel">
+        /// The update customer view model.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         [HttpPut("UpdateWorker")]
         public async Task<IActionResult> Put([FromBody] UpdateWorkerViewModel updateCustomerViewModel)
         {
@@ -72,7 +114,7 @@
             }
 
             var command = updateCustomerViewModel.ProjectedAs<UpdateWorkerCommand>();
-            var resp = await this.mediator.Send(command);
+            var resp = await this.Mediator.Send(command);
             return this.Response(resp);
         }
     }

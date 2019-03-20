@@ -92,17 +92,87 @@
             The <see cref="T:System.Threading.Tasks.Task"/>.
             </returns>
         </member>
+        <member name="T:Estel.Services.Api.Controllers.AdditionalAmenityController">
+            <inheritdoc />
+            <summary>
+            The additional amenity controller.
+            </summary>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.AdditionalAmenityController.#ctor(MediatR.INotificationHandler{EstelApi.Core.Seedwork.CoreCqrs.Notifications.DomainNotification},MediatR.IMediator)">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the <see cref="T:Estel.Services.Api.Controllers.AdditionalAmenityController" /> class.
+            </summary>
+            <param name="notifications">
+            The notifications.
+            </param>
+            <param name="mediator">
+            The mediator.
+            </param>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.AdditionalAmenityController.Get">
+            <summary>
+            Get All Additional Amenity.
+            </summary>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.AdditionalAmenityController.Get(System.Int32)">
+            <summary>
+            Get Additional Amenity By Id.
+            </summary>
+            <param name="id">
+            The id.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.AdditionalAmenityController.Delete(System.Int32)">
+            <summary>
+            Delete Additional Amenity By Id.
+            </summary>
+            <param name="id">
+            The id.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.AdditionalAmenityController.Post(Estel.Services.Api.ViewModels.Create.CreateAdditionalAmenityViewModel)">
+            <summary>
+            Create New Additional Amenity.
+            </summary>
+            <param name="createCustomerViewModel">
+            The create customer view model.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.AdditionalAmenityController.Put(Estel.Services.Api.ViewModels.Update.UpdateAdditionalAmenityViewModel)">
+            <summary>
+            Update Additional Amenity.
+            </summary>
+            <param name="updateCustomerViewModel">
+            The update customer view model.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
         <member name="T:Estel.Services.Api.Controllers.ApiController">
             <inheritdoc />
+        </member>
+        <member name="F:Estel.Services.Api.Controllers.ApiController.Mediator">
+            <summary>
+            The mediator.
+            </summary>
         </member>
         <member name="F:Estel.Services.Api.Controllers.ApiController.notifications">
             <summary>
             The notifications.
-            </summary>
-        </member>
-        <member name="F:Estel.Services.Api.Controllers.ApiController.mediator">
-            <summary>
-            The mediator.
             </summary>
         </member>
         <member name="M:Estel.Services.Api.Controllers.ApiController.#ctor(MediatR.INotificationHandler{EstelApi.Core.Seedwork.CoreCqrs.Notifications.DomainNotification},MediatR.IMediator)">
@@ -156,11 +226,141 @@
             The result.
             </param>
         </member>
+        <member name="T:Estel.Services.Api.Controllers.AvailableDatesController">
+            <inheritdoc />
+            <summary>
+            The available dates controller.
+            </summary>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.AvailableDatesController.#ctor(MediatR.INotificationHandler{EstelApi.Core.Seedwork.CoreCqrs.Notifications.DomainNotification},MediatR.IMediator)">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the <see cref="T:Estel.Services.Api.Controllers.AvailableDatesController" /> class.
+            </summary>
+            <param name="notifications">
+            The notifications.
+            </param>
+            <param name="mediator">
+            The mediator.
+            </param>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.AvailableDatesController.Get">
+            <summary>
+            Get All Available Dates.
+            </summary>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.AvailableDatesController.Get(System.Int32)">
+            <summary>
+            Get Available Dates By Id.
+            </summary>
+            <param name="id">
+            The id.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.AvailableDatesController.Delete(System.Int32)">
+            <summary>
+            Delete Available Dates By Id.
+            </summary>
+            <param name="id">
+            The id.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.AvailableDatesController.Post(Estel.Services.Api.ViewModels.Create.CreateAvailableDatesViewModel)">
+            <summary>
+            Create New Available Dates.
+            </summary>
+            <param name="createCustomerViewModel">
+            The create customer view model.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.AvailableDatesController.Put(Estel.Services.Api.ViewModels.Update.UpdateAvailableDatesViewModel)">
+            <summary>
+            Update Available Dates.
+            </summary>
+            <param name="updateCustomerViewModel">
+            The update customer view model.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="T:Estel.Services.Api.Controllers.CourseAttendanceController">
+            <inheritdoc />
+            <summary>
+            The course attendance controller.
+            </summary>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.CourseAttendanceController.#ctor(MediatR.INotificationHandler{EstelApi.Core.Seedwork.CoreCqrs.Notifications.DomainNotification},MediatR.IMediator)">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the <see cref="T:Estel.Services.Api.Controllers.CourseAttendanceController" /> class.
+            </summary>
+            <param name="notifications">
+            The notifications.
+            </param>
+            <param name="mediator">
+            The mediator.
+            </param>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.CourseAttendanceController.Get">
+            <summary>
+            Get All Course Attendance.
+            </summary>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.CourseAttendanceController.Get(System.Int32)">
+            <summary>
+            Get Course Attendance By Id.
+            </summary>
+            <param name="id">
+            The id.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.CourseAttendanceController.Delete(System.Int32)">
+            <summary>
+            Delete Course Attendance By Id.
+            </summary>
+            <param name="id">
+            The id.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
         <member name="T:Estel.Services.Api.Controllers.CourseController">
             <inheritdoc />
+            <summary>
+            The course controller.
+            </summary>
         </member>
         <member name="M:Estel.Services.Api.Controllers.CourseController.#ctor(MediatR.INotificationHandler{EstelApi.Core.Seedwork.CoreCqrs.Notifications.DomainNotification},MediatR.IMediator)">
             <inheritdoc />
+            <summary>
+            Initializes a new instance of the <see cref="T:Estel.Services.Api.Controllers.CourseController" /> class.
+            </summary>
+            <param name="notifications">
+            The notifications.
+            </param>
+            <param name="mediator">
+            The mediator.
+            </param>
         </member>
         <member name="M:Estel.Services.Api.Controllers.CourseController.Get">
             <summary>
@@ -176,6 +376,179 @@
             </summary>
             <param name="id">
             The id.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.CourseController.Delete(System.Int32)">
+            <summary>
+            Delete Course By Id.
+            </summary>
+            <param name="id">
+            The id.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.CourseController.Post(Estel.Services.Api.ViewModels.Create.CreateCourseViewModel)">
+            <summary>
+            Create New Course.
+            </summary>
+            <param name="createCustomerViewModel">
+            The create customer view model.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.CourseController.Put(Estel.Services.Api.ViewModels.Update.UpdateCourseViewModel)">
+            <summary>
+            Update Course.
+            </summary>
+            <param name="updateCustomerViewModel">
+            The update customer view model.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="T:Estel.Services.Api.Controllers.CourseTopicsController">
+            <inheritdoc />
+            <summary>
+            The course topics controller.
+            </summary>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.CourseTopicsController.#ctor(MediatR.INotificationHandler{EstelApi.Core.Seedwork.CoreCqrs.Notifications.DomainNotification},MediatR.IMediator)">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the <see cref="T:Estel.Services.Api.Controllers.CourseTopicsController" /> class.
+            </summary>
+            <param name="notifications">
+            The notifications.
+            </param>
+            <param name="mediator">
+            The mediator.
+            </param>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.CourseTopicsController.Get">
+            <summary>
+            Get All Course Topics.
+            </summary>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.CourseTopicsController.Get(System.Int32)">
+            <summary>
+            Get Course Topics By Id.
+            </summary>
+            <param name="id">
+            The id.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.CourseTopicsController.Delete(System.Int32)">
+            <summary>
+            Delete Course Topics By Id
+            </summary>
+            <param name="id">
+            The id.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.CourseTopicsController.Post(Estel.Services.Api.ViewModels.Create.CreateCourseTopicsViewModel)">
+            <summary>
+            Create New Course Topics.
+            </summary>
+            <param name="createCustomerViewModel">
+            The create customer view model.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.CourseTopicsController.Put(Estel.Services.Api.ViewModels.Update.UpdateCourseTopicsViewModel)">
+            <summary>
+            Update Course Topics.
+            </summary>
+            <param name="updateCustomerViewModel">
+            The update customer view model.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="T:Estel.Services.Api.Controllers.CourseTypeController">
+            <inheritdoc />
+            <summary>
+            The course type controller.
+            </summary>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.CourseTypeController.#ctor(MediatR.INotificationHandler{EstelApi.Core.Seedwork.CoreCqrs.Notifications.DomainNotification},MediatR.IMediator)">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the <see cref="T:Estel.Services.Api.Controllers.CourseTypeController" /> class.
+            </summary>
+            <param name="notifications">
+            The notifications.
+            </param>
+            <param name="mediator">
+            The mediator.
+            </param>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.CourseTypeController.Get">
+            <summary>
+            Get All Course Types.
+            </summary>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.CourseTypeController.Get(System.Int32)">
+            <summary>
+            Get Course Type By Id.
+            </summary>
+            <param name="id">
+            The id.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.CourseTypeController.Delete(System.Int32)">
+            <summary>
+            Delete Course Type By Id.
+            </summary>
+            <param name="id">
+            The id.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.CourseTypeController.Post(Estel.Services.Api.ViewModels.Create.CreateCourseTypeViewModel)">
+            <summary>
+            Create New Course Type.
+            </summary>
+            <param name="createCustomerViewModel">
+            The create customer view model.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.CourseTypeController.Put(Estel.Services.Api.ViewModels.Update.UpdateCourseTypeViewModel)">
+            <summary>
+            Update Course Type.
+            </summary>
+            <param name="updateCustomerViewModel">
+            The update customer view model.
             </param>
             <returns>
             The <see cref="T:System.Threading.Tasks.Task"/>.
@@ -252,6 +625,7 @@
             <returns>
             The <see cref="T:System.Threading.Tasks.Task"/>.
             </returns>
+            [Authorize(Policy = "CanRemoveCustomerData")]
         </member>
         <member name="M:Estel.Services.Api.Controllers.UserController.History(System.Int32)">
             <summary>
@@ -270,6 +644,58 @@
         </member>
         <member name="M:Estel.Services.Api.Controllers.WorkerController.#ctor(MediatR.INotificationHandler{EstelApi.Core.Seedwork.CoreCqrs.Notifications.DomainNotification},MediatR.IMediator)">
             <inheritdoc />
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.WorkerController.Get">
+            <summary>
+            Get All Worker.
+            </summary>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.WorkerController.Get(System.Int32)">
+            <summary>
+            Get Worker By Id.
+            </summary>
+            <param name="id">
+            The id.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.WorkerController.Delete(System.Int32)">
+            <summary>
+            Delete Worker By Id
+            </summary>
+            <param name="id">
+            The id.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.WorkerController.Post(Estel.Services.Api.ViewModels.Create.CreateWorkerViewModel)">
+            <summary>
+            Create New Worker.
+            </summary>
+            <param name="createCustomerViewModel">
+            The create customer view model.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.WorkerController.Put(Estel.Services.Api.ViewModels.Update.UpdateWorkerViewModel)">
+            <summary>
+            Update Worker.
+            </summary>
+            <param name="updateCustomerViewModel">
+            The update customer view model.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
         </member>
         <member name="T:Estel.Services.Api.Extension.Exception.ApiError">
             <summary>
@@ -527,6 +953,26 @@
             <param name="logger">
             The logger.
             </param>
+        </member>
+        <member name="T:Estel.Services.Api.ViewModels.Create.CreateAdditionalAmenityViewModel">
+            <summary>
+            The create additional amenity view model.
+            </summary>
+        </member>
+        <member name="P:Estel.Services.Api.ViewModels.Create.CreateAdditionalAmenityViewModel.AdditionalAmenityName">
+            <summary>
+            Раименование Плюшек от трениннга (кофе, сертификаты, призы и тд.).
+            </summary>
+        </member>
+        <member name="T:Estel.Services.Api.ViewModels.Create.CreateCourseTopicsViewModel">
+            <summary>
+            The create course topics view model.
+            </summary>
+        </member>
+        <member name="P:Estel.Services.Api.ViewModels.Create.CreateCourseTopicsViewModel.CourseTopicName">
+            <summary>
+            Темы раскрываемые на курсах.
+            </summary>
         </member>
         <member name="P:Estel.Services.Api.ViewModels.Create.CreateCourseTypeViewModel.CourseTypeName">
             <summary>

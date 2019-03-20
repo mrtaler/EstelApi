@@ -11,7 +11,6 @@
     using EstelApi.Application.ApplicationCqrs.Queries;
     using EstelApi.Core.Seedwork.Adapter;
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
-    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
 
     using MediatR;
@@ -19,10 +18,22 @@
     using Microsoft.AspNetCore.Mvc;
 
     /// <inheritdoc />
+    /// <summary>
+    /// The course controller.
+    /// </summary>
     [ApiVersion("1.0")]
     public class CourseController : ApiController
     {
         /// <inheritdoc />
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:Estel.Services.Api.Controllers.CourseController" /> class.
+        /// </summary>
+        /// <param name="notifications">
+        /// The notifications.
+        /// </param>
+        /// <param name="mediator">
+        /// The mediator.
+        /// </param>
         public CourseController(INotificationHandler<DomainNotification> notifications, IMediator mediator)
             : base(notifications, mediator)
         {
@@ -37,7 +48,7 @@
         [HttpGet("GetAllCourse")]
         public async Task<IActionResult> Get()
         {
-            var result = await this.mediator.Send(new AllEntitiesQuery<Course>());
+            var result = await this.Mediator.Send(new AllEntitiesQuery<Course>());
             return this.Response(result);
         }
 
@@ -53,17 +64,35 @@
         [HttpGet("GetCourseById")]
         public async Task<IActionResult> Get(int id)
         {
-            var result = await this.mediator.Send(new EntityByIdQuery<Course>(id));
+            var result = await this.Mediator.Send(new EntityByIdQuery<Course>(id));
             return this.Response(result);
         }
 
+        /// <summary>
+        /// Delete Course By Id.
+        /// </summary>
+        /// <param name="id">
+        /// The id.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         [HttpDelete("DeleteCourseById")]
         public async Task<IActionResult> Delete(int id)
         {
-            var result = await this.mediator.Send(new RemoveEntityCommand<Course>(id));
+            var result = await this.Mediator.Send(new RemoveEntityCommand<Course>(id));
             return this.Response(result);
         }
 
+        /// <summary>
+        /// Create New Course.
+        /// </summary>
+        /// <param name="createCustomerViewModel">
+        /// The create customer view model.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         [HttpPost("CreateNewCourse")]
         public async Task<IActionResult> Post([FromBody] CreateCourseViewModel createCustomerViewModel)
         {
@@ -74,10 +103,19 @@
             }
 
             var command = createCustomerViewModel.ProjectedAs<CreateNewCourseCommand>();
-            var resp = await this.mediator.Send(command);
+            var resp = await this.Mediator.Send(command);
             return this.Response(resp);
         }
 
+        /// <summary>
+        /// Update Course.
+        /// </summary>
+        /// <param name="updateCustomerViewModel">
+        /// The update customer view model.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         [HttpPut("UpdateCourse")]
         public async Task<IActionResult> Put([FromBody] UpdateCourseViewModel updateCustomerViewModel)
         {
@@ -88,7 +126,7 @@
             }
 
             var command = updateCustomerViewModel.ProjectedAs<UpdateCourseCommand>();
-            var resp = await this.mediator.Send(command);
+            var resp = await this.Mediator.Send(command);
             return this.Response(resp);
         }
     }

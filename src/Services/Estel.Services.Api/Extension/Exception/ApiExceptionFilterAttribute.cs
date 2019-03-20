@@ -1,12 +1,14 @@
 ﻿namespace Estel.Services.Api.Extension.Exception
 {
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.Filters;
-    using Serilog;
-    using Serilog.Events;
     using System;
     using System.Net;
     using System.Threading.Tasks;
+
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.Filters;
+
+    using Serilog;
+    using Serilog.Events;
 
     /// <inheritdoc />
     /// <summary>

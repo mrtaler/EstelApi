@@ -15,14 +15,14 @@
     public abstract class ApiController : ControllerBase
     {
         /// <summary>
+        /// The mediator.
+        /// </summary>
+        protected readonly IMediator Mediator;
+
+        /// <summary>
         /// The notifications.
         /// </summary>
         private readonly DomainNotificationHandler notifications;
-
-        /// <summary>
-        /// The mediator.
-        /// </summary>
-        protected readonly IMediator mediator;
 
         /// <inheritdoc />
         protected ApiController(
@@ -30,7 +30,7 @@
             IMediator mediator)
         {
             this.notifications = (DomainNotificationHandler)notifications;
-            this.mediator = mediator;
+            this.Mediator = mediator;
         }
 
         /// <summary>
@@ -79,9 +79,9 @@
         protected void NotifyModelStateErrors()
         {
             var errors = this.ModelState.Values.SelectMany(v => v.Errors);
-            foreach (var erro in errors)
+            foreach (var error in errors)
             {
-                var errorsMsg = erro.Exception == null ? erro.ErrorMessage : erro.Exception.Message;
+                var errorsMsg = error.Exception == null ? error.ErrorMessage : error.Exception.Message;
                 this.NotifyError(string.Empty, errorsMsg);
             }
         }
@@ -97,7 +97,7 @@
         /// </param>
         protected void NotifyError(string code, string message)
         {
-            this.mediator.Publish(new DomainNotification(code, message));
+            this.Mediator.Publish(new DomainNotification(code, message));
         }
 
         /// <summary>
