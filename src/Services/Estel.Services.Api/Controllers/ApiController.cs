@@ -12,6 +12,7 @@
 
     /// <inheritdoc />
     [ApiController]
+    
     public abstract class ApiController : ControllerBase
     {
         /// <summary>

@@ -1,7 +1,5 @@
 ﻿namespace Estel.Services.Api.Controllers
 {
-    using System.Threading.Tasks;
-
     using Estel.Services.Api.ViewModels.Create;
     using Estel.Services.Api.ViewModels.Update;
 
@@ -17,11 +15,16 @@
 
     using Microsoft.AspNetCore.Mvc;
 
+    using System.Threading.Tasks;
+
+    using EstelApi.Application.ApplicationCqrs.Commands.NewFolder;
+
     /// <inheritdoc />
     /// <summary>
     /// The course controller.
     /// </summary>
     [ApiVersion("1.0")]
+    [Route("Course")]
     public class CourseController : ApiController
     {
         /// <inheritdoc />
@@ -45,7 +48,7 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        [HttpGet("GetAllCourse")]
+        [HttpGet("Courses")]
         public async Task<IActionResult> Get()
         {
             var result = await this.Mediator.Send(new AllEntitiesQuery<Course>());
@@ -61,7 +64,7 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        [HttpGet("GetCourseById")]
+        [HttpGet("Course")]
         public async Task<IActionResult> Get(int id)
         {
             var result = await this.Mediator.Send(new EntityByIdQuery<Course>(id));
@@ -93,7 +96,7 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        [HttpPost("CreateNewCourse")]
+        [HttpPost("Course")]
         public async Task<IActionResult> Post([FromBody] CreateCourseViewModel createCustomerViewModel)
         {
             if (!this.ModelState.IsValid)
@@ -116,7 +119,7 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        [HttpPut("UpdateCourse")]
+        [HttpPut("Course")]
         public async Task<IActionResult> Put([FromBody] UpdateCourseViewModel updateCustomerViewModel)
         {
             if (!this.ModelState.IsValid)
@@ -127,6 +130,16 @@
 
             var command = updateCustomerViewModel.ProjectedAs<UpdateCourseCommand>();
             var resp = await this.Mediator.Send(command);
+            return this.Response(resp);
+        }
+
+        [HttpPut("Course/{courseId}/AvailableDate")]
+        public async Task<IActionResult> Put(int courseId, UpdateAvailableDatesViewModel updateAvailableDatesViewModel)
+        {
+            var command = updateAvailableDatesViewModel.ProjectedAs<UpdateAvailableDatesForCourse>();
+            command.CourseId = courseId;
+            var resp = await this.Mediator.Send(command);
+
             return this.Response(resp);
         }
     }

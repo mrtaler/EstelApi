@@ -22,6 +22,7 @@
     /// The available dates controller.
     /// </summary>
     [ApiVersion("1.0")]
+    [Route("Catalog")]
     public class AvailableDatesController : ApiController
     {
         /// <inheritdoc />
@@ -45,7 +46,7 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        [HttpGet("GetAllAvailableDates")]
+        [HttpGet("AvailableDates")]
         public async Task<IActionResult> Get()
         {
             var result = await this.Mediator.Send(new AllEntitiesQuery<AvailableDates>());
@@ -61,7 +62,7 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        [HttpGet("GetAvailableDatesById")]
+        [HttpGet("AvailableDate")]
         public async Task<IActionResult> Get(int id)
         {
             var result = await this.Mediator.Send(new EntityByIdQuery<AvailableDates>(id));
@@ -77,7 +78,7 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        [HttpDelete("DeleteAvailableDatesById")]
+        [HttpDelete("AvailableDate")]
         public async Task<IActionResult> Delete(int id)
         {
             var result = await this.Mediator.Send(new RemoveEntityCommand<AvailableDates>(id));
@@ -93,7 +94,7 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        [HttpPost("CreateNewAvailableDates")]
+        [HttpPost("AvailableDate")]
         public async Task<IActionResult> Post([FromBody] CreateAvailableDatesViewModel createCustomerViewModel)
         {
             if (!this.ModelState.IsValid)
@@ -116,7 +117,7 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        [HttpPut("UpdateAvailableDates")]
+        [HttpPut("AvailableDate")]
         public async Task<IActionResult> Put([FromBody] UpdateAvailableDatesViewModel updateCustomerViewModel)
         {
             if (!this.ModelState.IsValid)

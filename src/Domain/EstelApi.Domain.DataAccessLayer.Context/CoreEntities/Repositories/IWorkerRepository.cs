@@ -7,6 +7,7 @@
     public interface IWorkerRepository : IRepository<Worker>{}
     public interface IAdditionalAmenityRepository : IRepository<AdditionalAmenity>{}
     public interface IAvailableDatesRepository : IRepository<AvailableDates>{}
+    public interface IAvailableDatesCourseRepository: IRepository<AvailableDatesCourse> { }
     public interface ICourseRepository : IRepository<Course>{}
     public interface ICourseAttendanceRepository : IRepository<CourseAttendance>{}
     public interface ICourseTopicsRepository : IRepository<CourseTopics>{}

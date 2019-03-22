@@ -16,6 +16,7 @@
     /// The course attendance controller.
     /// </summary>
     [ApiVersion("1.0")]
+    [Route("Course")]
     public class CourseAttendanceController : ApiController
     {
         /// <inheritdoc />
@@ -39,7 +40,7 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        [HttpGet("GetAllCourseAttendance")]
+        [HttpGet("CourseAttendances")]
         public async Task<IActionResult> Get()
         {
             var result = await this.Mediator.Send(new AllEntitiesQuery<CourseAttendance>());
@@ -55,7 +56,7 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        [HttpGet("GetCourseAttendanceById")]
+        [HttpGet("CourseAttendance")]
         public async Task<IActionResult> Get(int id)
         {
             var result = await this.Mediator.Send(new EntityByIdQuery<CourseAttendance>(id));
@@ -71,7 +72,7 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        [HttpDelete("DeleteCourseAttendanceById")]
+        [HttpDelete("CourseAttendance")]
         public async Task<IActionResult> Delete(int id)
         {
             var result = await this.Mediator.Send(new RemoveEntityCommand<CourseAttendance>(id));

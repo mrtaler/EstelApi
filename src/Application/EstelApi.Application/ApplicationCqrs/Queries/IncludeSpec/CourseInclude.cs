@@ -13,6 +13,7 @@
             this.AddInclude(x => x.Include(p => p.CourseTopics));
             this.AddInclude(x => x.Include(p => p.AdditionalAmenityCourses));
             this.AddInclude(x => x.Include(p => p.AvailableDates));
+            this.AddInclude(x => x.Include(p => p.AvailableDates).ThenInclude(z => z.AvailableDates));
         }
     }
 }

@@ -7,6 +7,7 @@
 
     using EstelApi.Application.ApplicationCqrs.Commands.HandlersCreateCommands.CreateCommands;
     using EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands;
+    using EstelApi.Application.ApplicationCqrs.Commands.NewFolder;
 
     // using EstelApi.Application.Dto;
     using Serilog;
@@ -38,7 +39,7 @@
             this.CreateMap<UpdateCourseViewModel, UpdateCourseCommand>(MemberList.Source);
             this.CreateMap<UpdateUserViewModel, UpdateUserCommand>(MemberList.Source);
             this.CreateMap<UpdateWorkerViewModel, UpdateWorkerCommand>(MemberList.Source);
-
+            this.CreateMap<UpdateAvailableDatesViewModel, UpdateAvailableDatesForCourse>(MemberList.Source);
             /*  .ForMember(p => p.Id, x => x.Ignore())
                 .ForMember(p => p.CreditLimit, x => x.MapFrom(y => 0M))
                 .ForMember(p => p.CountryCountryName, x => x.Ignore())

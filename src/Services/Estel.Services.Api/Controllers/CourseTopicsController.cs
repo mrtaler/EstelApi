@@ -22,6 +22,7 @@
     /// The course topics controller.
     /// </summary>
     [ApiVersion("1.0")]
+    [Route("Catalog")]
     public class CourseTopicsController : ApiController
     {
         /// <inheritdoc />
@@ -45,7 +46,7 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        [HttpGet("GetAllCourseTopics")]
+        [HttpGet("CourseTopics")]
         public async Task<IActionResult> Get()
         {
             var result = await this.Mediator.Send(new AllEntitiesQuery<CourseTopics>());
@@ -61,7 +62,7 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        [HttpGet("GetCourseTopicsById")]
+        [HttpGet("CourseTopic")]
         public async Task<IActionResult> Get(int id)
         {
             var result = await this.Mediator.Send(new EntityByIdQuery<CourseTopics>(id));
@@ -77,7 +78,7 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        [HttpDelete("DeleteCourseTopicsById")]
+        [HttpDelete("CourseTopic")]
         public async Task<IActionResult> Delete(int id)
         {
             var result = await this.Mediator.Send(new RemoveEntityCommand<CourseTopics>(id));
@@ -93,7 +94,7 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        [HttpPost("CreateNewCourseTopics")]
+        [HttpPost("CourseTopic")]
         public async Task<IActionResult> Post([FromBody] CreateCourseTopicsViewModel createCustomerViewModel)
         {
             if (!this.ModelState.IsValid)
@@ -116,7 +117,7 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        [HttpPut("UpdateCourseTopics")]
+        [HttpPut("CourseTopic")]
         public async Task<IActionResult> Put([FromBody] UpdateCourseTopicsViewModel updateCustomerViewModel)
         {
             if (!this.ModelState.IsValid)

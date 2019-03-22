@@ -22,6 +22,7 @@
     /// The additional amenity controller.
     /// </summary>
     [ApiVersion("1.0")]
+    [Route("Catalog")]
     public class AdditionalAmenityController : ApiController
     {
         /// <inheritdoc />
@@ -45,7 +46,7 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        [HttpGet("GetAllAdditionalAmenity")]
+        [HttpGet("AdditionalAmenities")]
         public async Task<IActionResult> Get()
         {
             var result = await this.Mediator.Send(new AllEntitiesQuery<AdditionalAmenity>());
@@ -61,7 +62,7 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        [HttpGet("GetAdditionalAmenityById")]
+        [HttpGet("AdditionalAmenity")]
         public async Task<IActionResult> Get(int id)
         {
             var result = await this.Mediator.Send(new EntityByIdQuery<AdditionalAmenity>(id));
@@ -77,7 +78,7 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        [HttpDelete("DeleteAdditionalAmenityById")]
+        [HttpDelete("AdditionalAmenity")]
         public async Task<IActionResult> Delete(int id)
         {
             var result = await this.Mediator.Send(new RemoveEntityCommand<AdditionalAmenity>(id));
@@ -93,7 +94,7 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        [HttpPost("CreateNewAdditionalAmenity")]
+        [HttpPost("AdditionalAmenity")]
         public async Task<IActionResult> Post([FromBody] CreateAdditionalAmenityViewModel createCustomerViewModel)
         {
             if (!this.ModelState.IsValid)
@@ -116,7 +117,7 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        [HttpPut("UpdateAdditionalAmenity")]
+        [HttpPut("AdditionalAmenity")]
         public async Task<IActionResult> Put([FromBody] UpdateAdditionalAmenityViewModel updateCustomerViewModel)
         {
             if (!this.ModelState.IsValid)
