@@ -15,7 +15,7 @@
 
     public class FindAvailableDates : Specification<AvailableDates>
     {
-        private AvailableDates availableDates;
+        private readonly AvailableDates availableDates;
         public FindAvailableDates(AvailableDates availableDates)
         {
             this.availableDates = availableDates;
@@ -28,6 +28,21 @@
                 p.EndHour == this.availableDates.EndHour &&
                 p.StartHour == this.availableDates.StartHour &&
                 p.Month == this.availableDates.Month;
+        }
+    }
+
+    public class FindCourseTopics : Specification<CourseTopics>
+    {
+        private readonly CourseTopics availableDates;
+        public FindCourseTopics(CourseTopics availableDates)
+        {
+            this.availableDates = availableDates;
+        }
+
+        public override Expression<Func<CourseTopics, bool>> AsExpression()
+        {
+            return p =>
+                p.CourseTopicName == this.availableDates.CourseTopicName;
         }
     }
 }

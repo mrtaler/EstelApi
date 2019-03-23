@@ -39,7 +39,9 @@
             this.CreateMap<UpdateCourseViewModel, UpdateCourseCommand>(MemberList.Source);
             this.CreateMap<UpdateUserViewModel, UpdateUserCommand>(MemberList.Source);
             this.CreateMap<UpdateWorkerViewModel, UpdateWorkerCommand>(MemberList.Source);
-            this.CreateMap<UpdateAvailableDatesViewModel, UpdateAvailableDatesForCourse>(MemberList.Source);
+            this.CreateMap<UpdateAvailableDatesViewModel, UpdateAvailableDatesForCourseCommand>(MemberList.Source);
+            this.CreateMap<UpdateCourseTopicsViewModel, UpdateCourseTopicsForCourseCommand>(MemberList.Source);
+            
             /*  .ForMember(p => p.Id, x => x.Ignore())
                 .ForMember(p => p.CreditLimit, x => x.MapFrom(y => 0M))
                 .ForMember(p => p.CountryCountryName, x => x.Ignore())

@@ -15,7 +15,7 @@
     public class UpdateAvailableDatesCommandHandler : CommandHandler,
                                         IRequestHandler<UpdateAvailableDatesCommand, CommandResponse<AvailableDates>>
     {
-        private IAvailableDatesRepository repository;
+        private readonly IAvailableDatesRepository repository;
 
         public UpdateAvailableDatesCommandHandler(
             IQueryableUnitOfWork uow,

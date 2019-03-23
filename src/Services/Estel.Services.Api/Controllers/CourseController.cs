@@ -136,11 +136,26 @@
         [HttpPut("Course/{courseId}/AvailableDate")]
         public async Task<IActionResult> Put(int courseId, UpdateAvailableDatesViewModel updateAvailableDatesViewModel)
         {
-            var command = updateAvailableDatesViewModel.ProjectedAs<UpdateAvailableDatesForCourse>();
+            var command = updateAvailableDatesViewModel.ProjectedAs<UpdateAvailableDatesForCourseCommand>();
             command.CourseId = courseId;
             var resp = await this.Mediator.Send(command);
 
             return this.Response(resp);
         }
+
+        [HttpPut("Course/{courseId}/CourseTopics")]
+        public async Task<IActionResult> Put(
+            int courseId, 
+            UpdateCourseTopicsViewModel updateCourseTopicsViewModel)
+        {
+            var command = updateCourseTopicsViewModel.ProjectedAs<UpdateCourseTopicsForCourseCommand>();
+            command.CourseId = courseId;
+            var resp = await this.Mediator.Send(command);
+
+            return this.Response(resp);
+        }
+
+        // CourseAttendance
+        // AdditionalAmenityCourse
     }
 }

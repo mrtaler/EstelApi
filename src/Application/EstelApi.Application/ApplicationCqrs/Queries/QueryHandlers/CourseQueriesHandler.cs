@@ -22,7 +22,7 @@ namespace EstelApi.Application.ApplicationCqrs.Queries.QueryHandlers
                                         IRequestHandler<AllEntitiesQuery<Course>, IEnumerable<Course>>,
                                         IRequestHandler<EntityByIdQuery<Course>, Course>
     {
-        private ICourseRepository repository;
+        private readonly ICourseRepository repository;
 
         public CourseQueriesHandler(
             IQueryableUnitOfWork uow, IMediator bus,

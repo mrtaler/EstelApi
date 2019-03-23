@@ -15,7 +15,7 @@
     public class UpdateWorkerCommandHandler : CommandHandler,
                                               IRequestHandler<UpdateWorkerCommand, CommandResponse<Worker>>
     {
-        private IWorkerRepository repository;
+        private readonly IWorkerRepository repository;
 
         public UpdateWorkerCommandHandler(
             IQueryableUnitOfWork uow,

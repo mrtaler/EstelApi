@@ -15,7 +15,7 @@
     public class UpdateCourseCommandHandler : CommandHandler,
                                               IRequestHandler<UpdateCourseCommand, CommandResponse<Course>>
     {
-        private ICourseRepository repository;
+        private readonly ICourseRepository repository;
 
         public UpdateCourseCommandHandler(
             IQueryableUnitOfWork uow,

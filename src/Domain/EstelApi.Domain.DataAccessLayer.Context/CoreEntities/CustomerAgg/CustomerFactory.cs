@@ -28,13 +28,10 @@
             string telephone)
         {
             // create new instance and set identity
-            var customer = new Customer();
+            var customer = new Customer { FirstName = firstName, LastName = lastName, Telephone = telephone };
 
             // set data
-            customer.FirstName = firstName;
-            customer.LastName = lastName;
 
-            customer.Telephone = telephone;
 
             // customer is enabled by default
             customer.Enable();

@@ -4,6 +4,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace EstelApi.Domain.DataAccessLayer.Context.Migrations
 {
+    using System.Diagnostics.CodeAnalysis;
+
+    /// <summary>
+    /// The fix d course dates.
+    /// </summary>
+    [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1300:ElementMustBeginWithUpperCaseLetter", Justification = "Reviewed. Suppression is OK here.")]
     public partial class fixDCourseDates : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
