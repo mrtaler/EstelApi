@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Data;
     using System.Linq;
     using System.Security.Claims;
     using System.Threading;
@@ -72,8 +73,15 @@
         /// <inheritdoc />
         public virtual bool Commit()
         {
-            var retData = this.SaveAndAuditChanges() > 0;
-            return retData;
+            try
+            {
+                var retData = this.SaveAndAuditChanges() > 0;
+                return retData;
+            }
+            catch (Exception ex)
+            {
+                throw new DatabaseException("save Exception", ex);
+            }
         }
 
         /// <inheritdoc />

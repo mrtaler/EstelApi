@@ -59,7 +59,7 @@
             modelBuilder.ApplyConfiguration(new CustomerConfiguration());
             modelBuilder.ApplyConfiguration(new UserConfiguration());
             modelBuilder.ApplyConfiguration(new WorkerConfiguration());
-
+            modelBuilder.ApplyConfiguration(new AvailableDatesCourseConfiguration());
             modelBuilder.ApplyConfiguration(new AdditionalAmenityConfiguration());
             modelBuilder.ApplyConfiguration(new AdditionalAmenityCourseConfiguration());
             modelBuilder.ApplyConfiguration(new AvailableDatesConfiguration());

@@ -74,11 +74,6 @@
                     .InstancePerLifetimeScope();
 
             builder
-                .RegisterType<AvailableDatesCourseRepository>()
-                .As<IAvailableDatesCourseRepository>()
-                .InstancePerLifetimeScope();
-
-            builder
                 .RegisterType<CourseRepository>()
                 .As<ICourseRepository>()
                 .InstancePerLifetimeScope();

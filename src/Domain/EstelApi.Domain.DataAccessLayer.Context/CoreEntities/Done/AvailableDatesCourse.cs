@@ -5,7 +5,7 @@
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-    public class AvailableDatesCourse : EntityInt
+    public class AvailableDatesCourse
     {
         public int AvailableDatesId { get; set; }
         public AvailableDates AvailableDates { get; set; }

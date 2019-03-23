@@ -27,13 +27,6 @@
         }
     }
 
-    public class AvailableDatesCourseRepository : Repository<AvailableDatesCourse>,
-                                                  IAvailableDatesCourseRepository
-    {
-        public AvailableDatesCourseRepository(EstelContext unitOfWork)
-            : base(unitOfWork) { }
-    }
-
     public class CourseRepository : Repository<Course>, ICourseRepository
     {
         public CourseRepository(EstelContext unitOfWork)

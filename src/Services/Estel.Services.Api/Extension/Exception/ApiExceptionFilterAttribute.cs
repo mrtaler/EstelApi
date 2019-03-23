@@ -1,14 +1,13 @@
 ﻿namespace Estel.Services.Api.Extension.Exception
 {
+    using EstelApi.Domain.DataAccessLayer.Context.Context.Base;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.Filters;
+    using Serilog;
+    using Serilog.Events;
     using System;
     using System.Net;
     using System.Threading.Tasks;
-
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.Filters;
-
-    using Serilog;
-    using Serilog.Events;
 
     /// <inheritdoc />
     /// <summary>
@@ -37,16 +36,23 @@
         public override async Task OnExceptionAsync(ExceptionContext context)
         {
             ApiError error;
-            if (context.Exception is ApiErrorException ex)
+            switch (context.Exception)
             {
-                error = new ApiError(ex.Description, ex.GetBaseException());
-                this.log.ApiError(error);
+                case ApiErrorException ex:
+                    error = new ApiError(ex.Description, ex.GetBaseException());
+                    this.log.ApiError(error);
+                    break;
+                case DatabaseException dbexep:
+                    error = new ApiError(dbexep.Message, dbexep.GetBaseException());
+                    this.log.ApiError(error);
+                    break;
+                default:
+                    error = new ApiError("Unknown error", context.Exception);
+                    this.log.ApiError(error, LogEventLevel.Error);
+                    break;
             }
-            else
-            {
-                error = new ApiError("Unknown error", context.Exception);
-                this.log.ApiError(error, LogEventLevel.Error);
-            }
+
+
 
             context.HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
             context.Result = new JsonResult(error);
