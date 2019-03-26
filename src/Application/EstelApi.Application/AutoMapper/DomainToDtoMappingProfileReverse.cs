@@ -2,7 +2,9 @@
 {
     //using EstelApi.Application.Dto;
 
+    using EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
+    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
 
     using global::AutoMapper;
 
@@ -20,7 +22,13 @@
         public DomainToDtoMappingProfileReverse()
         {
             Log.Debug($"AutoMapper profile {nameof(DomainToDtoMappingProfileReverse)} was launch");
-         //   this.CreateMap<Customer, CustomerDto>().PreserveReferences();
+            this.CreateMap<UpdateWorkerCommand, Worker>(memberList: MemberList.Source);
+            this.CreateMap<UpdateUserCommand, User>(memberList: MemberList.Source);
+            this.CreateMap<UpdateCourseTypeCommand, CourseType>(memberList: MemberList.Source);
+            this.CreateMap<UpdateCourseTopicsCommand, CourseTopics>(memberList: MemberList.Source);
+            this.CreateMap<UpdateAvailableDatesCommand, AvailableDates>(memberList: MemberList.Source);
+            this.CreateMap<UpdateAdditionalAmenityCommand, AdditionalAmenity>(memberList: MemberList.Source);
+            //   this.CreateMap<Customer, CustomerDto>().PreserveReferences();
         }
     }
 }

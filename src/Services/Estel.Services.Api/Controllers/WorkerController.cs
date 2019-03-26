@@ -2,14 +2,10 @@
 {
     using System.Threading.Tasks;
 
-    using Estel.Services.Api.ViewModels.Create;
-    using Estel.Services.Api.ViewModels.Update;
-
     using EstelApi.Application.ApplicationCqrs.Base;
     using EstelApi.Application.ApplicationCqrs.Commands.HandlersCreateCommands.CreateCommands;
     using EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands;
     using EstelApi.Application.ApplicationCqrs.Queries;
-    using EstelApi.Core.Seedwork.Adapter;
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
 
@@ -82,15 +78,14 @@
         /// The <see cref="Task"/>.
         /// </returns>
         [HttpPost("CreateNewWorker")]
-        public async Task<IActionResult> Post([FromBody] CreateWorkerViewModel createCustomerViewModel)
+        public async Task<IActionResult> Post([FromBody] CreateNewWorkerCommand command)
         {
             if (!this.ModelState.IsValid)
             {
                 this.NotifyModelStateErrors();
-                return this.Response(createCustomerViewModel);
+                return this.Response(command);
             }
 
-            var command = createCustomerViewModel.ProjectedAs<CreateNewWorkerCommand>();
             var resp = await this.Mediator.Send(command);
             return this.Response(resp);
         }
@@ -105,15 +100,14 @@
         /// The <see cref="Task"/>.
         /// </returns>
         [HttpPut("UpdateWorker")]
-        public async Task<IActionResult> Put([FromBody] UpdateWorkerViewModel updateCustomerViewModel)
+        public async Task<IActionResult> Put([FromBody] UpdateWorkerCommand command)
         {
             if (!this.ModelState.IsValid)
             {
                 this.NotifyModelStateErrors();
-                return this.Response(updateCustomerViewModel);
+                return this.Response(command);
             }
 
-            var command = updateCustomerViewModel.ProjectedAs<UpdateWorkerCommand>();
             var resp = await this.Mediator.Send(command);
             return this.Response(resp);
         }

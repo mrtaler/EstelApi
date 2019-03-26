@@ -1,16 +1,15 @@
 ﻿namespace EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands
 {
-    using System.Threading;
-    using System.Threading.Tasks;
-
     using EstelApi.Application.ApplicationCqrs.Base;
     using EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands;
+    using EstelApi.Core.Seedwork.Adapter;
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Repositories;
     using EstelApi.Domain.DataAccessLayer.Context.Interfaces;
-
     using MediatR;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     public class UpdateWorkerCommandHandler : CommandHandler,
                                               IRequestHandler<UpdateWorkerCommand, CommandResponse<Worker>>
@@ -41,10 +40,11 @@
                 // throw new ArgumentException("_resources.GetStringResource(LocalizationKeys.Application.warning_CannotAddCustomerWithEmptyInformation)");
             }
 
-            this.repository.Modify(request);
+            var updateWorker = request.ProjectedAs<Worker>();
+            this.repository.Modify(updateWorker);
             return this.Commit()
-                       ? new CommandResponse<Worker> { IsSuccess = true, Message = "New Entity was added", Object = request }
-                       : new CommandResponse<Worker> { IsSuccess = false, Message = "New Entity Not added", Object = request };
+                       ? new CommandResponse<Worker> { IsSuccess = true, Message = "New Entity was added", Object = updateWorker }
+                       : new CommandResponse<Worker> { IsSuccess = false, Message = "New Entity Not added", Object = updateWorker };
         }
     }
 }

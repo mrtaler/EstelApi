@@ -5,6 +5,7 @@
 
     using EstelApi.Application.ApplicationCqrs.Base;
     using EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands;
+    using EstelApi.Core.Seedwork.Adapter;
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Repositories;
@@ -43,11 +44,12 @@
 
                 // throw new ArgumentException("_resources.GetStringResource(LocalizationKeys.Application.warning_CannotAddCustomerWithEmptyInformation)");
             }
+            var updateCourseType = request.ProjectedAs<CourseType>();
+            this.repository.Modify(updateCourseType);
 
-            this.repository.Modify(request);
             return this.Commit()
-                       ? new CommandResponse<CourseType> { IsSuccess = true, Message = "New Entity was added", Object = request }
-                       : new CommandResponse<CourseType> { IsSuccess = false, Message = "New Entity Not added", Object = request };
+                       ? new CommandResponse<CourseType> { IsSuccess = true, Message = "New Entity was added", Object = updateCourseType }
+                       : new CommandResponse<CourseType> { IsSuccess = false, Message = "New Entity Not added", Object = updateCourseType };
         }
     }
 }

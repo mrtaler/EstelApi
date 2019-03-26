@@ -2,14 +2,10 @@
 {
     using System.Threading.Tasks;
 
-    using Estel.Services.Api.ViewModels.Create;
-    using Estel.Services.Api.ViewModels.Update;
-
     using EstelApi.Application.ApplicationCqrs.Base;
     using EstelApi.Application.ApplicationCqrs.Commands.HandlersCreateCommands.CreateCommands;
     using EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands;
     using EstelApi.Application.ApplicationCqrs.Queries;
-    using EstelApi.Core.Seedwork.Adapter;
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
 
@@ -95,15 +91,14 @@
         /// The <see cref="Task"/>.
         /// </returns>
         [HttpPost("CourseTopic")]
-        public async Task<IActionResult> Post([FromBody] CreateCourseTopicsViewModel createCustomerViewModel)
+        public async Task<IActionResult> Post([FromBody] CreateNewCourseTopicsCommand command)
         {
             if (!this.ModelState.IsValid)
             {
                 this.NotifyModelStateErrors();
-                return this.Response(createCustomerViewModel);
+                return this.Response(command);
             }
 
-            var command = createCustomerViewModel.ProjectedAs<CreateNewCourseTopicsCommand>();
             var resp = await this.Mediator.Send(command);
             return this.Response(resp);
         }
@@ -118,15 +113,14 @@
         /// The <see cref="Task"/>.
         /// </returns>
         [HttpPut("CourseTopic")]
-        public async Task<IActionResult> Put([FromBody] UpdateCourseTopicsViewModel updateCustomerViewModel)
+        public async Task<IActionResult> Put([FromBody] UpdateCourseTopicsCommand command)
         {
             if (!this.ModelState.IsValid)
             {
                 this.NotifyModelStateErrors();
-                return this.Response(updateCustomerViewModel);
+                return this.Response(command);
             }
 
-            var command = updateCustomerViewModel.ProjectedAs<UpdateCourseTopicsCommand>();
             var resp = await this.Mediator.Send(command);
             return this.Response(resp);
         }

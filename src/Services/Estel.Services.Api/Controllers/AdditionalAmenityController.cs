@@ -1,21 +1,14 @@
 ﻿namespace Estel.Services.Api.Controllers
 {
-    using System.Threading.Tasks;
-
-    using Estel.Services.Api.ViewModels.Create;
-    using Estel.Services.Api.ViewModels.Update;
-
     using EstelApi.Application.ApplicationCqrs.Base;
     using EstelApi.Application.ApplicationCqrs.Commands.HandlersCreateCommands.CreateCommands;
     using EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands;
     using EstelApi.Application.ApplicationCqrs.Queries;
-    using EstelApi.Core.Seedwork.Adapter;
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
-
     using MediatR;
-
     using Microsoft.AspNetCore.Mvc;
+    using System.Threading.Tasks;
 
     /// <inheritdoc />
     /// <summary>
@@ -95,16 +88,15 @@
         /// The <see cref="Task"/>.
         /// </returns>
         [HttpPost("AdditionalAmenity")]
-        public async Task<IActionResult> Post([FromBody] CreateAdditionalAmenityViewModel createCustomerViewModel)
+        public async Task<IActionResult> Post([FromBody] CreateNewAdditionalAmenityCommand CreateNewAdditionalAmenity)
         {
             if (!this.ModelState.IsValid)
             {
                 this.NotifyModelStateErrors();
-                return this.Response(createCustomerViewModel);
+                return this.Response(CreateNewAdditionalAmenity);
             }
 
-            var command = createCustomerViewModel.ProjectedAs<CreateNewAdditionalAmenityCommand>();
-            var resp = await this.Mediator.Send(command);
+            var resp = await this.Mediator.Send(CreateNewAdditionalAmenity);
             return this.Response(resp);
         }
 
@@ -118,15 +110,14 @@
         /// The <see cref="Task"/>.
         /// </returns>
         [HttpPut("AdditionalAmenity")]
-        public async Task<IActionResult> Put([FromBody] UpdateAdditionalAmenityViewModel updateCustomerViewModel)
+        public async Task<IActionResult> Put([FromBody] UpdateAdditionalAmenityCommand command)
         {
             if (!this.ModelState.IsValid)
             {
                 this.NotifyModelStateErrors();
-                return this.Response(updateCustomerViewModel);
+                return this.Response(command);
             }
 
-            var command = updateCustomerViewModel.ProjectedAs<UpdateAdditionalAmenityCommand>();
             var resp = await this.Mediator.Send(command);
             return this.Response(resp);
         }

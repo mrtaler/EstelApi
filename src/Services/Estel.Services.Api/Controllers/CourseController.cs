@@ -1,11 +1,7 @@
 ﻿namespace Estel.Services.Api.Controllers
 {
-    using Estel.Services.Api.ViewModels.Create;
-    using Estel.Services.Api.ViewModels.Update;
 
     using EstelApi.Application.ApplicationCqrs.Base;
-    using EstelApi.Application.ApplicationCqrs.Commands.HandlersCreateCommands.CreateCommands;
-    using EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands;
     using EstelApi.Application.ApplicationCqrs.Queries;
     using EstelApi.Core.Seedwork.Adapter;
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
@@ -103,15 +99,14 @@
         /// The <see cref="Task"/>.
         /// </returns>
         [HttpPost("Course")]
-        public async Task<IActionResult> Post([FromBody] CreateCourseViewModel createCustomerViewModel)
+        public async Task<IActionResult> Post([FromBody] CreateNewCourseCommand command)
         {
             if (!this.ModelState.IsValid)
             {
                 this.NotifyModelStateErrors();
-                return this.Response(createCustomerViewModel);
+                return this.Response(command);
             }
 
-            var command = createCustomerViewModel.ProjectedAs<CreateNewCourseCommand>();
             var resp = await this.Mediator.Send(command);
             return this.Response(resp);
         }
@@ -126,51 +121,44 @@
         /// The <see cref="Task"/>.
         /// </returns>
         [HttpPut("Course")]
-        public async Task<IActionResult> Put([FromBody] UpdateCourseViewModel updateCustomerViewModel)
+        public async Task<IActionResult> Put([FromBody] UpdateCourseCommand command)
         {
             if (!this.ModelState.IsValid)
             {
                 this.NotifyModelStateErrors();
-                return this.Response(updateCustomerViewModel);
+                return this.Response(command);
             }
 
-            var command = updateCustomerViewModel.ProjectedAs<UpdateCourseCommand>();
             var resp = await this.Mediator.Send(command);
             return this.Response(resp);
         }
 
-        [HttpPut("Course/{courseId}/AvailableDate")]
+        [HttpPut("Course/{CourseId}/AvailableDate")]
         public async Task<IActionResult> Put(
-            int courseId, 
-            UpdateAvailableDatesViewModel updateAvailableDatesViewModel)
+            int CourseId,
+            UpdateAvailableDatesForCourseCommand command)
         {
-            var command = updateAvailableDatesViewModel.ProjectedAs<UpdateAvailableDatesForCourseCommand>();
-            command.CourseId = courseId;
             var resp = await this.Mediator.Send(command);
 
             return this.Response(resp);
         }
 
-        [HttpPut("Course/{courseId}/CourseTopics")]
+        [HttpPut("Course/{CourseId}/CourseTopics")]
         public async Task<IActionResult> Put(
-            int courseId, 
-            UpdateCourseTopicsViewModel updateCourseTopicsViewModel)
+            int CourseId,
+            UpdateCourseTopicsForCourseCommand command)
         {
-            var command = updateCourseTopicsViewModel.ProjectedAs<UpdateCourseTopicsForCourseCommand>();
-            command.CourseId = courseId;
-            var resp = await this.Mediator.Send(command);
+           var resp = await this.Mediator.Send(command);
 
             return this.Response(resp);
         }
 
 
-        [HttpPut("Course/{courseId}/AdditionalAmenity")]
+        [HttpPut("Course/{CourseId}/AdditionalAmenity")]
         public async Task<IActionResult> Put(
-            int courseId,
-            UpdateAdditionalAmenityViewModel updateCourseTopicsViewModel)
+            int CourseId,
+            UpdateAdditionalAmenityForCourseCommand command)
         {
-            var command = updateCourseTopicsViewModel.ProjectedAs<UpdateAdditionalAmenityForCourseCommand>();
-            command.CourseId = courseId;
             var resp = await this.Mediator.Send(command);
 
             return this.Response(resp);

@@ -1,14 +1,6 @@
 ﻿namespace Estel.Services.Api.ViewModels
 {
     using AutoMapper;
-    using Estel.Services.Api.ViewModels.Create;
-    using Estel.Services.Api.ViewModels.Update;
-    using EstelApi.Application.ApplicationCqrs.Commands.Course.CreateNewCourse;
-    using EstelApi.Application.ApplicationCqrs.Commands.Course.UpdateAvailableDatesForCourse;
-    using EstelApi.Application.ApplicationCqrs.Commands.Course.UpdateCourse;
-    using EstelApi.Application.ApplicationCqrs.Commands.Course.UpdateCourseTopicsForCourse;
-    using EstelApi.Application.ApplicationCqrs.Commands.HandlersCreateCommands.CreateCommands;
-    using EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
     // using EstelApi.Application.Dto;
     using Serilog;
@@ -25,26 +17,27 @@
         public ViewModelToDtoProfileRev()
         {
             Log.Debug($"AutoMapper profile {nameof(ViewModelToDtoProfileRev)} was launch");
-            this.CreateMap<CreateAdditionalAmenityViewModel, CreateNewAdditionalAmenityCommand>(MemberList.Source);
-            this.CreateMap<CreateAvailableDatesViewModel, CreateNewAvailableDatesCommand>(MemberList.Source);
-            this.CreateMap<CreateCourseTopicsViewModel, CreateNewCourseTopicsCommand>(MemberList.Source);
-            this.CreateMap<CreateCourseTypeViewModel, CreateNewCourseTypeCommand>(MemberList.Source);
-            this.CreateMap<CreateCourseViewModel, CreateNewCourseCommand>(MemberList.Source);
-            this.CreateMap<CreateUserViewModel, CreateNewUserCommand>(MemberList.Source);
-            this.CreateMap<CreateWorkerViewModel, CreateNewWorkerCommand>(MemberList.Source);
 
+            // this.CreateMap<CreateAdditionalAmenityViewModel, CreateNewAdditionalAmenityCommand>(MemberList.Source);
+            // this.CreateMap<CreateAvailableDatesViewModel, CreateNewAvailableDatesCommand>(MemberList.Source);
+            // this.CreateMap<CreateCourseTopicsViewModel, CreateNewCourseTopicsCommand>(MemberList.Source);
+            // this.CreateMap<CreateCourseTypeViewModel, CreateNewCourseTypeCommand>(MemberList.Source);
+            // this.CreateMap<CreateCourseViewModel, CreateNewCourseCommand>(MemberList.Source);
+            // this.CreateMap<CreateUserViewModel, CreateNewUserCommand>(MemberList.Source);
+            //// this.CreateMap<CreateWorkerViewModel, CreateNewWorkerCommand>(MemberList.Source);
 
-            this.CreateMap<UpdateAdditionalAmenityViewModel, UpdateAdditionalAmenityCommand>(MemberList.Source);
-            this.CreateMap<UpdateAvailableDatesViewModel, UpdateAvailableDatesCommand>(MemberList.Source);
-            this.CreateMap<UpdateCourseTopicsViewModel, UpdateCourseTopicsCommand>(MemberList.Source);
-            this.CreateMap<UpdateCourseTypeViewModel, UpdateCourseTypeCommand>(MemberList.Source);
-            this.CreateMap<UpdateCourseViewModel, UpdateCourseCommand>(MemberList.Source);
-            this.CreateMap<UpdateUserViewModel, UpdateUserCommand>(MemberList.Source);
-            this.CreateMap<UpdateWorkerViewModel, UpdateWorkerCommand>(MemberList.Source);
-            this.CreateMap<UpdateAvailableDatesViewModel, UpdateAvailableDatesForCourseCommand>(MemberList.Source);
-            this.CreateMap<UpdateCourseTopicsViewModel, UpdateCourseTopicsForCourseCommand>(MemberList.Source);
+            // this.CreateMap<UpdateAdditionalAmenityViewModel, UpdateAdditionalAmenityCommand>(MemberList.Source);
+            // this.CreateMap<UpdateAvailableDatesViewModel, UpdateAvailableDatesCommand>(MemberList.Source);
+            // this.CreateMap<UpdateCourseTopicsViewModel, UpdateCourseTopicsCommand>(MemberList.Source);
+            // this.CreateMap<UpdateCourseTypeViewModel, UpdateCourseTypeCommand>(MemberList.Source);
+            // this.CreateMap<UpdateCourseViewModel, UpdateCourseCommand>(MemberList.Source);
+            // this.CreateMap<UpdateUserViewModel, UpdateUserCommand>(MemberList.Source);
+            //// this.CreateMap<UpdateWorkerViewModel, UpdateWorkerCommand>(MemberList.Source);
 
-            this.CreateMap<UpdateAdditionalAmenityViewModel, UpdateAdditionalAmenityForCourseCommand>(MemberList.Source);
+            //  this.CreateMap<UpdateAvailableDatesViewModel, UpdateAvailableDatesForCourseCommand>(MemberList.Source);
+            //  this.CreateMap<UpdateCourseTopicsViewModel, UpdateCourseTopicsForCourseCommand>(MemberList.Source);
+
+            //   this.CreateMap<UpdateAdditionalAmenityViewModel, UpdateAdditionalAmenityForCourseCommand>(MemberList.Source);
             this.CreateMap<AvailableDatesCourse, AvailableDatesViewModel>(MemberList.Source);
 
 

@@ -6,8 +6,10 @@
 
     using MediatR;
 
-    public class UpdateCourseTopicsForCourseCommand : CourseTopics, ICommand, IRequest<CommandResponse<bool>>
+    public class UpdateCourseTopicsForCourseCommand : ICommand, IRequest<CommandResponse<bool>>
     {
+        public int Id { get; set; }
         public int CourseId { get; set; }
+        public string CourseTopicName { get; set; }
     }
 }

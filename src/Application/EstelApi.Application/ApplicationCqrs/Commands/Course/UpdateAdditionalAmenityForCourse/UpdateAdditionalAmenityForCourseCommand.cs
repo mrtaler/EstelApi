@@ -6,8 +6,10 @@
 
     using MediatR;
 
-    public class UpdateAdditionalAmenityForCourseCommand : AdditionalAmenity, ICommand, IRequest<CommandResponse<bool>>
+    public class UpdateAdditionalAmenityForCourseCommand : ICommand, IRequest<CommandResponse<bool>>
     {
+        public int Id { get; set; }
+        public string AdditionalAmenityName { get; set; }
         public int CourseId { get; set; }
     }
 }
