@@ -1,19 +1,18 @@
 ﻿namespace Estel.Services.Api.ViewModels
 {
     using AutoMapper;
-
     using Estel.Services.Api.ViewModels.Create;
     using Estel.Services.Api.ViewModels.Update;
-
     using EstelApi.Application.ApplicationCqrs.Commands.Course.CreateNewCourse;
     using EstelApi.Application.ApplicationCqrs.Commands.Course.UpdateAvailableDatesForCourse;
     using EstelApi.Application.ApplicationCqrs.Commands.Course.UpdateCourse;
     using EstelApi.Application.ApplicationCqrs.Commands.Course.UpdateCourseTopicsForCourse;
     using EstelApi.Application.ApplicationCqrs.Commands.HandlersCreateCommands.CreateCommands;
     using EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands;
-
+    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
     // using EstelApi.Application.Dto;
     using Serilog;
+    using System.Linq;
 
     /// <summary>
     /// The dto to cqrs command profile rev.
@@ -46,6 +45,27 @@
             this.CreateMap<UpdateCourseTopicsViewModel, UpdateCourseTopicsForCourseCommand>(MemberList.Source);
 
             this.CreateMap<UpdateAdditionalAmenityViewModel, UpdateAdditionalAmenityForCourseCommand>(MemberList.Source);
+            this.CreateMap<AvailableDatesCourse, AvailableDatesViewModel>(MemberList.Source);
+
+
+
+            this.CreateMap<Course, CourseViewModel>()
+                .ForMember(
+                    x => x.AdditionalAmenity,
+                    d => d.MapFrom(
+                        y => y.AdditionalAmenityCourses.Any()
+                            ? y.AdditionalAmenityCourses.Select(m => m.AdditionalAmenity.AdditionalAmenityName)
+                            : null))
+                .ForMember(
+                    x => x.CourseTopics,
+                    y => y.MapFrom(
+                        z => z.CourseTopics.Any()
+                                 ? z.CourseTopics.Select(a => a.CourseTopics.CourseTopicName)
+                                 : null))
+                .ForMember(
+                    x => x.AvailableDates,
+                    y => y.MapFrom(
+                        z => z.AvailableDates.Select(p => p.AvailableDates)));
 
             /*  .ForMember(p => p.Id, x => x.Ignore())
                 .ForMember(p => p.CreditLimit, x => x.MapFrom(y => 0M))

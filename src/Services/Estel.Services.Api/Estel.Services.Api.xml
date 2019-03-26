@@ -954,6 +954,78 @@
             The logger.
             </param>
         </member>
+        <member name="P:Estel.Services.Api.ViewModels.CourseViewModel.CourseAttendances">
+            <summary>
+            Gets or sets the customers.
+            This is all customers which attended to the course 
+            </summary>
+        </member>
+        <member name="P:Estel.Services.Api.ViewModels.CourseViewModel.CourseTopics">
+            <summary>
+            +1 Gets or sets the course topics.
+            All Topics which your learn on courses
+            </summary>
+        </member>
+        <member name="P:Estel.Services.Api.ViewModels.CourseViewModel.AdditionalAmenity">
+            <summary>
+            +1 Gets or sets the additional amenities.
+            All Amenities (coffee break, certificates ets)
+            </summary>
+        </member>
+        <member name="P:Estel.Services.Api.ViewModels.CourseViewModel.AvailableDates">
+            <summary>
+            +1 Gets or sets the available dates.
+            All Available dates for this course 
+            </summary>
+        </member>
+        <member name="P:Estel.Services.Api.ViewModels.CourseTypeViewModel.CourseTypeName">
+            <summary>
+            Gets or sets the course type name.
+            </summary>
+        </member>
+        <member name="P:Estel.Services.Api.ViewModels.CourseTypeViewModel.Description">
+            <summary>
+            Gets or sets the description.
+            </summary>
+        </member>
+        <member name="M:Estel.Services.Api.ViewModels.UserViewModel.#ctor">
+            <inheritdoc />
+        </member>
+        <member name="P:Estel.Services.Api.ViewModels.UserViewModel.IdentityId">
+            <summary>
+            Gets or sets the identity id.
+            </summary>
+        </member>
+        <member name="P:Estel.Services.Api.ViewModels.UserViewModel.FirstName">
+            <summary>
+            Gets or sets the Given name of this customer
+            </summary>
+        </member>
+        <member name="P:Estel.Services.Api.ViewModels.UserViewModel.LastName">
+            <summary>
+            Gets or sets the surname of this customer
+            </summary>
+        </member>
+        <member name="P:Estel.Services.Api.ViewModels.UserViewModel.MiddleName">
+            <summary>
+            Gets or sets the middle name.
+            </summary>
+        </member>
+        <member name="P:Estel.Services.Api.ViewModels.UserViewModel.FullName">
+            <summary>
+            Gets the full name of this customer
+            </summary>
+        </member>
+        <member name="P:Estel.Services.Api.ViewModels.UserViewModel.Telephone">
+            <summary>
+            Gets or sets the telephone 
+            </summary>
+        </member>
+        <member name="P:Estel.Services.Api.ViewModels.UserViewModel.BirthDate">
+            <summary>
+            Gets or sets the birth date.
+            </summary>
+        </member>
         <member name="T:Estel.Services.Api.ViewModels.Create.CreateAdditionalAmenityViewModel">
             <summary>
             The create additional amenity view model.

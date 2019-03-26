@@ -13,7 +13,7 @@
         public int CustomerId { get; set; }
         public User User { get; set; }
         public int CourseId { get; set; }
-        public  Course Course { get; set; }
+        public Course Course { get; set; }
 
         public DateTimeOffset AttendenseDate { get; set; }
         public DateTimeOffset CourseDate { get; set; }
@@ -45,7 +45,7 @@
                     CourseDate = DateTimeOffset.UtcNow.AddHours(-25),
                     CourseEndDAte = DateTimeOffset.UtcNow,
                     Status = CourseAttendenseStatus.Finish,
-                    Description= "testDescription"
+                    Description = "testDescription"
                 },
                 new CourseAttendance
                 {

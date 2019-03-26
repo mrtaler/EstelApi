@@ -1,8 +1,9 @@
 ﻿namespace EstelApi.Application.ApplicationCqrs.Queries.FindByIdSpec
 {
-    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
     using System;
     using System.Linq.Expressions;
+
+    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
 
     public class FindAvailableDatesById : FindEntitiesById<AvailableDates, int>
     {

@@ -17,6 +17,8 @@
 
     using System.Threading.Tasks;
 
+    using Estel.Services.Api.ViewModels;
+
     using EstelApi.Application.ApplicationCqrs.Commands.Course.CreateNewCourse;
     using EstelApi.Application.ApplicationCqrs.Commands.Course.UpdateAvailableDatesForCourse;
     using EstelApi.Application.ApplicationCqrs.Commands.Course.UpdateCourse;
@@ -71,7 +73,8 @@
         public async Task<IActionResult> Get(int id)
         {
             var result = await this.Mediator.Send(new EntityByIdQuery<Course>(id));
-            return this.Response(result);
+            var rs = result.ProjectedAs<CourseViewModel>();
+            return this.Response(rs);
         }
 
         /// <summary>
