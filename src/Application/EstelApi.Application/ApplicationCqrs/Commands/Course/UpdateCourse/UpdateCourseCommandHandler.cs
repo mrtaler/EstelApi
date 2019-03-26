@@ -1,10 +1,9 @@
-﻿namespace EstelApi.Application.ApplicationCqrs.Commands.HandlersCreateCommands
+﻿namespace EstelApi.Application.ApplicationCqrs.Commands.Course.UpdateCourse
 {
     using System.Threading;
     using System.Threading.Tasks;
 
     using EstelApi.Application.ApplicationCqrs.Base;
-    using EstelApi.Application.ApplicationCqrs.Commands.HandlersCreateCommands.CreateCommands;
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Repositories;
@@ -12,12 +11,12 @@
 
     using MediatR;
 
-    public class CreateCourseCommandHandler : CommandHandler,
-                                              IRequestHandler<CreateNewCourseCommand, CommandResponse<Course>>
+    public class UpdateCourseCommandHandler : CommandHandler,
+                                              IRequestHandler<UpdateCourseCommand, CommandResponse<Course>>
     {
-        private ICourseRepository repository;
+        private readonly ICourseRepository repository;
 
-        public CreateCourseCommandHandler(
+        public UpdateCourseCommandHandler(
             IQueryableUnitOfWork uow,
             IMediator bus,
             INotificationHandler<DomainNotification> notifications,
@@ -27,7 +26,7 @@
             this.repository = courseRepository;
         }
 
-        public async Task<CommandResponse<Course>> Handle(CreateNewCourseCommand request, CancellationToken cancellationToken)
+        public async Task<CommandResponse<Course>> Handle(UpdateCourseCommand request, CancellationToken cancellationToken)
         {
             if (request == null)
             {
@@ -41,8 +40,7 @@
                 // throw new ArgumentException("_resources.GetStringResource(LocalizationKeys.Application.warning_CannotAddCustomerWithEmptyInformation)");
             }
 
-            this.repository.Add(request);
-
+            this.repository.Modify(request);
             return this.Commit()
                        ? new CommandResponse<Course> { IsSuccess = true, Message = "New Entity was added", Object = request }
                        : new CommandResponse<Course> { IsSuccess = false, Message = "New Entity Not added", Object = request };

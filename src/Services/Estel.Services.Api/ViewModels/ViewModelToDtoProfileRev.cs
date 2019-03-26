@@ -5,9 +5,12 @@
     using Estel.Services.Api.ViewModels.Create;
     using Estel.Services.Api.ViewModels.Update;
 
+    using EstelApi.Application.ApplicationCqrs.Commands.Course.CreateNewCourse;
+    using EstelApi.Application.ApplicationCqrs.Commands.Course.UpdateAvailableDatesForCourse;
+    using EstelApi.Application.ApplicationCqrs.Commands.Course.UpdateCourse;
+    using EstelApi.Application.ApplicationCqrs.Commands.Course.UpdateCourseTopicsForCourse;
     using EstelApi.Application.ApplicationCqrs.Commands.HandlersCreateCommands.CreateCommands;
     using EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands;
-    using EstelApi.Application.ApplicationCqrs.Commands.NewFolder;
 
     // using EstelApi.Application.Dto;
     using Serilog;
@@ -41,7 +44,9 @@
             this.CreateMap<UpdateWorkerViewModel, UpdateWorkerCommand>(MemberList.Source);
             this.CreateMap<UpdateAvailableDatesViewModel, UpdateAvailableDatesForCourseCommand>(MemberList.Source);
             this.CreateMap<UpdateCourseTopicsViewModel, UpdateCourseTopicsForCourseCommand>(MemberList.Source);
-            
+
+            this.CreateMap<UpdateAdditionalAmenityViewModel, UpdateAdditionalAmenityForCourseCommand>(MemberList.Source);
+
             /*  .ForMember(p => p.Id, x => x.Ignore())
                 .ForMember(p => p.CreditLimit, x => x.MapFrom(y => 0M))
                 .ForMember(p => p.CountryCountryName, x => x.Ignore())

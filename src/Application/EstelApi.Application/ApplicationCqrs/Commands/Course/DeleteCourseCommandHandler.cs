@@ -1,4 +1,4 @@
-﻿namespace EstelApi.Application.ApplicationCqrs.Commands.HandlersDeleteCommands
+﻿namespace EstelApi.Application.ApplicationCqrs.Commands.Course
 {
     using System.Threading;
     using System.Threading.Tasks;
@@ -15,7 +15,7 @@
     public class DeleteCourseCommandHandler : CommandHandler,
                                               IRequestHandler<RemoveEntityCommand<Course>, CommandResponse<Course>>
     {
-        private ICourseRepository courseRepository;
+        private readonly ICourseRepository courseRepository;
 
         public DeleteCourseCommandHandler(
             IQueryableUnitOfWork uow,
@@ -26,6 +26,7 @@
         {
             this.courseRepository = courseRepository;
         }
+
         public async Task<CommandResponse<Course>> Handle(
           RemoveEntityCommand<Course> request,
           CancellationToken cancellationToken)

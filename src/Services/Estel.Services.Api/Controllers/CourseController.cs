@@ -17,7 +17,10 @@
 
     using System.Threading.Tasks;
 
-    using EstelApi.Application.ApplicationCqrs.Commands.NewFolder;
+    using EstelApi.Application.ApplicationCqrs.Commands.Course.CreateNewCourse;
+    using EstelApi.Application.ApplicationCqrs.Commands.Course.UpdateAvailableDatesForCourse;
+    using EstelApi.Application.ApplicationCqrs.Commands.Course.UpdateCourse;
+    using EstelApi.Application.ApplicationCqrs.Commands.Course.UpdateCourseTopicsForCourse;
 
     /// <inheritdoc />
     /// <summary>
@@ -134,7 +137,9 @@
         }
 
         [HttpPut("Course/{courseId}/AvailableDate")]
-        public async Task<IActionResult> Put(int courseId, UpdateAvailableDatesViewModel updateAvailableDatesViewModel)
+        public async Task<IActionResult> Put(
+            int courseId, 
+            UpdateAvailableDatesViewModel updateAvailableDatesViewModel)
         {
             var command = updateAvailableDatesViewModel.ProjectedAs<UpdateAvailableDatesForCourseCommand>();
             command.CourseId = courseId;
@@ -155,7 +160,20 @@
             return this.Response(resp);
         }
 
+
+        [HttpPut("Course/{courseId}/AdditionalAmenity")]
+        public async Task<IActionResult> Put(
+            int courseId,
+            UpdateAdditionalAmenityViewModel updateCourseTopicsViewModel)
+        {
+            var command = updateCourseTopicsViewModel.ProjectedAs<UpdateAdditionalAmenityForCourseCommand>();
+            command.CourseId = courseId;
+            var resp = await this.Mediator.Send(command);
+
+            return this.Response(resp);
+        }
+
         // CourseAttendance
-        // AdditionalAmenityCourse
+
     }
 }
