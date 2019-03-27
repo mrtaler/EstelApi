@@ -12,13 +12,14 @@
 
     using MediatR;
 
+    /// <inheritdoc cref="CommandHandler" />
     /// <summary>
     /// The delete course type command handler.
     /// </summary>
     public class DeleteCourseTypeCommandHandler : CommandHandler,
                                                   IRequestHandler<RemoveEntityCommand<CourseType>, CommandResponse<CourseType>>
     {
-        private ICourseTypeRepository courseTypeRepository;
+        private readonly ICourseTypeRepository courseTypeRepository;
 
         public DeleteCourseTypeCommandHandler(
             IQueryableUnitOfWork uow,

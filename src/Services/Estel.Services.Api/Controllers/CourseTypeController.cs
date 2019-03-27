@@ -84,8 +84,8 @@
         /// <summary>
         /// Create New Course Type.
         /// </summary>
-        /// <param name="createCustomerViewModel">
-        /// The create customer view model.
+        /// <param name="command">
+        /// The command.
         /// </param>
         /// <returns>
         /// The <see cref="Task"/>.
@@ -106,8 +106,8 @@
         /// <summary>
         /// Update Course Type.
         /// </summary>
-        /// <param name="updateCustomerViewModel">
-        /// The update customer view model.
+        /// <param name="command">
+        /// The command.
         /// </param>
         /// <returns>
         /// The <see cref="Task"/>.

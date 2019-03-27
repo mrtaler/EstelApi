@@ -9,6 +9,7 @@
 
     using MediatR;
 
+    /// <inheritdoc cref="ICommand" />
     public class UpdateAdditionalAmenityCommand : ICommand,
                                                   IRequest<CommandResponse<AdditionalAmenity>>
     {

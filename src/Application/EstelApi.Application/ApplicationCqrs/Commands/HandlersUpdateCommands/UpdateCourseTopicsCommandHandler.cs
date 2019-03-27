@@ -13,6 +13,7 @@
 
     using MediatR;
 
+    /// <inheritdoc cref="CommandHandler" />
     public class UpdateCourseTopicsCommandHandler : CommandHandler,
                                                     IRequestHandler<UpdateCourseTopicsCommand, CommandResponse<CourseTopics>>
     {

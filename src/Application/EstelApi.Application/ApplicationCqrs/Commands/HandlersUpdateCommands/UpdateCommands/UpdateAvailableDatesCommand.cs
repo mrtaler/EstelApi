@@ -8,6 +8,7 @@
 
     using MediatR;
 
+    /// <inheritdoc cref="ICommand" />
     public class UpdateAvailableDatesCommand : ICommand, IRequest<CommandResponse<AvailableDates>>
     {
         [Required]

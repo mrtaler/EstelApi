@@ -1,5 +1,8 @@
 ﻿namespace EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands
 {
+    using System.Threading;
+    using System.Threading.Tasks;
+
     using EstelApi.Application.ApplicationCqrs.Base;
     using EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands;
     using EstelApi.Core.Seedwork.Adapter;
@@ -7,10 +10,10 @@
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Repositories;
     using EstelApi.Domain.DataAccessLayer.Context.Interfaces;
-    using MediatR;
-    using System.Threading;
-    using System.Threading.Tasks;
 
+    using MediatR;
+
+    /// <inheritdoc cref="CommandHandler" />
     public class UpdateWorkerCommandHandler : CommandHandler,
                                               IRequestHandler<UpdateWorkerCommand, CommandResponse<Worker>>
     {

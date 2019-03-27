@@ -13,10 +13,11 @@
 
     using MediatR;
 
+    /// <inheritdoc cref="CommandHandler" />
     public class UpdateAdditionalAmenityCommandHandler : CommandHandler,
                                                          IRequestHandler<UpdateAdditionalAmenityCommand, CommandResponse<AdditionalAmenity>>
     {
-        private IAdditionalAmenityRepository repository;
+        private readonly IAdditionalAmenityRepository repository;
 
         public UpdateAdditionalAmenityCommandHandler(
             IQueryableUnitOfWork uow,

@@ -81,8 +81,8 @@
         /// <summary>
         /// Create New Additional Amenity.
         /// </summary>
-        /// <param name="createCustomerViewModel">
-        /// The create customer view model.
+        /// <param name="CreateNewAdditionalAmenity">
+        /// The Create New Additional Amenity.
         /// </param>
         /// <returns>
         /// The <see cref="Task"/>.
@@ -103,8 +103,8 @@
         /// <summary>
         /// Update Additional Amenity.
         /// </summary>
-        /// <param name="updateCustomerViewModel">
-        /// The update customer view model.
+        /// <param name="command">
+        /// The command.
         /// </param>
         /// <returns>
         /// The <see cref="Task"/>.

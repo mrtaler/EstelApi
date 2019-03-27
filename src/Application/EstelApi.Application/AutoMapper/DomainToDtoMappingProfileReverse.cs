@@ -28,6 +28,10 @@
             this.CreateMap<UpdateCourseTopicsCommand, CourseTopics>(memberList: MemberList.Source);
             this.CreateMap<UpdateAvailableDatesCommand, AvailableDates>(memberList: MemberList.Source);
             this.CreateMap<UpdateAdditionalAmenityCommand, AdditionalAmenity>(memberList: MemberList.Source);
+
+
+
+
             //   this.CreateMap<Customer, CustomerDto>().PreserveReferences();
         }
     }

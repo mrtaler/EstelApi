@@ -10,7 +10,8 @@
 
     using MediatR;
 
-    public class UpdateUserCommand :  ICommand, IRequest<CommandResponse<User>>
+    /// <inheritdoc cref="ICommand" />
+    public class UpdateUserCommand : ICommand, IRequest<CommandResponse<User>>
     {
         /// <summary>
         /// The customer identifier

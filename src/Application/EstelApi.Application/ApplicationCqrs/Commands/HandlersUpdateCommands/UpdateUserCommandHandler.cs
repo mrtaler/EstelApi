@@ -13,6 +13,7 @@
 
     using MediatR;
 
+    /// <inheritdoc cref="CommandHandler" />
     /// <summary>
     /// The customer command handler.
     /// </summary>

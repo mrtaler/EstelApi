@@ -1,19 +1,22 @@
 ﻿namespace EstelApi.Application.ApplicationCqrs.Commands.HandlersDeleteCommands
 {
+    using System.Threading;
+    using System.Threading.Tasks;
+
     using EstelApi.Application.ApplicationCqrs.Base;
     using EstelApi.Application.ApplicationCqrs.Queries.FindByIdSpec;
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Repositories;
     using EstelApi.Domain.DataAccessLayer.Context.Interfaces;
-    using MediatR;
-    using System.Threading;
-    using System.Threading.Tasks;
 
+    using MediatR;
+
+    /// <inheritdoc cref="CommandHandler" />
     public class DeleteAdditionalAmenityCommandHandler : CommandHandler,
                                                          IRequestHandler<RemoveEntityCommand<AdditionalAmenity>, CommandResponse<AdditionalAmenity>>
     {
-        private IAdditionalAmenityRepository additionalAmenityRepository;
+        private readonly IAdditionalAmenityRepository additionalAmenityRepository;
 
         public DeleteAdditionalAmenityCommandHandler(
             IQueryableUnitOfWork uow,

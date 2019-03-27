@@ -13,6 +13,7 @@
 
     using MediatR;
 
+    /// <inheritdoc cref="CommandHandler" />
     public class UpdateAvailableDatesCommandHandler : CommandHandler,
                                         IRequestHandler<UpdateAvailableDatesCommand, CommandResponse<AvailableDates>>
     {

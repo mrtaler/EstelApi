@@ -1,19 +1,22 @@
 ﻿namespace EstelApi.Application.ApplicationCqrs.Commands.HandlersDeleteCommands
 {
+    using System.Threading;
+    using System.Threading.Tasks;
+
     using EstelApi.Application.ApplicationCqrs.Base;
     using EstelApi.Application.ApplicationCqrs.Queries.FindByIdSpec;
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Repositories;
     using EstelApi.Domain.DataAccessLayer.Context.Interfaces;
-    using MediatR;
-    using System.Threading;
-    using System.Threading.Tasks;
 
+    using MediatR;
+
+    /// <inheritdoc cref="CommandHandler" />
     public class DeleteAvailableDatesCommandHandler : CommandHandler,
                                         IRequestHandler<RemoveEntityCommand<AvailableDates>, CommandResponse<AvailableDates>>
     {
-        private IAvailableDatesRepository availableDatesRepository;
+        private readonly IAvailableDatesRepository availableDatesRepository;
 
         public DeleteAvailableDatesCommandHandler(
             IQueryableUnitOfWork uow,

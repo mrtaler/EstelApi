@@ -8,6 +8,7 @@
 
     using MediatR;
 
+    /// <inheritdoc cref="ICommand" />
     public class UpdateCourseTopicsCommand : ICommand, IRequest<CommandResponse<CourseTopics>>
     {
         [Required]

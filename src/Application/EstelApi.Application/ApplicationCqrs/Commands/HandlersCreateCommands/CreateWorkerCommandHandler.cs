@@ -15,7 +15,7 @@
     public class CreateWorkerCommandHandler : CommandHandler,
                                               IRequestHandler<CreateNewWorkerCommand, CommandResponse<Worker>>
     {
-        private IWorkerRepository repository;
+        private readonly IWorkerRepository repository;
 
         public CreateWorkerCommandHandler(
             IQueryableUnitOfWork uow,

@@ -12,10 +12,11 @@
 
     using MediatR;
 
+    /// <inheritdoc cref="CommandHandler" />
     public class DeleteWorkerCommandHandler : CommandHandler,
                                               IRequestHandler<RemoveEntityCommand<Worker>, CommandResponse<Worker>>
     {
-        private IWorkerRepository workerRepository;
+        private readonly IWorkerRepository workerRepository;
 
         public DeleteWorkerCommandHandler(
             IQueryableUnitOfWork uow,
