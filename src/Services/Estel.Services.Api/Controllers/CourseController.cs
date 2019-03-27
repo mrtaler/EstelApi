@@ -135,7 +135,7 @@
 
         [HttpPut("Course/{CourseId}/AvailableDate")]
         public async Task<IActionResult> Put(
-            int CourseId,
+            int courseId,
             UpdateAvailableDatesForCourseCommand command)
         {
             var resp = await this.Mediator.Send(command);
@@ -145,7 +145,7 @@
 
         [HttpPut("Course/{CourseId}/CourseTopics")]
         public async Task<IActionResult> Put(
-            int CourseId,
+            int courseId,
             UpdateCourseTopicsForCourseCommand command)
         {
            var resp = await this.Mediator.Send(command);
@@ -156,7 +156,7 @@
 
         [HttpPut("Course/{CourseId}/AdditionalAmenity")]
         public async Task<IActionResult> Put(
-            int CourseId,
+            int courseId,
             UpdateAdditionalAmenityForCourseCommand command)
         {
             var resp = await this.Mediator.Send(command);

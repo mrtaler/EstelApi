@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace EstelApi.Domain.DataAccessLayer.Context.Migrations
 {
-    public partial class updateAvlDates : Migration
+    public partial class UpdateAvlDates : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

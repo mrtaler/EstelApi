@@ -37,7 +37,7 @@
         {
             if (request == null || request.Id == 0)
             {
-                await this.bus.Publish(
+                await this.Bus.Publish(
                     new DomainNotification(
                         request.GetType().Name,
                         "_resources.GetStringResource(LocalizationKeys.Application.warning_CannotAddCustomerWithEmptyInformation)"),

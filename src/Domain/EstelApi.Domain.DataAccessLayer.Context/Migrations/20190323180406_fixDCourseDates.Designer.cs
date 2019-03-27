@@ -11,7 +11,7 @@ namespace EstelApi.Domain.DataAccessLayer.Context.Migrations
 {
     [DbContext(typeof(EstelContext))]
     [Migration("20190323180406_fixDCourseDates")]
-    partial class fixDCourseDates
+    partial class FixDCourseDates
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -15,7 +15,7 @@
         /// </summary>
         private int? requestedHashCode;
 
-        private Guid _Id;
+        private Guid id;
 
         /// <inheritdoc />
         /// <summary>
@@ -25,11 +25,11 @@
         {
             get
             {
-                return _Id;
+                return this.id;
             }
             set
             {
-                _Id = value;
+                this.id = value;
             }
         }
 

@@ -39,7 +39,7 @@
         {
             if (request == null)
             {
-                await this.bus.Publish(
+                await this.Bus.Publish(
                     new DomainNotification(
                         request.GetType().Name,
                         "message is null"),

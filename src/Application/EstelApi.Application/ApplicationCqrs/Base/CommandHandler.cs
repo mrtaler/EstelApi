@@ -18,7 +18,7 @@
         /// <summary>
         /// The bus.
         /// </summary>
-        protected readonly IMediator bus;
+        protected readonly IMediator Bus;
 
         /// <summary>
         /// The notifications.
@@ -41,7 +41,7 @@
         {
             this.uow = uow;
             this.notifications = (DomainNotificationHandler)notifications;
-            this.bus = bus;
+            this.Bus = bus;
         }
 
         // todo transfer in to mediatr pipeline
@@ -71,7 +71,7 @@
                 return true;
             }
 
-            await this.bus.Publish(new DomainNotification("Commit", "We had a problem during saving your data."));
+            await this.Bus.Publish(new DomainNotification("Commit", "We had a problem during saving your data."));
             return false;
         }
     }

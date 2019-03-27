@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace EstelApi.Domain.DataAccessLayer.Context.Migrations
 {
-    public partial class Init_EstelContext : Migration
+    public partial class InitEstelContext : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -9,7 +9,7 @@
     /// <summary>
     /// The fix d course dates.
     /// </summary>
-    public partial class fixDCourseDates : Migration
+    public partial class FixDCourseDates : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
