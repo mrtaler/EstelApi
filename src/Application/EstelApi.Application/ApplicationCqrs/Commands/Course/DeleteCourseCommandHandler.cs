@@ -49,7 +49,7 @@
 
             var current = this.courseRepository.OneMatching(new FindCourseById().SetId(request.Id));
             this.courseRepository.Remove(current);
-            return !this.Commit()
+            return !await this.Commit()
                        ? new CommandResponse<Course> { IsSuccess = false, Message = "Delete error", Object = null }
                        : new CommandResponse<Course>
                        {

@@ -39,7 +39,7 @@
 
             //   this.CreateMap<UpdateAdditionalAmenityViewModel, UpdateAdditionalAmenityForCourseCommand>(MemberList.Source);
             this.CreateMap<AvailableDatesCourse, AvailableDatesViewModel>(MemberList.Source);
-
+            this.CreateMap<AdditionalAmenity, AdditionalAmenityViewModel>(MemberList.Destination);
 
 
             this.CreateMap<Course, CourseViewModel>()

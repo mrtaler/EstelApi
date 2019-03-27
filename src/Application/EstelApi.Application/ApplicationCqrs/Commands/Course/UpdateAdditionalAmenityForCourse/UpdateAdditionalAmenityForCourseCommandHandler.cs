@@ -10,6 +10,8 @@
     using System.Threading;
     using System.Threading.Tasks;
 
+    using EstelApi.Core.Seedwork.Adapter;
+
     public class UpdateAdditionalAmenityForCourseCommandHandler : CommandHandler,
                                                                   IRequestHandler<UpdateAdditionalAmenityForCourseCommand,
                                                                       CommandResponse<bool>>
@@ -35,14 +37,16 @@
             UpdateAdditionalAmenityForCourseCommand request,
             CancellationToken cancellationToken)
         {
-            var courseTopics = this.additionalAmenityRepository.OneMatching(new FindAdditionalAmenity(request));
+            var entity = request.ProjectedAs<AdditionalAmenity>();
+
+            var courseTopics = this.additionalAmenityRepository.OneMatching(new FindAdditionalAmenity(entity));
             if (courseTopics == null)
             {
                 var course = this.courseRepository.OneMatching(new FindCourseById().SetId(request.CourseId));
                 course.AdditionalAmenityCourses.Add(new AdditionalAmenityCourse()
                 {
                     CourseId = request.CourseId,
-                    AdditionalAmenity = request
+                    AdditionalAmenity = entity
                 });
             }
             else
@@ -55,7 +59,7 @@
                 });
             }
 
-            return this.Commit()
+            return await this.Commit()
                        ? new CommandResponse<bool> { IsSuccess = true, Message = "AdditionalAmenity Added", Object = true }
                        : new CommandResponse<bool> { IsSuccess = false, Message = "AdditionalAmenity Not Added", Object = false };
         }

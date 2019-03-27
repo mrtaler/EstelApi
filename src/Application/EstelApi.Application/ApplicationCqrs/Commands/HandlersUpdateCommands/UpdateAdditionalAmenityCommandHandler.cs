@@ -47,7 +47,7 @@
             var updateAdditionalAmenity = request.ProjectedAs<AdditionalAmenity>();
             this.repository.Modify(updateAdditionalAmenity);
        
-            return this.Commit()
+            return await this.Commit()
                        ? new CommandResponse<AdditionalAmenity> { IsSuccess = true, Message = "New Entity was added", Object = updateAdditionalAmenity }
                        : new CommandResponse<AdditionalAmenity> { IsSuccess = false, Message = "New Entity Not added", Object = updateAdditionalAmenity };
         }

@@ -53,7 +53,7 @@
 
             var current = this.courseTypeRepository.OneMatching(new FindCourseTypeById().SetId(request.Id));
             this.courseTypeRepository.Remove(current);
-            return !this.Commit()
+            return !await this.Commit()
                        ? new CommandResponse<CourseType>
                        {
                            IsSuccess = false,

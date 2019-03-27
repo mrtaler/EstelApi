@@ -5,6 +5,7 @@
 
     using EstelApi.Application.ApplicationCqrs.Base;
     using EstelApi.Application.ApplicationCqrs.Queries.FindByIdSpec;
+    using EstelApi.Core.Seedwork.Adapter;
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Repositories;
@@ -37,15 +38,16 @@
             UpdateAvailableDatesForCourseCommand request,
             CancellationToken cancellationToken)
         {
-            var availableDates = this.availableDatesRepository.OneMatching(new FindAvailableDates(request));
+            var entity = request.ProjectedAs<AvailableDates>();
+            var availableDates = this.availableDatesRepository.OneMatching(new FindAvailableDates(entity));
             if (availableDates == null)
             {
                 var course = this.repository.OneMatching(new FindCourseById().SetId(request.CourseId));
                 course.AvailableDates.Add(new AvailableDatesCourse
                                               {
                                                   CourseId = request.CourseId,
-                                                  AvailableDates = request
-                                              });
+                                                  AvailableDates = entity
+                });
             }
             else
             {
@@ -57,7 +59,7 @@
                                               });
             }
 
-            return this.Commit()
+            return await this.Commit()
                        ? new CommandResponse<bool> { IsSuccess = true, Message = "Date Adedes", Object = true }
                        : new CommandResponse<bool> { IsSuccess = false, Message = "Date Adedes", Object = false };
         }

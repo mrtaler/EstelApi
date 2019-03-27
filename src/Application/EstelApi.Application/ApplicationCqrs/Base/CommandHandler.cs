@@ -2,8 +2,8 @@
 {
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
     using EstelApi.Domain.DataAccessLayer.Context.Interfaces;
-
     using MediatR;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// The command handler.
@@ -59,7 +59,7 @@
         /// <returns>
         /// The <see cref="bool"/>.
         /// </returns>
-        public bool Commit()
+        public async Task<bool> Commit()
         {
             if (this.notifications.HasNotifications())
             {
@@ -71,7 +71,7 @@
                 return true;
             }
 
-            this.bus.Publish(new DomainNotification("Commit", "We had a problem during saving your data."));
+            await this.bus.Publish(new DomainNotification("Commit", "We had a problem during saving your data."));
             return false;
         }
     }

@@ -46,7 +46,7 @@
             var updateAvailableDates = request.ProjectedAs<AvailableDates>();
             this.repository.Modify(updateAvailableDates);
 
-            return this.Commit()
+            return await this.Commit()
                        ? new CommandResponse<AvailableDates> { IsSuccess = true, Message = "New Entity was added", Object = updateAvailableDates }
                        : new CommandResponse<AvailableDates> { IsSuccess = false, Message = "New Entity Not added", Object = updateAvailableDates };
         }

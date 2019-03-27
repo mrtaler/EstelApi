@@ -10,6 +10,10 @@
     using Microsoft.AspNetCore.Mvc;
     using System.Threading.Tasks;
 
+    using Estel.Services.Api.ViewModels;
+
+    using EstelApi.Core.Seedwork.Adapter;
+
     /// <inheritdoc />
     /// <summary>
     /// The additional amenity controller.
@@ -42,7 +46,8 @@
         [HttpGet("AdditionalAmenities")]
         public async Task<IActionResult> Get()
         {
-            var result = await this.Mediator.Send(new AllEntitiesQuery<AdditionalAmenity>());
+            var additionalAmenities = await this.Mediator.Send(new AllEntitiesQuery<AdditionalAmenity>());
+            var result = additionalAmenities.ProjectedAsCollection<AdditionalAmenityViewModel>();
             return this.Response(result);
         }
 
@@ -58,7 +63,8 @@
         [HttpGet("AdditionalAmenity")]
         public async Task<IActionResult> Get(int id)
         {
-            var result = await this.Mediator.Send(new EntityByIdQuery<AdditionalAmenity>(id));
+            var additionalAmenity = await this.Mediator.Send(new EntityByIdQuery<AdditionalAmenity>(id));
+            var result = additionalAmenity.ProjectedAs<AdditionalAmenityViewModel>();  
             return this.Response(result);
         }
 
@@ -81,22 +87,22 @@
         /// <summary>
         /// Create New Additional Amenity.
         /// </summary>
-        /// <param name="CreateNewAdditionalAmenity">
-        /// The Create New Additional Amenity.
+        /// <param name="createNewAdditionalAmenity">
+        /// The create New Additional Amenity.
         /// </param>
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
         [HttpPost("AdditionalAmenity")]
-        public async Task<IActionResult> Post([FromBody] CreateNewAdditionalAmenityCommand CreateNewAdditionalAmenity)
+        public async Task<IActionResult> Post([FromBody] CreateNewAdditionalAmenityCommand createNewAdditionalAmenity)
         {
             if (!this.ModelState.IsValid)
             {
                 this.NotifyModelStateErrors();
-                return this.Response(CreateNewAdditionalAmenity);
+                return this.Response(createNewAdditionalAmenity);
             }
 
-            var resp = await this.Mediator.Send(CreateNewAdditionalAmenity);
+            var resp = await this.Mediator.Send(createNewAdditionalAmenity);
             return this.Response(resp);
         }
 

@@ -57,7 +57,7 @@
 
             this.customerRepository.Remove(current);
 
-            return !this.Commit()
+            return !await this.Commit()
                        ? new CommandResponse<User> { IsSuccess = false, Message = "Delete error", Object = null }
                        : new CommandResponse<User>
                        {

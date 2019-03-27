@@ -140,4 +140,11 @@
 
         public string LogoPath { get; set; }
     }
+
+    public class AdditionalAmenityViewModel
+    {
+        public int Id { get; set; }
+
+        public string AdditionalAmenityName { get; set; }
+    }
 }

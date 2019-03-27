@@ -51,7 +51,7 @@
 
             var current = this.additionalAmenityRepository.OneMatching(new FindAdditionalAmenityById().SetId(request.Id));
             this.additionalAmenityRepository.Remove(current);
-            return !this.Commit()
+            return !await this.Commit()
                        ? new CommandResponse<AdditionalAmenity>
                        {
                            IsSuccess = false,

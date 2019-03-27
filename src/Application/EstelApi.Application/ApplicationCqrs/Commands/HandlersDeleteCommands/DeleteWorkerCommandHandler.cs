@@ -50,7 +50,7 @@
 
             var current = this.workerRepository.OneMatching(new FindWorkerById().SetId(request.Id));
             this.workerRepository.Remove(current);
-            return !this.Commit()
+            return !await this.Commit()
                        ? new CommandResponse<Worker> { IsSuccess = false, Message = "Delete error", Object = null }
                        : new CommandResponse<Worker>
                              {

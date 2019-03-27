@@ -50,7 +50,7 @@
 
             var current = this.courseAttendanceRepository.OneMatching(new FindCourseAttendanceById().SetId(request.Id));
             this.courseAttendanceRepository.Remove(current);
-            return !this.Commit()
+            return !await this.Commit()
                        ? new CommandResponse<CourseAttendance>
                        {
                            IsSuccess = false,

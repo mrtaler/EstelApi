@@ -45,7 +45,7 @@
 
             var updateWorker = request.ProjectedAs<Worker>();
             this.repository.Modify(updateWorker);
-            return this.Commit()
+            return await this.Commit()
                        ? new CommandResponse<Worker> { IsSuccess = true, Message = "New Entity was added", Object = updateWorker }
                        : new CommandResponse<Worker> { IsSuccess = false, Message = "New Entity Not added", Object = updateWorker };
         }

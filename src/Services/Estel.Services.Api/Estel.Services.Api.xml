@@ -140,23 +140,23 @@
             The <see cref="T:System.Threading.Tasks.Task"/>.
             </returns>
         </member>
-        <member name="M:Estel.Services.Api.Controllers.AdditionalAmenityController.Post(Estel.Services.Api.ViewModels.Create.CreateAdditionalAmenityViewModel)">
+        <member name="M:Estel.Services.Api.Controllers.AdditionalAmenityController.Post(EstelApi.Application.ApplicationCqrs.Commands.HandlersCreateCommands.CreateCommands.CreateNewAdditionalAmenityCommand)">
             <summary>
             Create New Additional Amenity.
             </summary>
-            <param name="createCustomerViewModel">
-            The create customer view model.
+            <param name="createNewAdditionalAmenity">
+            The create New Additional Amenity.
             </param>
             <returns>
             The <see cref="T:System.Threading.Tasks.Task"/>.
             </returns>
         </member>
-        <member name="M:Estel.Services.Api.Controllers.AdditionalAmenityController.Put(Estel.Services.Api.ViewModels.Update.UpdateAdditionalAmenityViewModel)">
+        <member name="M:Estel.Services.Api.Controllers.AdditionalAmenityController.Put(EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands.UpdateAdditionalAmenityCommand)">
             <summary>
             Update Additional Amenity.
             </summary>
-            <param name="updateCustomerViewModel">
-            The update customer view model.
+            <param name="command">
+            The command.
             </param>
             <returns>
             The <see cref="T:System.Threading.Tasks.Task"/>.
@@ -274,23 +274,23 @@
             The <see cref="T:System.Threading.Tasks.Task"/>.
             </returns>
         </member>
-        <member name="M:Estel.Services.Api.Controllers.AvailableDatesController.Post(Estel.Services.Api.ViewModels.Create.CreateAvailableDatesViewModel)">
+        <member name="M:Estel.Services.Api.Controllers.AvailableDatesController.Post(EstelApi.Application.ApplicationCqrs.Commands.HandlersCreateCommands.CreateCommands.CreateNewAvailableDatesCommand)">
             <summary>
             Create New Available Dates.
             </summary>
-            <param name="createCustomerViewModel">
-            The create customer view model.
+            <param name="command">
+            The command.
             </param>
             <returns>
             The <see cref="T:System.Threading.Tasks.Task"/>.
             </returns>
         </member>
-        <member name="M:Estel.Services.Api.Controllers.AvailableDatesController.Put(Estel.Services.Api.ViewModels.Update.UpdateAvailableDatesViewModel)">
+        <member name="M:Estel.Services.Api.Controllers.AvailableDatesController.Put(EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands.UpdateAvailableDatesCommand)">
             <summary>
             Update Available Dates.
             </summary>
-            <param name="updateCustomerViewModel">
-            The update customer view model.
+            <param name="command">
+            The command.
             </param>
             <returns>
             The <see cref="T:System.Threading.Tasks.Task"/>.
@@ -392,23 +392,23 @@
             The <see cref="T:System.Threading.Tasks.Task"/>.
             </returns>
         </member>
-        <member name="M:Estel.Services.Api.Controllers.CourseController.Post(Estel.Services.Api.ViewModels.Create.CreateCourseViewModel)">
+        <member name="M:Estel.Services.Api.Controllers.CourseController.Post(EstelApi.Application.ApplicationCqrs.Commands.Course.CreateNewCourse.CreateNewCourseCommand)">
             <summary>
             Create New Course.
             </summary>
-            <param name="createCustomerViewModel">
-            The create customer view model.
+            <param name="command">
+            The command.
             </param>
             <returns>
             The <see cref="T:System.Threading.Tasks.Task"/>.
             </returns>
         </member>
-        <member name="M:Estel.Services.Api.Controllers.CourseController.Put(Estel.Services.Api.ViewModels.Update.UpdateCourseViewModel)">
+        <member name="M:Estel.Services.Api.Controllers.CourseController.Put(EstelApi.Application.ApplicationCqrs.Commands.Course.UpdateCourse.UpdateCourseCommand)">
             <summary>
             Update Course.
             </summary>
-            <param name="updateCustomerViewModel">
-            The update customer view model.
+            <param name="command">
+            The command.
             </param>
             <returns>
             The <see cref="T:System.Threading.Tasks.Task"/>.
@@ -462,23 +462,23 @@
             The <see cref="T:System.Threading.Tasks.Task"/>.
             </returns>
         </member>
-        <member name="M:Estel.Services.Api.Controllers.CourseTopicsController.Post(Estel.Services.Api.ViewModels.Create.CreateCourseTopicsViewModel)">
+        <member name="M:Estel.Services.Api.Controllers.CourseTopicsController.Post(EstelApi.Application.ApplicationCqrs.Commands.HandlersCreateCommands.CreateCommands.CreateNewCourseTopicsCommand)">
             <summary>
             Create New Course Topics.
             </summary>
-            <param name="createCustomerViewModel">
-            The create customer view model.
+            <param name="command">
+            The command.
             </param>
             <returns>
             The <see cref="T:System.Threading.Tasks.Task"/>.
             </returns>
         </member>
-        <member name="M:Estel.Services.Api.Controllers.CourseTopicsController.Put(Estel.Services.Api.ViewModels.Update.UpdateCourseTopicsViewModel)">
+        <member name="M:Estel.Services.Api.Controllers.CourseTopicsController.Put(EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands.UpdateCourseTopicsCommand)">
             <summary>
             Update Course Topics.
             </summary>
-            <param name="updateCustomerViewModel">
-            The update customer view model.
+            <param name="command">
+            The command.
             </param>
             <returns>
             The <see cref="T:System.Threading.Tasks.Task"/>.
@@ -532,23 +532,23 @@
             The <see cref="T:System.Threading.Tasks.Task"/>.
             </returns>
         </member>
-        <member name="M:Estel.Services.Api.Controllers.CourseTypeController.Post(Estel.Services.Api.ViewModels.Create.CreateCourseTypeViewModel)">
+        <member name="M:Estel.Services.Api.Controllers.CourseTypeController.Post(EstelApi.Application.ApplicationCqrs.Commands.HandlersCreateCommands.CreateCommands.CreateNewCourseTypeCommand)">
             <summary>
             Create New Course Type.
             </summary>
-            <param name="createCustomerViewModel">
-            The create customer view model.
+            <param name="command">
+            The command.
             </param>
             <returns>
             The <see cref="T:System.Threading.Tasks.Task"/>.
             </returns>
         </member>
-        <member name="M:Estel.Services.Api.Controllers.CourseTypeController.Put(Estel.Services.Api.ViewModels.Update.UpdateCourseTypeViewModel)">
+        <member name="M:Estel.Services.Api.Controllers.CourseTypeController.Put(EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands.UpdateCourseTypeCommand)">
             <summary>
             Update Course Type.
             </summary>
-            <param name="updateCustomerViewModel">
-            The update customer view model.
+            <param name="command">
+            The command.
             </param>
             <returns>
             The <see cref="T:System.Threading.Tasks.Task"/>.
@@ -591,24 +591,24 @@
             </returns>
             [AllowAnonymous]
         </member>
-        <member name="M:Estel.Services.Api.Controllers.UserController.Post(Estel.Services.Api.ViewModels.Create.CreateUserViewModel)">
+        <member name="M:Estel.Services.Api.Controllers.UserController.Post(EstelApi.Application.ApplicationCqrs.Commands.HandlersCreateCommands.CreateCommands.CreateNewUserCommand)">
             <summary>
             Create New Customer (work)
             </summary>
-            <param name="createCustomerViewModel">
-            The create customer view model.
+            <param name="command">
+            The command.
             </param>
             <returns>
             The <see cref="T:System.Threading.Tasks.Task"/>.
             </returns>
             [Authorize(Policy = "CanWriteCustomerData")]
         </member>
-        <member name="M:Estel.Services.Api.Controllers.UserController.Put(Estel.Services.Api.ViewModels.Update.UpdateUserViewModel)">
+        <member name="M:Estel.Services.Api.Controllers.UserController.Put(EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands.UpdateUserCommand)">
             <summary>
             Update Customer. (work)
             </summary>
-            <param name="updateCustomerViewModel">
-            The update customer view model.
+            <param name="command">
+            The command.
             </param>
             <returns>
             The <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/>.
@@ -675,23 +675,23 @@
             The <see cref="T:System.Threading.Tasks.Task"/>.
             </returns>
         </member>
-        <member name="M:Estel.Services.Api.Controllers.WorkerController.Post(Estel.Services.Api.ViewModels.Create.CreateWorkerViewModel)">
+        <member name="M:Estel.Services.Api.Controllers.WorkerController.Post(EstelApi.Application.ApplicationCqrs.Commands.HandlersCreateCommands.CreateCommands.CreateNewWorkerCommand)">
             <summary>
             Create New Worker.
             </summary>
-            <param name="createCustomerViewModel">
-            The create customer view model.
+            <param name="command">
+            The command.
             </param>
             <returns>
             The <see cref="T:System.Threading.Tasks.Task"/>.
             </returns>
         </member>
-        <member name="M:Estel.Services.Api.Controllers.WorkerController.Put(Estel.Services.Api.ViewModels.Update.UpdateWorkerViewModel)">
+        <member name="M:Estel.Services.Api.Controllers.WorkerController.Put(EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands.UpdateWorkerCommand)">
             <summary>
             Update Worker.
             </summary>
-            <param name="updateCustomerViewModel">
-            The update customer view model.
+            <param name="command">
+            The command.
             </param>
             <returns>
             The <see cref="T:System.Threading.Tasks.Task"/>.
@@ -1024,86 +1024,6 @@
         <member name="P:Estel.Services.Api.ViewModels.UserViewModel.BirthDate">
             <summary>
             Gets or sets the birth date.
-            </summary>
-        </member>
-        <member name="T:Estel.Services.Api.ViewModels.Create.CreateAdditionalAmenityViewModel">
-            <summary>
-            The create additional amenity view model.
-            </summary>
-        </member>
-        <member name="P:Estel.Services.Api.ViewModels.Create.CreateAdditionalAmenityViewModel.AdditionalAmenityName">
-            <summary>
-            Раименование Плюшек от трениннга (кофе, сертификаты, призы и тд.).
-            </summary>
-        </member>
-        <member name="T:Estel.Services.Api.ViewModels.Create.CreateCourseTopicsViewModel">
-            <summary>
-            The create course topics view model.
-            </summary>
-        </member>
-        <member name="P:Estel.Services.Api.ViewModels.Create.CreateCourseTopicsViewModel.CourseTopicName">
-            <summary>
-            Темы раскрываемые на курсах.
-            </summary>
-        </member>
-        <member name="P:Estel.Services.Api.ViewModels.Create.CreateCourseTypeViewModel.CourseTypeName">
-            <summary>
-            Gets or sets the course type name.
-            </summary>
-        </member>
-        <member name="P:Estel.Services.Api.ViewModels.Create.CreateCourseTypeViewModel.Description">
-            <summary>
-            Gets or sets the description.
-            </summary>
-        </member>
-        <member name="T:Estel.Services.Api.ViewModels.Create.CreateUserViewModel">
-            <summary>
-            The create customer view model.
-            </summary>
-        </member>
-        <member name="P:Estel.Services.Api.ViewModels.Create.CreateUserViewModel.FirstName">
-            <summary>
-            The customer first name
-            </summary>
-        </member>
-        <member name="P:Estel.Services.Api.ViewModels.Create.CreateUserViewModel.LastName">
-            <summary>
-            The customer lastName
-            </summary>
-        </member>
-        <member name="P:Estel.Services.Api.ViewModels.Update.UpdateCourseTypeViewModel.CourseTypeName">
-            <summary>
-            Gets or sets the course type name.
-            </summary>
-        </member>
-        <member name="P:Estel.Services.Api.ViewModels.Update.UpdateCourseTypeViewModel.Description">
-            <summary>
-            Gets or sets the description.
-            </summary>
-        </member>
-        <member name="T:Estel.Services.Api.ViewModels.Update.UpdateUserViewModel">
-            <summary>
-            The update customer view model.
-            </summary>
-        </member>
-        <member name="P:Estel.Services.Api.ViewModels.Update.UpdateUserViewModel.Id">
-            <summary>
-            The customer identifier
-            </summary>
-        </member>
-        <member name="P:Estel.Services.Api.ViewModels.Update.UpdateUserViewModel.FirstName">
-            <summary>
-            The customer first name
-            </summary>
-        </member>
-        <member name="P:Estel.Services.Api.ViewModels.Update.UpdateUserViewModel.LastName">
-            <summary>
-            The customer lastName
-            </summary>
-        </member>
-        <member name="P:Estel.Services.Api.ViewModels.Update.UpdateUserViewModel.Telephone">
-            <summary>
-            Get or set the telephone 
             </summary>
         </member>
         <member name="T:Estel.Services.Api.ViewModels.ViewModelToDtoProfileRev">

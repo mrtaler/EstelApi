@@ -4,6 +4,7 @@
     using System.Threading.Tasks;
 
     using EstelApi.Application.ApplicationCqrs.Base;
+    using EstelApi.Core.Seedwork.Adapter;
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Repositories;
@@ -40,10 +41,11 @@
                 // throw new ArgumentException("_resources.GetStringResource(LocalizationKeys.Application.warning_CannotAddCustomerWithEmptyInformation)");
             }
 
-            this.repository.Modify(request);
-            return this.Commit()
-                       ? new CommandResponse<Course> { IsSuccess = true, Message = "New Entity was added", Object = request }
-                       : new CommandResponse<Course> { IsSuccess = false, Message = "New Entity Not added", Object = request };
+            var entity = request.ProjectedAs<Course>();
+            this.repository.Modify(entity);
+            return await this.Commit()
+                       ? new CommandResponse<Course> { IsSuccess = true, Message = "New Entity was added", Object = entity }
+                       : new CommandResponse<Course> { IsSuccess = false, Message = "New Entity Not added", Object = entity };
         }
     }
 }

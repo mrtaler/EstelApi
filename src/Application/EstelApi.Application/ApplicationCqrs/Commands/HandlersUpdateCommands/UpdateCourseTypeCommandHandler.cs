@@ -48,7 +48,7 @@
             var updateCourseType = request.ProjectedAs<CourseType>();
             this.repository.Modify(updateCourseType);
 
-            return this.Commit()
+            return await this.Commit()
                        ? new CommandResponse<CourseType> { IsSuccess = true, Message = "New Entity was added", Object = updateCourseType }
                        : new CommandResponse<CourseType> { IsSuccess = false, Message = "New Entity Not added", Object = updateCourseType };
         }

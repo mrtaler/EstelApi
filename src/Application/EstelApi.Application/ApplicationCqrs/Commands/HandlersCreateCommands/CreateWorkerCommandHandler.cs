@@ -5,6 +5,7 @@
 
     using EstelApi.Application.ApplicationCqrs.Base;
     using EstelApi.Application.ApplicationCqrs.Commands.HandlersCreateCommands.CreateCommands;
+    using EstelApi.Core.Seedwork.Adapter;
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Repositories;
@@ -12,6 +13,7 @@
 
     using MediatR;
 
+    /// <inheritdoc cref="CommandHandler" />
     public class CreateWorkerCommandHandler : CommandHandler,
                                               IRequestHandler<CreateNewWorkerCommand, CommandResponse<Worker>>
     {
@@ -41,11 +43,12 @@
                 // throw new ArgumentException("_resources.GetStringResource(LocalizationKeys.Application.warning_CannotAddCustomerWithEmptyInformation)");
             }
 
-            this.repository.Add(request);
+            var entity = request.ProjectedAs<Worker>();
+            this.repository.Add(entity);
 
-            return this.Commit()
-                       ? new CommandResponse<Worker> { IsSuccess = true, Message = "New Entity was added", Object = request }
-                       : new CommandResponse<Worker> { IsSuccess = false, Message = "New Entity Not added", Object = request };
+            return await this.Commit()
+                       ? new CommandResponse<Worker> { IsSuccess = true, Message = "New Entity was added", Object = entity }
+                       : new CommandResponse<Worker> { IsSuccess = false, Message = "New Entity Not added", Object = entity };
         }
     }
 }

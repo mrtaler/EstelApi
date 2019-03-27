@@ -5,6 +5,7 @@
 
     using EstelApi.Application.ApplicationCqrs.Base;
     using EstelApi.Application.ApplicationCqrs.Commands.HandlersCreateCommands.CreateCommands;
+    using EstelApi.Core.Seedwork.Adapter;
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Repositories;
@@ -15,7 +16,7 @@
     public class CreateCourseTopicsCommandHandler : CommandHandler,
                                                     IRequestHandler<CreateNewCourseTopicsCommand, CommandResponse<CourseTopics>>
     {
-        private ICourseTopicsRepository repository;
+        private readonly ICourseTopicsRepository repository;
 
         public CreateCourseTopicsCommandHandler(
             IQueryableUnitOfWork uow,
@@ -41,11 +42,12 @@
                 // throw new ArgumentException("_resources.GetStringResource(LocalizationKeys.Application.warning_CannotAddCustomerWithEmptyInformation)");
             }
 
-            this.repository.Add(request);
+            var entity = request.ProjectedAs<CourseTopics>();
+            this.repository.Add(entity);
 
-            return this.Commit()
-                       ? new CommandResponse<CourseTopics> { IsSuccess = true, Message = "New Entity was added", Object = request }
-                       : new CommandResponse<CourseTopics> { IsSuccess = false, Message = "New Entity Not added", Object = request };
+            return await this.Commit()
+                       ? new CommandResponse<CourseTopics> { IsSuccess = true, Message = "New Entity was added", Object = entity }
+                       : new CommandResponse<CourseTopics> { IsSuccess = false, Message = "New Entity Not added", Object = entity };
         }
     }
 }

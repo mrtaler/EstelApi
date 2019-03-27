@@ -50,7 +50,7 @@
 
             var current = this.availableDatesRepository.OneMatching(new FindAvailableDatesById().SetId(request.Id));
             this.availableDatesRepository.Remove(current);
-            return !this.Commit()
+            return !await this.Commit()
                        ? new CommandResponse<AvailableDates>
                        {
                            IsSuccess = false,

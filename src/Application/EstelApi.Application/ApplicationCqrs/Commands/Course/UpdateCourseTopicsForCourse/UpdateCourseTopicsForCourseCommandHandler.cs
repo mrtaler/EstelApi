@@ -6,6 +6,7 @@
     using EstelApi.Application.ApplicationCqrs.Base;
     using EstelApi.Application.ApplicationCqrs.Commands.Course.UpdateCourseTopicsForCourse;
     using EstelApi.Application.ApplicationCqrs.Queries.FindByIdSpec;
+    using EstelApi.Core.Seedwork.Adapter;
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Repositories;
@@ -37,15 +38,16 @@
             UpdateCourseTopicsForCourseCommand request,
             CancellationToken cancellationToken)
         {
-            var courseTopics = this.courseTopicsRepository.OneMatching(new FindCourseTopics(request));
+            var entity = request.ProjectedAs<CourseTopics>();
+            var courseTopics = this.courseTopicsRepository.OneMatching(new FindCourseTopics(entity));
             if (courseTopics == null)
             {
                 var course = this.courseRepository.OneMatching(new FindCourseById().SetId(request.CourseId));
                 course.CourseTopics.Add(new CourseTopicsCourse
                                             {
                                                 CourseId = request.CourseId,
-                                                CourseTopics = request
-                                            });
+                                                CourseTopics = entity
+                });
             }
             else
             {
@@ -57,7 +59,7 @@
                                             });
             }
 
-            return this.Commit()
+            return await this.Commit()
                        ? new CommandResponse<bool> { IsSuccess = true, Message = "Date Adedes", Object = true }
                        : new CommandResponse<bool> { IsSuccess = false, Message = "Date Adedes", Object = false };
         }
