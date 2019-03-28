@@ -17,11 +17,13 @@ namespace EstelApi.Application.ApplicationCqrs.Queries.QueryHandlers
                                         IRequestHandler<AllEntitiesQuery<AdditionalAmenity>, IEnumerable<AdditionalAmenity>>,
                                         IRequestHandler<EntityByIdQuery<AdditionalAmenity>, AdditionalAmenity>
     {
-        private IAdditionalAmenityRepository repository;
+        private readonly IAdditionalAmenityRepository repository;
 
         public AdditionalAmenityQueriesHandler(
-            IQueryableUnitOfWork uow, IMediator bus,
-            INotificationHandler<DomainNotification> notifications, IAdditionalAmenityRepository additionalAmenityRepository)
+            IQueryableUnitOfWork uow, 
+            IMediator bus,
+            INotificationHandler<DomainEvent> notifications,
+            IAdditionalAmenityRepository additionalAmenityRepository)
             : base(uow, bus, notifications)
         {
             this.repository = additionalAmenityRepository;

@@ -1,18 +1,19 @@
 ﻿namespace EstelApi.Domain.DataAccessLayer.Context.Context.Repositories
 {
-    using EstelApi.Domain.DataAccessLayer.Context.Context;
-    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
-    using EstelApi.Domain.DataAccessLayer.Context.Repository.Base;
     using System.Collections.Generic;
     using System.Linq;
 
+    using EstelApi.Domain.DataAccessLayer.Context.Context;
+    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Repositories;
+    using EstelApi.Domain.DataAccessLayer.Context.Repository.Base;
 
     /// <inheritdoc cref="IUserRepository" />
     public class UserRepository : Repository<User>, IUserRepository
     {
+        /// <inheritdoc />
         /// <summary>
-        /// Initializes a new instance of the <see cref="CustomerRepository"/> class.
+        /// Initializes a new instance of the <see cref="T:EstelApi.Domain.DataAccessLayer.Context.Context.Repositories.UserRepository" /> class. 
         /// </summary>
         /// <param name="context">
         /// The context.
@@ -21,18 +22,6 @@
             : base(context)
         {
         }
-
-        /* public override Customer GetById(object id)
-         {
-             var ret = this.unitOfWork
-                 .CreateSet<Customer>()
-                 .Include(x => x.Country)
-                 .Include(x => x.Picture);
-
-             var retData = ret.First(x => x.Id == (Guid)id);
-
-             return retData;
-         }*/
 
         /// <inheritdoc />
         public User GetByFirstName(string email)
@@ -51,10 +40,7 @@
         public override void Merge(User persisted, User current)
         {
             // merge customer and customer picture
-            this.UnitOfWork.Entry<User>(persisted).CurrentValues.SetValues(current);
-            
-            // this.unitOfWork.Entry<Address>(persisted.Address).CurrentValues.SetValues(current.Address);
-            //     this.unitOfWork.Entry<Picture>(persisted.Picture).CurrentValues.SetValues( current.Picture);
+            this.UnitOfWork.Entry(persisted).CurrentValues.SetValues(current);
         }
     }
 }

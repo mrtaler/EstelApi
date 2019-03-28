@@ -1,9 +1,11 @@
 ﻿namespace EstelApi.Application.ApplicationCqrs.Base
 {
+    using System.Threading.Tasks;
+
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
     using EstelApi.Domain.DataAccessLayer.Context.Interfaces;
+
     using MediatR;
-    using System.Threading.Tasks;
 
     /// <summary>
     /// The command handler.
@@ -11,19 +13,19 @@
     public class CommandHandler
     {
         /// <summary>
-        /// The uow.
-        /// </summary>
-        private readonly IQueryableUnitOfWork uow;
-
-        /// <summary>
         /// The bus.
         /// </summary>
         protected readonly IMediator Bus;
 
         /// <summary>
+        /// The uow.
+        /// </summary>
+        private readonly IQueryableUnitOfWork uow;
+
+        /// <summary>
         /// The notifications.
         /// </summary>
-        private readonly DomainNotificationHandler notifications;
+        private readonly DomainEventHandler notifications;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CommandHandler"/> class.
@@ -37,10 +39,10 @@
         /// <param name="notifications">
         /// The notifications.
         /// </param>
-        public CommandHandler(IQueryableUnitOfWork uow, IMediator bus, INotificationHandler<DomainNotification> notifications)
+        public CommandHandler(IQueryableUnitOfWork uow, IMediator bus, INotificationHandler<DomainEvent> notifications)
         {
             this.uow = uow;
-            this.notifications = (DomainNotificationHandler)notifications;
+            this.notifications = (DomainEventHandler)notifications;
             this.Bus = bus;
         }
 
@@ -59,7 +61,7 @@
         /// <returns>
         /// The <see cref="bool"/>.
         /// </returns>
-        public async Task<bool> Commit()
+        public async Task<bool> CommitAsync()
         {
             if (this.notifications.HasNotifications())
             {
@@ -71,7 +73,7 @@
                 return true;
             }
 
-            await this.Bus.Publish(new DomainNotification("Commit", "We had a problem during saving your data."));
+            await this.Bus.Publish(new DomainEvent("Commit", "We had a problem during saving your data.")).ConfigureAwait(false);
             return false;
         }
     }

@@ -38,7 +38,7 @@
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
-            INotificationHandler<DomainNotification> notifications,
+            INotificationHandler<DomainEvent> notifications,
             ILoggerFactory loggerFactory,
             IMediator mediator) : base(notifications, mediator)
         {

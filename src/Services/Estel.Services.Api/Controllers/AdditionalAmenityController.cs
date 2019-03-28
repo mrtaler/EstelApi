@@ -32,7 +32,7 @@
         /// <param name="mediator">
         /// The mediator.
         /// </param>
-        public AdditionalAmenityController(INotificationHandler<DomainNotification> notifications, IMediator mediator)
+        public AdditionalAmenityController(INotificationHandler<DomainEvent> notifications, IMediator mediator)
             : base(notifications, mediator)
         {
         }

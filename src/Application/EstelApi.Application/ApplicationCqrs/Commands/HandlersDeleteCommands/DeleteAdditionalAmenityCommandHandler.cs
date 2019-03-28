@@ -6,6 +6,7 @@
     using EstelApi.Application.ApplicationCqrs.Base;
     using EstelApi.Application.ApplicationCqrs.Queries.FindByIdSpec;
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
+    using EstelApi.CrossCutting.Bus;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Repositories;
     using EstelApi.Domain.DataAccessLayer.Context.Interfaces;
@@ -21,7 +22,7 @@
         public DeleteAdditionalAmenityCommandHandler(
             IQueryableUnitOfWork uow,
             IMediator bus,
-            INotificationHandler<DomainNotification> notifications,
+            INotificationHandler<DomainEvent> notifications,
             IAdditionalAmenityRepository additionalAmenityRepository)
             : base(uow, bus, notifications)
         {
@@ -33,25 +34,11 @@
             RemoveEntityCommand<AdditionalAmenity> request,
             CancellationToken cancellationToken)
         {
-            if (request == null || request.Id == 0)
-            {
-                await this.Bus.Publish(
-                    new DomainNotification(
-                        request.GetType().Name,
-                        "_resources.GetStringResource(LocalizationKeys.Application.warning_CannotAddCustomerWithEmptyInformation)"),
-                    cancellationToken);
-                return new CommandResponse<AdditionalAmenity>
-                {
-                    IsSuccess = false,
-                    Message =
-                                   "_resources.GetStringResource(LocalizationKeys.Application.warning_CannotAddCustomerWithEmptyInformation)",
-                    Object = null
-                };
-            }
+            Contract.ThrowIfNull(request, request.GetType().Name, this.Bus);
 
             var current = this.additionalAmenityRepository.OneMatching(new FindAdditionalAmenityById().SetId(request.Id));
             this.additionalAmenityRepository.Remove(current);
-            return !await this.Commit()
+            return !await this.CommitAsync()
                        ? new CommandResponse<AdditionalAmenity>
                        {
                            IsSuccess = false,

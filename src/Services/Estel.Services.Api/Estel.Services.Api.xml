@@ -67,7 +67,7 @@
             The logger.
             </summary>
         </member>
-        <member name="M:Estel.Services.Api.Controllers.AccountController.#ctor(Microsoft.AspNetCore.Identity.UserManager{EstelApi.CrossCutting.Identity.IdentityModels.ApplicationUser},Microsoft.AspNetCore.Identity.SignInManager{EstelApi.CrossCutting.Identity.IdentityModels.ApplicationUser},MediatR.INotificationHandler{EstelApi.Core.Seedwork.CoreCqrs.Notifications.DomainNotification},Microsoft.Extensions.Logging.ILoggerFactory,MediatR.IMediator)">
+        <member name="M:Estel.Services.Api.Controllers.AccountController.#ctor(Microsoft.AspNetCore.Identity.UserManager{EstelApi.CrossCutting.Identity.IdentityModels.ApplicationUser},Microsoft.AspNetCore.Identity.SignInManager{EstelApi.CrossCutting.Identity.IdentityModels.ApplicationUser},MediatR.INotificationHandler{EstelApi.Core.Seedwork.CoreCqrs.Notifications.DomainEvent},Microsoft.Extensions.Logging.ILoggerFactory,MediatR.IMediator)">
             <inheritdoc />
         </member>
         <member name="M:Estel.Services.Api.Controllers.AccountController.Login(EstelApi.CrossCutting.Identity.IdentityViewModels.AccountViewModels.LoginViewModel)">
@@ -98,7 +98,7 @@
             The additional amenity controller.
             </summary>
         </member>
-        <member name="M:Estel.Services.Api.Controllers.AdditionalAmenityController.#ctor(MediatR.INotificationHandler{EstelApi.Core.Seedwork.CoreCqrs.Notifications.DomainNotification},MediatR.IMediator)">
+        <member name="M:Estel.Services.Api.Controllers.AdditionalAmenityController.#ctor(MediatR.INotificationHandler{EstelApi.Core.Seedwork.CoreCqrs.Notifications.DomainEvent},MediatR.IMediator)">
             <inheritdoc />
             <summary>
             Initializes a new instance of the <see cref="T:Estel.Services.Api.Controllers.AdditionalAmenityController" /> class.
@@ -175,7 +175,7 @@
             The notifications.
             </summary>
         </member>
-        <member name="M:Estel.Services.Api.Controllers.ApiController.#ctor(MediatR.INotificationHandler{EstelApi.Core.Seedwork.CoreCqrs.Notifications.DomainNotification},MediatR.IMediator)">
+        <member name="M:Estel.Services.Api.Controllers.ApiController.#ctor(MediatR.INotificationHandler{EstelApi.Core.Seedwork.CoreCqrs.Notifications.DomainEvent},MediatR.IMediator)">
             <inheritdoc />
         </member>
         <member name="P:Estel.Services.Api.Controllers.ApiController.Notifications">
@@ -232,7 +232,7 @@
             The available dates controller.
             </summary>
         </member>
-        <member name="M:Estel.Services.Api.Controllers.AvailableDatesController.#ctor(MediatR.INotificationHandler{EstelApi.Core.Seedwork.CoreCqrs.Notifications.DomainNotification},MediatR.IMediator)">
+        <member name="M:Estel.Services.Api.Controllers.AvailableDatesController.#ctor(MediatR.INotificationHandler{EstelApi.Core.Seedwork.CoreCqrs.Notifications.DomainEvent},MediatR.IMediator)">
             <inheritdoc />
             <summary>
             Initializes a new instance of the <see cref="T:Estel.Services.Api.Controllers.AvailableDatesController" /> class.
@@ -302,7 +302,7 @@
             The course attendance controller.
             </summary>
         </member>
-        <member name="M:Estel.Services.Api.Controllers.CourseAttendanceController.#ctor(MediatR.INotificationHandler{EstelApi.Core.Seedwork.CoreCqrs.Notifications.DomainNotification},MediatR.IMediator)">
+        <member name="M:Estel.Services.Api.Controllers.CourseAttendanceController.#ctor(MediatR.INotificationHandler{EstelApi.Core.Seedwork.CoreCqrs.Notifications.DomainEvent},MediatR.IMediator)">
             <inheritdoc />
             <summary>
             Initializes a new instance of the <see cref="T:Estel.Services.Api.Controllers.CourseAttendanceController" /> class.
@@ -350,7 +350,7 @@
             The course controller.
             </summary>
         </member>
-        <member name="M:Estel.Services.Api.Controllers.CourseController.#ctor(MediatR.INotificationHandler{EstelApi.Core.Seedwork.CoreCqrs.Notifications.DomainNotification},MediatR.IMediator)">
+        <member name="M:Estel.Services.Api.Controllers.CourseController.#ctor(MediatR.INotificationHandler{EstelApi.Core.Seedwork.CoreCqrs.Notifications.DomainEvent},MediatR.IMediator)">
             <inheritdoc />
             <summary>
             Initializes a new instance of the <see cref="T:Estel.Services.Api.Controllers.CourseController" /> class.
@@ -420,7 +420,7 @@
             The course topics controller.
             </summary>
         </member>
-        <member name="M:Estel.Services.Api.Controllers.CourseTopicsController.#ctor(MediatR.INotificationHandler{EstelApi.Core.Seedwork.CoreCqrs.Notifications.DomainNotification},MediatR.IMediator)">
+        <member name="M:Estel.Services.Api.Controllers.CourseTopicsController.#ctor(MediatR.INotificationHandler{EstelApi.Core.Seedwork.CoreCqrs.Notifications.DomainEvent},MediatR.IMediator)">
             <inheritdoc />
             <summary>
             Initializes a new instance of the <see cref="T:Estel.Services.Api.Controllers.CourseTopicsController" /> class.
@@ -490,7 +490,7 @@
             The course type controller.
             </summary>
         </member>
-        <member name="M:Estel.Services.Api.Controllers.CourseTypeController.#ctor(MediatR.INotificationHandler{EstelApi.Core.Seedwork.CoreCqrs.Notifications.DomainNotification},MediatR.IMediator)">
+        <member name="M:Estel.Services.Api.Controllers.CourseTypeController.#ctor(MediatR.INotificationHandler{EstelApi.Core.Seedwork.CoreCqrs.Notifications.DomainEvent},MediatR.IMediator)">
             <inheritdoc />
             <summary>
             Initializes a new instance of the <see cref="T:Estel.Services.Api.Controllers.CourseTypeController" /> class.
@@ -559,7 +559,7 @@
             The customer controller.
             </summary>
         </member>
-        <member name="M:Estel.Services.Api.Controllers.UserController.#ctor(MediatR.INotificationHandler{EstelApi.Core.Seedwork.CoreCqrs.Notifications.DomainNotification},MediatR.IMediator)">
+        <member name="M:Estel.Services.Api.Controllers.UserController.#ctor(MediatR.INotificationHandler{EstelApi.Core.Seedwork.CoreCqrs.Notifications.DomainEvent},MediatR.IMediator)">
             <summary>
             Initializes a new instance of the <see cref="T:Estel.Services.Api.Controllers.UserController"/> class.
             </summary>
@@ -642,7 +642,7 @@
         <member name="T:Estel.Services.Api.Controllers.WorkerController">
             <inheritdoc />
         </member>
-        <member name="M:Estel.Services.Api.Controllers.WorkerController.#ctor(MediatR.INotificationHandler{EstelApi.Core.Seedwork.CoreCqrs.Notifications.DomainNotification},MediatR.IMediator)">
+        <member name="M:Estel.Services.Api.Controllers.WorkerController.#ctor(MediatR.INotificationHandler{EstelApi.Core.Seedwork.CoreCqrs.Notifications.DomainEvent},MediatR.IMediator)">
             <inheritdoc />
         </member>
         <member name="M:Estel.Services.Api.Controllers.WorkerController.Get">
@@ -1052,6 +1052,12 @@
             <summary>
             Gets or sets the view model.
             </summary>
+        </member>
+        <member name="T:EstelApi.CrossCutting.IoC.EstelServicesApiModule">
+            <inheritdoc />
+        </member>
+        <member name="M:EstelApi.CrossCutting.IoC.EstelServicesApiModule.Load(Autofac.ContainerBuilder)">
+            <inheritdoc />
         </member>
     </members>
 </doc>

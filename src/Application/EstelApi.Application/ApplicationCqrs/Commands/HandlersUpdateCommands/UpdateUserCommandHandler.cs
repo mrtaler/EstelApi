@@ -7,6 +7,7 @@
     using EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands;
     using EstelApi.Core.Seedwork.Adapter;
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
+    using EstelApi.CrossCutting.Bus;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Repositories;
     using EstelApi.Domain.DataAccessLayer.Context.Interfaces;
@@ -29,7 +30,7 @@
             IUserRepository customerRepository,
             IQueryableUnitOfWork uow,
             IMediator bus,
-            INotificationHandler<DomainNotification> notifications)
+            INotificationHandler<DomainEvent> notifications)
             : base(uow, bus, notifications)
         {
             this.repository = customerRepository;
@@ -37,21 +38,11 @@
 
         public async Task<CommandResponse<User>> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
         {
-            if (request == null)
-            {
-                await this.Bus.Publish(
-                    new DomainNotification(
-                        request.GetType().Name,
-                        "message is null"),
-                    cancellationToken);
-                return new CommandResponse<User> { IsSuccess = false, Message = "message is null", Object = null };
-
-                // throw new ArgumentException("_resources.GetStringResource(LocalizationKeys.Application.warning_CannotAddCustomerWithEmptyInformation)");
-            }
+            Contract.ThrowIfNull(request, request.GetType().Name, this.Bus);
 
             var updateUser = request.ProjectedAs<User>();
             this.repository.Modify(updateUser);
-            return await this.Commit()
+            return await this.CommitAsync()
                        ? new CommandResponse<User> { IsSuccess = true, Message = "New Entity was added", Object = updateUser }
                        : new CommandResponse<User> { IsSuccess = false, Message = "New Entity Not added", Object = updateUser };
         }

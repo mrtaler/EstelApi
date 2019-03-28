@@ -31,7 +31,7 @@
         /// The mediator.
         /// </param>
         public UserController(
-            INotificationHandler<DomainNotification> notifications,
+            INotificationHandler<DomainEvent> notifications,
             IMediator mediator)
             : base(notifications, mediator)
         {

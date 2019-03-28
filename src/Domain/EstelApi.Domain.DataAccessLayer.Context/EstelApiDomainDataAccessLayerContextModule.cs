@@ -6,7 +6,6 @@
     using EstelApi.Domain.DataAccessLayer.Context.Context;
     using EstelApi.Domain.DataAccessLayer.Context.Context.Base;
     using EstelApi.Domain.DataAccessLayer.Context.Context.Repositories;
-    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Repositories;
     using EstelApi.Domain.DataAccessLayer.Context.EventSourcing;
     using EstelApi.Domain.DataAccessLayer.Context.Interfaces;
@@ -27,12 +26,6 @@
         /// </param>
         protected override void Load(ContainerBuilder builder)
         {
-            /*builder.Register(c => new EstelContext(
-                                                new DbContextOptionsBuilder<EstelContext>()
-                                                    .UseSqlServer(c.Resolve<IOptions<ConnectionSettings>>().Value.EFConnectionString)
-                                                    // .UseLazyLoadingProxies()
-                                                    .Options
-                                            ))  .AsSelf().InstancePerLifetimeScope(); ;*/
             builder
                 .RegisterType<EstelContext>()
                 .AsSelf()

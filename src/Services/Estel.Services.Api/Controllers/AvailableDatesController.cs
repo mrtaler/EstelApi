@@ -31,7 +31,7 @@
         /// <param name="mediator">
         /// The mediator.
         /// </param>
-        public AvailableDatesController(INotificationHandler<DomainNotification> notifications, IMediator mediator)
+        public AvailableDatesController(INotificationHandler<DomainEvent> notifications, IMediator mediator)
             : base(notifications, mediator)
         {
         }

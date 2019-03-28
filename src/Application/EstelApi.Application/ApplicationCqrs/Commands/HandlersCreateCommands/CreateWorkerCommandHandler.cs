@@ -7,6 +7,7 @@
     using EstelApi.Application.ApplicationCqrs.Commands.HandlersCreateCommands.CreateCommands;
     using EstelApi.Core.Seedwork.Adapter;
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
+    using EstelApi.CrossCutting.Bus;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Repositories;
     using EstelApi.Domain.DataAccessLayer.Context.Interfaces;
@@ -22,7 +23,7 @@
         public CreateWorkerCommandHandler(
             IQueryableUnitOfWork uow,
             IMediator bus,
-            INotificationHandler<DomainNotification> notifications,
+            INotificationHandler<DomainEvent> notifications,
             IWorkerRepository workerRepository)
             : base(uow, bus, notifications)
         {
@@ -31,22 +32,12 @@
 
         public async Task<CommandResponse<Worker>> Handle(CreateNewWorkerCommand request, CancellationToken cancellationToken)
         {
-            if (request == null)
-            {
-                await this.Bus.Publish(
-                    new DomainNotification(
-                        request.GetType().Name,
-                        "message is null"),
-                    cancellationToken);
-                return new CommandResponse<Worker> { IsSuccess = false, Message = "message is null", Object = null };
-
-                // throw new ArgumentException("_resources.GetStringResource(LocalizationKeys.Application.warning_CannotAddCustomerWithEmptyInformation)");
-            }
+            Contract.ThrowIfNull(request, request.GetType().Name, this.Bus);
 
             var entity = request.ProjectedAs<Worker>();
             this.repository.Add(entity);
 
-            return await this.Commit()
+            return await this.CommitAsync()
                        ? new CommandResponse<Worker> { IsSuccess = true, Message = "New Entity was added", Object = entity }
                        : new CommandResponse<Worker> { IsSuccess = false, Message = "New Entity Not added", Object = entity };
         }

@@ -45,7 +45,7 @@
             IUserRepository customerRepository,
             IQueryableUnitOfWork uow,
             IMediator bus,
-            INotificationHandler<DomainNotification> notifications) : base(uow, bus, notifications)
+            INotificationHandler<DomainEvent> notifications) : base(uow, bus, notifications)
         {
             this.repository = customerRepository;
         }

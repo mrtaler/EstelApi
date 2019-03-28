@@ -18,7 +18,7 @@ namespace EstelApi.Application.ApplicationCqrs.Queries.QueryHandlers
                                         IRequestHandler<EntityByIdQuery<Worker>, Worker>
     {
         private IWorkerRepository repository;
-        public WorkerQueriesHandler(IQueryableUnitOfWork uow, IMediator bus, INotificationHandler<DomainNotification> notifications, IWorkerRepository workerRepository)
+        public WorkerQueriesHandler(IQueryableUnitOfWork uow, IMediator bus, INotificationHandler<DomainEvent> notifications, IWorkerRepository workerRepository)
             : base(uow, bus, notifications)
         {
             this.repository = workerRepository;

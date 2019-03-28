@@ -1,9 +1,7 @@
 ﻿namespace EstelApi.Domain.DataAccessLayer.Context.Context
 {
-    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
-    using EstelApi.Domain.DataAccessLayer.Context.EntityDbMapper;
 
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
@@ -38,15 +36,18 @@
         public virtual DbSet<Customer> Customers { get; set; }
 
         public virtual DbSet<User> Users { get; set; }
+
         public virtual DbSet<AdditionalAmenity> AdditionalAmenities { get; set; }
+
         public virtual DbSet<AvailableDates> AvailableDates { get; set; }
+
         public virtual DbSet<Course> Courses { get; set; }
+
         public virtual DbSet<CourseAttendance> CourseAttendances { get; set; }
+
         public virtual DbSet<CourseType> CourseTypes { get; set; }
+
         public virtual DbSet<Worker> Workers { get; set; }
-
-
-
 
         /// <summary>
         /// The on model creating.
@@ -68,7 +69,7 @@
             modelBuilder.ApplyConfiguration(new CourseTopicsConfiguration());
             modelBuilder.ApplyConfiguration(new CourseTopicsCourseConfiguration());
             modelBuilder.ApplyConfiguration(new CourseTypeConfiguration());
-            
+
             base.OnModelCreating(modelBuilder);
         }
 
@@ -91,12 +92,10 @@
             // define the database to use
             optionsBuilder.UseSqlServer(config.GetConnectionString("DefaultConnection"))
                 .UseLoggerFactory(this.loggerFactory)
-                .EnableSensitiveDataLogging(true);//;.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);/*
-                                                  //  .UseLazyLoadingProxies()
+                .EnableSensitiveDataLogging(true);
 
-            // */
-            //   ;
-
+            // .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+            // .UseLazyLoadingProxies()
             // ,x => x.MigrationsAssembly("GomelEstel.Infra.Data"));}
         }
     }

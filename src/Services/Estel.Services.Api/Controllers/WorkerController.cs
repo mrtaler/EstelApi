@@ -18,7 +18,7 @@
     public class WorkerController : ApiController
     {
         /// <inheritdoc />
-        public WorkerController(INotificationHandler<DomainNotification> notifications, IMediator mediator)
+        public WorkerController(INotificationHandler<DomainEvent> notifications, IMediator mediator)
             : base(notifications, mediator)
         {
         }

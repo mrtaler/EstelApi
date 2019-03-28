@@ -21,7 +21,7 @@ namespace EstelApi.Application.ApplicationCqrs.Queries.QueryHandlers
 
         public CourseTypeQueriesHandler(
             IQueryableUnitOfWork uow, IMediator bus,
-            INotificationHandler<DomainNotification> notifications, ICourseTypeRepository courseTypeRepository)
+            INotificationHandler<DomainEvent> notifications, ICourseTypeRepository courseTypeRepository)
             : base(uow, bus, notifications)
         {
             this.repository = courseTypeRepository;

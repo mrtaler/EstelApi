@@ -7,6 +7,7 @@
     using EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands;
     using EstelApi.Core.Seedwork.Adapter;
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
+    using EstelApi.CrossCutting.Bus;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Repositories;
     using EstelApi.Domain.DataAccessLayer.Context.Interfaces;
@@ -22,7 +23,7 @@
         public UpdateAvailableDatesCommandHandler(
             IQueryableUnitOfWork uow,
             IMediator bus,
-            INotificationHandler<DomainNotification> notifications,
+            INotificationHandler<DomainEvent> notifications,
             IAvailableDatesRepository availableDatesRepository)
             : base(uow, bus, notifications)
         {
@@ -31,22 +32,12 @@
 
         public async Task<CommandResponse<AvailableDates>> Handle(UpdateAvailableDatesCommand request, CancellationToken cancellationToken)
         {
-            if (request == null)
-            {
-                await this.Bus.Publish(
-                    new DomainNotification(
-                        request.GetType().Name,
-                        "message is null"),
-                    cancellationToken);
-                return new CommandResponse<AvailableDates> { IsSuccess = false, Message = "message is null", Object = null };
-
-                // throw new ArgumentException("_resources.GetStringResource(LocalizationKeys.Application.warning_CannotAddCustomerWithEmptyInformation)");
-            }
+            Contract.ThrowIfNull(request, request.GetType().Name, this.Bus);
 
             var updateAvailableDates = request.ProjectedAs<AvailableDates>();
             this.repository.Modify(updateAvailableDates);
 
-            return await this.Commit()
+            return await this.CommitAsync()
                        ? new CommandResponse<AvailableDates> { IsSuccess = true, Message = "New Entity was added", Object = updateAvailableDates }
                        : new CommandResponse<AvailableDates> { IsSuccess = false, Message = "New Entity Not added", Object = updateAvailableDates };
         }

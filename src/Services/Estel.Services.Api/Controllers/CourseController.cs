@@ -38,7 +38,7 @@
         /// <param name="mediator">
         /// The mediator.
         /// </param>
-        public CourseController(INotificationHandler<DomainNotification> notifications, IMediator mediator)
+        public CourseController(INotificationHandler<DomainEvent> notifications, IMediator mediator)
             : base(notifications, mediator)
         {
         }

@@ -8,7 +8,7 @@
     /// <summary>
     /// The domain notification.
     /// </summary>
-    public class DomainNotification : Event
+    public class DomainEvent : Event
     {
         /// <inheritdoc />
         /// <summary>
@@ -20,7 +20,7 @@
         /// <param name="value">
         /// The value.
         /// </param>
-        public DomainNotification(string key, string value)
+        public DomainEvent(string key, string value)
         {
             this.DomainNotificationId = Guid.NewGuid();
             this.Version = 1;

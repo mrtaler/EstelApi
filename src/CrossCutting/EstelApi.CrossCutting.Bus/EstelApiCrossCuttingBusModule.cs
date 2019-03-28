@@ -8,12 +8,6 @@
         /// <inheritdoc />
         protected override void Load(ContainerBuilder builder)
         {
-            // builder.Services.Configure<ServiceBusConfiguration>(configuration.GetSection(Constants.ServiceBusConfigurationSection));
-            
-            // builder
-            // .RegisterType<InMemoryBus>()
-            // .As<IMediatorHandler>()
-            // .InstancePerLifetimeScope();
         }
     }
 }

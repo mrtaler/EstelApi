@@ -25,7 +25,7 @@
             IAdditionalAmenityRepository additionalAmenityRepository,
             IQueryableUnitOfWork uow,
             IMediator bus,
-            INotificationHandler<DomainNotification> notifications)
+            INotificationHandler<DomainEvent> notifications)
             : base(uow, bus, notifications)
         {
             this.courseRepository = courseRepository;
@@ -59,7 +59,7 @@
                 });
             }
 
-            return await this.Commit()
+            return await this.CommitAsync()
                        ? new CommandResponse<bool> { IsSuccess = true, Message = "AdditionalAmenity Added", Object = true }
                        : new CommandResponse<bool> { IsSuccess = false, Message = "AdditionalAmenity Not Added", Object = false };
         }

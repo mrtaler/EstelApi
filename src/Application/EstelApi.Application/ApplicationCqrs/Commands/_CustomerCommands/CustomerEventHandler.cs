@@ -48,7 +48,7 @@
         public Task Handle(CustomerUpdatedEvent message, CancellationToken cancellationToken)
         {
             var msg = message.MessageType;
-            if (!message.MessageType.Equals(typeof(DomainNotification).Name))
+            if (!message.MessageType.Equals(typeof(DomainEvent).Name))
             {
                 this.eventStore?.Save(message);
             }
@@ -71,7 +71,7 @@
         public Task Handle(CustomerRegisteredEvent message, CancellationToken cancellationToken)
         {
             // Send some greetings e-mail
-            if (!message.MessageType.Equals(typeof(DomainNotification).Name))
+            if (!message.MessageType.Equals(typeof(DomainEvent).Name))
             {
                 this.eventStore?.Save(message);
             }
@@ -94,7 +94,7 @@
         public Task Handle(CustomerRemovedEvent message, CancellationToken cancellationToken)
         {
             // Send some see you soon e-mail
-            if (!message.MessageType.Equals(typeof(DomainNotification).Name))
+            if (!message.MessageType.Equals(typeof(DomainEvent).Name))
             {
                 this.eventStore?.Save(message);
             }

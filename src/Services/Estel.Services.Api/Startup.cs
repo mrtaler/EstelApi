@@ -131,8 +131,8 @@
                     outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} {Level}:{EventId} [{SourceContext}] {Message}{NewLine}{Exception}")
                 .CreateLogger())
                 .SingleInstance();
-
-            builder.RegisterModule(new EstelApiCrossCuttingIoC());
+            
+            builder.RegisterModule(new EstelServicesApiModule());
             var container = builder.Build();
             TypeAdapterFactory.SetCurrent(container.Resolve<ITypeAdapterFactory>());
 

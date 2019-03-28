@@ -23,21 +23,21 @@
         /// <summary>
         /// The notifications.
         /// </summary>
-        private readonly DomainNotificationHandler notifications;
+        private readonly DomainEventHandler notifications;
 
         /// <inheritdoc />
         protected ApiController(
-            INotificationHandler<DomainNotification> notifications,
+            INotificationHandler<DomainEvent> notifications,
             IMediator mediator)
         {
-            this.notifications = (DomainNotificationHandler)notifications;
+            this.notifications = (DomainEventHandler)notifications;
             this.Mediator = mediator;
         }
 
         /// <summary>
         /// The notifications.
         /// </summary>
-        protected IEnumerable<DomainNotification> Notifications => this.notifications.GetNotifications();
+        protected IEnumerable<DomainEvent> Notifications => this.notifications.GetNotifications();
 
         /// <summary>
         /// The is valid operation.
@@ -98,7 +98,7 @@
         /// </param>
         protected void NotifyError(string code, string message)
         {
-            this.Mediator.Publish(new DomainNotification(code, message));
+            this.Mediator.Publish(new DomainEvent(code, message));
         }
 
         /// <summary>

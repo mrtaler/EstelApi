@@ -26,7 +26,7 @@
             IAvailableDatesRepository availableDatesRepository,
             IQueryableUnitOfWork uow,
             IMediator bus,
-            INotificationHandler<DomainNotification> notifications)
+            INotificationHandler<DomainEvent> notifications)
             : base(uow, bus, notifications)
         {
             this.repository = courseRepository;
@@ -59,7 +59,7 @@
                                               });
             }
 
-            return await this.Commit()
+            return await this.CommitAsync()
                        ? new CommandResponse<bool> { IsSuccess = true, Message = "Date Adedes", Object = true }
                        : new CommandResponse<bool> { IsSuccess = false, Message = "Date Adedes", Object = false };
         }

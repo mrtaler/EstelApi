@@ -26,7 +26,7 @@ namespace EstelApi.Application.ApplicationCqrs.Queries.QueryHandlers
 
         public AvailableDatesQueriesHandler(
             IQueryableUnitOfWork uow, IMediator bus,
-            INotificationHandler<DomainNotification> notifications, IAvailableDatesRepository availableDatesRepository)
+            INotificationHandler<DomainEvent> notifications, IAvailableDatesRepository availableDatesRepository)
             : base(uow, bus, notifications)
         {
             this.repository = availableDatesRepository;

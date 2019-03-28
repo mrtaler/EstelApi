@@ -7,6 +7,7 @@
     using EstelApi.Application.ApplicationCqrs.Commands.HandlersCreateCommands.CreateCommands;
     using EstelApi.Core.Seedwork.Adapter;
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
+    using EstelApi.CrossCutting.Bus;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Repositories;
     using EstelApi.Domain.DataAccessLayer.Context.Interfaces;
@@ -24,7 +25,7 @@
         public CreateCourseTypeCommandHandler(
             IQueryableUnitOfWork uow,
             IMediator bus,
-            INotificationHandler<DomainNotification> notifications,
+            INotificationHandler<DomainEvent> notifications,
             ICourseTypeRepository courseTypeRepository)
             : base(uow, bus, notifications)
         {
@@ -33,22 +34,12 @@
 
         public async Task<CommandResponse<CourseType>> Handle(CreateNewCourseTypeCommand request, CancellationToken cancellationToken)
         {
-            if (request == null)
-            {
-                await this.Bus.Publish(
-                    new DomainNotification(
-                        request.GetType().Name,
-                        "message is null"),
-                    cancellationToken);
-                return new CommandResponse<CourseType> { IsSuccess = false, Message = "message is null", Object = null };
-
-                // throw new ArgumentException("_resources.GetStringResource(LocalizationKeys.Application.warning_CannotAddCustomerWithEmptyInformation)");
-            }
+            Contract.ThrowIfNull(request, request.GetType().Name, this.Bus);
 
             var entity = request.ProjectedAs<CourseType>();
             this.repository.Add(entity);
 
-            return await this.Commit()
+            return await this.CommitAsync()
                        ? new CommandResponse<CourseType> { IsSuccess = true, Message = "New Entity was added", Object = entity }
                        : new CommandResponse<CourseType> { IsSuccess = false, Message = "New Entity Not added", Object = entity };
         }

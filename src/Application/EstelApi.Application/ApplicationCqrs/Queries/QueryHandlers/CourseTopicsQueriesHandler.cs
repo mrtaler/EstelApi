@@ -22,7 +22,7 @@ namespace EstelApi.Application.ApplicationCqrs.Queries.QueryHandlers
 
         public CourseTopicsQueriesHandler(
             IQueryableUnitOfWork uow, IMediator bus,
-            INotificationHandler<DomainNotification> notifications, ICourseTopicsRepository courseTopicsRepository)
+            INotificationHandler<DomainEvent> notifications, ICourseTopicsRepository courseTopicsRepository)
             : base(uow, bus, notifications)
         {
             this.repository = courseTopicsRepository;

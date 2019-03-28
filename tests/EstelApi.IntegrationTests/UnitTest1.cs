@@ -5,7 +5,6 @@ namespace EstelApi.IntegrationTests
     using Autofac;
 
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Repositories;
-    using EstelApi.IntegrationTests.Base.Fixture;
     using EstelApi.IntegrationTests.Base.Fixture.Collection;
     using EstelApi.IntegrationTests.Base.Infrastructure;
 
@@ -24,11 +23,12 @@ namespace EstelApi.IntegrationTests
         }
 
         [Fact, Priority(0)]
-        public async Task GetCulture_CultureExist_ReturnCultures()
+        public async Task GetCultureCultureExistReturnCultures()
         {
             Log.Information("FirstTest");
+
             var database = this.Container.Resolve<IUserRepository>();
-            var entitiesFromDatabase = database.GetAll();
+            var entitiesFromDatabase = await database.GetAllAsync();
             Assert.NotEmpty(entitiesFromDatabase);
         }
     }
