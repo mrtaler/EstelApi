@@ -191,7 +191,6 @@
 
             app.UseStaticFiles(strFileOptions);
 
-            // app.UseCors(builder =>builder.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());
             app.UseCors(
                 c =>
                     {

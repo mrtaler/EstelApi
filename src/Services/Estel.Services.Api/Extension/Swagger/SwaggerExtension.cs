@@ -1,13 +1,11 @@
 ﻿namespace Estel.Services.Api.Extension.Swagger
 {
-    using System.IO;
-    using System.Reflection;
-
     using Microsoft.AspNetCore.Mvc.ApiExplorer;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.PlatformAbstractions;
-
     using Swashbuckle.AspNetCore.Swagger;
+    using System.IO;
+    using System.Reflection;
 
     /// <summary>
     /// The swagger extension.
@@ -64,14 +62,14 @@
                                 options.SwaggerDoc(
                                     description.GroupName,
                                     new Info
-                                        {
-                                            Title = $"Gomel Estel API {description.ApiVersion}",
-                                            Version = description.ApiVersion.ToString()
-                                        });
+                                    {
+                                        Title = $"Gomel Estel API {description.ApiVersion}",
+                                        Version = description.ApiVersion.ToString()
+                                    });
                             }
                         }
 
-                        options.OperationFilter<FileUploadOperation>();
+                        // options.OperationFilter<FileUploadOperation>();
                         options.OperationFilter<VersionFilter>();
                         options.OperationFilter<SwaggerDefaultValues>();
 
@@ -98,11 +96,12 @@
                                                              Type = "apiKey"
                                                          }
                                                      );
-                        // options.IncludeXmlComments(XmlCommentsFilePath);
-                        // options.DescribeAllParametersInCamelCase();*/
+                        // options.IncludeXmlComments(XmlCommentsFilePath);*/
+                        options.DescribeAllParametersInCamelCase();
+
                     });
         }
-        
+
         /*   /// <summary>
            /// The create info for api version.
            /// </summary>

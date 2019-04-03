@@ -12,7 +12,7 @@
 
     /// <inheritdoc />
     [ApiController]
-    
+    [Produces("application/json")]
     public abstract class ApiController : ControllerBase
     {
         /// <summary>

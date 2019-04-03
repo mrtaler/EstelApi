@@ -1,18 +1,20 @@
 ﻿namespace Estel.Services.Api.Controllers
 {
-    using EstelApi.Application.ApplicationCqrs.Base;
-    using EstelApi.Application.ApplicationCqrs.Commands.HandlersCreateCommands.CreateCommands;
-    using EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands;
-    using EstelApi.Application.ApplicationCqrs.Queries;
-    using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
-    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
-    using MediatR;
-    using Microsoft.AspNetCore.Mvc;
     using System.Threading.Tasks;
 
     using Estel.Services.Api.ViewModels;
 
+    using EstelApi.Application.ApplicationCqrs.Base;
+    using EstelApi.Application.ApplicationCqrs.Commands.HandlersCreateCommands.CreateCommands;
+    using EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands;
+    using EstelApi.Application.ApplicationCqrs.Queries;
     using EstelApi.Core.Seedwork.Adapter;
+    using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
+    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
+
+    using MediatR;
+
+    using Microsoft.AspNetCore.Mvc;
 
     /// <inheritdoc />
     /// <summary>
@@ -40,10 +42,22 @@
         /// <summary>
         /// Get All Additional Amenity.
         /// </summary>
+        /// <remarks>
+        /// Sample request:
+        ///     POST /Todo
+        ///     {
+        ///        "Id": 1,
+        ///        "AdditionalAmenityName": "Item1",
+        ///     }
+        /// </remarks>
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
+        /// <response code="201">Returns the newly created item</response>
+        /// <response code="400">If the item is null</response>    
         [HttpGet("AdditionalAmenities")]
+        [ProducesResponseType(201)]
+        [ProducesResponseType(400)]
         public async Task<IActionResult> Get()
         {
             var additionalAmenities = await this.Mediator.Send(new AllEntitiesQuery<AdditionalAmenity>());
@@ -64,7 +78,7 @@
         public async Task<IActionResult> Get(int id)
         {
             var additionalAmenity = await this.Mediator.Send(new EntityByIdQuery<AdditionalAmenity>(id));
-            var result = additionalAmenity.ProjectedAs<AdditionalAmenityViewModel>();  
+            var result = additionalAmenity.ProjectedAs<AdditionalAmenityViewModel>();
             return this.Response(result);
         }
 

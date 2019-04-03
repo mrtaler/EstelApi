@@ -114,9 +114,19 @@
             <summary>
             Get All Additional Amenity.
             </summary>
+            <remarks>
+            Sample request:
+                POST /Todo
+                {
+                   "Id": 1,
+                   "AdditionalAmenityName": "Item1",
+                }
+            </remarks>
             <returns>
             The <see cref="T:System.Threading.Tasks.Task"/>.
             </returns>
+            <response code="201">Returns the newly created item</response>
+            <response code="400">If the item is null</response>    
         </member>
         <member name="M:Estel.Services.Api.Controllers.AdditionalAmenityController.Get(System.Int32)">
             <summary>

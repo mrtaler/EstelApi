@@ -32,6 +32,7 @@
         {
             var versionParameter = operation.Parameters.First(p => p.Name == "version" || p.Name == "api-version");
             operation.Parameters.Remove(versionParameter);
+            
         }
     }
 }
