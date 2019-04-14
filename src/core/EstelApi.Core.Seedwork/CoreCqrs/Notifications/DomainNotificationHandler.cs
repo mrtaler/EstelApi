@@ -10,26 +10,26 @@
     /// <summary>
     /// The domain notification handler.
     /// </summary>
-    public class DomainNotificationHandler : INotificationHandler<DomainNotification>
+    public class DomainEventHandler : INotificationHandler<DomainEvent>
     {
         /// <summary>
         /// The notifications.
         /// </summary>
-        private List<DomainNotification> notifications;
+        private List<DomainEvent> notifications;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DomainNotificationHandler"/> class.
+        /// Initializes a new instance of the <see cref="DomainEventHandler"/> class.
         /// </summary>
-        public DomainNotificationHandler()
+        public DomainEventHandler()
         {
-            this.notifications = new List<DomainNotification>();
+            this.notifications = new List<DomainEvent>();
         }
 
         /// <summary>
         /// The handle.
         /// </summary>
-        /// <param name="message">
-        /// The message.
+        /// <param name="notification">
+        /// The notification.
         /// </param>
         /// <param name="cancellationToken">
         /// The cancellation token.
@@ -37,9 +37,9 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        public Task Handle(DomainNotification message, CancellationToken cancellationToken)
+        public Task Handle(DomainEvent notification, CancellationToken cancellationToken)
         {
-            this.notifications.Add(message);
+            this.notifications.Add(notification);
 
             return Task.CompletedTask;
         }
@@ -50,7 +50,7 @@
         /// <returns>
         /// The <see cref="T:System.Collections.Generic.List`1"/>.
         /// </returns>
-        public virtual List<DomainNotification> GetNotifications()
+        public virtual List<DomainEvent> GetNotifications()
         {
             return this.notifications;
         }
@@ -71,7 +71,7 @@
         /// </summary>
         public void Dispose()
         {
-            this.notifications = new List<DomainNotification>();
+            this.notifications = new List<DomainEvent>();
         }
     }
 }

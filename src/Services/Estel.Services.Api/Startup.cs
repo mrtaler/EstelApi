@@ -1,17 +1,25 @@
 ﻿namespace Estel.Services.Api
 {
+    using System;
+    using System.IO;
+    using System.Linq;
+
     using Autofac;
     using Autofac.Extensions.DependencyInjection;
+
     using AutoMapper;
+
     using Estel.Services.Api.Configurations;
     using Estel.Services.Api.Extension.Exception;
     using Estel.Services.Api.Extension.Swagger;
+
     using EstelApi.Core.Seedwork.Adapter;
     using EstelApi.CrossCutting.Identity.Authorization;
     using EstelApi.CrossCutting.Identity.IdentityContext;
     using EstelApi.CrossCutting.Identity.IdentityModels;
     using EstelApi.CrossCutting.Identity.IdentityServices;
     using EstelApi.CrossCutting.IoC;
+
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
@@ -24,12 +32,13 @@
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.FileProviders;
     using Microsoft.Extensions.Logging;
+
     using Newtonsoft.Json;
     using Newtonsoft.Json.Serialization;
+
     using Serilog;
-    using System;
-    using System.IO;
-    using System.Linq;
+    using Serilog.Events;
+
     using ILogger = Serilog.ILogger;
 
     /// <summary>
@@ -95,8 +104,6 @@
                     {
                         options.OutputFormatters.Remove(new XmlDataContractSerializerOutputFormatter());
                         options.UseCentralRoutePrefix(new RouteAttribute("api/v{api-version:apiVersion}"));
-
-                        // options.UseCentralRoutePrefix(new RouteAttribute("api/v{version}"));
                     })
                 .AddJsonOptions(options =>
                 {
@@ -104,7 +111,7 @@
                     options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                 })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-          //  services.AddAutoMapperSetup();
+
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("CanWriteCustomerData", policy => policy.Requirements.Add(new ClaimRequirement("Customers", "Write")));
@@ -114,15 +121,16 @@
 
             builder.Populate(services);
             builder.Register<ILogger>((c, p) => new LoggerConfiguration().MinimumLevel.Debug()
-            
-                // .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
+
+                .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
                 .Enrich.FromLogContext()
                 .WriteTo.Console(
                     theme: Serilog.Sinks.SystemConsole.Themes.AnsiConsoleTheme.Code,
                     outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} {Level}:{EventId} [{SourceContext}] {Message}{NewLine}{Exception}")
-                .CreateLogger()).SingleInstance();
-
-            builder.RegisterModule(new EstelApiCrossCuttingIoC());
+                .CreateLogger())
+                .SingleInstance();
+            
+            builder.RegisterModule(new EstelServicesApiModule());
             var container = builder.Build();
             TypeAdapterFactory.SetCurrent(container.Resolve<ITypeAdapterFactory>());
 
@@ -181,7 +189,6 @@
 
             app.UseStaticFiles(strFileOptions);
 
-            // app.UseCors(builder =>builder.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());
             app.UseCors(
                 c =>
                     {
@@ -220,9 +227,7 @@
             logger.Debug(
                 "Using configuration: {NewLine:l}{Configuration:l}",
                 Environment.NewLine,
-                string.Join(
-                    Environment.NewLine,
-                    this.Configuration.AsEnumerable().Select(conf => $"{conf.Key} = {conf.Value}")));
+                string.Join(Environment.NewLine, this.Configuration.AsEnumerable().Select(conf => $"{conf.Key} = {conf.Value}")));
         }
     }
 }

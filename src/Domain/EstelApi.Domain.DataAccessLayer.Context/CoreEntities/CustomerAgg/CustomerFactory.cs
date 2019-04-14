@@ -1,7 +1,5 @@
 ﻿namespace EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg
 {
-    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CountryAgg;
-
     /// <summary>
     /// This is the factory for Customer creation, which means that the main purpose
     /// is to encapsulate the creation knowledge.
@@ -21,56 +19,25 @@
         /// <param name="telephone">
         /// The telephone.
         /// </param>
-        /// <param name="company">
-        /// The company.
-        /// </param>
-        /// <param name="country">
-        /// The associated country to this customer
-        /// </param>
-        /// <param name="address">
-        /// The address.
-        /// </param>
         /// <returns>
         /// A valid customer
         /// </returns>
         public static Customer CreateCustomer(
             string firstName,
             string lastName,
-            string telephone,
-            string company,
-            Country country,
-            Address address)
+            string telephone)
         {
             // create new instance and set identity
-            var customer = new Customer();
-
-            customer.GenerateNewIdentity();
+            var customer = new Customer { FirstName = firstName, LastName = lastName, Telephone = telephone };
 
             // set data
-            customer.FirstName = firstName;
-            customer.LastName = lastName;
 
-            customer.Company = company;
-            customer.Telephone = telephone;
-
-            // set address
-            customer.Address = address;
 
             // customer is enabled by default
             customer.Enable();
-
-            // TODO: By default this is the limit for customer credit, you can set this 
-            // parameter customizable via configuration or other system
-            customer.ChangeTheCurrentCredit(1000M);
-
-            // set default picture
-            var picture = new Picture();
-            picture.ChangeCurrentIdentity(customer.Id);
-
-            customer.ChangePicture(picture);
-
-            // set the country for this customer
-            customer.SetTheCountryForThisCustomer(country);
+            
+            // todo set Default logo path
+            customer.ChangePicture("picture");
 
             return customer;
         }

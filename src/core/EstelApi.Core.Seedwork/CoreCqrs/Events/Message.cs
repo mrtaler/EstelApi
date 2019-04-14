@@ -25,6 +25,6 @@
         /// <summary>
         /// Gets or sets the aggregate id.
         /// </summary>
-        public Guid AggregateId { get; protected set; }
+        public int AggregateId { get; protected set; }
     }
 }

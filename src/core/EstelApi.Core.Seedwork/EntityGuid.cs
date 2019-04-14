@@ -15,11 +15,23 @@
         /// </summary>
         private int? requestedHashCode;
 
+        private Guid id;
+
         /// <inheritdoc />
         /// <summary>
         /// Gets or sets the persistent object identifier
         /// </summary>
-        public virtual Guid Id { get; set; }
+        public virtual Guid Id
+        {
+            get
+            {
+                return this.id;
+            }
+            set
+            {
+                this.id = value;
+            }
+        }
 
         /// <summary>
         /// The ==.

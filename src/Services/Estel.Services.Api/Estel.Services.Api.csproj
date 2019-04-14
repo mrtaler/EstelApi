@@ -8,13 +8,13 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>C:\Users\siarhei_linkevich\source\repos\EstelApi\src\Services\Estel.Services.Api\Estel.Services.Api.xml</DocumentationFile>
+    <DocumentationFile>Estel.Services.Api.xml</DocumentationFile>
   </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="Autofac" Version="4.9.1" />
+    <PackageReference Include="Autofac" Version="4.9.2" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.4.0" />
-    <PackageReference Include="MediatR.Extensions.Autofac.DependencyInjection" Version="2.0.1" />
+    <PackageReference Include="JetBrains.Annotations" Version="2019.1.1" />
+    <PackageReference Include="MediatR.Extensions.Autofac.DependencyInjection" Version="2.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.All" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="3.2.0" />
@@ -39,10 +39,4 @@
     <ProjectReference Include="..\..\CrossCutting\EstelApi.CrossCutting.Identity\EstelApi.CrossCutting.Identity.csproj" />
     <ProjectReference Include="..\..\CrossCutting\EstelApi.CrossCutting.IoC\EstelApi.CrossCutting.IoC.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ViewModels\CourseType\" />
-    <Folder Include="ViewModels\Course\" />
-  </ItemGroup>
-
 </Project>

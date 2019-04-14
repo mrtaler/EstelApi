@@ -1,22 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.438
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28729.10
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Core", "1 - Core", "{99AA4558-EBE6-454C-A2A0-191170DA9C19}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - CrossCutting", "0 - CrossCutting", "{152588AB-F2E8-439D-9D17-694C5B8EBD02}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Domain", "2 - Domain", "{B225D63F-D5BE-42B7-9386-171A3CD46F7E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Domain", "1 - Domain", "{B225D63F-D5BE-42B7-9386-171A3CD46F7E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Application", "3 - Application", "{741A7FF2-BEA5-4D85-A40E-510C9D53066D}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Application", "2 - Application", "{741A7FF2-BEA5-4D85-A40E-510C9D53066D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Services", "4 - Services", "{2E790C43-946C-4BAB-89DE-D1C454D537C8}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Services", "3 - Services", "{2E790C43-946C-4BAB-89DE-D1C454D537C8}"
 	ProjectSection(SolutionItems) = preProject
 		WorkWithBoundedContext.md = WorkWithBoundedContext.md
 	EndProjectSection
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EstelApi.CrossCutting.Bus", "src\CrossCutting\EstelApi.CrossCutting.Bus\EstelApi.CrossCutting.Bus.csproj", "{46C207BE-DA41-4500-9CB9-AC2D0E395B82}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EstelApi.CrossCutting.Identity", "src\CrossCutting\EstelApi.CrossCutting.Identity\EstelApi.CrossCutting.Identity.csproj", "{88F27851-BD69-4457-940A-BE5A4766E63D}"
 EndProject
@@ -30,16 +26,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EstelApi.Application", "src
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Estel.Services.Api", "src\Services\Estel.Services.Api\Estel.Services.Api.csproj", "{169AC7D7-D22F-4C16-8438-8EC4ABFB3BF4}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EstelApi.IntegrationTests", "tests\EstelApi.IntegrationTests\EstelApi.IntegrationTests.csproj", "{2DFBE7F5-853F-4A7E-A576-77E5A10915FE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{46C207BE-DA41-4500-9CB9-AC2D0E395B82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{46C207BE-DA41-4500-9CB9-AC2D0E395B82}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{46C207BE-DA41-4500-9CB9-AC2D0E395B82}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{46C207BE-DA41-4500-9CB9-AC2D0E395B82}.Release|Any CPU.Build.0 = Release|Any CPU
 		{88F27851-BD69-4457-940A-BE5A4766E63D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{88F27851-BD69-4457-940A-BE5A4766E63D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88F27851-BD69-4457-940A-BE5A4766E63D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -64,15 +58,18 @@ Global
 		{169AC7D7-D22F-4C16-8438-8EC4ABFB3BF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{169AC7D7-D22F-4C16-8438-8EC4ABFB3BF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{169AC7D7-D22F-4C16-8438-8EC4ABFB3BF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DFBE7F5-853F-4A7E-A576-77E5A10915FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DFBE7F5-853F-4A7E-A576-77E5A10915FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DFBE7F5-853F-4A7E-A576-77E5A10915FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DFBE7F5-853F-4A7E-A576-77E5A10915FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{46C207BE-DA41-4500-9CB9-AC2D0E395B82} = {152588AB-F2E8-439D-9D17-694C5B8EBD02}
 		{88F27851-BD69-4457-940A-BE5A4766E63D} = {152588AB-F2E8-439D-9D17-694C5B8EBD02}
 		{1342F9F6-5A71-4CB8-84E1-6A115799ED43} = {152588AB-F2E8-439D-9D17-694C5B8EBD02}
-		{4D627BA0-8EA2-4951-9C8C-93DF336D5447} = {99AA4558-EBE6-454C-A2A0-191170DA9C19}
+		{4D627BA0-8EA2-4951-9C8C-93DF336D5447} = {B225D63F-D5BE-42B7-9386-171A3CD46F7E}
 		{C079C5F4-C962-4F06-A8D6-86813B98F220} = {B225D63F-D5BE-42B7-9386-171A3CD46F7E}
 		{B8E76800-A4ED-45BD-BBEF-ED76B8523967} = {741A7FF2-BEA5-4D85-A40E-510C9D53066D}
 		{169AC7D7-D22F-4C16-8438-8EC4ABFB3BF4} = {2E790C43-946C-4BAB-89DE-D1C454D537C8}

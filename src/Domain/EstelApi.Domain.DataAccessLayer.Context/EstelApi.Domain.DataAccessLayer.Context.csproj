@@ -9,19 +9,32 @@
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="Migrations\20190317160056_InitialCOntext.cs" />
+    <Compile Remove="Migrations\20190317161733_UpdateAddAmenityAndWorker.cs" />
+    <Compile Remove="Migrations\20190317164522_TPTForWorker.cs" />
+    <Compile Remove="Migrations\20190317170956_Init_EstelContext.cs" />
+    <Compile Remove="Migrations\20190318102650_Init_EstelContext.cs" />
+    <Compile Remove="Migrations\20190318113626_initData.cs" />
+    <Compile Remove="Migrations\20190318133305_AddInitDataWorcer.cs" />
+    <Compile Remove="Migrations\20190318133828_AddInitDataWorker.cs" />
+    <Compile Remove="Migrations\20190319200717_ChangeCustomerToUser.cs" />
+    <Compile Remove="Migrations\20190319201717_ChangeCustomerInheritanse.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Autofac" Version="4.9.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.2.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.2" />
+    <PackageReference Include="JetBrains.Annotations" Version="2018.3.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="2.2.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.2.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.3" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="2.2.0" />
     <PackageReference Include="Serilog" Version="2.8.0" />
     <PackageReference Include="System.Reflection.TypeExtensions" Version="4.5.1" />
-
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="2.2.0" />
   </ItemGroup>
 

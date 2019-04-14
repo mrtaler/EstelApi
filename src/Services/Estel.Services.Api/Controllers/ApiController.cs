@@ -12,31 +12,32 @@
 
     /// <inheritdoc />
     [ApiController]
+    [Produces("application/json")]
     public abstract class ApiController : ControllerBase
     {
         /// <summary>
-        /// The notifications.
-        /// </summary>
-        private readonly DomainNotificationHandler notifications;
-
-        /// <summary>
         /// The mediator.
         /// </summary>
-        private readonly IMediator mediator;
+        protected readonly IMediator Mediator;
+
+        /// <summary>
+        /// The notifications.
+        /// </summary>
+        private readonly DomainEventHandler notifications;
 
         /// <inheritdoc />
         protected ApiController(
-            INotificationHandler<DomainNotification> notifications,
+            INotificationHandler<DomainEvent> notifications,
             IMediator mediator)
         {
-            this.notifications = (DomainNotificationHandler)notifications;
-            this.mediator = mediator;
+            this.notifications = (DomainEventHandler)notifications;
+            this.Mediator = mediator;
         }
 
         /// <summary>
         /// The notifications.
         /// </summary>
-        protected IEnumerable<DomainNotification> Notifications => this.notifications.GetNotifications();
+        protected IEnumerable<DomainEvent> Notifications => this.notifications.GetNotifications();
 
         /// <summary>
         /// The is valid operation.
@@ -79,9 +80,9 @@
         protected void NotifyModelStateErrors()
         {
             var errors = this.ModelState.Values.SelectMany(v => v.Errors);
-            foreach (var erro in errors)
+            foreach (var error in errors)
             {
-                var errorsMsg = erro.Exception == null ? erro.ErrorMessage : erro.Exception.Message;
+                var errorsMsg = error.Exception == null ? error.ErrorMessage : error.Exception.Message;
                 this.NotifyError(string.Empty, errorsMsg);
             }
         }
@@ -97,7 +98,7 @@
         /// </param>
         protected void NotifyError(string code, string message)
         {
-            this.mediator.Publish(new DomainNotification(code, message));
+            this.Mediator.Publish(new DomainEvent(code, message));
         }
 
         /// <summary>

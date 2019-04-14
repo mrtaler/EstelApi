@@ -23,7 +23,7 @@
         /// <summary>
         /// The notifications.
         /// </summary>
-        private readonly DomainNotificationHandler notifications;
+        private readonly DomainEventHandler notifications;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="QueryHandler"/> class.
@@ -40,10 +40,10 @@
         public QueryHandler(
             IQueryableUnitOfWork uow,
             IMediator bus,
-            INotificationHandler<DomainNotification> notifications)
+            INotificationHandler<DomainEvent> notifications)
         {
             this.uow = uow;
-            this.notifications = (DomainNotificationHandler)notifications;
+            this.notifications = (DomainEventHandler)notifications;
             this.Bus = bus;
         }
     }

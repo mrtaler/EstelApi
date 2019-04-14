@@ -27,15 +27,6 @@
             }
 
             services.AddAutoMapper();
-
-            // Registering Mappings automatically only works if the 
-            // Automapper Profile classes are in ASP.NET project
-         // AutoMapperConfig.RegisterMappings();
-
-            /*
-             services.AddScoped<ITypeAdapterFactory, AutomapperTypeAdapterFactory>();
-             TypeAdapterFactory.SetCurrent(services.BuildServiceProvider().GetService<ITypeAdapterFactory>());
-            */
         }
     }
 }

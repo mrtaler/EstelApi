@@ -30,6 +30,6 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        Task<List<StoredEvent>> All(Guid aggregateId);
+        Task<List<StoredEvent>> All(int aggregateId);
     }
 }

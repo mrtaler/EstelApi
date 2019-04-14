@@ -1,5 +1,6 @@
 ﻿namespace Estel.Services.Api.Extension.Swagger
 {
+    using System;
     using System.Linq;
 
     using Swashbuckle.AspNetCore.Swagger;
@@ -24,7 +25,9 @@
             // REF: https://github.com/domaindrivendev/Swashbuckle.AspNetCore/pull/413
             foreach (var parameter in operation.Parameters.OfType<NonBodyParameter>())
             {
-                var description = context.ApiDescription.ParameterDescriptions.First(p => p.Name.ToUpper() == parameter.Name.ToUpper());
+                var description = context.ApiDescription.ParameterDescriptions
+                    .First(p => string
+                        .Equals(p.Name, parameter.Name, StringComparison.CurrentCultureIgnoreCase));
 
                 var routeInfo = description.RouteInfo;
 
