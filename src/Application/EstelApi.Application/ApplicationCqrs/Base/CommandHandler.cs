@@ -2,6 +2,7 @@
 {
     using System.Threading.Tasks;
 
+    using EstelApi.Core.Seedwork.CoreCqrs.Commands;
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
     using EstelApi.Domain.DataAccessLayer.Context.Interfaces;
 
@@ -45,15 +46,6 @@
             this.notifications = (DomainEventHandler)notifications;
             this.Bus = bus;
         }
-
-        // todo transfer in to mediatr pipeline
-        /*  protected void NotifyValidationErrors(ICommand message)
-          {
-              foreach (var error in message.ValidationResult.Errors)
-              {
-                  _bus.Publish(new DomainNotification(message.GetType().Name, error.ErrorMessage));
-              }
-          }*/
 
         /// <summary>
         /// The commit.
