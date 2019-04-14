@@ -2,14 +2,12 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    using EstelApi.Application.ApplicationCqrs.Base;
-    using EstelApi.Core.Seedwork.CoreCqrs.Commands;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
 
     using MediatR;
 
-    public class CreateNewCourseTypeCommand : ICommand,
-                                              IRequest<CommandResponse<CourseType>>
+    public class CreateNewCourseTypeCommand// : ICommand,
+                                            //  IRequest<CommandResponse<CourseType>>
     {
         /// <summary>
         /// Gets or sets the course type name.

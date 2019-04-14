@@ -1,9 +1,9 @@
 ﻿namespace Estel.Services.Api.Controllers
 {
+    using System.Collections.Generic;
     using System.Security.Claims;
     using System.Threading.Tasks;
 
-    using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
     using EstelApi.CrossCutting.Identity.IdentityModels;
     using EstelApi.CrossCutting.Identity.IdentityViewModels.AccountViewModels;
 
@@ -38,9 +38,7 @@
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
-            INotificationHandler<DomainEvent> notifications,
-            ILoggerFactory loggerFactory,
-            IMediator mediator) : base(notifications, mediator)
+            ILoggerFactory loggerFactory)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
@@ -63,18 +61,17 @@
         {
             if (!this.ModelState.IsValid)
             {
-                this.NotifyModelStateErrors();
-                return this.Response(model);
+                return this.ResponseBad( "Validation error" );
             }
 
             var result = await this.signInManager.PasswordSignInAsync(model.Email, model.Password, false, true);
             if (!result.Succeeded)
             {
-                this.NotifyError(result.ToString(), "Login failure");
+                return this.ResponseBad( "Login failure");
             }
 
             this.logger.LogInformation(1, "User logged in.");
-            return this.Response(model);
+            return this.Response();
         }
 
         /// <summary>
@@ -93,7 +90,7 @@
         {
             if (!this.ModelState.IsValid)
             {
-                this.NotifyModelStateErrors();
+                return this.ResponseBad("Validation error");
                 return this.Response(model);
             }
 
@@ -111,8 +108,7 @@
                 return this.Response(model);
             }
 
-            this.AddIdentityErrors(result);
-            return this.Response(model);
+            return this.ResponseBad("Login failure");
         }
     }
 }

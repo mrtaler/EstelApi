@@ -1,18 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace EstelApi.Application.ApplicationCqrs
 {
-    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
 
-    using EstelApi.Application.ApplicationCqrs.Base;
-    using EstelApi.Core.Seedwork.CoreCqrs.Commands;
-
     using FluentValidation;
-    using FluentValidation.Results;
 
     using MediatR;
 

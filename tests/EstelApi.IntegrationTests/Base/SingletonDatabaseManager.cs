@@ -2,7 +2,6 @@
 {
     using System.Data.SqlClient;
     using System.IO;
-    using System.Text;
 
     using EstelApi.IntegrationTests.Base.SqlHelpers;
 

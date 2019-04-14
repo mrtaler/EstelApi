@@ -2,14 +2,12 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    using EstelApi.Application.ApplicationCqrs.Base;
-    using EstelApi.Core.Seedwork.CoreCqrs.Commands;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
 
     using MediatR;
 
     /// <inheritdoc cref="ICommand" />
-    public class UpdateAvailableDatesCommand : ICommand, IRequest<CommandResponse<AvailableDates>>
+    public class UpdateAvailableDatesCommand //: ICommand, IRequest<CommandResponse<AvailableDates>>
     {
         [Required]
         public int Id { get; set; }

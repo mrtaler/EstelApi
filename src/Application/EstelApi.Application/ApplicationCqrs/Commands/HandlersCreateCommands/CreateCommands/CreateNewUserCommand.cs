@@ -1,15 +1,13 @@
 ﻿namespace EstelApi.Application.ApplicationCqrs.Commands.HandlersCreateCommands.CreateCommands
 {
-    using EstelApi.Application.ApplicationCqrs.Base;
-    using EstelApi.Core.Seedwork.CoreCqrs.Commands;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
     using MediatR;
     using System;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
 
-    public class CreateNewUserCommand : ICommand,
-                                            IRequest<CommandResponse<User>>
+    public class CreateNewUserCommand //: ICommand,
+                                      //      IRequest<CommandResponse<User>>
     {
         /// <summary>
         /// The customer first name

@@ -1,9 +1,7 @@
 ﻿namespace Estel.Services.Api.ViewModels
 {
-    using System;
     using System.Collections.Generic;
 
-    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
 
     public class CourseViewModel
@@ -60,91 +58,5 @@
         /// All Available dates for this course 
         /// </summary>
         public IEnumerable<AvailableDatesViewModel> AvailableDates { get; set; }
-    }
-
-    public class CourseTypeViewModel
-    {
-        /// <summary>
-        /// Gets or sets the course type name.
-        /// </summary>
-        public string CourseTypeName { get; set; }
-
-        /// <summary>
-        /// Gets or sets the description.
-        /// </summary>
-        public string Description { get; set; }
-    }
-
-    public class AvailableDatesViewModel
-    {
-        public string Month { get; set; }
-        public string Date { get; set; }
-        public string StartHour { get; set; }
-        public string EndHour { get; set; }
-    }
-
-    public class CourseAttendanceViewModel
-    {
-        public UserViewModel User { get; set; }
-
-        public DateTimeOffset AttendenseDate { get; set; }
-        public DateTimeOffset CourseDate { get; set; }
-        public DateTimeOffset CourseEndDAte { get; set; }
-        public CourseAttendenseStatus Status { get; set; }
-        public string Description { get; set; }
-    }
-
-    public class UserViewModel
-    {
-        /// <inheritdoc />
-        public UserViewModel()
-        {
-        }
-
-        /// <summary>
-        /// Gets or sets the identity id.
-        /// </summary>
-        public int IdentityId { get; set; }
-
-        /// <summary>
-        /// Gets or sets the Given name of this customer
-        /// </summary>
-        public string FirstName { get; set; }
-
-        /// <summary>
-        /// Gets or sets the surname of this customer
-        /// </summary>
-        public string LastName { get; set; }
-
-        /// <summary>
-        /// Gets or sets the middle name.
-        /// </summary>
-        public string MiddleName { get; set; }
-
-        /// <summary>
-        /// Gets the full name of this customer
-        /// </summary>
-        public string FullName => $"{this.LastName} {this.FirstName} {this.MiddleName}";
-
-        /// <summary>
-        /// Gets or sets the telephone 
-        /// </summary>
-        public string Telephone { get; set; }
-
-        /// <summary>
-        /// Gets or sets the birth date.
-        /// </summary>
-        public DateTimeOffset BirthDate { get; set; }
-
-        public bool IsEnabled { get; set; }
-
-        public string LogoPath { get; set; }
-    }
-
-    public class AdditionalAmenityViewModel
-    {
-        public int Id { get; set; }
-
-        public string AdditionalAmenityName { get; set; }
     }
 }

@@ -4,7 +4,6 @@
     using EstelApi.Application.ApplicationCqrs.Base;
     using EstelApi.Application.ApplicationCqrs.Queries;
     using EstelApi.Core.Seedwork.Adapter;
-    using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
 
     using MediatR;
@@ -19,6 +18,8 @@
     using EstelApi.Application.ApplicationCqrs.Commands.Course.UpdateAvailableDatesForCourse;
     using EstelApi.Application.ApplicationCqrs.Commands.Course.UpdateCourse;
     using EstelApi.Application.ApplicationCqrs.Commands.Course.UpdateCourseTopicsForCourse;
+    using EstelApi.Application.ApplicationCqrs.Queries.FindByIdSpec;
+    using EstelApi.Application.Interfaces;
 
     /// <inheritdoc />
     /// <summary>
@@ -28,6 +29,7 @@
     [Route("Course")]
     public class CourseController : ApiController
     {
+        private ICourseService courseService;
         /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Estel.Services.Api.Controllers.CourseController" /> class.
@@ -38,9 +40,9 @@
         /// <param name="mediator">
         /// The mediator.
         /// </param>
-        public CourseController(INotificationHandler<DomainEvent> notifications, IMediator mediator)
-            : base(notifications, mediator)
+        public CourseController(ICourseService courseService)
         {
+            this.courseService = courseService;
         }
 
         /// <summary>
@@ -52,7 +54,7 @@
         [HttpGet("Courses")]
         public async Task<IActionResult> Get()
         {
-            var result = await this.Mediator.Send(new AllEntitiesQuery<Course>());
+            var result = await courseService.GetGourses();
             return this.Response(result);
         }
 
@@ -68,7 +70,7 @@
         [HttpGet("Course")]
         public async Task<IActionResult> Get(int id)
         {
-            var result = await this.Mediator.Send(new EntityByIdQuery<Course>(id));
+            var result = await courseService.GetGourse(new FindCourseById().SetId(id));
             var rs = result.ProjectedAs<CourseViewModel>();
             return this.Response(rs);
         }
@@ -85,7 +87,7 @@
         [HttpDelete("DeleteCourseById")]
         public async Task<IActionResult> Delete(int id)
         {
-            var result = await this.Mediator.Send(new RemoveEntityCommand<Course>(id));
+            var result = await courseService.DeleteCourse(new RemoveEntityCommand<Course>(id));
             return this.Response(result);
         }
 
@@ -98,16 +100,15 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        [HttpPost("Course")]
-        public async Task<IActionResult> Post([FromBody] CreateNewCourseCommand command)
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody] CreateNewCourseDto command)
         {
             if (!this.ModelState.IsValid)
             {
-                this.NotifyModelStateErrors();
                 return this.Response(command);
             }
 
-            var resp = await this.Mediator.Send(command);
+            var resp = await this.courseService.CreateNewCourse(command);
             return this.Response(resp);
         }
 
@@ -120,51 +121,46 @@
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        [HttpPut("Course")]
-        public async Task<IActionResult> Put([FromBody] UpdateCourseCommand command)
+        [HttpPut]
+        public async Task<IActionResult> Put([FromBody] UpdateCourseDto command)
         {
             if (!this.ModelState.IsValid)
             {
-                this.NotifyModelStateErrors();
                 return this.Response(command);
             }
 
-            var resp = await this.Mediator.Send(command);
+            var resp = await this.courseService.UpdateCourse(command);
             return this.Response(resp);
         }
 
-        [HttpPut("Course/{CourseId}/AvailableDate")]
+        [HttpPut("{courseId}/AvailableDate")]
         public async Task<IActionResult> Put(
             int courseId,
-            UpdateAvailableDatesForCourseCommand command)
+            UpdateAvailableDatesForCourseDto command)
         {
-            var resp = await this.Mediator.Send(command);
+            command.CourseId = courseId;
+            var resp = await this.courseService.UpdateAvailDateForCourse(command);
 
             return this.Response(resp);
         }
 
-        [HttpPut("Course/{CourseId}/CourseTopics")]
+        [HttpPut("{CourseId}/CourseTopics")]
         public async Task<IActionResult> Put(
             int courseId,
-            UpdateCourseTopicsForCourseCommand command)
+            UpdateCourseTopicsForCourseDto command)
         {
-           var resp = await this.Mediator.Send(command);
+           var resp = await this.courseService.UpdateCourseTopics(command);
 
             return this.Response(resp);
         }
 
 
-        [HttpPut("Course/{CourseId}/AdditionalAmenity")]
-        public async Task<IActionResult> Put(
-            int courseId,
-            UpdateAdditionalAmenityForCourseCommand command)
+        [HttpPut("{CourseId}/AdditionalAmenity")]
+        public async Task<IActionResult> Put(int courseId, UpdateAdditionalAmenityForCourseDto command)
         {
-            var resp = await this.Mediator.Send(command);
+            var resp = await this.courseService.UpdateAddiAmeForCourse(command);
 
             return this.Response(resp);
         }
-
-        // CourseAttendance
-
     }
 }

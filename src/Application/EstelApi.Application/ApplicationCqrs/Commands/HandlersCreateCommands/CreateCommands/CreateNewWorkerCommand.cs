@@ -3,14 +3,12 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    using EstelApi.Application.ApplicationCqrs.Base;
-    using EstelApi.Core.Seedwork.CoreCqrs.Commands;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
 
     using MediatR;
 
-    public class CreateNewWorkerCommand : ICommand,
-                                          IRequest<CommandResponse<Worker>>
+    public class CreateNewWorkerCommand //: ICommand,
+                                        //  IRequest<CommandResponse<Worker>>
     {
         public int IdentityId { get; set; }
 

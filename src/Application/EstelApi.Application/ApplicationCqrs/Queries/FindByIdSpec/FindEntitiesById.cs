@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Text;
-
-namespace EstelApi.Application.ApplicationCqrs.Queries.FindByIdSpec
+﻿namespace EstelApi.Application.ApplicationCqrs.Queries.FindByIdSpec
 {
     using EstelApi.Core.Seedwork.Specifications.Specifications;
 

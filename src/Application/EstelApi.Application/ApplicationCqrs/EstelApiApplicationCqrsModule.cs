@@ -5,7 +5,7 @@
     using Autofac;
 
     using EstelApi.Application.ApplicationCqrs.Commands.HandlersCreateCommands;
-    using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
+    using EstelApi.Application.Interfaces;
 
     using MediatR;
     using MediatR.Extensions.Autofac.DependencyInjection;
@@ -25,18 +25,8 @@
         /// </param>
         protected override void Load(ContainerBuilder builder)
         {
-            builder.AddMediatR(
-                typeof(CreateUserCommandHandler).GetTypeInfo().Assembly);
+            builder.RegisterType<CourseService>().As<ICourseService>().InstancePerLifetimeScope();
 
-            builder.RegisterType<DomainEventHandler>().As<INotificationHandler<DomainEvent>>().InstancePerLifetimeScope();
-
-
-            builder.RegisterGeneric(typeof(PerformanceBehavior<,>))
-                .As(typeof(IPipelineBehavior<,>))
-                .InstancePerLifetimeScope();
-            builder.RegisterGeneric(typeof(ExceptionHandler<,>))
-                .As(typeof(IPipelineBehavior<,>))
-                .InstancePerLifetimeScope();
         }
     }
 }

@@ -4,14 +4,12 @@
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
 
-    using EstelApi.Application.ApplicationCqrs.Base;
-    using EstelApi.Core.Seedwork.CoreCqrs.Commands;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
 
     using MediatR;
 
     /// <inheritdoc cref="ICommand" />
-    public class UpdateUserCommand : ICommand, IRequest<CommandResponse<User>>
+    public class UpdateUserCommand //: ICommand, IRequest<CommandResponse<User>>
     {
         /// <summary>
         /// The customer identifier
