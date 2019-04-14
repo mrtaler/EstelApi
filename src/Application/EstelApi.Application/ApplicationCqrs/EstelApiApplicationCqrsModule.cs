@@ -31,9 +31,14 @@
                 typeof(CreateUserCommandHandler).GetTypeInfo().Assembly);
 
             builder.RegisterType<DomainEventHandler>().As<INotificationHandler<DomainEvent>>().InstancePerLifetimeScope();
-            builder.RegisterType<CustomerEventHandler>().As<INotificationHandler<CustomerRegisteredEvent>>().InstancePerLifetimeScope();
-            builder.RegisterType<CustomerEventHandler>().As<INotificationHandler<CustomerUpdatedEvent>>().InstancePerLifetimeScope();
-            builder.RegisterType<CustomerEventHandler>().As<INotificationHandler<CustomerRemovedEvent>>().InstancePerLifetimeScope();
+
+
+            builder.RegisterGeneric(typeof(PerformanceBehavior<,>))
+                .As(typeof(IPipelineBehavior<,>))
+                .InstancePerLifetimeScope();
+            builder.RegisterGeneric(typeof(ExceptionHandler<,>))
+                .As(typeof(IPipelineBehavior<,>))
+                .InstancePerLifetimeScope();
         }
     }
 }

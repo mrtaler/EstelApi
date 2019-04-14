@@ -3,15 +3,6 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <CodeAnalysisRuleSet>EstelApi.Application.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <CodeAnalysisRuleSet>EstelApi.Application.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="Autofac" Version="4.9.1" />
     <PackageReference Include="AutoMapper" Version="8.0.0" />
@@ -24,7 +15,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\core\EstelApi.Core.Seedwork\EstelApi.Core.Seedwork.csproj" />
-    <ProjectReference Include="..\..\CrossCutting\EstelApi.CrossCutting.Bus\EstelApi.CrossCutting.Bus.csproj" />
     <ProjectReference Include="..\..\Domain\EstelApi.Domain.DataAccessLayer.Context\EstelApi.Domain.DataAccessLayer.Context.csproj" />
   </ItemGroup>
 

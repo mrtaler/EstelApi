@@ -1,5 +1,6 @@
 ﻿namespace EstelApi.Application.AutoMapper
 {
+    using global::AutoMapper;
     using EstelApi.Application.ApplicationCqrs.Commands.Course.CreateNewCourse;
     using EstelApi.Application.ApplicationCqrs.Commands.Course.UpdateAvailableDatesForCourse;
     using EstelApi.Application.ApplicationCqrs.Commands.Course.UpdateCourse;
@@ -8,21 +9,21 @@
     using EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
-    using global::AutoMapper;
+   
     using Serilog;
 
     /// <inheritdoc />
     /// <summary>
     /// The domain to dto mapping profile reverse.
     /// </summary>
-    public class DomainToDtoMappingProfileReverse : Profile
+    public class CommandToEntityProfileReverse : Profile
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DomainToDtoMappingProfileReverse"/> class.
+        /// Initializes a new instance of the <see cref="CommandToEntityProfileReverse"/> class.
         /// </summary>
-        public DomainToDtoMappingProfileReverse()
+        public CommandToEntityProfileReverse()
         {
-            Log.Debug($"AutoMapper profile {nameof(DomainToDtoMappingProfileReverse)} was launch");
+            Log.Debug($"AutoMapper profile {nameof(CommandToEntityProfileReverse)} was launch");
             this.CreateMap<UpdateWorkerCommand, Worker>(memberList: MemberList.Source);
             this.CreateMap<UpdateUserCommand, User>(memberList: MemberList.Source);
             this.CreateMap<UpdateCourseTypeCommand, CourseType>(memberList: MemberList.Source);
@@ -42,7 +43,6 @@
             this.CreateMap<UpdateAvailableDatesForCourseCommand, AvailableDates>(memberList: MemberList.Source);
             this.CreateMap<UpdateCourseCommand, Course>(memberList: MemberList.Source);
             this.CreateMap<UpdateCourseTopicsForCourseCommand, CourseTopics>(memberList: MemberList.Source);
-            //   this.CreateMap<Customer, CustomerDto>().PreserveReferences();
         }
     }
 }

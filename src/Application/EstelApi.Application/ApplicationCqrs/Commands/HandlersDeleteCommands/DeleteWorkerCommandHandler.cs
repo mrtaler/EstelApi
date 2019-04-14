@@ -5,8 +5,8 @@
 
     using EstelApi.Application.ApplicationCqrs.Base;
     using EstelApi.Application.ApplicationCqrs.Queries.FindByIdSpec;
+    using EstelApi.Core.Seedwork;
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
-    using EstelApi.CrossCutting.Bus;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Repositories;
     using EstelApi.Domain.DataAccessLayer.Context.Interfaces;

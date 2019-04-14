@@ -104,8 +104,6 @@
                     {
                         options.OutputFormatters.Remove(new XmlDataContractSerializerOutputFormatter());
                         options.UseCentralRoutePrefix(new RouteAttribute("api/v{api-version:apiVersion}"));
-
-                        // options.UseCentralRoutePrefix(new RouteAttribute("api/v{version}"));
                     })
                 .AddJsonOptions(options =>
                 {

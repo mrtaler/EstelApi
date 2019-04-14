@@ -1,6 +1,5 @@
 ﻿namespace Estel.Services.Api
 {
-
     using System;
     using System.IO;
 

@@ -6,7 +6,6 @@
     using EstelApi.Application.ApplicationCqrs;
     using EstelApi.Core.Seedwork.Adapter;
     using EstelApi.Core.Seedwork.Adapter.Implementation;
-    using EstelApi.CrossCutting.Bus;
     using EstelApi.CrossCutting.Identity;
     using EstelApi.CrossCutting.Identity.IdentityContext;
     using EstelApi.Domain.DataAccessLayer.Context;

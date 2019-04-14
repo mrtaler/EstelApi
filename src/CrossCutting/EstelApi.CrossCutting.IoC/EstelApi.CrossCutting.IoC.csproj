@@ -8,15 +8,7 @@
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <CodeAnalysisRuleSet>EstelApi.CrossCutting.IoC.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <CodeAnalysisRuleSet>EstelApi.CrossCutting.IoC.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
+  </PropertyGroup> 
   <ItemGroup>
     <PackageReference Include="Autofac" Version="4.9.1" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.4.0" />
@@ -26,7 +18,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Application\EstelApi.Application\EstelApi.Application.csproj" />
     <ProjectReference Include="..\..\Domain\EstelApi.Domain.DataAccessLayer.Context\EstelApi.Domain.DataAccessLayer.Context.csproj" />
-    <ProjectReference Include="..\EstelApi.CrossCutting.Bus\EstelApi.CrossCutting.Bus.csproj" />
     <ProjectReference Include="..\EstelApi.CrossCutting.Identity\EstelApi.CrossCutting.Identity.csproj" />
   </ItemGroup>
 

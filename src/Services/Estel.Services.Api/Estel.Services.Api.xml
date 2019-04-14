@@ -824,23 +824,6 @@
             The level.
             </param>
         </member>
-        <member name="T:Estel.Services.Api.Extension.Swagger.FileUploadOperation">
-            <inheritdoc />
-        </member>
-        <member name="F:Estel.Services.Api.Extension.Swagger.FileUploadOperation.FormFilePropertyNames">
-            <summary>
-            The form file property names.
-            </summary>
-        </member>
-        <member name="M:Estel.Services.Api.Extension.Swagger.FileUploadOperation.Apply(Swashbuckle.AspNetCore.Swagger.Operation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)">
-            <inheritdoc />
-        </member>
-        <member name="T:Estel.Services.Api.Extension.Swagger.SecurityRequirementsDocumentFilter">
-            <inheritdoc />
-        </member>
-        <member name="M:Estel.Services.Api.Extension.Swagger.SecurityRequirementsDocumentFilter.Apply(Swashbuckle.AspNetCore.Swagger.SwaggerDocument,Swashbuckle.AspNetCore.SwaggerGen.DocumentFilterContext)">
-            <inheritdoc />
-        </member>
         <member name="T:Estel.Services.Api.Extension.Swagger.SwaggerDefaultValues">
             <inheritdoc />
         </member>

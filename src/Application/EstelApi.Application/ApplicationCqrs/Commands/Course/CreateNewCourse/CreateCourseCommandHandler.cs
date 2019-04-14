@@ -4,9 +4,9 @@
     using System.Threading.Tasks;
 
     using EstelApi.Application.ApplicationCqrs.Base;
+    using EstelApi.Core.Seedwork;
     using EstelApi.Core.Seedwork.Adapter;
     using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
-    using EstelApi.CrossCutting.Bus;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Repositories;
     using EstelApi.Domain.DataAccessLayer.Context.Interfaces;

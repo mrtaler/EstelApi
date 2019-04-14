@@ -1,4 +1,4 @@
-﻿namespace EstelApi.CrossCutting.Bus
+﻿namespace EstelApi.Core.Seedwork
 {
     using System;
     using System.Collections.Generic;
