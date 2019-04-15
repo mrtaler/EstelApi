@@ -1,11 +1,10 @@
-﻿namespace EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands
+﻿namespace EstelApi.Application.Dto
 {
     using System;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
 
-    /// <inheritdoc cref="ICommand" />
-    public class UpdateUserCommand //: ICommand, IRequest<CommandResponse<User>>
+    public class UpdateUserDto
     {
         /// <summary>
         /// The customer identifier

@@ -1,4 +1,4 @@
-﻿namespace EstelApi.Application.ApplicationCqrs.Queries.FindByIdSpec
+﻿namespace EstelApi.Application.ApplicationCqrs.Queries.FindByAllFields
 {
     using System;
     using System.Linq.Expressions;

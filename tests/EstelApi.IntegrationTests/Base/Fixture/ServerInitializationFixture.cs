@@ -8,8 +8,6 @@
     using Autofac;
     using Autofac.Extensions.DependencyInjection;
 
-    using Localization.IntegrationTests.Base;
-
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.TestHost;
 

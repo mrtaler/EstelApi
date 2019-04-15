@@ -4,6 +4,7 @@
 
     using EstelApi.Application.ApplicationCqrs.Commands.HandlersCreateCommands.CreateCommands;
     using EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands;
+    using EstelApi.Application.Dto;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
 
     using MediatR;
@@ -68,7 +69,7 @@
         /// <summary>
         /// Create New Customer (work)
         /// </summary>
-        /// <param name="command">
+        /// <param name="dto">
         /// The command.
         /// </param>
         /// <returns>
@@ -76,22 +77,22 @@
         /// </returns>
         /// [Authorize(Policy = "CanWriteCustomerData")]
         [HttpPost("CreateNewCustomer")]
-        public async Task<IActionResult> Post([FromBody] CreateNewUserCommand command)
+        public async Task<IActionResult> Post([FromBody] CreateNewUserDto dto)
         {
             if (!this.ModelState.IsValid)
             {
                 this.NotifyModelStateErrors();
-                return this.Response(command);
+                return this.Response(dto);
             }
 
-            var resp = await this.Mediator.Send(command);
+            var resp = await this.Mediator.Send(dto);
             return this.Response(resp);
         }
 
         /// <summary>
         /// Update Customer. (work)
         /// </summary>
-        /// <param name="command">
+        /// <param name="dto">
         /// The command.
         /// </param>
         /// <returns>
@@ -99,15 +100,15 @@
         /// </returns>
         /// [Authorize(Policy = "CanWriteCustomerData")]
         [HttpPut("UpdateCustomer")]
-        public async Task<IActionResult> Put([FromBody] UpdateUserCommand command)
+        public async Task<IActionResult> Put([FromBody] UpdateUserDto dto)
         {
             if (!this.ModelState.IsValid)
             {
                 this.NotifyModelStateErrors();
-                return this.Response(command);
+                return this.Response(dto);
             }
 
-            var resp = await this.Mediator.Send(command);
+            var resp = await this.Mediator.Send(dto);
             return this.Response(resp);
         }
 

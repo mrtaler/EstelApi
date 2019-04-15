@@ -68,44 +68,44 @@
         /// <summary>
         /// Create New Worker.
         /// </summary>
-        /// <param name="command">
+        /// <param name="dto">
         /// The command.
         /// </param>
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
         [HttpPost("CreateNewWorker")]
-        public async Task<IActionResult> Post([FromBody] CreateNewWorkerCommand command)
+        public async Task<IActionResult> Post([FromBody] CreateNewWorkerDto dto)
         {
             if (!this.ModelState.IsValid)
             {
                 this.NotifyModelStateErrors();
-                return this.Response(command);
+                return this.Response(dto);
             }
 
-            var resp = await this.Mediator.Send(command);
+            var resp = await this.Mediator.Send(dto);
             return this.Response(resp);
         }
 
         /// <summary>
         /// Update Worker.
         /// </summary>
-        /// <param name="command">
+        /// <param name="dto">
         /// The command.
         /// </param>
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
         [HttpPut("UpdateWorker")]
-        public async Task<IActionResult> Put([FromBody] UpdateWorkerCommand command)
+        public async Task<IActionResult> Put([FromBody] UpdateWorkerDto dto)
         {
             if (!this.ModelState.IsValid)
             {
                 this.NotifyModelStateErrors();
-                return this.Response(command);
+                return this.Response(dto);
             }
 
-            var resp = await this.Mediator.Send(command);
+            var resp = await this.Mediator.Send(dto);
             return this.Response(resp);
         }
     }

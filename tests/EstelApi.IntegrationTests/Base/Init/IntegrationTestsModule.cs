@@ -10,8 +10,6 @@ namespace EstelApi.IntegrationTests.Base.Init
     using EstelApi.CrossCutting.IoC;
     using EstelApi.IntegrationTests.Base.Settings;
 
-    using Localization.IntegrationTests.Base;
-
     using Microsoft.Extensions.Options;
 
     using Serilog;

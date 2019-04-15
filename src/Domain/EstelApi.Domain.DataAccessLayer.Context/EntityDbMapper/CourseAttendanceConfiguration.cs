@@ -1,6 +1,9 @@
-﻿namespace EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done
+﻿namespace EstelApi.Domain.DataAccessLayer.Context.EntityDbMapper
 {
     using System;
+
+    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities;
+    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
 
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;

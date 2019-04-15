@@ -4,8 +4,6 @@
 
     using EstelApi.IntegrationTests.Base.Init;
 
-    using Localization.IntegrationTests.Base;
-
     public sealed class RepositoriesInitializationFixture : IInitializationFixture
     {
         /// <summary>

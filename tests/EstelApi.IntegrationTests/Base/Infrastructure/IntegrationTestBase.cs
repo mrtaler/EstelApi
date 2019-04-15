@@ -4,8 +4,6 @@
 
     using EstelApi.IntegrationTests.Base.Fixture;
 
-    using Localization.IntegrationTests.Base;
-
     /// <summary>
     /// The integration test base.
     /// </summary>

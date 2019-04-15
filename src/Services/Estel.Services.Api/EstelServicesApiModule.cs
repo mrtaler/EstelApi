@@ -1,6 +1,8 @@
-﻿namespace EstelApi.CrossCutting.IoC
+﻿namespace Estel.Services.Api
 {
     using Autofac;
+
+    using EstelApi.CrossCutting.IoC;
 
     /// <inheritdoc />
     public class EstelServicesApiModule : Module

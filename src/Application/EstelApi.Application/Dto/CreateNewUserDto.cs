@@ -1,11 +1,10 @@
-﻿namespace EstelApi.Application.ApplicationCqrs.Commands.HandlersCreateCommands.CreateCommands
+﻿namespace EstelApi.Application.Dto
 {
     using System;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
 
-    public class CreateNewUserCommand //: ICommand,
-                                      //      IRequest<CommandResponse<User>>
+    public class CreateNewUserDto 
     {
         /// <summary>
         /// The customer first name

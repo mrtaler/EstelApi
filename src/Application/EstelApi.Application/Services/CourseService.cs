@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
+    using EstelApi.Application.ApplicationCqrs.Queries.FindByAllFields;
     using EstelApi.Application.ApplicationCqrs.Queries.FindByIdSpec;
     using EstelApi.Application.ApplicationCqrs.Queries.IncludeSpec;
     using EstelApi.Application.Dto;
@@ -148,14 +149,14 @@
                        : throw new DatabaseException("Save exeption");
         }
 
-        public async Task<Course> GetGourse(ISpecification<Course> criteria = null)
-        {
-            var ret = this.courseRepository.OneMatching(
-                filter: criteria,
-                includes: new CourseInclude());
+            public async Task<Course> GetGourse(ISpecification<Course> criteria = null)
+            {
+                var ret = this.courseRepository.OneMatching(
+                    filter: criteria,
+                    includes: new CourseInclude());
 
-            return await Task.FromResult(ret);
-        }
+                return await Task.FromResult(ret);
+            }
 
         public async Task<IEnumerable<Course>> GetGourses(ISpecification<Course> criteria = null)
         {

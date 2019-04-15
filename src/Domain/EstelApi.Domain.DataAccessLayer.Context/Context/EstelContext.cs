@@ -2,6 +2,7 @@
 {
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
+    using EstelApi.Domain.DataAccessLayer.Context.EntityDbMapper;
 
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;

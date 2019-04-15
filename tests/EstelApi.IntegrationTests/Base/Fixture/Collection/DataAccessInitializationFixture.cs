@@ -6,8 +6,6 @@
     using EstelApi.IntegrationTests.Base.Init;
     using EstelApi.IntegrationTests.Base.Settings;
 
-    using Localization.IntegrationTests.Base;
-
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Options;
 
