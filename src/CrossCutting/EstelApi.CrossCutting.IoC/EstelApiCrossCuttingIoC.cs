@@ -3,7 +3,6 @@
     using Autofac;
 
     using EstelApi.Application;
-    using EstelApi.Application.ApplicationCqrs;
     using EstelApi.Core.Seedwork.Adapter;
     using EstelApi.Core.Seedwork.Adapter.Implementation;
     using EstelApi.CrossCutting.Identity;
@@ -22,7 +21,6 @@
 
             // 3
             builder.RegisterModule(new EstelApiApplicationModule());
-            builder.RegisterModule(new EstelApiApplicationCqrsModule());
 
             builder.RegisterType<AutoMapperTypeAdapterFactory>().As<ITypeAdapterFactory>().SingleInstance();
         }

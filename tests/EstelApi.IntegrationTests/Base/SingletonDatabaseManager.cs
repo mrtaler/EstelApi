@@ -1,8 +1,7 @@
-﻿namespace Localization.IntegrationTests.Base
+﻿namespace EstelApi.IntegrationTests.Base
 {
     using System.Data.SqlClient;
     using System.IO;
-    using System.Text;
 
     using EstelApi.IntegrationTests.Base.SqlHelpers;
 

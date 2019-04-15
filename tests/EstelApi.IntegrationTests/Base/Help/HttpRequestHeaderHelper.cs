@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Text;
-
-namespace EstelApi.IntegrationTests.Base.Help
+﻿namespace EstelApi.IntegrationTests.Base.Help
 {
     using System.Net.Http.Headers;
 

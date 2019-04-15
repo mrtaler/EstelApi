@@ -18,7 +18,6 @@
     using EstelApi.CrossCutting.Identity.IdentityContext;
     using EstelApi.CrossCutting.Identity.IdentityModels;
     using EstelApi.CrossCutting.Identity.IdentityServices;
-    using EstelApi.CrossCutting.IoC;
 
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;

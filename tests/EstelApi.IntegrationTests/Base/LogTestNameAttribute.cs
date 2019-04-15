@@ -1,4 +1,4 @@
-﻿namespace Localization.IntegrationTests.Base
+﻿namespace EstelApi.IntegrationTests.Base
 {
     using System;
     using System.Collections.Concurrent;

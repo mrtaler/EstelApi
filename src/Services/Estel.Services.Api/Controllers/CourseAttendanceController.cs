@@ -2,12 +2,10 @@
 {
     using System.Threading.Tasks;
 
-    using EstelApi.Application.ApplicationCqrs.Base;
-    using EstelApi.Application.ApplicationCqrs.Queries;
-    using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
+    using EstelApi.Application.Dto;
+    using EstelApi.Application.Interfaces;
+    using EstelApi.Application.Specifications.FindByIdSpec;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
-
-    using MediatR;
 
     using Microsoft.AspNetCore.Mvc;
 
@@ -19,19 +17,15 @@
     [Route("Course")]
     public class CourseAttendanceController : ApiController
     {
+        private ICourseAttendanceService service;
+
         /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Estel.Services.Api.Controllers.CourseAttendanceController" /> class.
         /// </summary>
-        /// <param name="notifications">
-        /// The notifications.
-        /// </param>
-        /// <param name="mediator">
-        /// The mediator.
-        /// </param>
-        public CourseAttendanceController(INotificationHandler<DomainEvent> notifications, IMediator mediator)
-            : base(notifications, mediator)
+        public CourseAttendanceController( ICourseAttendanceService service)
         {
+            this.service = service;
         }
 
         /// <summary>
@@ -43,7 +37,7 @@
         [HttpGet("CourseAttendances")]
         public async Task<IActionResult> Get()
         {
-            var result = await this.Mediator.Send(new AllEntitiesQuery<CourseAttendance>());
+            var result = await this.service.GetCourseAttendances();
             return this.Response(result);
         }
 
@@ -59,7 +53,7 @@
         [HttpGet("CourseAttendance")]
         public async Task<IActionResult> Get(int id)
         {
-            var result = await this.Mediator.Send(new EntityByIdQuery<CourseAttendance>(id));
+            var result = await this.service.GetCourseAttendance(new FindCourseAttendanceById().SetId(id));
             return this.Response(result);
         }
 
@@ -75,8 +69,16 @@
         [HttpDelete("CourseAttendance")]
         public async Task<IActionResult> Delete(int id)
         {
-            var result = await this.Mediator.Send(new RemoveEntityCommand<CourseAttendance>(id));
+            var result = await this.service.DeleteCourseAttendance(new RemoveEntity<CourseAttendance>(id));
             return this.Response(result);
         }
+
+        [HttpPost("CourseAttendance")]
+        public async Task<IActionResult> Post(int userId, int courseId)
+        {
+            var result = await this.service.UserAttendToCourse(userId, courseId);
+            return this.Response(result);
         }
+        
+    }
 }

@@ -67,7 +67,7 @@
             The logger.
             </summary>
         </member>
-        <member name="M:Estel.Services.Api.Controllers.AccountController.#ctor(Microsoft.AspNetCore.Identity.UserManager{EstelApi.CrossCutting.Identity.IdentityModels.ApplicationUser},Microsoft.AspNetCore.Identity.SignInManager{EstelApi.CrossCutting.Identity.IdentityModels.ApplicationUser},MediatR.INotificationHandler{EstelApi.Core.Seedwork.CoreCqrs.Notifications.DomainEvent},Microsoft.Extensions.Logging.ILoggerFactory,MediatR.IMediator)">
+        <member name="M:Estel.Services.Api.Controllers.AccountController.#ctor(Microsoft.AspNetCore.Identity.UserManager{EstelApi.CrossCutting.Identity.IdentityModels.ApplicationUser},Microsoft.AspNetCore.Identity.SignInManager{EstelApi.CrossCutting.Identity.IdentityModels.ApplicationUser},Microsoft.Extensions.Logging.ILoggerFactory)">
             <inheritdoc />
         </member>
         <member name="M:Estel.Services.Api.Controllers.AccountController.Login(EstelApi.CrossCutting.Identity.IdentityViewModels.AccountViewModels.LoginViewModel)">
@@ -98,7 +98,7 @@
             The additional amenity controller.
             </summary>
         </member>
-        <member name="M:Estel.Services.Api.Controllers.AdditionalAmenityController.#ctor(MediatR.INotificationHandler{EstelApi.Core.Seedwork.CoreCqrs.Notifications.DomainEvent},MediatR.IMediator)">
+        <member name="M:Estel.Services.Api.Controllers.AdditionalAmenityController.#ctor(EstelApi.Application.Interfaces.IAdditionalAmenityService)">
             <inheritdoc />
             <summary>
             Initializes a new instance of the <see cref="T:Estel.Services.Api.Controllers.AdditionalAmenityController" /> class.
@@ -150,7 +150,7 @@
             The <see cref="T:System.Threading.Tasks.Task"/>.
             </returns>
         </member>
-        <member name="M:Estel.Services.Api.Controllers.AdditionalAmenityController.Post(EstelApi.Application.ApplicationCqrs.Commands.HandlersCreateCommands.CreateCommands.CreateNewAdditionalAmenityCommand)">
+        <member name="M:Estel.Services.Api.Controllers.AdditionalAmenityController.Post(EstelApi.Application.Dto.CreateNewAdditionalAmenityDto)">
             <summary>
             Create New Additional Amenity.
             </summary>
@@ -161,7 +161,7 @@
             The <see cref="T:System.Threading.Tasks.Task"/>.
             </returns>
         </member>
-        <member name="M:Estel.Services.Api.Controllers.AdditionalAmenityController.Put(EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands.UpdateAdditionalAmenityCommand)">
+        <member name="M:Estel.Services.Api.Controllers.AdditionalAmenityController.Put(EstelApi.Application.Dto.UpdateAdditionalAmenityDto)">
             <summary>
             Update Additional Amenity.
             </summary>
@@ -175,32 +175,6 @@
         <member name="T:Estel.Services.Api.Controllers.ApiController">
             <inheritdoc />
         </member>
-        <member name="F:Estel.Services.Api.Controllers.ApiController.Mediator">
-            <summary>
-            The mediator.
-            </summary>
-        </member>
-        <member name="F:Estel.Services.Api.Controllers.ApiController.notifications">
-            <summary>
-            The notifications.
-            </summary>
-        </member>
-        <member name="M:Estel.Services.Api.Controllers.ApiController.#ctor(MediatR.INotificationHandler{EstelApi.Core.Seedwork.CoreCqrs.Notifications.DomainEvent},MediatR.IMediator)">
-            <inheritdoc />
-        </member>
-        <member name="P:Estel.Services.Api.Controllers.ApiController.Notifications">
-            <summary>
-            The notifications.
-            </summary>
-        </member>
-        <member name="M:Estel.Services.Api.Controllers.ApiController.IsValidOperation">
-            <summary>
-            The is valid operation.
-            </summary>
-            <returns>
-            The <see cref="T:System.Boolean"/>.
-            </returns>
-        </member>
         <member name="M:Estel.Services.Api.Controllers.ApiController.Response(System.Object)">
             <summary>
             The response.
@@ -212,29 +186,16 @@
             The <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/>.
             </returns>
         </member>
-        <member name="M:Estel.Services.Api.Controllers.ApiController.NotifyModelStateErrors">
+        <member name="M:Estel.Services.Api.Controllers.ApiController.ResponseBad(System.String)">
             <summary>
-            The notify model state errors.
-            </summary>
-        </member>
-        <member name="M:Estel.Services.Api.Controllers.ApiController.NotifyError(System.String,System.String)">
-            <summary>
-            The notify error.
-            </summary>
-            <param name="code">
-            The code.
-            </param>
-            <param name="message">
-            The message.
-            </param>
-        </member>
-        <member name="M:Estel.Services.Api.Controllers.ApiController.AddIdentityErrors(Microsoft.AspNetCore.Identity.IdentityResult)">
-            <summary>
-            The add identity errors.
+            The response.
             </summary>
             <param name="result">
             The result.
             </param>
+            <returns>
+            The <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/>.
+            </returns>
         </member>
         <member name="T:Estel.Services.Api.Controllers.AvailableDatesController">
             <inheritdoc />
@@ -242,17 +203,11 @@
             The available dates controller.
             </summary>
         </member>
-        <member name="M:Estel.Services.Api.Controllers.AvailableDatesController.#ctor(MediatR.INotificationHandler{EstelApi.Core.Seedwork.CoreCqrs.Notifications.DomainEvent},MediatR.IMediator)">
+        <member name="M:Estel.Services.Api.Controllers.AvailableDatesController.#ctor(EstelApi.Application.Interfaces.IAvailableDatesService)">
             <inheritdoc />
             <summary>
             Initializes a new instance of the <see cref="T:Estel.Services.Api.Controllers.AvailableDatesController" /> class.
             </summary>
-            <param name="notifications">
-            The notifications.
-            </param>
-            <param name="mediator">
-            The mediator.
-            </param>
         </member>
         <member name="M:Estel.Services.Api.Controllers.AvailableDatesController.Get">
             <summary>
@@ -284,22 +239,22 @@
             The <see cref="T:System.Threading.Tasks.Task"/>.
             </returns>
         </member>
-        <member name="M:Estel.Services.Api.Controllers.AvailableDatesController.Post(EstelApi.Application.ApplicationCqrs.Commands.HandlersCreateCommands.CreateCommands.CreateNewAvailableDatesCommand)">
+        <member name="M:Estel.Services.Api.Controllers.AvailableDatesController.Post(EstelApi.Application.Dto.CreateNewAvailableDatesDto)">
             <summary>
             Create New Available Dates.
             </summary>
-            <param name="command">
+            <param name="dto">
             The command.
             </param>
             <returns>
             The <see cref="T:System.Threading.Tasks.Task"/>.
             </returns>
         </member>
-        <member name="M:Estel.Services.Api.Controllers.AvailableDatesController.Put(EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands.UpdateAvailableDatesCommand)">
+        <member name="M:Estel.Services.Api.Controllers.AvailableDatesController.Put(EstelApi.Application.Dto.UpdateAvailableDatesDto)">
             <summary>
             Update Available Dates.
             </summary>
-            <param name="command">
+            <param name="dto">
             The command.
             </param>
             <returns>
@@ -312,17 +267,11 @@
             The course attendance controller.
             </summary>
         </member>
-        <member name="M:Estel.Services.Api.Controllers.CourseAttendanceController.#ctor(MediatR.INotificationHandler{EstelApi.Core.Seedwork.CoreCqrs.Notifications.DomainEvent},MediatR.IMediator)">
+        <member name="M:Estel.Services.Api.Controllers.CourseAttendanceController.#ctor(EstelApi.Application.Interfaces.ICourseAttendanceService)">
             <inheritdoc />
             <summary>
             Initializes a new instance of the <see cref="T:Estel.Services.Api.Controllers.CourseAttendanceController" /> class.
             </summary>
-            <param name="notifications">
-            The notifications.
-            </param>
-            <param name="mediator">
-            The mediator.
-            </param>
         </member>
         <member name="M:Estel.Services.Api.Controllers.CourseAttendanceController.Get">
             <summary>
@@ -360,7 +309,7 @@
             The course controller.
             </summary>
         </member>
-        <member name="M:Estel.Services.Api.Controllers.CourseController.#ctor(MediatR.INotificationHandler{EstelApi.Core.Seedwork.CoreCqrs.Notifications.DomainEvent},MediatR.IMediator)">
+        <member name="M:Estel.Services.Api.Controllers.CourseController.#ctor(EstelApi.Application.Interfaces.ICourseService)">
             <inheritdoc />
             <summary>
             Initializes a new instance of the <see cref="T:Estel.Services.Api.Controllers.CourseController" /> class.
@@ -402,7 +351,7 @@
             The <see cref="T:System.Threading.Tasks.Task"/>.
             </returns>
         </member>
-        <member name="M:Estel.Services.Api.Controllers.CourseController.Post(EstelApi.Application.ApplicationCqrs.Commands.Course.CreateNewCourse.CreateNewCourseCommand)">
+        <member name="M:Estel.Services.Api.Controllers.CourseController.Post(EstelApi.Application.Dto.CreateNewCourseDto)">
             <summary>
             Create New Course.
             </summary>
@@ -413,7 +362,7 @@
             The <see cref="T:System.Threading.Tasks.Task"/>.
             </returns>
         </member>
-        <member name="M:Estel.Services.Api.Controllers.CourseController.Put(EstelApi.Application.ApplicationCqrs.Commands.Course.UpdateCourse.UpdateCourseCommand)">
+        <member name="M:Estel.Services.Api.Controllers.CourseController.Put(EstelApi.Application.Dto.UpdateCourseDto)">
             <summary>
             Update Course.
             </summary>
@@ -430,7 +379,7 @@
             The course topics controller.
             </summary>
         </member>
-        <member name="M:Estel.Services.Api.Controllers.CourseTopicsController.#ctor(MediatR.INotificationHandler{EstelApi.Core.Seedwork.CoreCqrs.Notifications.DomainEvent},MediatR.IMediator)">
+        <member name="M:Estel.Services.Api.Controllers.CourseTopicsController.#ctor(EstelApi.Application.Interfaces.ICourseTopicsService)">
             <inheritdoc />
             <summary>
             Initializes a new instance of the <see cref="T:Estel.Services.Api.Controllers.CourseTopicsController" /> class.
@@ -472,7 +421,7 @@
             The <see cref="T:System.Threading.Tasks.Task"/>.
             </returns>
         </member>
-        <member name="M:Estel.Services.Api.Controllers.CourseTopicsController.Post(EstelApi.Application.ApplicationCqrs.Commands.HandlersCreateCommands.CreateCommands.CreateNewCourseTopicsCommand)">
+        <member name="M:Estel.Services.Api.Controllers.CourseTopicsController.Post(EstelApi.Application.Dto.CreateNewCourseTopicsDto)">
             <summary>
             Create New Course Topics.
             </summary>
@@ -483,7 +432,7 @@
             The <see cref="T:System.Threading.Tasks.Task"/>.
             </returns>
         </member>
-        <member name="M:Estel.Services.Api.Controllers.CourseTopicsController.Put(EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands.UpdateCourseTopicsCommand)">
+        <member name="M:Estel.Services.Api.Controllers.CourseTopicsController.Put(EstelApi.Application.Dto.UpdateCourseTopicsDto)">
             <summary>
             Update Course Topics.
             </summary>
@@ -500,7 +449,7 @@
             The course type controller.
             </summary>
         </member>
-        <member name="M:Estel.Services.Api.Controllers.CourseTypeController.#ctor(MediatR.INotificationHandler{EstelApi.Core.Seedwork.CoreCqrs.Notifications.DomainEvent},MediatR.IMediator)">
+        <member name="M:Estel.Services.Api.Controllers.CourseTypeController.#ctor(EstelApi.Application.Interfaces.ICourseTypeService)">
             <inheritdoc />
             <summary>
             Initializes a new instance of the <see cref="T:Estel.Services.Api.Controllers.CourseTypeController" /> class.
@@ -542,22 +491,22 @@
             The <see cref="T:System.Threading.Tasks.Task"/>.
             </returns>
         </member>
-        <member name="M:Estel.Services.Api.Controllers.CourseTypeController.Post(EstelApi.Application.ApplicationCqrs.Commands.HandlersCreateCommands.CreateCommands.CreateNewCourseTypeCommand)">
+        <member name="M:Estel.Services.Api.Controllers.CourseTypeController.Post(EstelApi.Application.Dto.CreateNewCourseTypeDto)">
             <summary>
             Create New Course Type.
             </summary>
-            <param name="command">
+            <param name="dto">
             The command.
             </param>
             <returns>
             The <see cref="T:System.Threading.Tasks.Task"/>.
             </returns>
         </member>
-        <member name="M:Estel.Services.Api.Controllers.CourseTypeController.Put(EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands.UpdateCourseTypeCommand)">
+        <member name="M:Estel.Services.Api.Controllers.CourseTypeController.Put(EstelApi.Application.Dto.UpdateCourseTypeDto)">
             <summary>
             Update Course Type.
             </summary>
-            <param name="command">
+            <param name="dto">
             The command.
             </param>
             <returns>
@@ -569,16 +518,10 @@
             The customer controller.
             </summary>
         </member>
-        <member name="M:Estel.Services.Api.Controllers.UserController.#ctor(MediatR.INotificationHandler{EstelApi.Core.Seedwork.CoreCqrs.Notifications.DomainEvent},MediatR.IMediator)">
+        <member name="M:Estel.Services.Api.Controllers.UserController.#ctor(EstelApi.Application.Interfaces.IPersonService)">
             <summary>
             Initializes a new instance of the <see cref="T:Estel.Services.Api.Controllers.UserController"/> class.
             </summary>
-            <param name="notifications">
-            The notifications.
-            </param>
-            <param name="mediator">
-            The mediator.
-            </param>
         </member>
         <member name="M:Estel.Services.Api.Controllers.UserController.Get">
             <summary>
@@ -601,11 +544,11 @@
             </returns>
             [AllowAnonymous]
         </member>
-        <member name="M:Estel.Services.Api.Controllers.UserController.Post(EstelApi.Application.ApplicationCqrs.Commands.HandlersCreateCommands.CreateCommands.CreateNewUserCommand)">
+        <member name="M:Estel.Services.Api.Controllers.UserController.Post(EstelApi.Application.Dto.CreateNewUserDto)">
             <summary>
             Create New Customer (work)
             </summary>
-            <param name="command">
+            <param name="dto">
             The command.
             </param>
             <returns>
@@ -613,11 +556,11 @@
             </returns>
             [Authorize(Policy = "CanWriteCustomerData")]
         </member>
-        <member name="M:Estel.Services.Api.Controllers.UserController.Put(EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands.UpdateUserCommand)">
+        <member name="M:Estel.Services.Api.Controllers.UserController.Put(EstelApi.Application.Dto.UpdateUserDto)">
             <summary>
             Update Customer. (work)
             </summary>
-            <param name="command">
+            <param name="dto">
             The command.
             </param>
             <returns>
@@ -637,22 +580,7 @@
             </returns>
             [Authorize(Policy = "CanRemoveCustomerData")]
         </member>
-        <member name="M:Estel.Services.Api.Controllers.UserController.History(System.Int32)">
-            <summary>
-            Customer history (work)
-            </summary>
-            <param name="id">
-            The id.
-            </param>
-            <returns>
-            The <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/>.
-            </returns>
-            [AllowAnonymous]
-        </member>
         <member name="T:Estel.Services.Api.Controllers.WorkerController">
-            <inheritdoc />
-        </member>
-        <member name="M:Estel.Services.Api.Controllers.WorkerController.#ctor(MediatR.INotificationHandler{EstelApi.Core.Seedwork.CoreCqrs.Notifications.DomainEvent},MediatR.IMediator)">
             <inheritdoc />
         </member>
         <member name="M:Estel.Services.Api.Controllers.WorkerController.Get">
@@ -685,27 +613,33 @@
             The <see cref="T:System.Threading.Tasks.Task"/>.
             </returns>
         </member>
-        <member name="M:Estel.Services.Api.Controllers.WorkerController.Post(EstelApi.Application.ApplicationCqrs.Commands.HandlersCreateCommands.CreateCommands.CreateNewWorkerCommand)">
+        <member name="M:Estel.Services.Api.Controllers.WorkerController.Post(EstelApi.Application.Dto.CreateNewWorkerDto)">
             <summary>
             Create New Worker.
             </summary>
-            <param name="command">
+            <param name="dto">
             The command.
             </param>
             <returns>
             The <see cref="T:System.Threading.Tasks.Task"/>.
             </returns>
         </member>
-        <member name="M:Estel.Services.Api.Controllers.WorkerController.Put(EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands.UpdateWorkerCommand)">
+        <member name="M:Estel.Services.Api.Controllers.WorkerController.Put(EstelApi.Application.Dto.UpdateWorkerDto)">
             <summary>
             Update Worker.
             </summary>
-            <param name="command">
+            <param name="dto">
             The command.
             </param>
             <returns>
             The <see cref="T:System.Threading.Tasks.Task"/>.
             </returns>
+        </member>
+        <member name="T:Estel.Services.Api.EstelServicesApiModule">
+            <inheritdoc />
+        </member>
+        <member name="M:Estel.Services.Api.EstelServicesApiModule.Load(Autofac.ContainerBuilder)">
+            <inheritdoc />
         </member>
         <member name="T:Estel.Services.Api.Extension.Exception.ApiError">
             <summary>
@@ -947,6 +881,16 @@
             The logger.
             </param>
         </member>
+        <member name="P:Estel.Services.Api.ViewModels.CourseTypeViewModel.CourseTypeName">
+            <summary>
+            Gets or sets the course type name.
+            </summary>
+        </member>
+        <member name="P:Estel.Services.Api.ViewModels.CourseTypeViewModel.Description">
+            <summary>
+            Gets or sets the description.
+            </summary>
+        </member>
         <member name="P:Estel.Services.Api.ViewModels.CourseViewModel.CourseAttendances">
             <summary>
             Gets or sets the customers.
@@ -969,16 +913,6 @@
             <summary>
             +1 Gets or sets the available dates.
             All Available dates for this course 
-            </summary>
-        </member>
-        <member name="P:Estel.Services.Api.ViewModels.CourseTypeViewModel.CourseTypeName">
-            <summary>
-            Gets or sets the course type name.
-            </summary>
-        </member>
-        <member name="P:Estel.Services.Api.ViewModels.CourseTypeViewModel.Description">
-            <summary>
-            Gets or sets the description.
             </summary>
         </member>
         <member name="M:Estel.Services.Api.ViewModels.UserViewModel.#ctor">
@@ -1045,12 +979,6 @@
             <summary>
             Gets or sets the view model.
             </summary>
-        </member>
-        <member name="T:EstelApi.CrossCutting.IoC.EstelServicesApiModule">
-            <inheritdoc />
-        </member>
-        <member name="M:EstelApi.CrossCutting.IoC.EstelServicesApiModule.Load(Autofac.ContainerBuilder)">
-            <inheritdoc />
         </member>
     </members>
 </doc>

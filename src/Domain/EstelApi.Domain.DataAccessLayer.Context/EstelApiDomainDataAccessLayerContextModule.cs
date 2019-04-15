@@ -2,14 +2,11 @@
 {
     using Autofac;
 
-    using EstelApi.Core.Seedwork.CoreCqrs.Events;
     using EstelApi.Domain.DataAccessLayer.Context.Context;
     using EstelApi.Domain.DataAccessLayer.Context.Context.Base;
     using EstelApi.Domain.DataAccessLayer.Context.Context.Repositories;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Repositories;
-    using EstelApi.Domain.DataAccessLayer.Context.EventSourcing;
     using EstelApi.Domain.DataAccessLayer.Context.Interfaces;
-    using EstelApi.Domain.DataAccessLayer.Context.Repository.EventSourcing;
 
     /// <inheritdoc />
     /// <summary>
@@ -35,20 +32,7 @@
                 .As<IQueryableUnitOfWork>()
                 .InstancePerLifetimeScope();
 
-            builder
-                .RegisterType<EventStoreSqlContext>()
-                .AsSelf()
-                .InstancePerLifetimeScope();
-            builder
-                .RegisterType<SqlEventStore>()
-                .As<IEventStore>()
-                .InstancePerLifetimeScope();
-            builder
-                .RegisterType<EventStoreSqlRepository>()
-                .As<IEventStoreRepository>()
-                .InstancePerLifetimeScope();
-
-            builder
+          builder
                 .RegisterType<UserRepository>()
                 .As<IUserRepository>()
                 .InstancePerLifetimeScope();

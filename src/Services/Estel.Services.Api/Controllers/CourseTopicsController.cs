@@ -2,14 +2,10 @@
 {
     using System.Threading.Tasks;
 
-    using EstelApi.Application.ApplicationCqrs.Base;
-    using EstelApi.Application.ApplicationCqrs.Commands.HandlersCreateCommands.CreateCommands;
-    using EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands;
-    using EstelApi.Application.ApplicationCqrs.Queries;
-    using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
+    using EstelApi.Application.Dto;
+    using EstelApi.Application.Interfaces;
+    using EstelApi.Application.Specifications.FindByIdSpec;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
-
-    using MediatR;
 
     using Microsoft.AspNetCore.Mvc;
 
@@ -21,6 +17,8 @@
     [Route("Catalog")]
     public class CourseTopicsController : ApiController
     {
+        private ICourseTopicsService service;
+
         /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Estel.Services.Api.Controllers.CourseTopicsController" /> class.
@@ -31,9 +29,9 @@
         /// <param name="mediator">
         /// The mediator.
         /// </param>
-        public CourseTopicsController(INotificationHandler<DomainEvent> notifications, IMediator mediator)
-            : base(notifications, mediator)
+        public CourseTopicsController( ICourseTopicsService service)
         {
+            this.service = service;
         }
 
         /// <summary>
@@ -45,7 +43,7 @@
         [HttpGet("CourseTopics")]
         public async Task<IActionResult> Get()
         {
-            var result = await this.Mediator.Send(new AllEntitiesQuery<CourseTopics>());
+            var result = await this.service.GetCourseTopics();
             return this.Response(result);
         }
 
@@ -61,7 +59,7 @@
         [HttpGet("CourseTopic")]
         public async Task<IActionResult> Get(int id)
         {
-            var result = await this.Mediator.Send(new EntityByIdQuery<CourseTopics>(id));
+            var result = await this.service.GetCourseTopic(new FindCourseTopicsById().SetId(id));
             return this.Response(result);
         }
 
@@ -77,7 +75,7 @@
         [HttpDelete("CourseTopic")]
         public async Task<IActionResult> Delete(int id)
         {
-            var result = await this.Mediator.Send(new RemoveEntityCommand<CourseTopics>(id));
+            var result = await this.service.DeleteCourseTopics(new RemoveEntity<CourseTopics>(id));
             return this.Response(result);
         }
 
@@ -91,15 +89,14 @@
         /// The <see cref="Task"/>.
         /// </returns>
         [HttpPost("CourseTopic")]
-        public async Task<IActionResult> Post([FromBody] CreateNewCourseTopicsCommand command)
+        public async Task<IActionResult> Post([FromBody] CreateNewCourseTopicsDto command)
         {
             if (!this.ModelState.IsValid)
             {
-                this.NotifyModelStateErrors();
-                return this.Response(command);
+                return this.ResponseBad("Validation error");
             }
 
-            var resp = await this.Mediator.Send(command);
+            var resp = await this.service.CreateCourseTopics(command);
             return this.Response(resp);
         }
 
@@ -113,15 +110,14 @@
         /// The <see cref="Task"/>.
         /// </returns>
         [HttpPut("CourseTopic")]
-        public async Task<IActionResult> Put([FromBody] UpdateCourseTopicsCommand command)
+        public async Task<IActionResult> Put([FromBody] UpdateCourseTopicsDto command)
         {
             if (!this.ModelState.IsValid)
             {
-                this.NotifyModelStateErrors();
-                return this.Response(command);
+                return this.ResponseBad("Validation error");
             }
 
-            var resp = await this.Mediator.Send(command);
+            var resp = await this.service.UpdateCourseTopics(command);
             return this.Response(resp);
         }
     }

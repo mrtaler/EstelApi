@@ -5,13 +5,10 @@
 
     using Estel.Services.Api;
 
-    using EstelApi.Domain.DataAccessLayer.Context.Context;
     using EstelApi.IntegrationTests.Base.Init;
-    using EstelApi.IntegrationTests.Base.Settings;
-    using Microsoft.EntityFrameworkCore;
+
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Options;
 
     public class IntegrationTestsStartup : Startup
     {

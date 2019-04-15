@@ -3,8 +3,6 @@
     using System;
     using System.Runtime.Serialization;
 
-    using Newtonsoft.Json;
-
     /// <inheritdoc />
     public class DatabaseException : Exception
     {

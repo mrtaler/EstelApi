@@ -4,15 +4,11 @@
 
     using Estel.Services.Api.ViewModels;
 
-    using EstelApi.Application.ApplicationCqrs.Base;
-    using EstelApi.Application.ApplicationCqrs.Commands.HandlersCreateCommands.CreateCommands;
-    using EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands;
-    using EstelApi.Application.ApplicationCqrs.Queries;
+    using EstelApi.Application.Dto;
+    using EstelApi.Application.Interfaces;
+    using EstelApi.Application.Specifications.FindByIdSpec;
     using EstelApi.Core.Seedwork.Adapter;
-    using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
-
-    using MediatR;
 
     using Microsoft.AspNetCore.Mvc;
 
@@ -24,6 +20,7 @@
     [Route("Catalog")]
     public class AdditionalAmenityController : ApiController
     {
+        private IAdditionalAmenityService service;
         /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Estel.Services.Api.Controllers.AdditionalAmenityController" /> class.
@@ -34,9 +31,9 @@
         /// <param name="mediator">
         /// The mediator.
         /// </param>
-        public AdditionalAmenityController(INotificationHandler<DomainEvent> notifications, IMediator mediator)
-            : base(notifications, mediator)
+        public AdditionalAmenityController( IAdditionalAmenityService service)
         {
+            this.service = service;
         }
 
         /// <summary>
@@ -60,7 +57,7 @@
         [ProducesResponseType(400)]
         public async Task<IActionResult> Get()
         {
-            var additionalAmenities = await this.Mediator.Send(new AllEntitiesQuery<AdditionalAmenity>());
+            var additionalAmenities = await this.service.GetAdditionalAmenities();
             var result = additionalAmenities.ProjectedAsCollection<AdditionalAmenityViewModel>();
             return this.Response(result);
         }
@@ -77,7 +74,8 @@
         [HttpGet("AdditionalAmenity")]
         public async Task<IActionResult> Get(int id)
         {
-            var additionalAmenity = await this.Mediator.Send(new EntityByIdQuery<AdditionalAmenity>(id));
+            
+            var additionalAmenity = await this.service.GetAdditionalAmenity(new FindAdditionalAmenityById().SetId(id));
             var result = additionalAmenity.ProjectedAs<AdditionalAmenityViewModel>();
             return this.Response(result);
         }
@@ -94,7 +92,7 @@
         [HttpDelete("AdditionalAmenity")]
         public async Task<IActionResult> Delete(int id)
         {
-            var result = await this.Mediator.Send(new RemoveEntityCommand<AdditionalAmenity>(id));
+            var result = await this.service.DeleteAdditionalAmenity(new RemoveEntity<AdditionalAmenity>(id));
             return this.Response(result);
         }
 
@@ -108,15 +106,14 @@
         /// The <see cref="Task"/>.
         /// </returns>
         [HttpPost("AdditionalAmenity")]
-        public async Task<IActionResult> Post([FromBody] CreateNewAdditionalAmenityCommand createNewAdditionalAmenity)
+        public async Task<IActionResult> Post([FromBody] CreateNewAdditionalAmenityDto createNewAdditionalAmenity)
         {
             if (!this.ModelState.IsValid)
             {
-                this.NotifyModelStateErrors();
-                return this.Response(createNewAdditionalAmenity);
+                return this.ResponseBad("Validation error");
             }
 
-            var resp = await this.Mediator.Send(createNewAdditionalAmenity);
+            var resp = await this.service.CreateAdditionalAmenity(createNewAdditionalAmenity);
             return this.Response(resp);
         }
 
@@ -130,15 +127,14 @@
         /// The <see cref="Task"/>.
         /// </returns>
         [HttpPut("AdditionalAmenity")]
-        public async Task<IActionResult> Put([FromBody] UpdateAdditionalAmenityCommand command)
+        public async Task<IActionResult> Put([FromBody] UpdateAdditionalAmenityDto command)
         {
             if (!this.ModelState.IsValid)
             {
-                this.NotifyModelStateErrors();
-                return this.Response(command);
+                return this.ResponseBad("Validation error");
             }
 
-            var resp = await this.Mediator.Send(command);
+            var resp = await this.service.UpdateAdditionalAmenity(command);
             return this.Response(resp);
         }
     }

@@ -2,14 +2,10 @@
 {
     using System.Threading.Tasks;
 
-    using EstelApi.Application.ApplicationCqrs.Base;
-    using EstelApi.Application.ApplicationCqrs.Commands.HandlersCreateCommands.CreateCommands;
-    using EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands;
-    using EstelApi.Application.ApplicationCqrs.Queries;
-    using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
+    using EstelApi.Application.Dto;
+    using EstelApi.Application.Interfaces;
+    using EstelApi.Application.Specifications.FindByIdSpec;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
-
-    using MediatR;
 
     using Microsoft.AspNetCore.Mvc;
 
@@ -17,10 +13,11 @@
     [ApiVersion("1.0")]
     public class WorkerController : ApiController
     {
-        /// <inheritdoc />
-        public WorkerController(INotificationHandler<DomainEvent> notifications, IMediator mediator)
-            : base(notifications, mediator)
+        private IPersonService service;
+
+        public WorkerController(IPersonService service)
         {
+            this.service = service;
         }
 
         /// <summary>
@@ -32,7 +29,7 @@
         [HttpGet("GetAllWorker")]
         public async Task<IActionResult> Get()
         {
-            var result = await this.Mediator.Send(new AllEntitiesQuery<Worker>());
+            var result = await this.service.GetWorkers();
             return this.Response(result);
         }
 
@@ -48,7 +45,7 @@
         [HttpGet("GetWorkerById")]
         public async Task<IActionResult> Get(int id)
         {
-            var result = await this.Mediator.Send(new EntityByIdQuery<Worker>(id));
+            var result = await this.service.GetWorker(new FindWorkerById().SetId(id));
             return this.Response(result);
         }
 
@@ -64,51 +61,49 @@
         [HttpDelete("DeleteWorkerById")]
         public async Task<IActionResult> Delete(int id)
         {
-            var result = await this.Mediator.Send(new RemoveEntityCommand<Worker>(id));
+            var result = await this.service.DeleteWorker(new RemoveEntity<Worker>(id));
             return this.Response(result);
         }
 
         /// <summary>
         /// Create New Worker.
         /// </summary>
-        /// <param name="command">
+        /// <param name="dto">
         /// The command.
         /// </param>
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
         [HttpPost("CreateNewWorker")]
-        public async Task<IActionResult> Post([FromBody] CreateNewWorkerCommand command)
+        public async Task<IActionResult> Post([FromBody] CreateNewWorkerDto dto)
         {
             if (!this.ModelState.IsValid)
             {
-                this.NotifyModelStateErrors();
-                return this.Response(command);
+                return this.ResponseBad("Validation error");
             }
 
-            var resp = await this.Mediator.Send(command);
+            var resp = await this.service.CreateNewWorker(dto);
             return this.Response(resp);
         }
 
         /// <summary>
         /// Update Worker.
         /// </summary>
-        /// <param name="command">
+        /// <param name="dto">
         /// The command.
         /// </param>
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
         [HttpPut("UpdateWorker")]
-        public async Task<IActionResult> Put([FromBody] UpdateWorkerCommand command)
+        public async Task<IActionResult> Put([FromBody] UpdateWorkerDto dto)
         {
             if (!this.ModelState.IsValid)
             {
-                this.NotifyModelStateErrors();
-                return this.Response(command);
+                return this.ResponseBad("Validation error");
             }
 
-            var resp = await this.Mediator.Send(command);
+            var resp = await this.service.UpdateWorker(dto);
             return this.Response(resp);
         }
     }

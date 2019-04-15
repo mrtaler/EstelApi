@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Text;
-
-namespace EstelApi.IntegrationTests.Base.Fixture
+﻿namespace EstelApi.IntegrationTests.Base.Fixture
 {
     using System.Threading;
 

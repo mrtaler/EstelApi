@@ -6,7 +6,6 @@
     using EstelApi.Domain.DataAccessLayer.Context.Context;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Repositories;
-    using EstelApi.Domain.DataAccessLayer.Context.Repository.Base;
 
     /// <inheritdoc cref="IUserRepository" />
     public class UserRepository : Repository<User>, IUserRepository

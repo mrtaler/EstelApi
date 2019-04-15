@@ -2,14 +2,10 @@
 {
     using System.Threading.Tasks;
 
-    using EstelApi.Application.ApplicationCqrs.Base;
-    using EstelApi.Application.ApplicationCqrs.Commands.HandlersCreateCommands.CreateCommands;
-    using EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands;
-    using EstelApi.Application.ApplicationCqrs.Queries;
-    using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
+    using EstelApi.Application.Dto;
+    using EstelApi.Application.Interfaces;
+    using EstelApi.Application.Specifications.FindByIdSpec;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
-
-    using MediatR;
 
     using Microsoft.AspNetCore.Mvc;
 
@@ -21,19 +17,14 @@
     [Route("Catalog")]
     public class AvailableDatesController : ApiController
     {
+        private IAvailableDatesService service;
         /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Estel.Services.Api.Controllers.AvailableDatesController" /> class.
         /// </summary>
-        /// <param name="notifications">
-        /// The notifications.
-        /// </param>
-        /// <param name="mediator">
-        /// The mediator.
-        /// </param>
-        public AvailableDatesController(INotificationHandler<DomainEvent> notifications, IMediator mediator)
-            : base(notifications, mediator)
+        public AvailableDatesController(IAvailableDatesService service)
         {
+            this.service = service;
         }
 
         /// <summary>
@@ -45,7 +36,7 @@
         [HttpGet("AvailableDates")]
         public async Task<IActionResult> Get()
         {
-            var result = await this.Mediator.Send(new AllEntitiesQuery<AvailableDates>());
+            var result = await this.service.GetAvailableDates();
             return this.Response(result);
         }
 
@@ -61,7 +52,7 @@
         [HttpGet("AvailableDate")]
         public async Task<IActionResult> Get(int id)
         {
-            var result = await this.Mediator.Send(new EntityByIdQuery<AvailableDates>(id));
+            var result = await this.service.GetAvailableDate(new FindAvailableDatesById().SetId(id));
             return this.Response(result);
         }
 
@@ -77,51 +68,49 @@
         [HttpDelete("AvailableDate")]
         public async Task<IActionResult> Delete(int id)
         {
-            var result = await this.Mediator.Send(new RemoveEntityCommand<AvailableDates>(id));
+            var result = await this.service.DeleteAvailableDate(new RemoveEntity<AvailableDates>(id));
             return this.Response(result);
         }
 
         /// <summary>
         /// Create New Available Dates.
         /// </summary>
-        /// <param name="command">
+        /// <param name="dto">
         /// The command.
         /// </param>
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
         [HttpPost("AvailableDate")]
-        public async Task<IActionResult> Post([FromBody] CreateNewAvailableDatesCommand command)
+        public async Task<IActionResult> Post([FromBody] CreateNewAvailableDatesDto dto)
         {
             if (!this.ModelState.IsValid)
             {
-                this.NotifyModelStateErrors();
-                return this.Response(command);
+                return this.ResponseBad("Validation error");
             }
 
-            var resp = await this.Mediator.Send(command);
+            var resp = await this.service.CreateAvailableDates(dto);
             return this.Response(resp);
         }
 
         /// <summary>
         /// Update Available Dates.
         /// </summary>
-        /// <param name="command">
+        /// <param name="dto">
         /// The command.
         /// </param>
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
         [HttpPut("AvailableDate")]
-        public async Task<IActionResult> Put([FromBody] UpdateAvailableDatesCommand command)
+        public async Task<IActionResult> Put([FromBody] UpdateAvailableDatesDto dto)
         {
             if (!this.ModelState.IsValid)
             {
-                this.NotifyModelStateErrors();
-                return this.Response(command);
+                return this.ResponseBad("Validation error");
             }
 
-            var resp = await this.Mediator.Send(command);
+            var resp = await this.service.UpdateAvailableDate(dto);
             return this.Response(resp);
         }
     }

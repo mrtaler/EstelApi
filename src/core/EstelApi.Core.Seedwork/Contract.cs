@@ -4,10 +4,6 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    using EstelApi.Core.Seedwork.CoreCqrs.Notifications;
-
-    using MediatR;
-
     public static class Contract
     {
         public static void ThrowIfNullOrEmptyCollection<T>(IEnumerable<T> value, string parameterName)
@@ -36,14 +32,11 @@
             }
         }
 
-        public static void ThrowIfNull(object value, string parameterName, IMediator bus)
+        public static void ThrowIfNull(object value, string parameterName)
         {
             if (value == null)
             {
-                bus.Publish(
-                    new DomainEvent(
-                        parameterName,
-                        "message is null")).ConfigureAwait(false);
+              throw new NullReferenceException("Entity is null");
             }
         }
 

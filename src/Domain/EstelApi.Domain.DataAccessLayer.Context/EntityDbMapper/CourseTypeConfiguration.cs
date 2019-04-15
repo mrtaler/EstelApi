@@ -1,25 +1,22 @@
 ﻿namespace EstelApi.Domain.DataAccessLayer.Context.EntityDbMapper
 {
-    /* public class CourseTypeConfiguration : IEntityTypeConfiguration<CourseType>
+    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
+
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+    public class CourseTypeConfiguration : IEntityTypeConfiguration<CourseType>
     {
         public void Configure(EntityTypeBuilder<CourseType> builder)
         {
-            builder.HasKey(k => k.Id);
-            builder
-                .Property(p => p.Id)
-                .HasColumnName("CourseTypeId");
-            builder
-                .Property(b => b.CourseTypeName)
-                .HasMaxLength(50);
-            builder
-                .Property(b => b.Logo);
-            builder
-                .Property(b => b.Description)
-                .HasMaxLength(500);
-            builder
-                .HasMany<Course>(hm => hm.Courses)
-                .WithOne(wo => wo.CourseType)
-                .HasForeignKey(fk => fk.CourseTypeId);
+            builder.HasMany(x => x.Courses)
+                .WithOne(y => y.CourseType)
+                .HasForeignKey(x => x.CourseTypeId);
+
+            builder.HasData(
+                new CourseType { Id = 1, CourseTypeName = "Курс PRODUCT-EXPERT", Description = "Для участия в семенаре необходима предварительная запись" },
+                new CourseType { Id = 2, CourseTypeName = "Курс COLOR-EXPERT", Description = "Для участия в семенаре необходима предварительная запись" },
+                new CourseType { Id = 3, CourseTypeName = "Курс INTENSE", Description = "Для участия в семенаре необходима предварительная запись" });
         }
-    }*/
+    }
 }
