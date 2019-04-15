@@ -22,7 +22,6 @@
 
             // 3
             builder.RegisterModule(new EstelApiApplicationModule());
-            builder.RegisterModule(new EstelApiApplicationCqrsModule());
 
             builder.RegisterType<AutoMapperTypeAdapterFactory>().As<ITypeAdapterFactory>().SingleInstance();
         }
