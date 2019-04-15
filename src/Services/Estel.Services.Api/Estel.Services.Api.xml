@@ -49,49 +49,6 @@
         <member name="M:Estel.Services.Api.Configurations.RouteConvention.Apply(Microsoft.AspNetCore.Mvc.ApplicationModels.ApplicationModel)">
             <inheritdoc />
         </member>
-        <member name="T:Estel.Services.Api.Controllers.AccountController">
-            <inheritdoc />
-        </member>
-        <member name="F:Estel.Services.Api.Controllers.AccountController.userManager">
-            <summary>
-            The user manager.
-            </summary>
-        </member>
-        <member name="F:Estel.Services.Api.Controllers.AccountController.signInManager">
-            <summary>
-            The sign in manager.
-            </summary>
-        </member>
-        <member name="F:Estel.Services.Api.Controllers.AccountController.logger">
-            <summary>
-            The logger.
-            </summary>
-        </member>
-        <member name="M:Estel.Services.Api.Controllers.AccountController.#ctor(EstelApi.CrossCutting.Identity.IdentityServices.ApplicationUserManager,EstelApi.CrossCutting.Identity.IdentityServices.ApplicationSignInManager,Microsoft.Extensions.Logging.ILoggerFactory)">
-            <inheritdoc />
-        </member>
-        <member name="M:Estel.Services.Api.Controllers.AccountController.Login(EstelApi.CrossCutting.Identity.IdentityViewModels.AccountViewModels.LoginViewModel)">
-            <summary>
-            The login.
-            </summary>
-            <param name="model">
-            The model.
-            </param>
-            <returns>
-            The <see cref="T:System.Threading.Tasks.Task"/>.
-            </returns>
-        </member>
-        <member name="M:Estel.Services.Api.Controllers.AccountController.Register(EstelApi.CrossCutting.Identity.IdentityViewModels.AccountViewModels.RegisterViewModel)">
-            <summary>
-            The register.
-            </summary>
-            <param name="model">
-            The model.
-            </param>
-            <returns>
-            The <see cref="T:System.Threading.Tasks.Task"/>.
-            </returns>
-        </member>
         <member name="T:Estel.Services.Api.Controllers.AdditionalAmenityController">
             <inheritdoc />
             <summary>
@@ -508,6 +465,49 @@
             </summary>
             <param name="dto">
             The command.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="T:Estel.Services.Api.Controllers.Identity.AccountController">
+            <inheritdoc />
+        </member>
+        <member name="F:Estel.Services.Api.Controllers.Identity.AccountController.userManager">
+            <summary>
+            The user manager.
+            </summary>
+        </member>
+        <member name="F:Estel.Services.Api.Controllers.Identity.AccountController.signInManager">
+            <summary>
+            The sign in manager.
+            </summary>
+        </member>
+        <member name="F:Estel.Services.Api.Controllers.Identity.AccountController.logger">
+            <summary>
+            The logger.
+            </summary>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.Identity.AccountController.#ctor(EstelApi.CrossCutting.Identity.IdentityServices.ApplicationUserManager,EstelApi.CrossCutting.Identity.IdentityServices.ApplicationSignInManager,Microsoft.Extensions.Logging.ILoggerFactory)">
+            <inheritdoc />
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.Identity.AccountController.Login(EstelApi.CrossCutting.Identity.IdentityViewModels.AccountViewModels.LoginViewModel)">
+            <summary>
+            The login.
+            </summary>
+            <param name="model">
+            The model.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.Identity.AccountController.Register(EstelApi.CrossCutting.Identity.IdentityViewModels.AccountViewModels.RegisterViewModel)">
+            <summary>
+            The register.
+            </summary>
+            <param name="model">
+            The model.
             </param>
             <returns>
             The <see cref="T:System.Threading.Tasks.Task"/>.

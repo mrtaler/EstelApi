@@ -15,19 +15,20 @@
 
     [Authorize]
     [ApiVersion("1.0")]
-    [Route("identity/Users")]
-    public class UsersController : ApiController
+    [Route("identity/IdentityUsers")]
+    public class IdentityUsersController : ApiController
     {
         private readonly ApplicationUserManager userManager;
    
 
-        public UsersController(ApplicationUserManager userManager)
+        public IdentityUsersController(ApplicationUserManager userManager)
         {
             this.userManager = userManager;
          }
 
         [Authorize(Roles = "admin")]
         [HttpGet]
+        [Route("Details")]
         public async Task<IActionResult> Details()
         {
 
@@ -43,6 +44,7 @@
 
         [Authorize(Roles = "admin")]
         [HttpGet]
+        [Route("Detail")]
         public async Task<IActionResult> Details(string id)
         {
 
@@ -57,6 +59,7 @@
 
         [Authorize(Roles = "admin")]
         [HttpPost]
+        [Route("Create")]
         public async Task<IActionResult> Create(CreateUserViewModel model)
         {
             if (this.ModelState.IsValid)
@@ -95,6 +98,7 @@
 
         [Authorize(Roles = "admin")]
         [HttpPost]
+        [Route("ChangePassword")]
         public async Task<IActionResult> ChangePassword(AdminChangePasswordViewModel model)
         {
             if (this.ModelState.IsValid)

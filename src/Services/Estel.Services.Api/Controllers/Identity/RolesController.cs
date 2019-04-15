@@ -26,7 +26,8 @@
             this.userManager = userManager;
         }
 
-        [HttpPost("Role")]
+        [HttpPost]
+        [Route("Role")]
         public async Task<IActionResult> Create(string name)
         {
             if (!string.IsNullOrEmpty(name))
@@ -41,7 +42,7 @@
             return this.ResponseBad("CreateRole Failure");
         }
 
-        [HttpDelete("Role")]
+        [HttpDelete]
         public async Task<IActionResult> Delete(string name)
         {
             ApplicationRole role = await this.roleManager.FindByNameAsync(name);
@@ -54,7 +55,8 @@
             return this.ResponseBad("Delelte role have erros");
         }
 
-        [HttpPost("UserRoles")]
+        [HttpPost]
+        [Route("UserRoles")]
         public async Task<IActionResult> Edit(string userId, IEnumerable<string> roles)
         {
             // �������� ������������
@@ -75,7 +77,8 @@
             return this.Response("User role not changed");
         }
 
-        [HttpGet("UserRoles")]
+        [HttpGet]
+        [Route("UserRoles")]
         public async Task<IActionResult> GetRoles(string userId)
         {
             ApplicationUser user = await this.userManager.FindByIdAsync(userId);

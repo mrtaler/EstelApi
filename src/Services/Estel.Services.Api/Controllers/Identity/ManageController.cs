@@ -26,7 +26,7 @@
             this.signInManager = signInManager;
         }
 
-        [HttpPost]
+        [HttpPost("SetPassword")]
         public async Task<IActionResult> SetPassword(SetPasswordViewModel model)
         {
             if (!this.ModelState.IsValid)
@@ -54,7 +54,8 @@
             return this.userManager.GetUserAsync(this.HttpContext.User);
         }
 
-        [HttpPost]
+        [HttpPost("ChangePassword")]
+
         public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
         {
             if (this.ModelState.IsValid)
