@@ -1,4 +1,4 @@
-﻿namespace EstelApi.Application.ApplicationCqrs.Commands.Course.UpdateCourseTopicsForCourse
+﻿namespace EstelApi.Application.Dto
 {
     public class UpdateAdditionalAmenityForCourseDto
     {

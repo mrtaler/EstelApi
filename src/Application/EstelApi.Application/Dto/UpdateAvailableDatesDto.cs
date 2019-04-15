@@ -1,10 +1,6 @@
-﻿namespace EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands
+﻿namespace EstelApi.Application.Dto
 {
     using System.ComponentModel.DataAnnotations;
-
-    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
-
-    using MediatR;
 
     /// <inheritdoc cref="ICommand" />
     public class UpdateAvailableDatesDto

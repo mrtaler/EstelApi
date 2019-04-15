@@ -3,9 +3,7 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    using EstelApi.Application.ApplicationCqrs.Base;
-    using EstelApi.Application.ApplicationCqrs.Commands.HandlersCreateCommands.CreateCommands;
-    using EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands;
+    using EstelApi.Application.Dto;
     using EstelApi.Core.Seedwork.Specifications.Interfaces;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
 

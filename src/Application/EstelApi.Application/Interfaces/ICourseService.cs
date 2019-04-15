@@ -3,11 +3,7 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    using EstelApi.Application.ApplicationCqrs.Base;
-    using EstelApi.Application.ApplicationCqrs.Commands.Course.CreateNewCourse;
-    using EstelApi.Application.ApplicationCqrs.Commands.Course.UpdateAvailableDatesForCourse;
-    using EstelApi.Application.ApplicationCqrs.Commands.Course.UpdateCourse;
-    using EstelApi.Application.ApplicationCqrs.Commands.Course.UpdateCourseTopicsForCourse;
+    using EstelApi.Application.Dto;
     using EstelApi.Core.Seedwork.Specifications.Interfaces;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
 

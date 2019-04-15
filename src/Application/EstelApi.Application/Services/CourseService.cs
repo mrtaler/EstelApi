@@ -1,15 +1,12 @@
-﻿namespace EstelApi.Application.Interfaces
+﻿namespace EstelApi.Application.Services
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    using EstelApi.Application.ApplicationCqrs.Base;
-    using EstelApi.Application.ApplicationCqrs.Commands.Course.CreateNewCourse;
-    using EstelApi.Application.ApplicationCqrs.Commands.Course.UpdateAvailableDatesForCourse;
-    using EstelApi.Application.ApplicationCqrs.Commands.Course.UpdateCourse;
-    using EstelApi.Application.ApplicationCqrs.Commands.Course.UpdateCourseTopicsForCourse;
     using EstelApi.Application.ApplicationCqrs.Queries.FindByIdSpec;
     using EstelApi.Application.ApplicationCqrs.Queries.IncludeSpec;
+    using EstelApi.Application.Dto;
+    using EstelApi.Application.Interfaces;
     using EstelApi.Core.Seedwork;
     using EstelApi.Core.Seedwork.Adapter;
     using EstelApi.Core.Seedwork.Specifications.Interfaces;
@@ -24,6 +21,7 @@
         private readonly IAdditionalAmenityRepository additionalAmenityRepository;
         private readonly IAvailableDatesRepository availableDatesRepository;
         private readonly ICourseTopicsRepository courseTopicsRepository;
+
         public CourseService(IQueryableUnitOfWork uow, ICourseRepository repository, IAdditionalAmenityRepository additionalAmenityRepository, IAvailableDatesRepository availableDatesRepository, ICourseTopicsRepository courseTopicsRepository)
             : base(uow)
         {
@@ -42,6 +40,7 @@
                        ? entity
                        : throw new DatabaseException("Save exeption");
         }
+
         public async Task<Course> UpdateCourse(UpdateCourseDto processingEntity)
         {
             Contract.ThrowIfNull(processingEntity, processingEntity.GetType().Name);
@@ -52,6 +51,7 @@
                        ? entity
                        : throw new DatabaseException("Save exeption");
         }
+
         public async Task<bool> DeleteCourse(RemoveEntityCommand<Course> processingEntity)
         {
             Contract.ThrowIfNull(processingEntity, processingEntity.GetType().Name);
@@ -62,6 +62,7 @@
                        ? throw new DatabaseException("Save exeption")
                        : true;
         }
+
         public async Task<bool> UpdateAddiAmeForCourse(UpdateAdditionalAmenityForCourseDto processingEntity)
         {
             Contract.ThrowIfNull(processingEntity, processingEntity.GetType().Name);
@@ -71,26 +72,26 @@
             {
                 var course = this.courseRepository.OneMatching(new FindCourseById().SetId(processingEntity.CourseId));
                 course.AdditionalAmenityCourses.Add(new AdditionalAmenityCourse()
-                                                        {
-                                                            CourseId = processingEntity.CourseId,
-                                                            AdditionalAmenity = entity
-                                                        });
+                {
+                    CourseId = processingEntity.CourseId,
+                    AdditionalAmenity = entity
+                });
             }
-
             else
             {
                 var course = this.courseRepository.OneMatching(new FindCourseById().SetId(processingEntity.CourseId));
                 course.AdditionalAmenityCourses.Add(new AdditionalAmenityCourse()
-                                                        {
-                                                            CourseId = processingEntity.CourseId,
-                                                            AdditionalAmenity = courseTopics
-                                                        });
+                {
+                    CourseId = processingEntity.CourseId,
+                    AdditionalAmenity = courseTopics
+                });
             }
+
             return await this.CommitAsync()
                        ? true
                        : throw new DatabaseException("Save exeption");
-
         }
+
         public async Task<bool> UpdateAvailDateForCourse(UpdateAvailableDatesForCourseDto processingEntity)
         {
             var entity = processingEntity.ProjectedAs<AvailableDates>();
@@ -99,25 +100,26 @@
             {
                 var course = this.courseRepository.OneMatching(new FindCourseById().SetId(processingEntity.CourseId));
                 course.AvailableDates.Add(new AvailableDatesCourse
-                                              {
-                                                  CourseId = processingEntity.CourseId,
-                                                  AvailableDates = entity
-                                              });
+                {
+                    CourseId = processingEntity.CourseId,
+                    AvailableDates = entity
+                });
             }
             else
             {
                 var course = this.courseRepository.OneMatching(new FindCourseById().SetId(processingEntity.CourseId));
                 course.AvailableDates.Add(new AvailableDatesCourse
-                                              {
-                                                  CourseId = processingEntity.CourseId,
-                                                  AvailableDates = availableDates
-                                              });
+                {
+                    CourseId = processingEntity.CourseId,
+                    AvailableDates = availableDates
+                });
             }
 
             return await this.CommitAsync()
                        ? true
                        : throw new DatabaseException("Save exeption");
         }
+
         public async Task<bool> UpdateCourseTopics(UpdateCourseTopicsForCourseDto processingEntity)
         {
             var entity = processingEntity.ProjectedAs<CourseTopics>();
@@ -126,38 +128,39 @@
             {
                 var course = this.courseRepository.OneMatching(new FindCourseById().SetId(processingEntity.CourseId));
                 course.CourseTopics.Add(new CourseTopicsCourse
-                                            {
-                                                CourseId = processingEntity.CourseId,
-                                                CourseTopics = entity
-                                            });
+                {
+                    CourseId = processingEntity.CourseId,
+                    CourseTopics = entity
+                });
             }
             else
             {
                 var course = this.courseRepository.OneMatching(new FindCourseById().SetId(processingEntity.CourseId));
                 course.CourseTopics.Add(new CourseTopicsCourse
-                                            {
-                                                CourseId = processingEntity.CourseId,
-                                                CourseTopics = courseTopics
-                                            });
+                {
+                    CourseId = processingEntity.CourseId,
+                    CourseTopics = courseTopics
+                });
             }
 
             return await this.CommitAsync()
                        ? true
                        : throw new DatabaseException("Save exeption");
         }
+
         public async Task<Course> GetGourse(ISpecification<Course> criteria = null)
         {
             var ret = this.courseRepository.OneMatching(
-                filter: criteria,//new FindCourseById().SetId(request.Id),
+                filter: criteria,
                 includes: new CourseInclude());
 
             return await Task.FromResult(ret);
         }
+
         public async Task<IEnumerable<Course>> GetGourses(ISpecification<Course> criteria = null)
         {
             var ret = this.courseRepository.AllMatching(criteria, includes: new CourseInclude());
             return await Task.FromResult(ret);
         }
-
     }
 }

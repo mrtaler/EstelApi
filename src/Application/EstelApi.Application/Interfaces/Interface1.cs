@@ -1,9 +1,5 @@
 ﻿namespace EstelApi.Application.Interfaces
 {
-    public interface Interface3
-    {
-
-    }
     public interface Interface4
     {
 

@@ -1,4 +1,4 @@
-﻿namespace EstelApi.Application.ApplicationCqrs.Base
+﻿namespace EstelApi.Application.Dto
 {
     /// <inheritdoc cref="ICommand" />
     /// <summary>

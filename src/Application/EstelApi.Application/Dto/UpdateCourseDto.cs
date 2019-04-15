@@ -1,4 +1,4 @@
-﻿namespace EstelApi.Application.ApplicationCqrs.Commands.Course.UpdateCourse
+﻿namespace EstelApi.Application.Dto
 {
     using System.ComponentModel.DataAnnotations;
 

@@ -1,4 +1,4 @@
-﻿namespace EstelApi.Application.ApplicationCqrs.Commands.Course.UpdateAvailableDatesForCourse
+﻿namespace EstelApi.Application.Dto
 {
     public class UpdateAvailableDatesForCourseDto
     {

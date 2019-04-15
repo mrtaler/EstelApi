@@ -1,9 +1,12 @@
 ﻿namespace EstelApi.Application.Dto
 {
-    public class UpdateCourseTopicsForCourseDto
+    using System.ComponentModel.DataAnnotations;
+
+    public class UpdateCourseTopicsDto
     {
+        [Required]
         public int Id { get; set; }
-        public int CourseId { get; set; }
+        [Required]
         public string CourseTopicName { get; set; }
     }
 }

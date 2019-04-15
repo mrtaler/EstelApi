@@ -1,13 +1,14 @@
-﻿namespace EstelApi.Application.Interfaces
+﻿namespace EstelApi.Application.Services
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    using EstelApi.Application.ApplicationCqrs.Base;
     using EstelApi.Application.ApplicationCqrs.Commands.HandlersCreateCommands.CreateCommands;
     using EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands;
     using EstelApi.Application.ApplicationCqrs.Queries.FindByIdSpec;
     using EstelApi.Application.ApplicationCqrs.Queries.IncludeSpec;
+    using EstelApi.Application.Dto;
+    using EstelApi.Application.Interfaces;
     using EstelApi.Core.Seedwork;
     using EstelApi.Core.Seedwork.Adapter;
     using EstelApi.Core.Seedwork.Specifications.Interfaces;
@@ -53,7 +54,6 @@
         {
             Contract.ThrowIfNull(processingEntity, processingEntity.GetType().Name);
 
-
             var updateAdditionalAmenity = processingEntity.ProjectedAs<AdditionalAmenity>();
             this.repository.Modify(updateAdditionalAmenity);
 
@@ -62,11 +62,10 @@
                        : throw new DatabaseException("Save exeption");
         }
 
-
         public async Task<AdditionalAmenity> GetAdditionalAmenity(ISpecification<AdditionalAmenity> criteria = null)
         {
             var ret = this.repository.OneMatching(
-                filter: criteria,//new FindCourseById().SetId(request.Id),
+                filter: criteria,
                 includes: new AdditionalAmenityInclude());
 
             return await Task.FromResult(ret);

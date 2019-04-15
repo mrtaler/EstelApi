@@ -1,7 +1,5 @@
-﻿namespace EstelApi.Application.ApplicationCqrs.Commands.HandlersCreateCommands.CreateCommands
+﻿namespace EstelApi.Application.Dto
 {
-    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
-    using MediatR;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
 

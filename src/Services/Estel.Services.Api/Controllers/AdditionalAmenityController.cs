@@ -4,11 +4,11 @@
 
     using Estel.Services.Api.ViewModels;
 
-    using EstelApi.Application.ApplicationCqrs.Base;
     using EstelApi.Application.ApplicationCqrs.Commands.HandlersCreateCommands.CreateCommands;
     using EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands;
     using EstelApi.Application.ApplicationCqrs.Queries;
     using EstelApi.Application.ApplicationCqrs.Queries.FindByIdSpec;
+    using EstelApi.Application.Dto;
     using EstelApi.Application.Interfaces;
     using EstelApi.Core.Seedwork.Adapter;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;

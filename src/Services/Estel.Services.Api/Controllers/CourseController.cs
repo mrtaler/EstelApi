@@ -1,7 +1,5 @@
 ﻿namespace Estel.Services.Api.Controllers
 {
-
-    using EstelApi.Application.ApplicationCqrs.Base;
     using EstelApi.Application.ApplicationCqrs.Queries;
     using EstelApi.Core.Seedwork.Adapter;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
@@ -14,11 +12,8 @@
 
     using Estel.Services.Api.ViewModels;
 
-    using EstelApi.Application.ApplicationCqrs.Commands.Course.CreateNewCourse;
-    using EstelApi.Application.ApplicationCqrs.Commands.Course.UpdateAvailableDatesForCourse;
-    using EstelApi.Application.ApplicationCqrs.Commands.Course.UpdateCourse;
-    using EstelApi.Application.ApplicationCqrs.Commands.Course.UpdateCourseTopicsForCourse;
     using EstelApi.Application.ApplicationCqrs.Queries.FindByIdSpec;
+    using EstelApi.Application.Dto;
     using EstelApi.Application.Interfaces;
 
     /// <inheritdoc />

@@ -6,6 +6,7 @@
 
     using EstelApi.Application.ApplicationCqrs.Commands.HandlersCreateCommands;
     using EstelApi.Application.Interfaces;
+    using EstelApi.Application.Services;
 
     using MediatR;
     using MediatR.Extensions.Autofac.DependencyInjection;

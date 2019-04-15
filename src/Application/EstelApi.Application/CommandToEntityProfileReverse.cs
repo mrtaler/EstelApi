@@ -1,17 +1,13 @@
-﻿namespace EstelApi.Application.AutoMapper
+﻿namespace EstelApi.Application
 {
-    using EstelApi.Application.ApplicationCqrs.Commands.Course.CreateNewCourse;
+    using AutoMapper;
 
-    using global::AutoMapper;
-
-    using EstelApi.Application.ApplicationCqrs.Commands.Course.UpdateAvailableDatesForCourse;
-    using EstelApi.Application.ApplicationCqrs.Commands.Course.UpdateCourse;
-    using EstelApi.Application.ApplicationCqrs.Commands.Course.UpdateCourseTopicsForCourse;
     using EstelApi.Application.ApplicationCqrs.Commands.HandlersCreateCommands.CreateCommands;
     using EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands;
+    using EstelApi.Application.Dto;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
-   
+
     using Serilog;
 
     /// <inheritdoc />
@@ -29,14 +25,14 @@
             this.CreateMap<UpdateWorkerCommand, Worker>(memberList: MemberList.Source);
             this.CreateMap<UpdateUserCommand, User>(memberList: MemberList.Source);
             this.CreateMap<UpdateCourseTypeCommand, CourseType>(memberList: MemberList.Source);
-            this.CreateMap<UpdateCourseTopicsCommand, CourseTopics>(memberList: MemberList.Source);
+            this.CreateMap<UpdateCourseTopicsDto, CourseTopics>(memberList: MemberList.Source);
             this.CreateMap<UpdateAvailableDatesDto, AvailableDates>(memberList: MemberList.Source);
             this.CreateMap<UpdateAdditionalAmenityDto, AdditionalAmenity>(memberList: MemberList.Source);
 
             this.CreateMap<CreateNewWorkerCommand, Worker>(memberList: MemberList.Source);
             this.CreateMap<CreateNewUserCommand, User>(memberList: MemberList.Source);
             this.CreateMap<CreateNewCourseTypeCommand, CourseType>(memberList: MemberList.Source);
-            this.CreateMap<CreateNewCourseTopicsCommand, CourseTopics>(memberList: MemberList.Source);
+            this.CreateMap<CreateNewCourseTopicsDto, CourseTopics>(memberList: MemberList.Source);
             this.CreateMap<CreateNewAvailableDatesDto, AvailableDates>(memberList: MemberList.Source);
             this.CreateMap<CreateNewAdditionalAmenityDto, AdditionalAmenity>(memberList: MemberList.Source);
 

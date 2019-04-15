@@ -17,21 +17,21 @@
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Repositories;
     using EstelApi.Domain.DataAccessLayer.Context.Interfaces;
 
-    public class AvailableDatesService : BaseService, IAvailableDatesService
+    public class CourseTopicsService : BaseService, ICourseTopicsService
     {
-        private readonly IAvailableDatesRepository repository;
+        private readonly ICourseTopicsRepository repository;
 
-        public AvailableDatesService(IQueryableUnitOfWork uow, IAvailableDatesRepository repository)
+        public CourseTopicsService(IQueryableUnitOfWork uow, ICourseTopicsRepository repository)
             : base(uow)
         {
             this.repository = repository;
         }
 
-        public async Task<AvailableDates> CreateAvailableDates(CreateNewAvailableDatesDto processingEntity)
+        public async Task<CourseTopics> CreateCourseTopics(CreateNewCourseTopicsDto processingEntity)
         {
             Contract.ThrowIfNull(processingEntity, processingEntity.GetType().Name);
 
-            var entity = processingEntity.ProjectedAs<AvailableDates>();
+            var entity = processingEntity.ProjectedAs<CourseTopics>();
             this.repository.Add(entity);
 
             return await this.CommitAsync()
@@ -39,22 +39,22 @@
                        : throw new DatabaseException("Save exeption");
         }
 
-        public async Task<bool> DeleteAvailableDate(RemoveEntityCommand<AvailableDates> processingEntity)
+        public async Task<bool> DeleteCourseTopics(RemoveEntityCommand<CourseTopics> processingEntity)
         {
             Contract.ThrowIfNull(processingEntity, processingEntity.GetType().Name);
 
-            var current = this.repository.OneMatching(new FindAvailableDatesById().SetId(processingEntity.Id));
+            var current = this.repository.OneMatching(new FindCourseTopicsById().SetId(processingEntity.Id));
             this.repository.Remove(current);
             return !await this.CommitAsync()
                        ? throw new DatabaseException("Save exeption")
                        : true;
         }
 
-        public async Task<AvailableDates> UpdateAvailableDate(UpdateAvailableDatesDto processingEntity)
+        public async Task<CourseTopics> UpdateCourseTopics(UpdateCourseTopicsDto processingEntity)
         {
             Contract.ThrowIfNull(processingEntity, processingEntity.GetType().Name);
 
-            var updateAdditionalAmenity = processingEntity.ProjectedAs<AvailableDates>();
+            var updateAdditionalAmenity = processingEntity.ProjectedAs<CourseTopics>();
             this.repository.Modify(updateAdditionalAmenity);
 
             return await this.CommitAsync()
@@ -62,18 +62,18 @@
                        : throw new DatabaseException("Save exeption");
         }
 
-        public async Task<AvailableDates> GetAvailableDate(ISpecification<AvailableDates> criteria = null)
+        public async Task<CourseTopics> GetCourseTopic(ISpecification<CourseTopics> criteria = null)
         {
             var ret = this.repository.OneMatching(
                 filter: criteria,
-                includes: new AvailableDatesInclude());
+                includes: new CourseTopicsInclude());
 
             return await Task.FromResult(ret);
         }
 
-        public async Task<IEnumerable<AvailableDates>> GetAvailableDates(ISpecification<AvailableDates> criteria = null)
+        public async Task<IEnumerable<CourseTopics>> GetCourseTopics(ISpecification<CourseTopics> criteria = null)
         {
-            var ret = this.repository.AllMatching(criteria, includes: new AvailableDatesInclude());
+            var ret = this.repository.AllMatching(criteria, includes: new CourseTopicsInclude());
             return await Task.FromResult(ret);
         }
     }
