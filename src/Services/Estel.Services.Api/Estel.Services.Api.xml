@@ -4,12 +4,12 @@
         <name>Estel.Services.Api</name>
     </assembly>
     <members>
-        <member name="T:Estel.Services.Api.Configurations.AutoMapperSetup">
+        <member name="T:Estel.Services.Api.Configurations.IdentityInit">
             <summary>
             The auto mapper setup.
             </summary>
         </member>
-        <member name="M:Estel.Services.Api.Configurations.AutoMapperSetup.AddAutoMapperSetup(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+        <member name="M:Estel.Services.Api.Configurations.IdentityInit.IdentityDataInit(Autofac.IContainer)">
             <summary>
             The add auto mapper setup.
             </summary>
@@ -67,7 +67,7 @@
             The logger.
             </summary>
         </member>
-        <member name="M:Estel.Services.Api.Controllers.AccountController.#ctor(Microsoft.AspNetCore.Identity.UserManager{EstelApi.CrossCutting.Identity.IdentityModels.ApplicationUser},Microsoft.AspNetCore.Identity.SignInManager{EstelApi.CrossCutting.Identity.IdentityModels.ApplicationUser},Microsoft.Extensions.Logging.ILoggerFactory)">
+        <member name="M:Estel.Services.Api.Controllers.AccountController.#ctor(EstelApi.CrossCutting.Identity.IdentityServices.ApplicationUserManager,EstelApi.CrossCutting.Identity.IdentityServices.ApplicationSignInManager,Microsoft.Extensions.Logging.ILoggerFactory)">
             <inheritdoc />
         </member>
         <member name="M:Estel.Services.Api.Controllers.AccountController.Login(EstelApi.CrossCutting.Identity.IdentityViewModels.AccountViewModels.LoginViewModel)">

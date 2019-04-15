@@ -72,10 +72,10 @@
         /// </returns>
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
+
             var builder = new ContainerBuilder();
             services.AddDbContext<IdentityEstelContext>(options =>
                 options.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
-
             services.AddIdentity<ApplicationUser, ApplicationRole>()
                 .AddUserStore<ApplicationUserStore>()
                 .AddUserManager<ApplicationUserManager>()
@@ -85,6 +85,37 @@
                 .AddEntityFrameworkStores<IdentityEstelContext>()
                 .AddDefaultTokenProviders();
             services.AddSwaggerDocumentation();
+
+            services.Configure<IdentityOptions>(
+                options =>
+                    {
+                        // Password settings.
+                        options.Password.RequireDigit = false;
+                        options.Password.RequireLowercase = false;
+                        options.Password.RequireNonAlphanumeric = false;
+                        options.Password.RequireUppercase = false;
+                        options.Password.RequiredLength = 2;
+                        options.Password.RequiredUniqueChars = 1;
+
+                        // Lockout settings.
+                        options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(50);
+                        options.Lockout.MaxFailedAccessAttempts = 5;
+                        options.Lockout.AllowedForNewUsers = true;
+
+                        // User settings.
+                        options.User.AllowedUserNameCharacters =
+                            "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+                        options.User.RequireUniqueEmail = false;
+                    });
+
+            services.ConfigureApplicationCookie(options =>
+                {
+                    // Cookie settings
+                    options.Cookie.HttpOnly = true;
+                    options.ExpireTimeSpan = TimeSpan.FromMinutes(50);
+                    options.LoginPath = "/account";
+                    options.SlidingExpiration = true;
+                });
 
             services.AddRouting(options => options.LowercaseUrls = true);
             services.AddMvcCore(options =>
@@ -113,7 +144,7 @@
 
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("CanWriteCustomerData", policy => policy.Requirements.Add(new ClaimRequirement("Customers", "Write")));
+                options.AddPolicy("CanRead", policy => policy.Requirements.Add(new ClaimRequirement("Customers", "Read")));
                 options.AddPolicy("CanRemoveCustomerData", policy => policy.Requirements.Add(new ClaimRequirement("Customers", "Remove")));
             });
             services.AddAutoMapper();
@@ -128,11 +159,11 @@
                     outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} {Level}:{EventId} [{SourceContext}] {Message}{NewLine}{Exception}")
                 .CreateLogger())
                 .SingleInstance();
-            
+
             builder.RegisterModule(new EstelServicesApiModule());
             var container = builder.Build();
             TypeAdapterFactory.SetCurrent(container.Resolve<ITypeAdapterFactory>());
-
+            IdentityInit.IdentityDataInit(container).Wait();
             return new AutofacServiceProvider(container);
         }
 
