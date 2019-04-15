@@ -2,15 +2,10 @@
 {
     using System.Threading.Tasks;
 
-    using EstelApi.Application.ApplicationCqrs.Commands.HandlersCreateCommands.CreateCommands;
-    using EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands;
-    using EstelApi.Application.ApplicationCqrs.Queries;
     using EstelApi.Application.ApplicationCqrs.Queries.FindByIdSpec;
     using EstelApi.Application.Dto;
     using EstelApi.Application.Interfaces;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
-
-    using MediatR;
 
     using Microsoft.AspNetCore.Mvc;
 

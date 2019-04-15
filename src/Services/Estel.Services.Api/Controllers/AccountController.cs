@@ -1,13 +1,10 @@
 ﻿namespace Estel.Services.Api.Controllers
 {
-    using System.Collections.Generic;
     using System.Security.Claims;
     using System.Threading.Tasks;
 
     using EstelApi.CrossCutting.Identity.IdentityModels;
     using EstelApi.CrossCutting.Identity.IdentityViewModels.AccountViewModels;
-
-    using MediatR;
 
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;

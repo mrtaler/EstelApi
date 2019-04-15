@@ -24,14 +24,14 @@
             Log.Debug($"AutoMapper profile {nameof(CommandToEntityProfileReverse)} was launch");
             this.CreateMap<UpdateWorkerCommand, Worker>(memberList: MemberList.Source);
             this.CreateMap<UpdateUserCommand, User>(memberList: MemberList.Source);
-            this.CreateMap<UpdateCourseTypeCommand, CourseType>(memberList: MemberList.Source);
+            this.CreateMap<UpdateCourseTypeDto, CourseType>(memberList: MemberList.Source);
             this.CreateMap<UpdateCourseTopicsDto, CourseTopics>(memberList: MemberList.Source);
             this.CreateMap<UpdateAvailableDatesDto, AvailableDates>(memberList: MemberList.Source);
             this.CreateMap<UpdateAdditionalAmenityDto, AdditionalAmenity>(memberList: MemberList.Source);
 
             this.CreateMap<CreateNewWorkerCommand, Worker>(memberList: MemberList.Source);
             this.CreateMap<CreateNewUserCommand, User>(memberList: MemberList.Source);
-            this.CreateMap<CreateNewCourseTypeCommand, CourseType>(memberList: MemberList.Source);
+            this.CreateMap<CreateNewCourseTypeDto, CourseType>(memberList: MemberList.Source);
             this.CreateMap<CreateNewCourseTopicsDto, CourseTopics>(memberList: MemberList.Source);
             this.CreateMap<CreateNewAvailableDatesDto, AvailableDates>(memberList: MemberList.Source);
             this.CreateMap<CreateNewAdditionalAmenityDto, AdditionalAmenity>(memberList: MemberList.Source);

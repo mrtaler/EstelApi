@@ -4,10 +4,6 @@
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
 
-    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
-
-    using MediatR;
-
     /// <inheritdoc cref="ICommand" />
     public class UpdateUserCommand //: ICommand, IRequest<CommandResponse<User>>
     {

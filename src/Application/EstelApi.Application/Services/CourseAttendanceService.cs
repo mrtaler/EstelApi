@@ -1,4 +1,4 @@
-﻿namespace EstelApi.Application.Services
+﻿namespace EstelApi.Application.Interfaces
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
@@ -6,26 +6,25 @@
     using EstelApi.Application.ApplicationCqrs.Queries.FindByIdSpec;
     using EstelApi.Application.ApplicationCqrs.Queries.IncludeSpec;
     using EstelApi.Application.Dto;
-    using EstelApi.Application.Interfaces;
+    using EstelApi.Application.Services;
     using EstelApi.Core.Seedwork;
-    using EstelApi.Core.Seedwork.Adapter;
     using EstelApi.Core.Seedwork.Specifications.Interfaces;
     using EstelApi.Domain.DataAccessLayer.Context.Context.Base;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Repositories;
     using EstelApi.Domain.DataAccessLayer.Context.Interfaces;
 
-    public class AdditionalAmenityService : BaseService, IAdditionalAmenityService
+    public class CourseAttendanceService : BaseService, ICourseAttendanceService
     {
-        private readonly IAdditionalAmenityRepository repository;
+        private readonly ICourseAttendanceRepository repository;
 
-        public AdditionalAmenityService(IQueryableUnitOfWork uow, IAdditionalAmenityRepository repository)
+        public CourseAttendanceService(IQueryableUnitOfWork uow, ICourseAttendanceRepository repository)
             : base(uow)
         {
             this.repository = repository;
         }
 
-        public async Task<AdditionalAmenity> CreateAdditionalAmenity(CreateNewAdditionalAmenityDto processingEntity)
+        /*   public async Task<AdditionalAmenity> CreateAdditionalAmenity(CreateNewAdditionalAmenityDto processingEntity)
         {
             Contract.ThrowIfNull(processingEntity, processingEntity.GetType().Name);
 
@@ -35,20 +34,20 @@
             return await this.CommitAsync()
                        ? entity
                        : throw new DatabaseException("Save exeption");
-        }
+        }*/
 
-        public async Task<bool> DeleteAdditionalAmenity(RemoveEntityCommand<AdditionalAmenity> processingEntity)
+        public async Task<bool> DeleteCourseAttendance(RemoveEntityCommand<CourseAttendance> processingEntity)
         {
             Contract.ThrowIfNull(processingEntity, processingEntity.GetType().Name);
 
-            var current = this.repository.OneMatching(new FindAdditionalAmenityById().SetId(processingEntity.Id));
+            var current = this.repository.OneMatching(new FindCourseAttendanceById().SetId(processingEntity.Id));
             this.repository.Remove(current);
             return !await this.CommitAsync()
                        ? throw new DatabaseException("Save exeption")
                        : true;
         }
 
-        public async Task<AdditionalAmenity> UpdateAdditionalAmenity(UpdateAdditionalAmenityDto processingEntity)
+        /*    public async Task<AdditionalAmenity> UpdateAdditionalAmenity(UpdateAdditionalAmenityDto processingEntity)
         {
             Contract.ThrowIfNull(processingEntity, processingEntity.GetType().Name);
 
@@ -59,19 +58,19 @@
                        ? updateAdditionalAmenity
                        : throw new DatabaseException("Save exeption");
         }
-
-        public async Task<AdditionalAmenity> GetAdditionalAmenity(ISpecification<AdditionalAmenity> criteria = null)
+        */
+        public async Task<CourseAttendance> GetCourseAttendance(ISpecification<CourseAttendance> criteria = null)
         {
             var ret = this.repository.OneMatching(
                 filter: criteria,
-                includes: new AdditionalAmenityInclude());
+                includes: new CourseAttendanceInclude());
 
             return await Task.FromResult(ret);
         }
 
-        public async Task<IEnumerable<AdditionalAmenity>> GetAdditionalAmenities(ISpecification<AdditionalAmenity> criteria = null)
+        public async Task<IEnumerable<CourseAttendance>> GetCourseAttendances(ISpecification<CourseAttendance> criteria = null)
         {
-            var ret = this.repository.AllMatching(criteria, includes: new AdditionalAmenityInclude());
+            var ret = this.repository.AllMatching(criteria, includes: new CourseAttendanceInclude());
             return await Task.FromResult(ret);
         }
     }

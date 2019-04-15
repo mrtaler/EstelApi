@@ -5,8 +5,6 @@
 
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
 
-    using MediatR;
-
     public class CreateNewWorkerCommand //: ICommand,
                                         //  IRequest<CommandResponse<Worker>>
     {

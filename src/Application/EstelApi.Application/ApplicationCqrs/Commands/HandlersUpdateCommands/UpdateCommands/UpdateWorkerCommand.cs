@@ -5,8 +5,6 @@
 
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
 
-    using MediatR;
-
     /// <inheritdoc cref="ICommand" />
     public class UpdateWorkerCommand //: ICommand, IRequest<CommandResponse<Worker>>
     {

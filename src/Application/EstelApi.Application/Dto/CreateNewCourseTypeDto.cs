@@ -1,17 +1,9 @@
-﻿namespace EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands
+﻿namespace EstelApi.Application.Dto
 {
     using System.ComponentModel.DataAnnotations;
 
-    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
-
-    using MediatR;
-
-    /// <inheritdoc cref="ICommand" />
-    public class UpdateCourseTypeCommand //: ICommand, IRequest<CommandResponse<CourseType>>
+    public class CreateNewCourseTypeDto
     {
-        [Required]
-        public int Id { get; set; }
-
         /// <summary>
         /// Gets or sets the course type name.
         /// </summary>
