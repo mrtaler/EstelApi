@@ -92,6 +92,86 @@
             The <see cref="T:System.Threading.Tasks.Task"/>.
             </returns>
         </member>
+        <member name="T:Estel.Services.Api.Controllers.AdditionalAmenityController">
+            <inheritdoc />
+            <summary>
+            The additional amenity controller.
+            </summary>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.AdditionalAmenityController.#ctor(EstelApi.Application.Interfaces.IAdditionalAmenityService)">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the <see cref="T:Estel.Services.Api.Controllers.AdditionalAmenityController" /> class.
+            </summary>
+            <param name="notifications">
+            The notifications.
+            </param>
+            <param name="mediator">
+            The mediator.
+            </param>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.AdditionalAmenityController.Get">
+            <summary>
+            Get All Additional Amenity.
+            </summary>
+            <remarks>
+            Sample request:
+                POST /Todo
+                {
+                   "Id": 1,
+                   "AdditionalAmenityName": "Item1",
+                }
+            </remarks>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+            <response code="201">Returns the newly created item</response>
+            <response code="400">If the item is null</response>    
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.AdditionalAmenityController.Get(System.Int32)">
+            <summary>
+            Get Additional Amenity By Id.
+            </summary>
+            <param name="id">
+            The id.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.AdditionalAmenityController.Delete(System.Int32)">
+            <summary>
+            Delete Additional Amenity By Id.
+            </summary>
+            <param name="id">
+            The id.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.AdditionalAmenityController.Post(EstelApi.Application.Dto.CreateNewAdditionalAmenityDto)">
+            <summary>
+            Create New Additional Amenity.
+            </summary>
+            <param name="createNewAdditionalAmenity">
+            The create New Additional Amenity.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.AdditionalAmenityController.Put(EstelApi.Application.Dto.UpdateAdditionalAmenityDto)">
+            <summary>
+            Update Additional Amenity.
+            </summary>
+            <param name="command">
+            The command.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
         <member name="T:Estel.Services.Api.Controllers.ApiController">
             <inheritdoc />
         </member>
@@ -115,6 +195,112 @@
             </param>
             <returns>
             The <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/>.
+            </returns>
+        </member>
+        <member name="T:Estel.Services.Api.Controllers.AvailableDatesController">
+            <inheritdoc />
+            <summary>
+            The available dates controller.
+            </summary>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.AvailableDatesController.#ctor(EstelApi.Application.Interfaces.IAvailableDatesService)">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the <see cref="T:Estel.Services.Api.Controllers.AvailableDatesController" /> class.
+            </summary>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.AvailableDatesController.Get">
+            <summary>
+            Get All Available Dates.
+            </summary>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.AvailableDatesController.Get(System.Int32)">
+            <summary>
+            Get Available Dates By Id.
+            </summary>
+            <param name="id">
+            The id.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.AvailableDatesController.Delete(System.Int32)">
+            <summary>
+            Delete Available Dates By Id.
+            </summary>
+            <param name="id">
+            The id.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.AvailableDatesController.Post(EstelApi.Application.Dto.CreateNewAvailableDatesDto)">
+            <summary>
+            Create New Available Dates.
+            </summary>
+            <param name="dto">
+            The command.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.AvailableDatesController.Put(EstelApi.Application.Dto.UpdateAvailableDatesDto)">
+            <summary>
+            Update Available Dates.
+            </summary>
+            <param name="dto">
+            The command.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="T:Estel.Services.Api.Controllers.CourseAttendanceController">
+            <inheritdoc />
+            <summary>
+            The course attendance controller.
+            </summary>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.CourseAttendanceController.#ctor(EstelApi.Application.Interfaces.ICourseAttendanceService)">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the <see cref="T:Estel.Services.Api.Controllers.CourseAttendanceController" /> class.
+            </summary>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.CourseAttendanceController.Get">
+            <summary>
+            Get All Course Attendance.
+            </summary>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.CourseAttendanceController.Get(System.Int32)">
+            <summary>
+            Get Course Attendance By Id.
+            </summary>
+            <param name="id">
+            The id.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.CourseAttendanceController.Delete(System.Int32)">
+            <summary>
+            Delete Course Attendance By Id.
+            </summary>
+            <param name="id">
+            The id.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
             </returns>
         </member>
         <member name="T:Estel.Services.Api.Controllers.CourseController">
@@ -165,7 +351,7 @@
             The <see cref="T:System.Threading.Tasks.Task"/>.
             </returns>
         </member>
-        <member name="M:Estel.Services.Api.Controllers.CourseController.Post(EstelApi.Application.ApplicationCqrs.Commands.Course.CreateNewCourse.CreateNewCourseDto)">
+        <member name="M:Estel.Services.Api.Controllers.CourseController.Post(EstelApi.Application.Dto.CreateNewCourseDto)">
             <summary>
             Create New Course.
             </summary>
@@ -176,7 +362,7 @@
             The <see cref="T:System.Threading.Tasks.Task"/>.
             </returns>
         </member>
-        <member name="M:Estel.Services.Api.Controllers.CourseController.Put(EstelApi.Application.ApplicationCqrs.Commands.Course.UpdateCourse.UpdateCourseDto)">
+        <member name="M:Estel.Services.Api.Controllers.CourseController.Put(EstelApi.Application.Dto.UpdateCourseDto)">
             <summary>
             Update Course.
             </summary>
@@ -186,6 +372,274 @@
             <returns>
             The <see cref="T:System.Threading.Tasks.Task"/>.
             </returns>
+        </member>
+        <member name="T:Estel.Services.Api.Controllers.CourseTopicsController">
+            <inheritdoc />
+            <summary>
+            The course topics controller.
+            </summary>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.CourseTopicsController.#ctor(EstelApi.Application.Interfaces.ICourseTopicsService)">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the <see cref="T:Estel.Services.Api.Controllers.CourseTopicsController" /> class.
+            </summary>
+            <param name="notifications">
+            The notifications.
+            </param>
+            <param name="mediator">
+            The mediator.
+            </param>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.CourseTopicsController.Get">
+            <summary>
+            Get All Course Topics.
+            </summary>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.CourseTopicsController.Get(System.Int32)">
+            <summary>
+            Get Course Topics By Id.
+            </summary>
+            <param name="id">
+            The id.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.CourseTopicsController.Delete(System.Int32)">
+            <summary>
+            Delete Course Topics By Id
+            </summary>
+            <param name="id">
+            The id.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.CourseTopicsController.Post(EstelApi.Application.Dto.CreateNewCourseTopicsDto)">
+            <summary>
+            Create New Course Topics.
+            </summary>
+            <param name="command">
+            The command.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.CourseTopicsController.Put(EstelApi.Application.Dto.UpdateCourseTopicsDto)">
+            <summary>
+            Update Course Topics.
+            </summary>
+            <param name="command">
+            The command.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="T:Estel.Services.Api.Controllers.CourseTypeController">
+            <inheritdoc />
+            <summary>
+            The course type controller.
+            </summary>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.CourseTypeController.#ctor(EstelApi.Application.Interfaces.ICourseTypeService)">
+            <inheritdoc />
+            <summary>
+            Initializes a new instance of the <see cref="T:Estel.Services.Api.Controllers.CourseTypeController" /> class.
+            </summary>
+            <param name="notifications">
+            The notifications.
+            </param>
+            <param name="mediator">
+            The mediator.
+            </param>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.CourseTypeController.Get">
+            <summary>
+            Get All Course Types.
+            </summary>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.CourseTypeController.Get(System.Int32)">
+            <summary>
+            Get Course Type By Id.
+            </summary>
+            <param name="id">
+            The id.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.CourseTypeController.Delete(System.Int32)">
+            <summary>
+            Delete Course Type By Id.
+            </summary>
+            <param name="id">
+            The id.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.CourseTypeController.Post(EstelApi.Application.Dto.CreateNewCourseTypeDto)">
+            <summary>
+            Create New Course Type.
+            </summary>
+            <param name="dto">
+            The command.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.CourseTypeController.Put(EstelApi.Application.Dto.UpdateCourseTypeDto)">
+            <summary>
+            Update Course Type.
+            </summary>
+            <param name="dto">
+            The command.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="T:Estel.Services.Api.Controllers.UserController">
+            <summary>
+            The customer controller.
+            </summary>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.UserController.#ctor(EstelApi.Application.Interfaces.IPersonService)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Estel.Services.Api.Controllers.UserController"/> class.
+            </summary>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.UserController.Get">
+            <summary>
+            Work The getAll.
+            </summary>
+            <returns>
+            The <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/>.
+            </returns>
+            [AllowAnonymous]
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.UserController.Get(System.Int32)">
+            <summary>
+            The get.
+            </summary>
+            <param name="id">
+            The id.
+            </param>
+            <returns>
+            The <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/>.
+            </returns>
+            [AllowAnonymous]
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.UserController.Post(EstelApi.Application.Dto.CreateNewUserDto)">
+            <summary>
+            Create New Customer (work)
+            </summary>
+            <param name="dto">
+            The command.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+            [Authorize(Policy = "CanWriteCustomerData")]
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.UserController.Put(EstelApi.Application.Dto.UpdateUserDto)">
+            <summary>
+            Update Customer. (work)
+            </summary>
+            <param name="dto">
+            The command.
+            </param>
+            <returns>
+            The <see cref="T:Microsoft.AspNetCore.Mvc.IActionResult"/>.
+            </returns>
+            [Authorize(Policy = "CanWriteCustomerData")]
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.UserController.Delete(System.Int32)">
+            <summary>
+            The delete.
+            </summary>
+            <param name="id">
+            current id
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+            [Authorize(Policy = "CanRemoveCustomerData")]
+        </member>
+        <member name="T:Estel.Services.Api.Controllers.WorkerController">
+            <inheritdoc />
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.WorkerController.Get">
+            <summary>
+            Get All Worker.
+            </summary>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.WorkerController.Get(System.Int32)">
+            <summary>
+            Get Worker By Id.
+            </summary>
+            <param name="id">
+            The id.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.WorkerController.Delete(System.Int32)">
+            <summary>
+            Delete Worker By Id
+            </summary>
+            <param name="id">
+            The id.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.WorkerController.Post(EstelApi.Application.Dto.CreateNewWorkerDto)">
+            <summary>
+            Create New Worker.
+            </summary>
+            <param name="dto">
+            The command.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.WorkerController.Put(EstelApi.Application.Dto.UpdateWorkerDto)">
+            <summary>
+            Update Worker.
+            </summary>
+            <param name="dto">
+            The command.
+            </param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+        </member>
+        <member name="T:Estel.Services.Api.EstelServicesApiModule">
+            <inheritdoc />
+        </member>
+        <member name="M:Estel.Services.Api.EstelServicesApiModule.Load(Autofac.ContainerBuilder)">
+            <inheritdoc />
         </member>
         <member name="T:Estel.Services.Api.Extension.Exception.ApiError">
             <summary>
@@ -525,12 +979,6 @@
             <summary>
             Gets or sets the view model.
             </summary>
-        </member>
-        <member name="T:EstelApi.CrossCutting.IoC.EstelServicesApiModule">
-            <inheritdoc />
-        </member>
-        <member name="M:EstelApi.CrossCutting.IoC.EstelServicesApiModule.Load(Autofac.ContainerBuilder)">
-            <inheritdoc />
         </member>
     </members>
 </doc>

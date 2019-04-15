@@ -72,5 +72,13 @@
             var result = await this.service.DeleteCourseAttendance(new RemoveEntity<CourseAttendance>(id));
             return this.Response(result);
         }
+
+        [HttpPost("CourseAttendance")]
+        public async Task<IActionResult> Post(int userId, int courseId)
+        {
+            var result = await this.service.UserAttendToCourse(userId, courseId);
+            return this.Response(result);
+        }
+        
     }
 }

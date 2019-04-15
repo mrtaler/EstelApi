@@ -7,8 +7,6 @@
     using EstelApi.Application.Specifications.FindByIdSpec;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
 
-    using MediatR;
-
     using Microsoft.AspNetCore.Mvc;
 
     /// <inheritdoc />

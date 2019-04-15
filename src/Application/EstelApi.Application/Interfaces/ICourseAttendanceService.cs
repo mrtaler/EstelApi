@@ -14,5 +14,7 @@
         Task<CourseAttendance> GetCourseAttendance(ISpecification<CourseAttendance> criteria = null);
 
         Task<IEnumerable<CourseAttendance>> GetCourseAttendances(ISpecification<CourseAttendance> criteria = null);
+
+        Task<CourseAttendance> UserAttendToCourse(int userId, int courseId);
     }
 }
