@@ -30,15 +30,15 @@
             this.CreateMap<UpdateUserCommand, User>(memberList: MemberList.Source);
             this.CreateMap<UpdateCourseTypeCommand, CourseType>(memberList: MemberList.Source);
             this.CreateMap<UpdateCourseTopicsCommand, CourseTopics>(memberList: MemberList.Source);
-            this.CreateMap<UpdateAvailableDatesCommand, AvailableDates>(memberList: MemberList.Source);
-            this.CreateMap<UpdateAdditionalAmenityCommand, AdditionalAmenity>(memberList: MemberList.Source);
+            this.CreateMap<UpdateAvailableDatesDto, AvailableDates>(memberList: MemberList.Source);
+            this.CreateMap<UpdateAdditionalAmenityDto, AdditionalAmenity>(memberList: MemberList.Source);
 
             this.CreateMap<CreateNewWorkerCommand, Worker>(memberList: MemberList.Source);
             this.CreateMap<CreateNewUserCommand, User>(memberList: MemberList.Source);
             this.CreateMap<CreateNewCourseTypeCommand, CourseType>(memberList: MemberList.Source);
             this.CreateMap<CreateNewCourseTopicsCommand, CourseTopics>(memberList: MemberList.Source);
-            this.CreateMap<CreateNewAvailableDatesCommand, AvailableDates>(memberList: MemberList.Source);
-            this.CreateMap<CreateNewAdditionalAmenityCommand, AdditionalAmenity>(memberList: MemberList.Source);
+            this.CreateMap<CreateNewAvailableDatesDto, AvailableDates>(memberList: MemberList.Source);
+            this.CreateMap<CreateNewAdditionalAmenityDto, AdditionalAmenity>(memberList: MemberList.Source);
 
             this.CreateMap<CreateNewCourseDto, Course>(memberList: MemberList.Source);
             this.CreateMap<UpdateAdditionalAmenityForCourseDto, AdditionalAmenity>(memberList: MemberList.Source);

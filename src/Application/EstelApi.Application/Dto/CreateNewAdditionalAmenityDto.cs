@@ -5,8 +5,7 @@
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
 
-    public class CreateNewAdditionalAmenityCommand //: ICommand,
-                                                   //  IRequest<CommandResponse<AdditionalAmenity>>
+    public class CreateNewAdditionalAmenityDto
     {
         /// <summary>
         /// Hаименование Плюшек от трениннга (кофе, сертификаты, призы и тд.).

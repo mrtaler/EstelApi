@@ -7,9 +7,7 @@
 
     using MediatR;
 
-    /// <inheritdoc cref="ICommand" />
-    public class UpdateAdditionalAmenityCommand//: ICommand,
-                                               //   IRequest<CommandResponse<AdditionalAmenity>>
+    public class UpdateAdditionalAmenityDto
     {
         [Required(ErrorMessage = "The Amenity Id is Required")]
         [DisplayName("Id Additional Amenity")]

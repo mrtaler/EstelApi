@@ -1,4 +1,4 @@
-﻿namespace EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands
+﻿namespace EstelApi.Application.ApplicationCqrs.Commands.HandlersCreateCommands.CreateCommands
 {
     using System.ComponentModel.DataAnnotations;
 
@@ -6,12 +6,8 @@
 
     using MediatR;
 
-    /// <inheritdoc cref="ICommand" />
-    public class UpdateAvailableDatesCommand //: ICommand, IRequest<CommandResponse<AvailableDates>>
+    public class CreateNewAvailableDatesDto 
     {
-        [Required]
-        public int Id { get; set; }
-
         [Required]
         public string Month { get; set; }
 
@@ -24,6 +20,6 @@
         [Required]
         public string EndHour { get; set; }
 
-        public int? CourseId { get; set; }
+        public int CourseId { get; set; }
     }
 }

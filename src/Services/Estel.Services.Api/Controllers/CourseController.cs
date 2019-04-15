@@ -141,7 +141,7 @@
             command.CourseId = courseId;
             var resp = await this.courseService.UpdateAvailDateForCourse(command);
 
-            return this.Response(resp);
+            return this.Response(resp); 
         }
 
         [HttpPut("{CourseId}/CourseTopics")]
