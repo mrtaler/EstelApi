@@ -6,15 +6,15 @@
     /// </summary>
     /// <typeparam name="TEntity">entity for delete
     /// </typeparam>
-    public class RemoveEntityCommand<TEntity>
+    public class RemoveEntity<TEntity>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RemoveEntityCommand{TEntity}"/> class.
+        /// Initializes a new instance of the <see cref="RemoveEntity{TEntity}"/> class.
         /// </summary>
         /// <param name="id">
         /// The id.
         /// </param>
-        public RemoveEntityCommand(int id)
+        public RemoveEntity(int id)
         {
             this.Id = id;
         }

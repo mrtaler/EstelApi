@@ -2,9 +2,9 @@
 {
     using System.Threading.Tasks;
 
-    using EstelApi.Application.ApplicationCqrs.Commands.HandlersCreateCommands.CreateCommands;
-    using EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands;
     using EstelApi.Application.Dto;
+    using EstelApi.Application.Interfaces;
+    using EstelApi.Application.Specifications.FindByIdSpec;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
 
     using MediatR;
@@ -19,20 +19,14 @@
     [ApiVersion("1.0")]
     public class UserController : ApiController
     {
+        private IPersonService service;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="UserController"/> class.
         /// </summary>
-        /// <param name="notifications">
-        /// The notifications.
-        /// </param>
-        /// <param name="mediator">
-        /// The mediator.
-        /// </param>
-        public UserController(
-            INotificationHandler<DomainEvent> notifications,
-            IMediator mediator)
-            : base(notifications, mediator)
+        public UserController(IPersonService service)
         {
+            this.service = service;
         }
 
         /// <summary>
@@ -45,7 +39,7 @@
         [HttpGet("GetAllCustomer")]
         public async Task<IActionResult> Get()
         {
-            var result = await this.Mediator.Send(new AllEntitiesQuery<User>());
+            var result = await this.service.GetUsers();
             return this.Response(result);
         }
 
@@ -62,7 +56,7 @@
         [HttpGet("GetCustomerById")]
         public async Task<IActionResult> Get(int id)
         {
-            var result = await this.Mediator.Send(new EntityByIdQuery<User>(id));
+            var result = await this.service.GetUser(new FindUserById().SetId(id));
             return this.Response(result);
         }
 
@@ -81,11 +75,10 @@
         {
             if (!this.ModelState.IsValid)
             {
-                this.NotifyModelStateErrors();
-                return this.Response(dto);
+                return this.ResponseBad("Validation error");
             }
 
-            var resp = await this.Mediator.Send(dto);
+            var resp = await this.service.CreateNewUser(dto);
             return this.Response(resp);
         }
 
@@ -104,11 +97,10 @@
         {
             if (!this.ModelState.IsValid)
             {
-                this.NotifyModelStateErrors();
-                return this.Response(dto);
+                return this.ResponseBad("Validation error");
             }
 
-            var resp = await this.Mediator.Send(dto);
+            var resp = await this.service.UpdateUser(dto);
             return this.Response(resp);
         }
 
@@ -125,27 +117,8 @@
         [HttpDelete("DeleteCustomerById")]
         public async Task<IActionResult> Delete(int id)
         {
-            var result = await this.Mediator.Send(new RemoveEntityCommand<User>(id));
+            var result = await this.service.DeleteUser(new RemoveEntity<User>(id));
             return this.Response(result);
-        }
-
-        /// <summary>
-        /// Customer history (work)
-        /// </summary>
-        /// <param name="id">
-        /// The id.
-        /// </param>
-        /// <returns>
-        /// The <see cref="IActionResult"/>.
-        /// </returns>
-        /// [AllowAnonymous]
-        [HttpGet]
-        [Route("customer-management/history/{id:guid}")]
-        public IActionResult History(int id)
-        {
-            /*   var customerHistoryData = await this.customerAppService.GetAllHistory(id);
-               return this.Response(customerHistoryData);*/
-            return this.Ok();
         }
     }
 }

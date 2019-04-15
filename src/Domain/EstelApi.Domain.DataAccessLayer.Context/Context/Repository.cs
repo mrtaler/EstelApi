@@ -1,4 +1,4 @@
-﻿namespace EstelApi.Domain.DataAccessLayer.Context.Repository.Base
+﻿namespace EstelApi.Domain.DataAccessLayer.Context.Context
 {
     using System;
     using System.Collections.Generic;
@@ -10,7 +10,6 @@
     using EstelApi.Core.Seedwork.Specifications.Interfaces;
     using EstelApi.Core.Seedwork.Specifications.OrderSpecification;
     using EstelApi.Core.Seedwork.Specifications.Specifications;
-    using EstelApi.Domain.DataAccessLayer.Context.Context;
 
     using Microsoft.EntityFrameworkCore;
 

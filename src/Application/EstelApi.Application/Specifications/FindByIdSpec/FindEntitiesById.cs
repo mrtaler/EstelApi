@@ -1,4 +1,4 @@
-﻿namespace EstelApi.Application.ApplicationCqrs.Queries.FindByIdSpec
+﻿namespace EstelApi.Application.Specifications.FindByIdSpec
 {
     using EstelApi.Core.Seedwork.Specifications.Specifications;
 

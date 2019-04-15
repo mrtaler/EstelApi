@@ -9,9 +9,9 @@
 
     using Estel.Services.Api.ViewModels;
 
-    using EstelApi.Application.ApplicationCqrs.Queries.FindByIdSpec;
     using EstelApi.Application.Dto;
     using EstelApi.Application.Interfaces;
+    using EstelApi.Application.Specifications.FindByIdSpec;
 
     /// <inheritdoc />
     /// <summary>
@@ -79,7 +79,7 @@
         [HttpDelete("DeleteCourseById")]
         public async Task<IActionResult> Delete(int id)
         {
-            var result = await courseService.DeleteCourse(new RemoveEntityCommand<Course>(id));
+            var result = await courseService.DeleteCourse(new RemoveEntity<Course>(id));
             return this.Response(result);
         }
 

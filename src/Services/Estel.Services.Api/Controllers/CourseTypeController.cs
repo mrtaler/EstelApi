@@ -3,6 +3,8 @@
     using System.Threading.Tasks;
 
     using EstelApi.Application.Dto;
+    using EstelApi.Application.Interfaces;
+    using EstelApi.Application.Specifications.FindByIdSpec;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
 
     using MediatR;
@@ -17,6 +19,8 @@
     [Route("Catalog")]
     public class CourseTypeController : ApiController
     {
+        private ICourseTypeService service;
+
         /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Estel.Services.Api.Controllers.CourseTypeController" /> class.
@@ -27,9 +31,9 @@
         /// <param name="mediator">
         /// The mediator.
         /// </param>
-        public CourseTypeController(INotificationHandler<DomainEvent> notifications, IMediator mediator)
-            : base(notifications, mediator)
+        public CourseTypeController(ICourseTypeService service)
         {
+            this.service = service;
         }
 
         /// <summary>
@@ -41,7 +45,7 @@
         [HttpGet("CourseTypes")]
         public async Task<IActionResult> Get()
         {
-            var result = await this.Mediator.Send(new AllEntitiesQuery<CourseType>());
+            var result = await this.service.GetCourseTypes();
             return this.Response(result);
         }
 
@@ -57,7 +61,7 @@
         [HttpGet("CourseType")]
         public async Task<IActionResult> Get(int id)
         {
-            var result = await this.Mediator.Send(new EntityByIdQuery<CourseType>(id));
+            var result = await this.service.GetCourseType(new FindCourseTypeById().SetId(id));
             return this.Response(result);
         }
 
@@ -73,7 +77,7 @@
         [HttpDelete("CourseType")]
         public async Task<IActionResult> Delete(int id)
         {
-            var result = await this.Mediator.Send(new RemoveEntityCommand<CourseType>(id));
+            var result = await this.service.DeleteCourseType(new RemoveEntity<CourseType>(id));
             return this.Response(result);
         }
 
@@ -91,11 +95,10 @@
         {
             if (!this.ModelState.IsValid)
             {
-                this.NotifyModelStateErrors();
-                return this.Response(dto);
+                return this.ResponseBad("Validation error");
             }
 
-            var resp = await this.Mediator.Send(dto);
+            var resp = await this.service.CreateCourseType(dto);
             return this.Response(resp);
         }
 
@@ -113,11 +116,10 @@
         {
             if (!this.ModelState.IsValid)
             {
-                this.NotifyModelStateErrors();
-                return this.Response(dto);
+                return this.ResponseBad("Validation error");
             }
 
-            var resp = await this.Mediator.Send(dto);
+            var resp = await this.service.UpdateCourseType(dto);
             return this.Response(resp);
         }
     }

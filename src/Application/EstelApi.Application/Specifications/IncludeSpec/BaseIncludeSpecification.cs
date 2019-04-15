@@ -1,4 +1,4 @@
-﻿namespace EstelApi.Application.ApplicationCqrs.Queries.IncludeSpec
+﻿namespace EstelApi.Application.Specifications.IncludeSpec
 {
     using System;
     using System.Collections.Generic;

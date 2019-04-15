@@ -9,7 +9,7 @@
 
     public interface ICourseAttendanceService
     {
-        Task<bool> DeleteCourseAttendance(RemoveEntityCommand<CourseAttendance> processingEntity);
+        Task<bool> DeleteCourseAttendance(RemoveEntity<CourseAttendance> processingEntity);
 
         Task<CourseAttendance> GetCourseAttendance(ISpecification<CourseAttendance> criteria = null);
 

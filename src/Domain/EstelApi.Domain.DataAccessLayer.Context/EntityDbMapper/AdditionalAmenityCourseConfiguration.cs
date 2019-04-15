@@ -20,8 +20,9 @@
                 .WithMany(c => c.AdditionalAmenityCourses)
                 .HasForeignKey(bc => bc.AdditionalAmenityId);
 
-            builder.HasData(new AdditionalAmenityCourse { CourseId = 1, AdditionalAmenityId = 1 },
-                new AdditionalAmenityCourse { CourseId = 1, AdditionalAmenityId =2 },
+            builder.HasData(
+                new AdditionalAmenityCourse { CourseId = 1, AdditionalAmenityId = 1 },
+                new AdditionalAmenityCourse { CourseId = 1, AdditionalAmenityId = 2 },
                 new AdditionalAmenityCourse { CourseId = 1, AdditionalAmenityId = 3 },
                 new AdditionalAmenityCourse { CourseId = 2, AdditionalAmenityId = 1 },
                 new AdditionalAmenityCourse { CourseId = 2, AdditionalAmenityId = 2 });

@@ -2,9 +2,9 @@
 {
     using System.Threading.Tasks;
 
-    using EstelApi.Application.ApplicationCqrs.Queries.FindByIdSpec;
     using EstelApi.Application.Dto;
     using EstelApi.Application.Interfaces;
+    using EstelApi.Application.Specifications.FindByIdSpec;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
 
     using Microsoft.AspNetCore.Mvc;
@@ -68,7 +68,7 @@
         [HttpDelete("AvailableDate")]
         public async Task<IActionResult> Delete(int id)
         {
-            var result = await this.service.DeleteAvailableDate(new RemoveEntityCommand<AvailableDates>(id));
+            var result = await this.service.DeleteAvailableDate(new RemoveEntity<AvailableDates>(id));
             return this.Response(result);
         }
 

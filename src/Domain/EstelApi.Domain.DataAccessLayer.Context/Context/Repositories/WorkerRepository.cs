@@ -2,7 +2,6 @@
 {
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Repositories;
-    using EstelApi.Domain.DataAccessLayer.Context.Repository.Base;
 
     public class WorkerRepository : Repository<Worker>, IWorkerRepository
     {

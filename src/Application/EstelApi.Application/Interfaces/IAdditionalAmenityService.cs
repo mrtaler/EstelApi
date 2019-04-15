@@ -11,7 +11,7 @@
     {
         Task<AdditionalAmenity> CreateAdditionalAmenity(CreateNewAdditionalAmenityDto processingEntity);
 
-        Task<bool> DeleteAdditionalAmenity(RemoveEntityCommand<AdditionalAmenity> processingEntity);
+        Task<bool> DeleteAdditionalAmenity(RemoveEntity<AdditionalAmenity> processingEntity);
 
         Task<AdditionalAmenity> UpdateAdditionalAmenity(UpdateAdditionalAmenityDto processingEntity);
 

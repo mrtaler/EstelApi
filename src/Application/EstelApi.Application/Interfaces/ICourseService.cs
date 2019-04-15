@@ -19,7 +19,7 @@
 
         Task<bool> UpdateCourseTopics(UpdateCourseTopicsForCourseDto processingEntity);
 
-        Task<bool> DeleteCourse(RemoveEntityCommand<Course> processingEntity);
+        Task<bool> DeleteCourse(RemoveEntity<Course> processingEntity);
 
         Task<Course> GetGourse(ISpecification<Course> criteria = null);
 

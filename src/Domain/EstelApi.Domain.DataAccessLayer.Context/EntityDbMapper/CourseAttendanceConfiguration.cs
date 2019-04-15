@@ -27,9 +27,9 @@
                             Id = 1,
                             CustomerId = 1,
                             CourseId = 1,
-                            AttendenseDate = DateTimeOffset.UtcNow.AddDays(-15),
-                            CourseDate = DateTimeOffset.UtcNow.AddHours(-25),
-                            CourseEndDAte = DateTimeOffset.UtcNow,
+                            AttendenseDate = new DateTimeOffset(new DateTime(2019, 3, 8, 7, 41, 20, 362, DateTimeKind.Unspecified)).AddDays(-15),
+                            CourseDate = new DateTimeOffset(new DateTime(2019, 3, 8, 7, 41, 20, 362, DateTimeKind.Unspecified)).AddHours(-25),
+                            CourseEndDAte = new DateTimeOffset(new DateTime(2019, 3, 8, 7, 41, 20, 362, DateTimeKind.Unspecified)),
                             Status = CourseAttendenseStatus.Finish,
                             Description = "testDescription"
                         },
@@ -38,9 +38,9 @@
                             Id = 2,
                             CustomerId = 2,
                             CourseId = 2,
-                            AttendenseDate = DateTimeOffset.UtcNow.AddDays(-12),
-                            CourseDate = DateTimeOffset.UtcNow.AddHours(-22),
-                            CourseEndDAte = DateTimeOffset.UtcNow,
+                            AttendenseDate = new DateTimeOffset(new DateTime(2019, 3, 8, 7, 41, 20, 362, DateTimeKind.Unspecified)).AddDays(-12),
+                            CourseDate = new DateTimeOffset(new DateTime(2019, 3, 8, 7, 41, 20, 362, DateTimeKind.Unspecified)).AddHours(-22),
+                            CourseEndDAte = new DateTimeOffset(new DateTime(2019, 3, 8, 7, 41, 20, 362, DateTimeKind.Unspecified)),
                             Status = CourseAttendenseStatus.Finish,
                             Description = "testDescription"
                         },
@@ -49,8 +49,8 @@
                             Id = 3,
                             CustomerId = 2,
                             CourseId = 1,
-                            AttendenseDate = DateTimeOffset.UtcNow.AddDays(-13),
-                            CourseDate = DateTimeOffset.UtcNow,
+                            AttendenseDate = new DateTimeOffset(new DateTime(2019, 3, 8, 7, 41, 20, 362, DateTimeKind.Unspecified)).AddDays(-13),
+                            CourseDate = new DateTimeOffset(new DateTime(2019, 3, 8, 7, 41, 20, 362, DateTimeKind.Unspecified)),
                             Status = CourseAttendenseStatus.InProgress,
                             Description = "testDescription"
                         },
@@ -59,8 +59,8 @@
                             Id = 4,
                             CustomerId = 2,
                             CourseId = 2,
-                            AttendenseDate = DateTimeOffset.UtcNow.AddDays(-14),
-                            CourseDate = DateTimeOffset.UtcNow,
+                            AttendenseDate = new DateTimeOffset(new DateTime(2019, 3, 8, 7, 41, 20, 362, DateTimeKind.Unspecified)).AddDays(-14),
+                            CourseDate = new DateTimeOffset(new DateTime(2019, 3, 8, 7, 41, 20, 362, DateTimeKind.Unspecified)),
                             Status = CourseAttendenseStatus.Rejected,
                             Description = "testDescription"
                         },
@@ -69,8 +69,8 @@
                             Id = 5,
                             CustomerId = 3,
                             CourseId = 1,
-                            AttendenseDate = DateTimeOffset.UtcNow.AddDays(-16),
-                            CourseDate = DateTimeOffset.UtcNow,
+                            AttendenseDate = new DateTimeOffset(new DateTime(2019, 3, 8, 7, 41, 20, 362, DateTimeKind.Unspecified)).AddDays(-16),
+                            CourseDate = new DateTimeOffset(new DateTime(2019, 3, 8, 7, 41, 20, 362, DateTimeKind.Unspecified)),
                             Status = CourseAttendenseStatus.Attendent,
                             Description = "testDescription"
                         });

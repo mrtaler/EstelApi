@@ -11,7 +11,7 @@
     {
         Task<AvailableDates> CreateAvailableDates(CreateNewAvailableDatesDto processingEntity);
 
-        Task<bool> DeleteAvailableDate(RemoveEntityCommand<AvailableDates> processingEntity);
+        Task<bool> DeleteAvailableDate(RemoveEntity<AvailableDates> processingEntity);
 
         Task<AvailableDates> UpdateAvailableDate(UpdateAvailableDatesDto processingEntity);
 

@@ -11,7 +11,7 @@
     {
         Task<CourseTopics> CreateCourseTopics(CreateNewCourseTopicsDto processingEntity);
 
-        Task<bool> DeleteCourseTopics(RemoveEntityCommand<CourseTopics> processingEntity);
+        Task<bool> DeleteCourseTopics(RemoveEntity<CourseTopics> processingEntity);
 
         Task<CourseTopics> UpdateCourseTopics(UpdateCourseTopicsDto processingEntity);
 

@@ -3,7 +3,6 @@
     using Autofac;
 
     using EstelApi.Application;
-    using EstelApi.Application.ApplicationCqrs;
     using EstelApi.Core.Seedwork.Adapter;
     using EstelApi.Core.Seedwork.Adapter.Implementation;
     using EstelApi.CrossCutting.Identity;

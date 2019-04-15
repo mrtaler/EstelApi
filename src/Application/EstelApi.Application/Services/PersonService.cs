@@ -1,20 +1,17 @@
-﻿namespace EstelApi.Application.Interfaces
+﻿namespace EstelApi.Application.Services
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    using EstelApi.Application.ApplicationCqrs.Commands.HandlersCreateCommands.CreateCommands;
-    using EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands;
-    using EstelApi.Application.ApplicationCqrs.Queries.FindByIdSpec;
-    using EstelApi.Application.ApplicationCqrs.Queries.IncludeSpec;
     using EstelApi.Application.Dto;
-    using EstelApi.Application.Services;
+    using EstelApi.Application.Interfaces;
+    using EstelApi.Application.Specifications.FindByIdSpec;
+    using EstelApi.Application.Specifications.IncludeSpec;
     using EstelApi.Core.Seedwork;
     using EstelApi.Core.Seedwork.Adapter;
     using EstelApi.Core.Seedwork.Specifications.Interfaces;
     using EstelApi.Domain.DataAccessLayer.Context.Context.Base;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
-    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Repositories;
     using EstelApi.Domain.DataAccessLayer.Context.Interfaces;
 
@@ -84,7 +81,7 @@
                        : throw new DatabaseException("Save exeption");
         }
 
-        public async Task<bool> DeleteUser(RemoveEntityCommand<User> processingEntity)
+        public async Task<bool> DeleteUser(RemoveEntity<User> processingEntity)
         {
             Contract.ThrowIfNull(processingEntity, processingEntity.GetType().Name);
 
@@ -95,7 +92,7 @@
                        : true;
         }
 
-        public async Task<bool> DeleteWorker(RemoveEntityCommand<Worker> processingEntity)
+        public async Task<bool> DeleteWorker(RemoveEntity<Worker> processingEntity)
         {
             Contract.ThrowIfNull(processingEntity, processingEntity.GetType().Name);
 

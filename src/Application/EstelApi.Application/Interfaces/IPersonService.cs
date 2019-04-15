@@ -3,8 +3,6 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    using EstelApi.Application.ApplicationCqrs.Commands.HandlersCreateCommands.CreateCommands;
-    using EstelApi.Application.ApplicationCqrs.Commands.HandlersUpdateCommands.UpdateCommands;
     using EstelApi.Application.Dto;
     using EstelApi.Core.Seedwork.Specifications.Interfaces;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
@@ -20,8 +18,8 @@
         Task<User> CreateNewUser(CreateNewUserDto processingEntity);
         Task<Worker> CreateNewWorker(CreateNewWorkerDto processingEntity);
 
-        Task<bool> DeleteUser(RemoveEntityCommand<User> processingEntity);
-        Task<bool> DeleteWorker(RemoveEntityCommand<Worker> processingEntity);
+        Task<bool> DeleteUser(RemoveEntity<User> processingEntity);
+        Task<bool> DeleteWorker(RemoveEntity<Worker> processingEntity);
 
         Task<User> UpdateUser(UpdateUserDto processingEntity);
         Task<Worker> UpdateWorker(UpdateWorkerDto processingEntity);

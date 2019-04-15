@@ -4,9 +4,9 @@
 
     using Estel.Services.Api.ViewModels;
 
-    using EstelApi.Application.ApplicationCqrs.Queries.FindByIdSpec;
     using EstelApi.Application.Dto;
     using EstelApi.Application.Interfaces;
+    using EstelApi.Application.Specifications.FindByIdSpec;
     using EstelApi.Core.Seedwork.Adapter;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
 
@@ -92,7 +92,7 @@
         [HttpDelete("AdditionalAmenity")]
         public async Task<IActionResult> Delete(int id)
         {
-            var result = await this.service.DeleteAdditionalAmenity(new RemoveEntityCommand<AdditionalAmenity>(id));
+            var result = await this.service.DeleteAdditionalAmenity(new RemoveEntity<AdditionalAmenity>(id));
             return this.Response(result);
         }
 

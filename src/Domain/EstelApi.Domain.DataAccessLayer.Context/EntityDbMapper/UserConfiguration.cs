@@ -1,6 +1,8 @@
-﻿namespace EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg
+﻿namespace EstelApi.Domain.DataAccessLayer.Context.EntityDbMapper
 {
     using System;
+
+    using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.CustomerAgg;
 
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -18,7 +20,7 @@
                         LastName = "LastName1",
                         MiddleName = "MiddleName1",
                         Telephone = "123456789",
-                        BirthDate = DateTimeOffset.UtcNow.AddDays(-150),
+                        BirthDate = new DateTimeOffset(new DateTime(2019, 3, 8, 7, 41, 20, 362, DateTimeKind.Unspecified)).AddDays(-150),
                         IsEnabled = true,
                         LogoPath = @"c:\"
                     },
@@ -29,7 +31,7 @@
                         LastName = "LastName2",
                         MiddleName = "MiddleName2",
                         Telephone = "234567891",
-                        BirthDate = DateTimeOffset.UtcNow.AddDays(-275),
+                        BirthDate = new DateTimeOffset(new DateTime(2019, 3, 8, 7, 41, 20, 362, DateTimeKind.Unspecified)).AddDays(-275),
                         IsEnabled = true,
                         LogoPath = @"c:\"
                     },
@@ -40,7 +42,7 @@
                         LastName = "LastName3",
                         MiddleName = "MiddleName3",
                         Telephone = "345678912",
-                        BirthDate = DateTimeOffset.UtcNow.AddDays(-690),
+                        BirthDate = new DateTimeOffset(new DateTime(2019, 3, 8, 7, 41, 20, 362, DateTimeKind.Unspecified)).AddDays(-690),
                         IsEnabled = true,
                         LogoPath = @"c:\"
                     },
@@ -51,7 +53,7 @@
                         LastName = "LastName4",
                         MiddleName = "MiddleName4",
                         Telephone = "456789123",
-                        BirthDate = DateTimeOffset.UtcNow.AddDays(-850),
+                        BirthDate = new DateTimeOffset(new DateTime(2019, 3, 8, 7, 41, 20, 362, DateTimeKind.Unspecified)).AddDays(-850),
                         IsEnabled = true,
                         LogoPath = @"c:\"
                     },
@@ -62,24 +64,10 @@
                         LastName = "LastName5",
                         MiddleName = "MiddleName5",
                         Telephone = "567891234",
-                        BirthDate = DateTimeOffset.UtcNow.AddDays(-987),
+                        BirthDate = new DateTimeOffset(new DateTime(2019, 3, 8, 7, 41, 20, 362, DateTimeKind.Unspecified)).AddDays(-987),
                         IsEnabled = true,
                         LogoPath = @"c:\"
                     });
-
-
-
-            /*   builder.HasDiscriminator(person => person.Discriminator)
-                   .HasValue<Customer>(nameof(Customer))
-                   .HasValue<Worker>(nameof(Worker))*/
-
-
-            //  builder.HasOne(x => x.Picture).WithOne(x => x.Customer).HasForeignKey<Customer>(x => x.Id);
-            /* builder.Property(c => c.Id)
-                                         .HasColumnName("Id");*/
-            /*  builder.Property(c => c.Name).HasColumnType("varchar(100)").HasMaxLength(100).IsRequired();
-  
-              builder.Property(c => c.Email).HasColumnType("varchar(100)").HasMaxLength(100).IsRequired();*/
         }
     }
 }

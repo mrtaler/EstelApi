@@ -3,10 +3,10 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    using EstelApi.Application.ApplicationCqrs.Queries.FindByIdSpec;
-    using EstelApi.Application.ApplicationCqrs.Queries.IncludeSpec;
     using EstelApi.Application.Dto;
     using EstelApi.Application.Interfaces;
+    using EstelApi.Application.Specifications.FindByIdSpec;
+    using EstelApi.Application.Specifications.IncludeSpec;
     using EstelApi.Core.Seedwork;
     using EstelApi.Core.Seedwork.Specifications.Interfaces;
     using EstelApi.Domain.DataAccessLayer.Context.Context.Base;
@@ -36,7 +36,7 @@
                        : throw new DatabaseException("Save exeption");
         }*/
 
-        public async Task<bool> DeleteCourseAttendance(RemoveEntityCommand<CourseAttendance> processingEntity)
+        public async Task<bool> DeleteCourseAttendance(RemoveEntity<CourseAttendance> processingEntity)
         {
             Contract.ThrowIfNull(processingEntity, processingEntity.GetType().Name);
 

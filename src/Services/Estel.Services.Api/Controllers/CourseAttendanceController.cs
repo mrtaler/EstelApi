@@ -2,9 +2,9 @@
 {
     using System.Threading.Tasks;
 
-    using EstelApi.Application.ApplicationCqrs.Queries.FindByIdSpec;
     using EstelApi.Application.Dto;
     using EstelApi.Application.Interfaces;
+    using EstelApi.Application.Specifications.FindByIdSpec;
     using EstelApi.Domain.DataAccessLayer.Context.CoreEntities.Done;
 
     using Microsoft.AspNetCore.Mvc;
@@ -69,7 +69,7 @@
         [HttpDelete("CourseAttendance")]
         public async Task<IActionResult> Delete(int id)
         {
-            var result = await this.service.DeleteCourseAttendance(new RemoveEntityCommand<CourseAttendance>(id));
+            var result = await this.service.DeleteCourseAttendance(new RemoveEntity<CourseAttendance>(id));
             return this.Response(result);
         }
     }
