@@ -13,14 +13,15 @@
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
+    /// <inheritdoc />
     [Authorize]
     [ApiVersion("1.0")]
     [Route("identity/IdentityUsers")]
     public class IdentityUsersController : ApiController
     {
         private readonly ApplicationUserManager userManager;
-   
 
+        /// <inheritdoc />
         public IdentityUsersController(ApplicationUserManager userManager)
         {
             this.userManager = userManager;

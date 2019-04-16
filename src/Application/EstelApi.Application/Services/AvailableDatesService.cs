@@ -6,7 +6,6 @@
     using EstelApi.Application.Dto;
     using EstelApi.Application.Interfaces;
     using EstelApi.Application.Specifications.FindByIdSpec;
-    using EstelApi.Application.Specifications.IncludeSpec;
     using EstelApi.Core.Seedwork;
     using EstelApi.Core.Seedwork.Adapter;
     using EstelApi.Core.Seedwork.Specifications.Interfaces;
@@ -62,16 +61,14 @@
 
         public async Task<AvailableDates> GetAvailableDate(ISpecification<AvailableDates> criteria = null)
         {
-            var ret = this.repository.OneMatching(
-                filter: criteria,
-                includes: new AvailableDatesInclude());
+            var ret = this.repository.OneMatching(filter: criteria);
 
             return await Task.FromResult(ret);
         }
 
         public async Task<IEnumerable<AvailableDates>> GetAvailableDates(ISpecification<AvailableDates> criteria = null)
         {
-            var ret = this.repository.AllMatching(criteria, includes: new AvailableDatesInclude());
+            var ret = this.repository.AllMatching(criteria);
             return await Task.FromResult(ret);
         }
     }

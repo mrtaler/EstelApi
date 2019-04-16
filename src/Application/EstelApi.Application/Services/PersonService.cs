@@ -33,21 +33,20 @@
 
         public async Task<IEnumerable<User>> GetUsers(ISpecification<User> criteria = null)
         {
-            var ret = this.userRepository.AllMatching(includes: new UserInclude());
+            var ret = this.userRepository.AllMatching();
             return await Task.FromResult(ret);
         }
 
         public async Task<IEnumerable<Worker>> GetWorkers(ISpecification<Worker> criteria = null)
         {
-            var ret = this.workerRepository.AllMatching(includes: new WorkerInclude());
+            var ret = this.workerRepository.AllMatching();
             return await Task.FromResult(ret);
         }
 
         public async Task<User> GetUser(ISpecification<User> criteria = null)
         {
             var ret = this.userRepository.OneMatching(
-                filter: criteria,
-                includes: new UserInclude());
+                filter: criteria);
 
             return await Task.FromResult(ret);
         }
@@ -55,8 +54,7 @@
         public async Task<Worker> GetWorker(ISpecification<Worker> criteria = null)
         {
             var ret = this.workerRepository.OneMatching(
-                filter: criteria,
-                includes: new WorkerInclude());
+                filter: criteria);
 
             return await Task.FromResult(ret);
         }

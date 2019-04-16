@@ -7,7 +7,6 @@
     using EstelApi.Application.Interfaces;
     using EstelApi.Application.Specifications.FindByAllFields;
     using EstelApi.Application.Specifications.FindByIdSpec;
-    using EstelApi.Application.Specifications.IncludeSpec;
     using EstelApi.Core.Seedwork;
     using EstelApi.Core.Seedwork.Adapter;
     using EstelApi.Core.Seedwork.Specifications.Interfaces;
@@ -152,15 +151,14 @@
             public async Task<Course> GetGourse(ISpecification<Course> criteria = null)
             {
                 var ret = this.courseRepository.OneMatching(
-                    filter: criteria,
-                    includes: new CourseInclude());
+                    filter: criteria);
 
                 return await Task.FromResult(ret);
             }
 
         public async Task<IEnumerable<Course>> GetGourses(ISpecification<Course> criteria = null)
         {
-            var ret = this.courseRepository.AllMatching(criteria, includes: new CourseInclude());
+            var ret = this.courseRepository.AllMatching(criteria);
             return await Task.FromResult(ret);
         }
     }
