@@ -23,11 +23,15 @@
         /// <summary>
         /// The add auto mapper setup.
         /// </summary>
-        /// <param name="services">
-        /// The services.
+        /// <param name="container">
+        /// The container.
         /// </param>
-        /// <exception cref="ArgumentNullException">if services is null
+        /// <exception cref="ArgumentNullException">
+        /// if services is null
         /// </exception>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         public static async Task IdentityDataInit(IContainer container)
         {
             if (container is null)

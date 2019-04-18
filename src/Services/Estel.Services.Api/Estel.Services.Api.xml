@@ -13,11 +13,15 @@
             <summary>
             The add auto mapper setup.
             </summary>
-            <param name="services">
-            The services.
+            <param name="container">
+            The container.
             </param>
-            <exception cref="T:System.ArgumentNullException">if services is null
+            <exception cref="T:System.ArgumentNullException">
+            if services is null
             </exception>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
         </member>
         <member name="T:Estel.Services.Api.Configurations.MvcOptionsExtensions">
             <summary>
@@ -512,6 +516,12 @@
             <returns>
             The <see cref="T:System.Threading.Tasks.Task"/>.
             </returns>
+        </member>
+        <member name="T:Estel.Services.Api.Controllers.Identity.IdentityUsersController">
+            <inheritdoc />
+        </member>
+        <member name="M:Estel.Services.Api.Controllers.Identity.IdentityUsersController.#ctor(EstelApi.CrossCutting.Identity.IdentityServices.ApplicationUserManager)">
+            <inheritdoc />
         </member>
         <member name="T:Estel.Services.Api.Controllers.UserController">
             <summary>

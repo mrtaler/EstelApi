@@ -22,16 +22,11 @@
     public class CourseController : ApiController
     {
         private ICourseService courseService;
+
         /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Estel.Services.Api.Controllers.CourseController" /> class.
         /// </summary>
-        /// <param name="notifications">
-        /// The notifications.
-        /// </param>
-        /// <param name="mediator">
-        /// The mediator.
-        /// </param>
         public CourseController(ICourseService courseService)
         {
             this.courseService = courseService;
